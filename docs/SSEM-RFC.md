@@ -76,7 +76,7 @@
 ### 1.1. The Application Security Challenge
 
 Organizations invest significantly in secure coding initiatives and security testing tools, yet often do not observe commensurate outcomes in application security (AppSec). Tangible progress can feel slow, and friction between AppSec and Development teams is a common impediment.  The advent of Generative AI tools for code generation, while powerful, also presents a risk of amplifying past security mistakes or introducing new, subtle vulnerabilities if not guided by sound engineering principles. Ensuring that AI-generated code is inherently securable is a new facet of this challenge. A fundamental question arises: how can development teams consistently create securable code if they are not deeply versed in security expertise?
-Furthermore, many well-intentioned strategies, including the prevalent "shift left" movement, have often yielded disappointing results in practice, failing to bridge the gap effectively.
+Furthermore, many well-intentioned strategies, including the prevalent "shift left" movement, have often yielded disappointing results in practice, failing to impact the software produced.
 
 ### 1.2. A Developer-Centric Security Paradigm
 
@@ -84,7 +84,7 @@ This document posits that expecting every software engineer to adopt the mindset
 
 ### 1.3. Document Purpose and Scope
 
-The purpose of this document is to introduce the Securable Software Engineering Model (SSEM). SSEM is a framework designed to bridge the gap between AppSec objectives and software development practices. It provides a common language and a set of principles to guide the creation of secure software.
+The purpose of this document is to introduce the Securable Software Engineering Model (SSEM). SSEM is a framework designed to align AppSec objectives with business goals. It provides a common language and a set of principles to guide the creation of secure software.
 
 This document will cover:
 
@@ -96,7 +96,7 @@ This document will cover:
 - The roles of different engineering personnel in adopting SSEM.
 - The potential evolution of SSEM in response to emerging software engineering trends and strategies for organizational adoption.
 
-This document is intended for AppSec professionals, software engineers, engineering managers, and anyone involved in the Software Development Lifecycle (SDLC) who seeks to improve application security outcomes, especially for software that forms part of the Internet ecosystem or implements IETF standards.
+This document is intended for AppSec professionals, software engineers, engineering managers, and anyone involved in the Software Development Lifecycle (SDLC) who seeks to improve application security outcomes.
 
 ## 2. Foundational Principles
 
