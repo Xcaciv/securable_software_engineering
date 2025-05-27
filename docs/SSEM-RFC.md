@@ -21,55 +21,70 @@
 
 ## Table of Contents
 
-1. [Introduction](#1-introduction)
-    1. [The Application Security Challenge](#11-the-application-security-challenge)
-    2. [A Developer-Centric Security Paradigm](#12-a-developer-centric-security-paradigm)
-    3. [Document Purpose and Scope](#13-document-purpose-and-scope)
-2. [Foundational Principles](#2-foundational-principles)
-    1. [Security Mission: Reducing Material Impact](#21-security-mission-reducing-material-impact)
-    2. [Mindset Divergence: Hacker vs. Engineer](#22-mindset-divergence-hacker-vs-engineer)
-    3. [Aligning Security with Development](#23-aligning-security-with-development)
-3. [The Securable Software Engineering Model (SSEM)](#3-the-securable-software-engineering-model-ssem)
-    1. [Overview and Objectives](#31-overview-and-objectives)
-    2. [Core Securable Attributes](#32-core-securable-attributes)
-        1. [Maintainability](#321-maintainability)
-        2. [Trustworthiness](#322-trustworthiness)
-        3. [Reliability](#323-reliability)
-    3. [SSEM as a Design Language](#33-ssem-as-a-design-language)
-4. [Integrating SSEM into Development Lifecycles](#4-integrating-ssem-into-development-lifecycles)
-    1. [Applying SSEM to Dependency Management](#41-applying-ssem-to-dependency-management)
-    2. [Natively Extending Development Processes](#42-natively-extending-development-processes)
-    3. [The Role of Merge/Pull Request Reviews](#43-the-role-of-mergepull-request-reviews)
-    4. [Early Integration: Planning and Requirements](#44-early-integration-planning-and-requirements)
-5. [Addressing Common AppSec Anti-Patterns](#5-addressing-common-appsec-anti-patterns)
-    1. [The "Shoveling Left" Phenomenon](#51-the-shoveling-left-phenomenon)
-        1. [Ineffective Vulnerability Reporting](#511-ineffective-vulnerability-reporting)
-        2. [Pitfalls of Exploit-First Training](#512-pitfalls-of-exploit-first-training)
-    2. [Strategic Use of Security Tooling Output](#52-strategic-use-of-security-tooling-output)
-6. [Practical Guidance for Secure Software Development](#6-practical-guidance-for-secure-software-development)
-    1. [Establishing Clear Expectations](#61-establishing-clear-expectations)
-        1. [Proactive Communication](#611-proactive-communication)
-        2. [Integrating Security into Requirements](#612-integrating-security-into-requirements)
-    2. [Threat Modeling as a Collaborative Practice](#62-threat-modeling-as-a-collaborative-practice)
-    3. [Managing Flexibility and Control](#63-managing-flexibility-and-control)
-    4. [Defensive Coding and System Resilience](#64-defensive-coding-and-system-resilience)
-    5. [Dependency Management](#65-dependency-management)
-7. [Roles and Responsibilities in SSEM Adoption](#7-roles-and-responsibilities-in-ssem-adoption)
-    1. [Empowering Senior Software Engineers](#71-empowering-senior-software-engineers)
-    2. [Guiding Developing Software Engineers](#72-guiding-developing-software-engineers)
-8. [Evolution and Adoption of SSEM](#8-evolution-and-adoption-of-ssem)
-    1. [Adapting to Emerging Software Engineering Trends](#81-adapting-to-emerging-software-engineering-trends)
-        1. [AI-Driven Software Development](#811-ai-driven-software-development)
-        2. [Low-Code and No-Code Platforms](#812-low-code-and-no-code-platforms)
-        3. [Cloud-Native and Serverless Architectures](#813-cloud-native-and-serverless-architectures)
-        4. [DevSecOps and Continuous Security](#814-devsecops-and-continuous-security)
-        5. [Quantum-Resistant Cryptography](#815-quantum-resistant-cryptography)
-        6. [Ethical AI and Security Governance](#816-ethical-ai-and-security-governance)
-    2. [Organizational Adoption Strategies](#82-organizational-adoption-strategies)
-9. [Security Considerations](#9-security-considerations)
-10. [Conclusion](#10-conclusion)
-11. [References](#11-references)
-12. [Author's Address](#12-authors-address)
+- [A Framework for Integrating Application Security into Software Engineering: The Securable Software Engineering Model (SSEM)](#a-framework-for-integrating-application-security-into-software-engineering-the-securable-software-engineering-model-ssem)
+  - [Abstract](#abstract)
+  - [Copyright Notice](#copyright-notice)
+  - [Table of Contents](#table-of-contents)
+  - [1. Introduction](#1-introduction)
+    - [1.1. The Application Security Challenge](#11-the-application-security-challenge)
+    - [1.2. A Developer-Centric Security Paradigm](#12-a-developer-centric-security-paradigm)
+    - [1.3. Document Purpose and Scope](#13-document-purpose-and-scope)
+  - [2. Foundational Principles](#2-foundational-principles)
+    - [2.1. Security Mission: Reducing Material Impact](#21-security-mission-reducing-material-impact)
+    - [2.2. Mindset Divergence: Hacker vs. Engineer](#22-mindset-divergence-hacker-vs-engineer)
+    - [2.3. Aligning Security with Development](#23-aligning-security-with-development)
+  - [3. The Securable Software Engineering Model (SSEM)](#3-the-securable-software-engineering-model-ssem)
+    - [3.1. Overview and Objectives](#31-overview-and-objectives)
+    - [3.2. Core Securable Attributes](#32-core-securable-attributes)
+      - [3.2.1. Maintainability](#321-maintainability)
+        - [3.2.1.1. Analyzability](#3211-analyzability)
+        - [3.2.1.2. Modifiability](#3212-modifiability)
+        - [3.2.1.3. Testability](#3213-testability)
+      - [3.2.2. Trustworthiness](#322-trustworthiness)
+        - [3.2.2.1. Confidentiality](#3221-confidentiality)
+        - [3.2.2.2. Non-repudiation](#3222-non-repudiation)
+        - [3.2.2.3. Accountability](#3223-accountability)
+        - [3.2.2.4. Authenticity](#3224-authenticity)
+      - [3.2.3. Reliability](#323-reliability)
+        - [3.2.3.1. Availability](#3231-availability)
+        - [3.2.3.2. Integrity](#3232-integrity)
+        - [3.2.3.3. Fault Tolerance](#3233-fault-tolerance)
+        - [3.2.3.4. Resilience](#3234-resilience)
+    - [3.3. SSEM as a Design Language](#33-ssem-as-a-design-language)
+  - [4. Integrating SSEM into Development Lifecycles](#4-integrating-ssem-into-development-lifecycles)
+    - [4.1. Applying SSEM to Dependency Management](#41-applying-ssem-to-dependency-management)
+    - [4.2. Natively Extending Development Processes](#42-natively-extending-development-processes)
+    - [4.3. The Role of Merge/Pull Request Reviews](#43-the-role-of-mergepull-request-reviews)
+    - [4.4. Early Integration: Planning and Requirements](#44-early-integration-planning-and-requirements)
+  - [5. Addressing Common AppSec Anti-Patterns](#5-addressing-common-appsec-anti-patterns)
+    - [5.1. The "Shoveling Left" Phenomenon](#51-the-shoveling-left-phenomenon)
+      - [5.1.1. Ineffective Vulnerability Reporting](#511-ineffective-vulnerability-reporting)
+      - [5.1.2. Pitfalls of Exploit-First Training](#512-pitfalls-of-exploit-first-training)
+    - [5.2. Strategic Use of Security Tooling Output](#52-strategic-use-of-security-tooling-output)
+  - [6. Practical Guidance for Secure Software Development](#6-practical-guidance-for-secure-software-development)
+    - [6.1. Establishing Clear Expectations](#61-establishing-clear-expectations)
+      - [6.1.1. Proactive Communication](#611-proactive-communication)
+      - [6.1.2. Integrating Security into Requirements](#612-integrating-security-into-requirements)
+    - [6.2. Threat Modeling as a Collaborative Practice](#62-threat-modeling-as-a-collaborative-practice)
+    - [6.3. Managing Flexibility and Control](#63-managing-flexibility-and-control)
+    - [6.4. Defensive Coding and System Resilience](#64-defensive-coding-and-system-resilience)
+    - [6.5. Dependency Management](#65-dependency-management)
+  - [7. Roles and Responsibilities in SSEM Adoption](#7-roles-and-responsibilities-in-ssem-adoption)
+    - [7.1. Empowering Senior Software Engineers](#71-empowering-senior-software-engineers)
+    - [7.2. Guiding Developing Software Engineers](#72-guiding-developing-software-engineers)
+  - [8. Evolution and Adoption of SSEM](#8-evolution-and-adoption-of-ssem)
+    - [8.1. Adapting to Emerging Software Engineering Trends](#81-adapting-to-emerging-software-engineering-trends)
+      - [8.1.1. AI-Driven Software Development](#811-ai-driven-software-development)
+      - [8.1.2. Low-Code and No-Code Platforms](#812-low-code-and-no-code-platforms)
+      - [8.1.3. Cloud-Native and Serverless Architectures](#813-cloud-native-and-serverless-architectures)
+      - [8.1.4. DevSecOps and Continuous Security](#814-devsecops-and-continuous-security)
+      - [8.1.5. Quantum-Resistant Cryptography](#815-quantum-resistant-cryptography)
+      - [8.1.6. Ethical AI and Security Governance](#816-ethical-ai-and-security-governance)
+    - [8.2. Organizational Adoption Strategies](#82-organizational-adoption-strategies)
+  - [9. Security Considerations](#9-security-considerations)
+  - [10. Conclusion](#10-conclusion)
+  - [11. References](#11-references)
+  - [12. Author's Address](#12-authors-address)
 
 ## 1. Introduction
 
@@ -102,17 +117,17 @@ This document is intended for AppSec professionals, software engineers, engineer
 
 ### 2.1. Security Mission: Reducing Material Impact
 
-The core mission of cybersecurity, as articulated by Rick Howard in "Cyber Security First Principles," is to 'Reduce the Probability of Material Impact of a cyber event, aligned with the business's risk appetite'. Complete elimination of breaches, while an ideal, is often not a functional business goal. Security strategies MUST, therefore, align with overarching business objectives. This requires a balanced approach, particularly from experienced professionals. While formal buy-in and metrics are necessary, AppSec's role extends to enabling Development teams to meet security expectations and pass security assessments.
+The core mission of cybersecurity, as articulated by Rick Howard in "Cyber Security First Principles," is to 'Reduce the Probability of Material Impact of a cyber event, aligned with the business's risk appetite'. Complete elimination of breaches, while an ideal, is often not a functional business goal. Security strategies MUST, therefore, align with overarching business objectives. This requires a balanced approach, particularly from experienced professionals. While formal buy-in and metrics are necessary, AppSec's role extends to enabling Development teams to meet security expectations and pass security assessments. Effectivly prepairing applications for our connected world.
 
 ### 2.2. Mindset Divergence: Hacker vs. Engineer
 
-The perspective that all programmers should be penetration testers to eliminate security problems overlooks a critical distinction. While understanding how systems can be compromised is valuable, it does not inherently translate into the knowledge of how to build them securely. There is a significant gap between identifying a vulnerability and implementing a robust, scalable software engineering solution.
+The perspective that all programmers should be penetration testers, or think like attackers, to eliminate security problems overlooks a critical distinction. While understanding how systems can be compromised is valuable, it does not inherently translate into the knowledge of how to build them securely. There is a significant difference between identifying a vulnerability and implementing a robust, scalable software engineering solution.
 
 Expecting developers to become expert penetration testers is akin to requiring them to master formal software testing or Quality Assurance (QA) disciplines merely to write unit tests. Programmers MUST test their own code, but they do not need to become QA experts. A similar principle applies to security assurance.
 
 ### 2.3. Aligning Security with Development
 
-True alignment between security and development requires a return to first principles. Instead of imposing security-centric jargon and processes that may seem alien to developers, SSEM advocates for using well-established Software Engineering terms to describe securable code attributes. This fosters understanding and empowers developers to address security confidently without years of dedicated security experience. The goal is to instill confidence in developers, enabling them to recognize securable attributes in existing code and understand what building securely entails from an engineering perspective.
+True alignment between security and development requires a return to first principles. Instead of imposing security-centric jargon and processes that may seem alien to developers, SSEM advocates for using well-established Software Engineering terms to describe securable code attributes. This fosters understanding and empowers developers to address security confidently without years of dedicated security experience. The goal is to instill confidence in developers, enabling them to recognize securable attributes in existing code and understand what building securely entails from an engineering perspective. As will be discussed, this also requires specific participation from AppSec professionals in the early stages of the Software Development Lifecycle (SDLC), particularly during requirements gathering and feature planning.
 
 ## 3. The Securable Software Engineering Model (SSEM)
 
@@ -126,6 +141,15 @@ SSEM is designed to:
 - Serve as a mental model, a checklist, or a means to set clear expectations.
 - Shift the conversation from a binary "Is it secure?" to a more nuanced "Do we meet our goals for this particular attribute?"
 
+| **Maintainability** | **Trustworthiness** | **Reliability** |
+|-----------------|-----------------|--------------|
+| Analyzability    | Confidentiality | Availability  |
+| Modifiability    | Non-repudiation | Integrity     |
+| Testability      | Accountability  | Fault Tolerance|
+|                  | Authenticity    | Resilience     |
+
+SSEM is not a rigid framework but a flexible model that can adapt to various software engineering practices. It emphasizes the inherent qualities of well-engineered software that contribute directly to security, rather than prescribing specific security controls or processes. This allows it to scale effectively without requiring security to adopt toilsome or overly complex processes that may not align with the development team's workflow.
+
 ### 3.2. Core Securable Attributes
 
 SSEM identifies several fundamental and universal attributes of securable code. These attributes are inherent qualities of well-engineered software that also contribute directly to its security. They are grouped into three primary categories: Maintainability, Trustworthiness, and Reliability, each encompassing specific sub-attributes detailed below.
@@ -136,7 +160,7 @@ Definition: Maintainability is the "degree of effectiveness and efficiency with 
 
 ##### 3.2.1.1. Analyzability
 
-Definition: The ability to find the cause of a behavior within the code. From a security standpoint, code must be understandable to find and fix vulnerabilities.
+Definition: “The degree of effectiveness and efficiency with which it is possible to assess the impact on a product or system of an intended change to one or more of its parts, or to diagnose a product for deficiencies or causes of failures, or to identify parts to be modified” (ISO 25010, §4.2.7.3). This means the ability to find the cause of a behavior within the code. From a security standpoint, code must be understandable to find and fix vulnerabilities.
 
 Contributing Factors:
 
@@ -148,7 +172,7 @@ Contributing Factors:
 
 ##### 3.2.1.2. Modifiability
 
-Definition: The ability to modify code without breaking existing functionality or introducing new vulnerabilities.
+Definition: “The degree to which a product or system can be effectively and efficiently modified without introducing defects or degrading existing product quality” (ISO 25010, §4.2.7.4). This means the ability to modify code without breaking existing functionality or introducing new vulnerabilities.
 
 Contributing Factors:
 
@@ -158,7 +182,7 @@ Contributing Factors:
 
 ##### 3.2.1.3. Testability
 
-Definition: The ability to write a test for a piece of code without needing to change the code under test. Effective testing is crucial for verifying security controls and detecting regressions.
+Definition: “The degree of effectiveness and efficiency with which test criteria can be established for a system, product or component and tests can be performed to determine whether those criteria have been met” (ISO 25010, §4.2.7.5). This is the ability to write a test for a piece of code without needing to change the code under test. Effective testing is crucial for verifying security controls and detecting regressions.
 
 Contributing Factors:
 
