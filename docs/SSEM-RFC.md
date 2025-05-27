@@ -1,7 +1,9 @@
 # A Framework for Integrating Application Security into Software Engineering: The Securable Software Engineering Model (SSEM)
 
-> Request for Comments
+> Request for Comments:
+> 
 > Obsoletes: None
+> 
 > Category: Informational
 >
 > Alton Crossley
