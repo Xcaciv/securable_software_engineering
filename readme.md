@@ -27,7 +27,7 @@ To provide practical guidelines that help developers to create secure software w
 
 ## Contributing
 
-Contributions to improve security practices and examples are welcome. Please see our [contributing guidelines](CONTRIBUTING.md) for details.
+Contributions to improve documentation and examples are welcome. Please see our [contributing guidelines](CONTRIBUTING.md) for details.
 
 ## License
 
