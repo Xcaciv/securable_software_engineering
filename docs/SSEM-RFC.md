@@ -1,4 +1,4 @@
-# A Framework for Integrating Application Security into Software Engineering: The Securable Software Engineering Model (SSEM)
+# A Framework for Integrating Application Security into Software Engineering (FIASSE) and The Securable Software Engineering Model (SSEM)
 
 > Request for Comments:
 > 
@@ -11,7 +11,7 @@
 
 ## Abstract
 
-> This document describes the Securable Software Engineering Model (SSEM), a framework designed to integrate application security principles and practices directly into the software engineering discipline. It addresses the common challenges of friction between Application Security (AppSec) and Development teams, the perceived slow progress in enhancing software security, and the need to empower developers to build securable code without requiring them to become penetration testing experts. The SSEM provides a design language based on established software engineering terms, focusing on inherent security attributes of code and software architecture that contribute to security. This document outlines the core principles of SSEM, its key attributes, methods for its integration into the development processes, practical guidance for developers, and considerations for its adoption and evolution. The goal is to reduce the probability of material impact from cyber events by fostering a collaborative, developer-centric approach to application security, particularly for software that implements or relies on Internet protocols and services.
+> This document describes the Framework for Integrating Application Security into Software Engineering (FIASSE&trade;), a framework designed to integrate application security principles and practices directly into the software engineering discipline. It addresses the common challenges of friction between Application Security (AppSec) and Development teams, the perceived slow progress in enhancing software security, and the need to empower developers to build securable code without requiring them to become penetration testing experts. The Securable Software Engineering Model (SSEM&trade;) provides a design language based on established software engineering terms, focusing on inherent security attributes of code and software architecture that contribute to security. This document outlines the core principles of the framework (FIASSE), its key attributes (SSEM), methods for its integration into the development processes, practical guidance for developers, and considerations for its adoption and evolution. It also defines a durable model as the foundation for FIASSE. The goal is to reduce the probability of material impact from cyber events by fostering a collaborative, developer-centric approach to application security, particularly for software that implements or relies on Internet protocols and services.
 
 ## Copyright Notice
 
@@ -21,7 +21,7 @@
 
 ## Table of Contents
 
-- [A Framework for Integrating Application Security into Software Engineering: The Securable Software Engineering Model (SSEM)](#a-framework-for-integrating-application-security-into-software-engineering-the-securable-software-engineering-model-ssem)
+- [A Framework for Integrating Application Security into Software Engineering (FIASSE) and The Securable Software Engineering Model (SSEM)](#a-framework-for-integrating-application-security-into-software-engineering-fiasse-and-the-securable-software-engineering-model-ssem)
   - [Abstract](#abstract)
   - [Copyright Notice](#copyright-notice)
   - [Table of Contents](#table-of-contents)
@@ -144,7 +144,7 @@ SSEM is designed to:
 - Shift the conversation from a binary "Is it secure?" to a more nuanced "Do we meet our goals for this particular attribute?"
 
 | **Maintainability** | **Trustworthiness** | **Reliability** |
-|-----------------|-----------------|--------------|
+|:-----------------|:-----------------:|--------------:|
 | Analyzability    | Confidentiality | Availability  |
 | Modifiability    | Non-repudiation | Integrity     |
 | Testability      | Accountability  | Fault Tolerance|
@@ -244,7 +244,7 @@ A design language fosters a shared understanding around specific technical value
 
 ### 4.1. Applying SSEM to Dependency Management
 
-SSEM principles can be effectively applied to the entire lifecycle of software dependencies. This application extends beyond merely scanning for vulnerabilities (a reactive tactic detailed further in Section 6.5) to proactively considering the following SSEM attributes in the context of dependency management:
+SSEM principles should also be applied to managing software dependencies. Since  Dependency Management must go beyond scanning for vulnerabilities (a reactive tactic detailed further in Section 6.5) to proactively considering the following SSEM attributes:
 
 - Analyzability: Requires a thorough understanding of each dependency's full scope, including its transitive dependencies, its specific purpose within the application, and its potential attack surface. Maintaining a clear inventory and a documented rationale for every included dependency is crucial.
 - Modifiability: Encourages designing systems with loosely coupled dependencies to facilitate easier updates, patching, or replacement if a vulnerability is discovered, a dependency becomes obsolete, or a more secure alternative is identified. This aligns with architectural modifiability.
