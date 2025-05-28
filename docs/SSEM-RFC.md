@@ -30,8 +30,9 @@
     - [1.2. A Developer-Centric Security Paradigm](#12-a-developer-centric-security-paradigm)
     - [1.3. Document Purpose and Scope](#13-document-purpose-and-scope)
   - [2. Foundational Principles](#2-foundational-principles)
-    - [2.1. Security Mission: Reducing Material Impact](#21-security-mission-reducing-material-impact)
-    - [2.2. Mindset Divergence: Hacker vs. Engineer](#22-mindset-divergence-hacker-vs-engineer)
+    - [2.1. Resiliently Add Computing Value](#21-resiliently-add-computing-value)
+    - [2.2. Security Mission: Reducing Material Impact](#22-security-mission-reducing-material-impact)
+    - [2.3. Mindset Divergence: Hacker vs. Engineer](#23-mindset-divergence-hacker-vs-engineer)
     - [2.3. Aligning Security with Development](#23-aligning-security-with-development)
   - [3. The Securable Software Engineering Model (SSEM)](#3-the-securable-software-engineering-model-ssem)
     - [3.1. Overview and Objectives](#31-overview-and-objectives)
@@ -60,24 +61,26 @@
     - [5.1. The "Shoveling Left" Phenomenon](#51-the-shoveling-left-phenomenon)
       - [5.1.1. Ineffective Vulnerability Reporting](#511-ineffective-vulnerability-reporting)
       - [5.1.2. Pitfalls of Exploit-First Training](#512-pitfalls-of-exploit-first-training)
-    - [5.2. Strategic Use of Security Tooling Output](#52-strategic-use-of-security-tooling-output)
+    - [5.2. Strategic Use of Security Output](#52-strategic-use-of-security-output)
   - [6. Practical Guidance for Secure Software Development](#6-practical-guidance-for-secure-software-development)
     - [6.1. Establishing Clear Expectations](#61-establishing-clear-expectations)
       - [6.1.1. Proactive Communication](#611-proactive-communication)
       - [6.1.2. Integrating Security into Requirements](#612-integrating-security-into-requirements)
     - [6.2. Threat Modeling as a Collaborative Practice](#62-threat-modeling-as-a-collaborative-practice)
     - [6.3. Managing Flexibility and Control](#63-managing-flexibility-and-control)
-    - [6.4. Defensive Coding and System Resilience](#64-defensive-coding-and-system-resilience)
+    - [6.4. Resilient Coding and System Resilience](#64-resilient-coding-and-system-resilience)
     - [6.5. Dependency Management](#65-dependency-management)
   - [7. Roles and Responsibilities in SSEM Adoption](#7-roles-and-responsibilities-in-ssem-adoption)
+    - [7.0. Application Security's Role](#70-application-securitys-role)
     - [7.1. Empowering Senior Software Engineers](#71-empowering-senior-software-engineers)
     - [7.2. Guiding Developing Software Engineers](#72-guiding-developing-software-engineers)
-  - [8. Evolution and Adoption of SSEM](#8-evolution-and-adoption-of-ssem)
+    - [7.3. The Role of Product Owners and Managers](#73-the-role-of-product-owners-and-managers)
+  - [8. Evolution and Adoption of FIASSE](#8-evolution-and-adoption-of-fiasse)
     - [8.1. Adapting to Emerging Software Engineering Trends](#81-adapting-to-emerging-software-engineering-trends)
       - [8.1.1. AI-Driven Software Development](#811-ai-driven-software-development)
       - [8.1.2. Low-Code and No-Code Platforms](#812-low-code-and-no-code-platforms)
       - [8.1.3. Cloud-Native and Serverless Architectures](#813-cloud-native-and-serverless-architectures)
-      - [8.1.4. DevSecOps and Continuous Security](#814-devsecops-and-continuous-security)
+      - [8.1.4. Continuous Security Engineering](#814-continuous-security-engineering)
       - [8.1.5. Quantum-Resistant Cryptography](#815-quantum-resistant-cryptography)
       - [8.1.6. Ethical AI and Security Governance](#816-ethical-ai-and-security-governance)
     - [8.2. Organizational Adoption Strategies](#82-organizational-adoption-strategies)
@@ -117,11 +120,17 @@ This document is intended for AppSec professionals, software engineers, engineer
 
 ## 2. Foundational Principles
 
-### 2.1. Security Mission: Reducing Material Impact
+### 2.1. Resiliently Add Computing Value
 
-The core mission of cybersecurity, as articulated by Rick Howard in "Cyber Security First Principles," is to 'Reduce the Probability of Material Impact of a cyber event, aligned with the business's risk appetite'. Complete elimination of breaches, while an ideal, is often not a functional business goal. Security strategies MUST, therefore, align with overarching business objectives. This requires a balanced approach, particularly from experienced professionals. While formal buy-in and metrics are necessary, AppSec's role extends to enabling Development teams to meet security expectations and pass security assessments. Effectivly prepairing applications for our connected world.
+The primary directive of software engineering is to add valuable software in a way that is robust enough to withstand change, stress, and attack. This means creating software that not only meets functional requirements but also possesses inherent qualities that allow it to adapt, persist, and maintain its integrity over time and under various conditions. It also includes the ability to withstand operational failures, accommodate evolving business needs, and resist security threats. Software Engineering refers to the broader discipline of designing, developing, and maintaining software in a systematic and organized way [Wikipedia-SE].
 
-### 2.2. Mindset Divergence: Hacker vs. Engineer
+This principle underscores the idea that security is not an add-on but an intrinsic component of well-engineered software, contributing directly to its ability to deliver value reliably and sustainably.
+
+### 2.2. Security Mission: Reducing Material Impact
+
+The core mission of cybersecurity, as articulated by Rick Howard in "Cyber Security First Principles," is to 'Reduce the Probability of Material Impact of a cyber event, aligned with the business's risk appetite'. Complete elimination of breaches, while an ideal, is often not a functional business goal. Security strategies MUST, therefore, align with overarching business objectives. This requires a balanced approach, particularly from experienced professionals. While formal buy-in and metrics are necessary, AppSec's role extends to enabling Development teams to meet security expectations and pass security assessments. Effectively preparing applications for our connected world.
+
+### 2.3. Mindset Divergence: Hacker vs. Engineer
 
 The perspective that all programmers should be penetration testers, or think like attackers, to eliminate security problems overlooks a critical distinction. While understanding how systems can be compromised is valuable, it does not inherently translate into the knowledge of how to build them securely. There is a significant difference between identifying a vulnerability and implementing a robust, scalable software engineering solution.
 
@@ -238,19 +247,21 @@ By defining these attributes using established software engineering terminology,
 
 This design language plays a crucial role in creating a cohesive product. It complements architecture to help Development understand how principles and key qualities are to be understood and applied across the codebase. This guides the Software Engineer to make the countless smaller decisions that make while writing code.
 
-A design language fosters a shared understanding around specific technical values. This can bring together a culture of diversely inclined professionals to focus on common goals. This is achieved by the shift in conversations around security as mentioned in Section 3.1, where the focus is on meeting goals for specific attributes rather than binary security assessments. This cultural alignment can also influence the product's internal structure to support these technical values.
+A design language fosters a shared understanding around specific technical values. This can bring together a culture of quality made up of diversely inclined professionals to focus on these common goals and ideals. This is achieved by the shift in conversations around security as mentioned in Section 3.1, where the focus is on meeting goals for specific attributes rather than binary security assessments. This cultural alignment can strongly influence the product's internal structure to support these technical values. This is contrast with the traditional approach of find-and-fix monotony.
 
 ## 4. Integrating SSEM into Development Lifecycles
 
 ### 4.1. Applying SSEM to Dependency Management
 
-SSEM principles should also be applied to managing software dependencies. Since  Dependency Management must go beyond scanning for vulnerabilities (a reactive tactic detailed further in Section 6.5) to proactively considering the following SSEM attributes:
+SSEM principles should also be applied to managing software dependencies. Dependency Management must go beyond scanning for vulnerabilities (a reactive tactic detailed further in Section 6.5) to proactively considering the following SSEM attributes:
 
 - Analyzability: Requires a thorough understanding of each dependency's full scope, including its transitive dependencies, its specific purpose within the application, and its potential attack surface. Maintaining a clear inventory and a documented rationale for every included dependency is crucial.
 - Modifiability: Encourages designing systems with loosely coupled dependencies to facilitate easier updates, patching, or replacement if a vulnerability is discovered, a dependency becomes obsolete, or a more secure alternative is identified. This aligns with architectural modifiability.
 - Testability: Involves ensuring that dependencies can be effectively managed during testing (e.g., through mocking, stubbing, or version pinning) and that their integration points are themselves robustly testable.
 - Trustworthiness (Authenticity and Integrity): Mandates implementing processes to verify the source and integrity of dependencies (e.g., using signed packages, checksums, and trusted repositories) before their integration into the codebase.
 - Reliability: Entails assessing how a dependency's failure modes (e.g., unavailability, performance degradation, security compromise) could impact the overall system's reliability and resilience, and subsequently planning appropriate mitigations.
+
+Once FIASSE has been adopted, potential dependencies can be evaluated against the values of the culture it aims to create. This includes assessing whether a dependency aligns with the principles of SSEM, such as maintainability, trustworthiness, and reliability. Because core principals are established, attributes that may otherwise seem too subjective, can be included in the decision making process more comfortably and with more certainty.
 
 By embedding these SSEM considerations into how dependencies are selected, integrated, monitored, and updated, security becomes an inherent part of this common and critical development practice.
 
@@ -260,16 +271,19 @@ A key principle for reducing friction and effectively preparing development team
 
 Examples include:
 
-- Epic/Feature Creation: Considering security implications and SSEM attributes during the early planning and design phases, which is critical when these features involve interaction with Internet protocols or exposure to Internet-based threats.
+- Architecture review: Consider business concerns to emphasize security implications. (e.g., DDOS protection to preserve business integrity).
+- Predefined checklists: Develop flexible checklists that incorporate SSEM attributes and security considerations that can be used in various contexts.
 - Usability: Framing usability not just as aesthetics but as building trust from a security standpoint (e.g., clear error messages, intuitive permissions management).
 
 ### 4.3. The Role of Merge/Pull Request Reviews
 
 While software engineering may lack formal licensing like other engineering disciplines, the merge review (or pull request review) process serves as a crucial point for mentoring, guidance, and validation. For security, this is where securable code review can scale effectively. It acts as an agile training ground where developers learn from peers and receive feedback in a constructive environment. SSEM attributes can provide a concrete basis for these reviews.
 
+The teams should be careful to avoid introducing unnecessary complexity or friction into the review process. This means that the merge review is used as guard rails and not as a gate. The goal is to grow the FIASSE mindset within the team, not to create a negative experience for the developers.
+
 ### 4.4. Early Integration: Planning and Requirements
 
-Integrating security considerations early in the development lifecycle is paramount. SSEM encourages AppSec participation in requirements gathering and feature planning. This ensures that security is not an afterthought but a foundational aspect of the design. Techniques such as defining Threat Scenarios and Security Acceptance Criteria (discussed further in Section 6.1.2) make expectations explicit from the outset.
+While security is an intrinsic component of well-engineered software, there are aspects of security that are functional requirements. SSEM encourages AppSec participation in requirements gathering and feature planning. This ensures that security is not an afterthought but a foundational aspect of the design. Techniques such as defining Threat Scenarios and Security Acceptance Criteria (discussed further in Section 6.1.2) make expectations explicit from the outset.
 
 ## 5. Addressing Common AppSec Anti-Patterns
 
@@ -286,193 +300,222 @@ To avoid this, AppSec SHOULD:
 1. Focus on True Positives: Validate findings to ensure accuracy.
 2. Identify Root Causes: Address systemic issues rather than just symptoms.
 3. Prioritize by Impact: Focus on issues that are plentiful or affect sensitive resources.
-4. Collaborate on Solutions: Work with development teams on framework-level or architectural changes.
+4. Collaborate on Solutions: Work with development teams to formulate wide impact solutions instead of just line-level fixes.
 5. Verify Fixes: Ensure remediation is effective and consider automated regression tests.
 
 #### 5.1.2. Pitfalls of Exploit-First Training
 
 Another form of "Shoveling Left" is security training for developers that focuses primarily on exploitation techniques ("learn the hack to stop the attack"). While understanding attack vectors can be beneficial in some security domains, simply knowing how to exploit a vulnerability in software does not equate to knowing the needed engineering solution to prevent or remediate it.
 
-Exploit-centric training often fails to address whether a vulnerability stems from a typo, an architectural flaw, or a misunderstanding of requirements. It does not inherently teach developers how to prevent issues systematically or design more secure systems from an engineering standpoint.
+Exploit-centric training often fails to address whether a vulnerability stems from a typo, an architectural flaw, or a misunderstanding of requirements. It does not inherently teach developers how to prevent issues systematically or build more secure systems.
 
-### 5.2. Strategic Use of Security Tooling Output
+### 5.2. Strategic Use of Security Output
 
-While scanning and testing tools are valuable for AppSec to understand the current security posture, their output MUST be used strategically. It SHOULD NOT be assumed that security requirements are implicit or that developers should be blamed for missing controls if clear expectations were not set. Without such expectations, what AppSec perceives as a flaw, Development might see as implicitly exposed flexibility.
+While scanning and testing tools are valuable for AppSec to understand the current security posture, their output MUST be used strategically. It should not be assumed that security requirements are implicit or that developers should be blamed for missing controls if clear expectations were not set. Without such expectations, disagreements can arise.
 
 ## 6. Practical Guidance for Secure Software Development
 
 ### 6.1. Establishing Clear Expectations
 
-Clear expectations are foundational to building securable products. AppSec can maximize its impact by setting these expectations early and effectively.
+Clear expectations are foundational to building securable products. AppSec can maximize its impact by setting these expectations effectively. This requires AppSec's alignment with the business processes involved in software development.
 
 #### 6.1.1. Proactive Communication
 
-Basic communication is essential. Development teams SHOULD be informed about new testing initiatives or security programs. Demonstrating tools to interested senior developers can foster collaboration and identify key contacts for strategic fix efforts. Regular synchronization points can help offer support and maintain momentum. Effective soft skills are crucial for AppSec professionals.
+Basic communication is essential. Development teams should be informed about new testing initiatives or security programs pertaining to the product they maintain. Demonstrating tools to interested senior developers can foster collaboration and identify key contacts for strategic collaboration efforts. Regular synchronization points can help offer support and maintain momentum. Soft skills are important for Application Security professionals to be effective in their role.
 
 #### 6.1.2. Integrating Security into Requirements
 
-Beyond informal communication, AppSec SHOULD participate actively in formal requirements gathering processes. Instead of solely reviewing and auditing after development, participation ensures security is embedded from the start.
+Beyond informal communication, AppSec should participate actively in formal requirements gathering processes. Instead of solely reviewing and auditing after development, participation ensures security is perceived as a component of the product instead of a gate threatening productivity.
 
 Key methods include:
 
 - Threat Scenarios: Describing potential misuse cases or attack paths relevant to the feature being developed. This helps identify necessary controls.
 - Security Acceptance Criteria: Defining specific, testable conditions that a feature must meet to be considered secure. These criteria allow QA to perform security testing by verifying requirements.
 
-Integrating security into foundational design decisions through requirements ensures proper realization of trustworthiness attributes like Integrity and Fault Tolerance. Requirements are an often underutilized yet powerful tool for security.
+Integrating security into foundational design decisions through requirements ensures proper realization of Trustworthiness and attributes like Integrity and Fault Tolerance. Leveraging requirements allows Development to address security concerns without thinking of them as separate from every-day operations. Requirements are an often underutilized yet powerful tool for security.
 
 ### 6.2. Threat Modeling as a Collaborative Practice
 
-Threat modeling is a valuable team activity, ideally performed early in the development process, similar to requirements gathering. Even a simple framework, such as the "Four Question Framework" (What are we building? What can go wrong? What are we going to do about it? Did we do a good job?), can highlight areas needing more detailed design or specific security requirements.
+Threat modeling is a valuable team activity, ideally performed early in the development process, similar to requirements gathering. Even a simple framework, such as the "Four Question Framework" (What are we building? What can go wrong? What are we going to do about it? Did we do a good job?), can highlight areas needing more detailed design or specific security requirements. Threat modeling can be organically integrated with the FIASSE mindset by simply asking "What can go wrong?" at any point in the process.
 
-A key concept emerging from threat modeling is the identification of **trust boundaries**. These are points in the system where data passes between entities with different levels of trust (e.g., user to application, application to database, service to service). Trust boundaries require heightened control and caution.
+A key concept taken from threat modeling is the identification of **trust boundaries**. These are points in the system where data passes between entities with different levels of trust (e.g., user to application, application to database, service to service). Trust boundaries require heightened control over data and process execution.
 
 ### 6.3. Managing Flexibility and Control
 
-Software engineers often value flexibility in code, as it can facilitate feature implementation and bug fixing. Attackers, however, seek uncontrolled flexibility—unconventional ways to use software that deviate from intended behavior.
+Software engineers often value flexibility in code, as it can facilitate feature implementation and bug fixing. Attackers, however, seek uncontrolled flexibility as a means to deviate from intended behavior.
 
-The issue is not flexibility itself, but the lack of appropriate control, especially at trust boundaries and for operations requiring high resilience. An example of excessive, uncontrolled flexibility might be a function capable of executing arbitrary statements with arbitrary parameters without restriction. Control is essential to ensure trustworthy execution, maintain system Integrity, and support Fault Tolerance.
+The issue is not flexibility itself, but the lack of appropriate control, especially at trust boundaries. An example of uncontrolled flexibility might be a function capable of executing arbitrary query statements with arbitrary parameters without restriction. Control is essential to ensure trustworthy execution, maintain system Integrity, and support Fault Tolerance. While flexibility is necessary for Maintainability.
 
-### 6.4. Defensive Coding and System Resilience
+### 6.4. Resilient Coding and System Resilience
 
 Resilience refers to an application's ability to continue running predictably, even under unfavorable circumstances or load. Tactical resilience is achieved through **defensive coding** practices that promote predictable execution.
 
 This drives the need for concrete developer actions such as:
 
-- Filtering and validating all input, especially at trust boundaries. Input validation ensures that data conforms to expected formats, types, lengths, and ranges before processing.
-- Properly escaping and encoding all output destined for other systems or interpreters (e.g., HTML, SQL, shell commands). This prevents injection attacks.
+- Filtering and validating all input at trust boundaries. Input validation ensures that data conforms to expected formats, types, lengths, and ranges before processing.
+- Properly escaping and encoding all output destined for other systems or interpreters (exiting trust boundaries). This prevents injection attacks by ensuring that data is treated as data, not executable code.
 
-These are verifiable actions that AppSec can guide and assess.
+These are verifiable actions that AppSec can assess.
 
 ### 6.5. Dependency Management
 
-Regularly updating software dependencies is a fundamental tactic for maintaining security. Updates often include fixes for known bugs, including security vulnerabilities. This SHOULD be a routine process, integrated into development sprints or regular maintenance cycles.
+Dependency management starts when a library is introduced to the system, or even earlier if possible.  The library should be evaluated for being fit to support your system and its values. This includes assessing whether the library aligns with the principles of SSEM, such as maintainability, trustworthiness, and reliability. Not all code that is shared is intended for reuse in systems that need to be resilient. This is a key aspect of the FIASSE mindset, which emphasizes the importance of understanding the implications of dependencies on the overall system architecture and security posture.
+
+Regularly updating software dependencies is a fundamental tactic for maintaining system resilience. Updates often include fixes for known bugs, including security vulnerabilities. This should be a routine process, integrated into sprints or regular maintenance cycles.
 
 Key considerations for dependency management:
 
+- Avoid unnecessary dependencies. Each dependency introduces the need for additional maintenance.
 - If no direct update fixes a known flaw in a dependency, further analysis is required to identify mitigation strategies (e.g., compensating controls, forking and patching, or reimplementation).
-- Organizations SHOULD have a clear policy regarding the use and maintenance of open-source dependencies, including processes for addressing vulnerabilities found within them.
+- Organizations should have a clear policy regarding the use and maintenance of open-source dependencies, including processes for addressing vulnerabilities found within them.
 - Reliance solely on CVE (Common Vulnerabilities and Exposures) reporting may not be sufficient. A thorough analysis of dependencies and their transitive "baggage" is recommended.
 
 ## 7. Roles and Responsibilities in SSEM Adoption
 
-Understanding different development roles is crucial for tailoring guidance and effectively integrating SSEM.
+Understanding different development roles is useful for tailoring guidance and effectively integrating SSEM.
+
+### 7.0. Application Security's Role
+
+It should be understood in early stages of FIASSE adoption that Application Security's role in development is that of assurance. The only shared responsibility between AppSec and Development teams is the timely delivery of the end result. This ensures the focus of Software Engineers remains on building securable code through a self-governed process. AppSec is to provide guidance through participation in development activities, essentially evaluating their own effectiveness by performing assurance activities.
 
 ### 7.1. Empowering Senior Software Engineers
 
-Experienced, top-tier software engineers are critical to the success of any AppSec program. AppSec professionals SHOULD work collaboratively *with* these engineers on architecture and design. They can bridge the gap between security objectives and development realities.
+Experienced, top-tier software engineers are critical to the success of any AppSec program. AppSec professionals should work collaboratively *with* these engineers in design activities.
 
-Senior engineers SHOULD:
+Senior engineers should be empowered to:
 
+- Ask 'What can go wrong?' and consider those issues at every stage of development.
 - Drive the creation of Security Requirements, Acceptance Criteria, and Threat Scenarios.
-- Lead merge reviews, emphasizing SSEM attributes, software engineering principles, and the importance of trust boundaries.
+- Lead merge reviews, emphasizing SSEM attributes, software engineering principles.
 - Champion and schedule regular dependency maintenance.
-- Extend defensive coding concepts (e.g., Fail Secure design, robust Exception Handling, Security Unit Testing, Defense-in-Depth, comprehensive Logging).
-- Lead by example, utilizing and promoting policies, standards, and guidelines.
+- Mentor peers as well as less experienced developers.
+- Liaise with AppSec teams to ensure smooth security alignment with software engineering practices.
 
 ### 7.2. Guiding Developing Software Engineers
 
-Software engineers who are still gaining experience (Artisan or Ancillary Coders) benefit greatly from mental checklists like SSEM and the methodologies it describes. They may not always intuitively know "What can go wrong?" but can learn effectively through structured guidance, merge reviews, and pair programming.
+Software engineers who are still gaining experience (aka. Jr Programmers, Artisan or Ancillary Coders) benefit greatly from mental checklists like SSEM and the methodologies FIASSE describes. They may not always intuitively know "What can go wrong?" but can learn through structured guidance, merge reviews, and pair programming.
 
-These engineers SHOULD be encouraged to:
+These engineers should be encouraged to:
 
+- Focus on becoming strong software engineers.
 - Ask for clear Security Requirements, Acceptance Criteria, and Threat Scenarios.
 - Be cautious about introducing new external dependencies without due diligence.
 - Actively seek code reviews from senior team members.
 - Write unit tests that cover exceptional conditions and out-of-bounds values.
-- Learn and apply defensive coding techniques, particularly input validation.
+- Learn and apply defensive coding techniques, particularly input validation and output encoding.
 - Be mindful of trust boundaries in the code they write.
-- Focus on becoming strong software engineers, understanding that SSEM attributes like Maintainability, Reliability, and Identity are inherently security concerns.
+- Seek understanding of FIASSE and SSEM to learn how fundamental principles effect outcomes.
 
-## 8. Evolution and Adoption of SSEM
+### 7.3. The Role of Product Owners and Managers
+
+Product Owners and Managers play a crucial role in ensuring that FIASSE activities are given enough space in the product development lifecycle. They should:
+
+- Advocate for FIASSE considerations during the planning and prioritization of features.
+- Collaborate with AppSec and Development teams to define clear expectations through user stories, threat scenarios, and acceptance criteria.
+- Allocate time and resources for regular software engineering training and awareness programs around FIASSE.
+
+## 8. Evolution and Adoption of FIASSE
 
 ### 8.1. Adapting to Emerging Software Engineering Trends
 
-SSEM is positioned to evolve alongside emerging trends in software engineering, ensuring that security remains an integral component.
+FIASSE is positioned to evolve alongside emerging trends in software engineering, ensuring that security remains an integral component.
 
 #### 8.1.1. AI-Driven Software Development
 
-The increasing use of AI-powered tools, particularly Generative AI, for code generation, bug detection, and automated testing presents both significant opportunities and challenges for software security. While these tools can accelerate development, they also risk propagating insecure coding patterns or generating code that is difficult to analyze, modify, and test securely if not properly guided.
+The increasing use of AI-powered tools, particularly Generative AI, for code generation, bug detection, code fixes and automated testing presents both significant opportunities and challenges for software security. While these tools can accelerate development, they also risk propagating insecure coding patterns or generating code that is difficult to analyze, modify, and test securely if not properly guided.
 
-SSEM is well-suited to address this by providing a framework for **Prompt Engineering for Securable Code**. This involves crafting prompts for Generative AI tools that explicitly or implicitly request code exhibiting SSEM's core securable attributes:
+FIASSE is well-suited to address this by providing a framework for **Prompt Engineering for Securable Code**. This involves crafting prompts for Generative AI tools that explicitly or implicitly request code exhibiting FIASSE's core securable attributes:
 
 - Analyzability in Prompts: Prompts can direct AI to generate code that is well-commented, uses clear and consistent naming conventions, adheres to established coding standards, and possesses a logical, understandable structure. For example, a prompt might specify, "Generate a Python function to parse CSV data, ensuring comprehensive comments for each logical step and adherence to PEP 8 style guidelines."
 - Modifiability in Prompts: Prompts can guide AI to produce modular code with low coupling and high cohesion, clear interfaces, and an avoidance of duplicated logic. An example could be, "Develop a Java class for user authentication that is easily extensible for new authentication methods and avoids hardcoding configuration parameters."
 - Testability in Prompts: Prompts can request the generation of code that is inherently testable, for instance, by asking for functions with clear inputs and outputs, minimal side effects, and even the co-generation of unit tests. For example, "Write a Go function to calculate X, and include unit tests covering valid inputs, invalid inputs, and edge cases."
 
-Beyond these core attributes, prompts can also incorporate broader security considerations derived from SSEM's principles:
+Beyond these core attributes, prompts can also incorporate broader security considerations derived from FIASSE's principles:
 
-- Requesting code that implements specific security controls (e.g., "Generate code to sanitize user input to prevent XSS").
-- Asking the AI to consider and mitigate common vulnerabilities relevant to the code's context.
-- Specifying adherence to organizational security policies or standards.
+- Requesting code that implements specific security controls (e.g., "Generate code to sanitize user input for predictable code execution.").
+- Include security requirements and FIASSE attributes as part of the Product Requirements Document (prd.md).
+- Include FIASSE attributes as part of the Acceptance Criteria Document (acd.md).
+- Include FIASSE attributes as part of the code standards for generation (eg copilot-instructions.md).
 
-Integrating SSEM into prompt engineering aims to shift the output of AI code generators towards producing code that is not only functional but also inherently more secure and maintainable from its inception. This proactive approach complements other AI-enhanced security practices, such as AI-driven static analysis for automated security reviews of both human-written and AI-generated code, predictive security analytics to identify potential vulnerabilities earlier, and AI-assisted threat modeling.
+Integrating FIASSE into prompt engineering aims to shift the output of AI code generators towards producing code that is not only functional but also inherently more securable from its inception. This proactive approach complements other AI-enhanced security practices.
 
 #### 8.1.2. Low-Code and No-Code Platforms
 
-As low-code and no-code development platforms become more prevalent, SSEM principles can be adapted by:
+As low-code and no-code development platforms become more prevalent, FIASSE principles can be adapted by:
 
-- Establishing security guidelines tailored for citizen developers.
+- Establishing security guidelines based on FIASSE and tailored for citizen developers.
 - Embedding automated security checks within these platforms.
 - Ensuring that pre-built components and templates adhere to secure coding principles.
 
+As FIASSE is adopted and developed, we will expand on this subject with specific examples and guidelines for low-code and no-code platforms.
+
 #### 8.1.3. Cloud-Native and Serverless Architectures
 
-The shift towards microservices, containers, and serverless computing necessitates an emphasis within SSEM on:
+The shift towards microservices, containers, and serverless computing necessitates an emphasis within FIASSE on:
 
 - Secure API design and robust authentication/authorization mechanisms.
 - Comprehensive Identity and Access Management (IAM) for distributed systems.
 - Resilient architecture principles to mitigate cloud-specific threats.
 
-#### 8.1.4. DevSecOps and Continuous Security
+As FIASSE is adopted and developed, we will expand on this subject with specific examples and guidelines for cloud-native and serverless architectures.
 
-SSEM naturally aligns with DevSecOps philosophies by embedding security into CI/CD pipelines. Future adaptations will likely further strengthen this alignment through:
+#### 8.1.4. Continuous Security Engineering
+
+FIASSE naturally aligns with Continuous Security Engineering philosophies by embedding security into CI/CD pipelines. Future adaptations will likely further strengthen this alignment through:
 
 - Enhanced automation of security testing at various stages of the build and deployment process.
 - Improved security observability for real-time monitoring and incident response.
 - Continued development of developer-friendly security tooling that integrates seamlessly into their workflows.
 
+As FIASSE is adopted and developed, we will expand on this subject with specific examples and guidelines for Continuous Security Engineering practices.
+
 #### 8.1.5. Quantum-Resistant Cryptography
 
-As quantum computing capabilities advance, posing a threat to current cryptographic standards, SSEM will need to incorporate guidance on:
+As quantum computing capabilities advance, posing a threat to current cryptographic standards, FIASSE will incorporate guidance on:
 
 - Transitioning to quantum-safe cryptographic algorithms.
 - Secure key management strategies suitable for a post-quantum era.
 - Resilient data protection mechanisms that anticipate future cryptographic challenges.
 
+As FIASSE is adopted and developed, we will expand on this subject with specific examples and guidelines for quantum-resistant cryptography.
+
 #### 8.1.6. Ethical AI and Security Governance
 
-With AI playing a larger role in software development, ethical considerations and robust governance become critical. SSEM may evolve to include:
+With AI playing a larger role in software development, ethical considerations and robust governance become critical. FIASSE may evolve to include:
 
-- Guidelines to ensure AI-generated code adheres to security best practices and ethical standards.
-- Frameworks for governing AI-driven development processes from a security perspective.
-- Strategies to mitigate bias and adversarial attacks in AI models used within the SDLC.
+- Guidelines to ensure AI-generated code adheres to FIASSE principles and SSEM attributes.
+- Guidance for governing AI-driven development processes using SSEM.
+
+Soon we will expand on this subject with specific examples and guidelines for quantum-resistant cryptography.
 
 ### 8.2. Organizational Adoption Strategies
 
-Adopting SSEM effectively requires a structured approach:
+Adopting FIASSE does not require a structured approach. However, organizations can benefit from a strategic implementation plan to ensure successful integration of FIASSE principles into their software development practices. Here are some recommended steps:
 
-1. **Assess Current Practices:** Evaluate existing software engineering workflows and security posture to identify gaps where SSEM principles can provide the most benefit. This may involve security audits and maturity assessments.
-2. **Educate and Train Teams:** Provide comprehensive training on SSEM principles, secure coding, threat modeling, and dependency management. Training SHOULD be role-specific and integrated into onboarding and continuous learning programs.
-3. **Integrate into Workflows:** Embed SSEM into the DevSecOps pipeline. This includes implementing securable code reviews with SSEM-based checklists, automating security testing, and making threat modeling a standard practice.
-4. **Establish Secure Architecture Principles:** Ensure that software architecture aligns with SSEM attributes (Analyzability, Modifiability, Testability, etc.). This involves designing secure APIs, managing dependencies rigorously, and implementing resilient data protection.
-5. **Foster Collaboration:** Promote strong collaboration between AppSec, Development, and Operations teams. SSEM aims to reduce friction by using a common language; this should be reinforced through shared responsibilities and goals.
-6. **Continuously Monitor and Improve:** Security is an ongoing process. Implement real-time security observability and use the gathered insights to continuously refine security strategies and SSEM implementation.
+1. **Assess Current Practices:** Evaluate if the organization is open to adopting FIASSE principles and practices. This may involve discussions with key stakeholders and a review of existing workflows.
+   - Identify existing security practices and how they align with SSEM attributes.
+   - Determine the current level of understanding and acceptance of Software Engineering principles among development teams.
+   - Assess the misalignments FIASSE can address.
+2. **Identify Key Influencers:** Identify senior software engineers and other key stakeholders who are able to internalize the framework and the principals. These individuals can champion FIASSE adoption. These individuals should have a strong understanding of software engineering.
+3. **Educate and Train Teams:** Provide comprehensive training on FIASSE activities and SSEM attributes to Key Influencers. Introductory training should be role-specific and integrated into onboarding and continuous learning programs.
+   - Development and AppSec should understand that FIASSE is meant to be discussed in the context of software engineering, not as a separate security initiative.
+   - After the initial training, primary delivery of on-going training should be delivered in the context of merge reviews, architecture discussions, and requirements gathering. Leaders should be encouraged to bring FIASSE discussions into these activities.
+4. **Foster Collaboration:** Promote regular collaboration between AppSec and Development teams. Discourage AppSec from simply reviewing items in isolation; instead, encourage AppSec to engage in Development activities such as requiremnts gathering.
+5. **Continuously Monitor and Improve:** FIASSE is an ongoing process. Implement real-time security observability and use the gathered insights to continuously refine security strategies and FIASSE implementation.
 
-The applicability of SSEM spans various organizational types, including large technology companies integrating it into DevSecOps, financial institutions enhancing data protection, AI and cloud-based companies designing secure architectures, and open-source projects adopting secure development guidelines.
+The applicability of FIASSE spans various organizational types, including large technology companies integrating it into Continuous Security Engineering, financial institutions enhancing data protection, AI and cloud-based companies designing secure architectures, and open-source projects adopting secure development guidelines.
 
 ## 9. Security Considerations
 
-This entire document is focused on improving application security. The Securable Software Engineering Model (SSEM) itself is a framework designed to systematically address security throughout the software development lifecycle. By promoting attributes like Analyzability, Modifiability, and Testability, and by advocating for practices such as early integration of security requirements, threat modeling, defensive coding, and robust dependency management, SSEM aims to reduce the likelihood of vulnerabilities and mitigate the potential impact of security incidents.
+This entire document is focused on improving application security. The FIASSE itself is a framework designed to systematically address security in development. By promoting attributes like Analyzability, Modifiability, and Testability, and by advocating for practices such as early integration of security requirements, threat modeling, defensive coding, and robust dependency management, FIASSE aims to reduce the likelihood of vulnerabilities and mitigate the potential impact of security incidents.
 
-The successful implementation of SSEM relies on organizational commitment, continuous education, and the active participation of all stakeholders in the SDLC. Failure to address the cultural aspects of collaboration between AppSec and Development, or neglecting the strategic application of security tooling, can undermine the effectiveness of the model.
-
-From an IETF perspective, the adoption of robust software engineering practices like those outlined in SSEM is a significant security consideration. It contributes to the overall trustworthiness and resilience of software that implements Internet standards and participates in the global Internet ecosystem.
+The successful implementation of FIASSE relies on organizational commitment to security aligning with development activities. Failure to address the cultural aspects of collaboration between AppSec and Development, or neglecting the strategic application of security tooling, can undermine the effectiveness of the framework.
 
 ## 10. Conclusion
 
-Building securable software is not solely the responsibility of individual programmers; it MUST be a natural and integral part of the Software Engineering discipline. The Securable Software Engineering Model (SSEM) offers a framework to achieve this by fostering a common understanding and language between Application Security and Development teams.
+Building securable software is not solely the responsibility of individual programmers; it MUST be a natural and integral part of the Software Engineering discipline. FIASSE offers a framework to achieve this by fostering a common understanding between Application Security and Development teams.
 
-By emphasizing established software engineering principles, promoting clear communication, setting expectations early (especially in requirements), and providing practical, actionable guidance, AppSec can empower development teams to build securable code confidently and autonomously. This collaborative, developer-centric approach, as outlined by SSEM, aims to reduce friction, avoid common pitfalls like "Shoveling Left," and ultimately lead to more secure software outcomes that align with business objectives.
+AppSec can allow development teams to build securable code confidently and autonomously. This collaborative, developer-centric approach, as outlined by FIASSE, aims to reduce friction, avoid common pitfalls like "Shoveling Left," and ultimately lead to more secure software outcomes that align with business objectives.
 
 ## 11. References
 
@@ -485,6 +528,8 @@ By emphasizing established software engineering principles, promoting clear comm
 [RFC3552] Rescorla, E. and B. Korver, "Guidelines for Writing RFC Text on Security Considerations", BCP 72, RFC 3552, DOI 10.17487/RFC3552, July 2003, <https://www.rfc-editor.org/info/rfc3552>. (Illustrates IETF emphasis on security documentation, which SSEM helps fulfill in spirit for software).
 
 [OpenSSF] Open Source Security Foundation (OpenSSF). (Referenced for data on developer security learning curves).
+
+[Wikipedia-SE] Wikipedia, "Software engineering". <https://en.wikipedia.org/wiki/Software_engineering>.
 
 ## 12. Author's Address
 
