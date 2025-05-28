@@ -101,6 +101,8 @@ This document posits that expecting every software engineer to adopt the mindset
 
 The purpose of this document is to introduce the Securable Software Engineering Model (SSEM). SSEM is a framework designed to align AppSec objectives with business goals. It provides a common language and a set of principles to guide the creation of secure software.
 
+You will notice the proliferent use of the word 'securable' throughout this document. The purpose of its emphatic use is to remind readers that there is no static state of secure. Application Security must therefore align with the business objectives for software development.
+
 This document will cover:
 
 - Foundational principles underpinning SSEM.
@@ -232,7 +234,11 @@ Definition: "The ability of a system to: (a) continue to operate during and afte
 
 ### 3.3. SSEM as a Design Language
 
-By defining these attributes using established software engineering terminology, SSEM provides a common design language. This enables developers to discuss, reason about, and implement security considerations using concepts already familiar to them. It shifts the focus from reacting to vulnerabilities to proactively building software with inherent securable qualities.
+By defining these attributes using established software engineering terminology, SSEM provides a common design language. This enables developers to discuss, reason about, and implement security considerations using concepts already familiar to them. It shifts the focus from myopic treatment of vulnerabilities to cohesive creation of software with inherent securable qualities.
+
+This design language plays a crucial role in creating a cohesive product. It complements architecture to help Development understand how principles and key qualities are to be understood and applied across the codebase. This guides the Software Engineer to make the countless smaller decisions that make while writing code.
+
+A design language fosters a shared understanding around specific technical values. This can bring together a culture of diversely inclined professionals to focus on common goals. This is achieved by the shift in conversations around security as mentioned in Section 3.1, where the focus is on meeting goals for specific attributes rather than binary security assessments. This cultural alignment can also influence the product's internal structure to support these technical values.
 
 ## 4. Integrating SSEM into Development Lifecycles
 
