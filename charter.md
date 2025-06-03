@@ -34,12 +34,12 @@ The FIASSE project will develop and promote the Securable Software Engineering M
 **4. Normative Scope**
  **In Scope:**
 
-* Developing and maintaining the Securable Software Engineering Model (SSEM) specification, including its core attributes (Maintainability, Trustworthiness, Reliability) and their sub-attributes.
-* Creating practical guidance for integrating SSEM principles into various stages of the Software Development Lifecycle (SDLC), including requirements gathering, design, implementation (including AI-assisted development), code reviews, and dependency management.
-* Producing educational materials to help software engineers and AppSec professionals understand and apply SSEM.
-* Defining strategies for applying SSEM to emerging software engineering trends (e.g., AI-driven development, cloud-native architectures, DevSecOps).
-* Providing a framework for light threat modeling and defensive coding practices aligned with SSEM.
-* Facilitating community discussion and evolution of the SSEM and development practices surrounding it.
+* Developing and maintaining the Securable Software Engineering Model (SSEM) specification, including its core attributes * Developing and maintaining the Framework for Integrating Application Security into Software Engineering (FIASSE) and Securable Software Engineering Model (SSEM) specifications, including its core attributes (Maintainability, Trustworthiness, Reliability) and their sub-attributes and practices.
+* Creating practical guidance for integrating FIASSE principles into various stages of the Software Development Lifecycle (SDLC), including requirements gathering, design, implementation (including AI-assisted development), code reviews, and dependency management.
+* Producing educational materials to help software engineers and AppSec professionals understand and apply FIASSE.
+* Defining strategies for applying FIASSE to emerging software engineering trends (e.g., AI-driven development, cloud-native architectures, DevSecOps).
+* Providing a framework for light threat modeling and defensive coding practices aligned with FIASSE.
+* Facilitating community discussion and evolution of the FIASSE and development practices surrounding it.
 
 **Out of Scope:**
 
