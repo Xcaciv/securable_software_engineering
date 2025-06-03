@@ -1,6 +1,6 @@
 <img src="../img/open-project-logos/OASIS-Primary-Logo-Full-Colour.png" width="300">
 
-# Draft charter for OASIS Framework for Integrating Application Security into Software Engineering (FIASE) Open Project
+# Draft charter for OASIS Framework for Integrating Application Security into Software Engineering (FIASSE) Open Project
 
 -------------------------------------------
 
@@ -15,21 +15,21 @@ requirements must be met before it can be considered for formation as an officia
 [OASIS Open Project](http://oasis-open-projects.org). Contact the [Open Projects Administrator](mailto:op-admin@oasis-open.org) for details on this.
 
 **1. Open Project Name**
- Framework for Integrating Application Security into Software Engineering (FIASE)
+ Framework for Integrating Application Security into Software Engineering (FIASSE)
 
 **2. Statement of Purpose**
- The Framework for Integrating Application Security into Software Engineering (FIASE) project aims to address the persistent challenges in application security (AppSec) by fostering a developer-centric paradigm. Current issues include slow progress in enhancing software security, friction between AppSec and Development teams, and the inefficacy of simply "shifting left" without foundational changes. The rise of AI-driven code generation further necessitates a robust framework to ensure new code is inherently securable.
+ The Framework for Integrating Application Security into Software Engineering (FIASSE) project aims to address the persistent challenges in application security (AppSec) by fostering a developer-centric paradigm. Current issues include slow progress in enhancing software security, friction between AppSec and Development teams, and the inefficacy of simply "shifting left" without foundational changes. The rise of AI-driven code generation further necessitates a robust framework to ensure new code is inherently securable.
 
-The FIASE project will develop and promote the Securable Software Engineering Model (SSEM), a framework designed to integrate security principles directly into the software engineering discipline. SSEM provides a common design language based on established software engineering terms, focusing on inherent attributes of code and software architecture (Maintainability, Trustworthiness, Reliability) that contribute to security. This approach empowers developers to build securable software as a natural part of their discipline, without requiring them to become penetration testing experts. The project will produce specifications, guidance, and educational materials to facilitate the adoption of SSEM.
+The FIASSE project will develop and promote the Securable Software Engineering Model (SSEM), designed to highlight security principles in the software engineering discipline. The project will develop a common design language, based on established software engineering terms. It will focus on inherent attributes of code and software architecture (Maintainability, Trustworthiness, Reliability) that contribute to security. This approach empowers developers to build securable software as a natural part of their discipline, without requiring them to become penetration testing experts or think like attackers. The project will produce specifications, guidance, and educational materials to facilitate the adoption of the framework.
 
 **3. Business Benefits**  
- The FIASE project will benefit a wide range of stakeholders:
+ The FIASSE project will benefit a wide range of stakeholders:
 
 * **Software Engineers:** Will be empowered to build more secure software confidently using familiar engineering principles, reducing the burden of specialized security expertise and improving their ability to address security as an integral part of development.
-* **Development Teams & Managers:** Will experience reduced friction with AppSec teams, more predictable security outcomes, and improved integration of security into agile workflows.
-* **Application Security (AppSec) Professionals:** Will have a framework to align with development practices more effectively, collaborate with development teams using a shared language, and set clear security expectations for development.
+* **Development Teams & Managers:** Will experience reduced friction with AppSec teams, more predictable security outcomes, and improved integration of security into modern development workflows.
+* **Application Security (AppSec) Professionals:** Will have a framework to align with development practices more effectively. They will be able to collaborate with development teams using a shared language, and set clear security expectations for development. They will be able to scale the AppSec practice to match the demands of modern software development, including AI-assisted development.
 * **Organizations:** Will benefit from a reduced risk due to more inherently secure software, better alignment of security efforts with business objectives, and a more scalable approach to application security.
-* **The Open Source Community & Standards Bodies:** Will gain a model that can be adopted to improve the security posture of open source projects and documented methods for integrating security into development strategies.
+* **The Open Source Community & Standards Bodies:** Will gain a framework that can be adopted to improve the security posture of open source projects and documented methods for integrating security into development strategies.
 
 **4. Normative Scope**
  **In Scope:**
@@ -53,21 +53,21 @@ The FIASE project will develop and promote the Securable Software Engineering Mo
  *Initial milestones and deliverables will include:*
 
 * Establishment of project governance and contribution guidelines.
-* Formal publication of the SSEM specification, including its core attributes and integration strategies.
+* Formal publication of FIASSE and SSEM specifications, including their core attributes and integration strategies.
 * Development of an SSEM Primer/Introduction Guide to help software engineers understand the model and its application.
 * Collection of SSEM adoption use cases or patterns to illustrate practical applications and benefits.
 
 (Plan to work out further milestones and deliverables with the project team.)
 
 **6. Relationship to Other Projects**
- The FIASE project and the SSEM specification will aim to complement and build upon existing work in software engineering and application security:
+ The FIASSE project and the SSEM specification will aim to complement and build upon existing work in software engineering and application security:
 
 * **General Software Engineering Principles:** SSEM leverages established software engineering concepts (e.g., maintainability, reliability) and extends them with a security focus.
-* **OWASP (Open Web Application Security Project):** SSEM can provide a foundational engineering perspective that complements OWASP's resources, such as the OWASP SAMM (Software Assurance Maturity Model), by focusing on how to build securable attributes into code and systems.
-* **OpenSSF (Open Source Security Foundation):** SSEM aligns with OpenSSF's goals of improving the security of open source software by providing a model for developers to create more inherently secure code.
-* **IETF (Internet Engineering Task Force):** SSEM supports the development of more secure Internet protocols and services by providing a framework for software that implements IETF standards (ref: RFC 3552 on security considerations).
+* **OWASP (Open Web Application Security Project):** FIASSE can provide a foundational engineering perspective that complements OWASP's resources, such as the OWASP SAMM (Software Assurance Maturity Model) or OWASP ASVS (Application Security Verification Standard), by focusing on how to build securable attributes into code and systems. OWASP's projects tend to focus on security testing and verification, while FIASSE focuses on integrating with Software Engineering.
+* **OpenSSF (Open Source Security Foundation):** FIASSE aligns with OpenSSF's goals of improving the security of open source software by providing a framework for developers to create more inherently secure code.
+* **IETF (Internet Engineering Task Force):** FIASSE supports the development of more secure Internet services by providing a framework for software that implements IETF standards (ref: RFC 3552 on security considerations).
 * **ISO/IEC Standards:** SSEM references definitions from standards like ISO/IEC 25010 (SQuaRE - System and software quality models) and ISO/IEC 27000 (Information security management systems) to ground its attributes in internationally recognized terminology.
-* **Agile and DevSecOps Practices:** SSEM is designed to stay out of the way of agile methodologies and DevOps practices.
+* **Agile and DevSecOps Practices:** FIASSE is designed to stay out of the way of agile methodologies and DevOps practices.
 
 **7. Repositories and Licenses**
 
