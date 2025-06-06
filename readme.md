@@ -10,16 +10,19 @@ To provide practical guidelines that help developers to create secure software w
 
 ## Key Principles
 
-- **Securable Coding**: Applying comprehensive controls at trust boundaries allowing flexible code to add value
+- **Securable Coding**: Applying comprehensive controls at trust boundaries allowing flexible code to retain value
 - **Merge Reviews**: A context for sharing knowledge at scale while improving code
 - **Continuous Personal Improvement**: Enabling developers to enhance their knowledge while focusing on software engineering
 - **Native Security Extensions**: Complementing software engineering strategies with security tactics without noise
+- **Light weight Threat Modelling**: Integrating threat modeling into the development process without adding significant overhead
+- **Requiremnts as a first class citizen in AppSec**: the foundation of secure software engineering, ensuring that secure expectations are clearly defined
 
 
 ## Repository Contents
 
 - Definition and Documentation of the Securable Software Engineering Model (SSEM)
 - Implementation guides for the FIASSE methodology
+- Examples of secure coding requirements and practices including Generative AI artifacts
 
 ## Getting Started
 
