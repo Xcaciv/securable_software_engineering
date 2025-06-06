@@ -11,7 +11,7 @@
 
 ## Abstract
 
-> This document describes the Framework for Integrating Application Security into Software Engineering (FIASSE&trade;), a framework designed to integrate application security principles and practices directly into the software engineering discipline. It addresses the common challenges of friction between Application Security (AppSec) and Development teams, the perceived slow progress in enhancing software security, and the need to empower developers to build securable code without requiring them to become penetration testing experts. The Securable Software Engineering Model (SSEM&trade;) provides a design language based on established software engineering terms, focusing on inherent security attributes of code and software architecture that contribute to security. This document outlines the core principles of the framework (FIASSE), its key attributes (SSEM), methods for its integration into the development processes, practical guidance for developers, and considerations for its adoption and evolution. It also defines a durable model as the foundation for FIASSE. The goal is to reduce the probability of material impact from cyber events by fostering a collaborative, developer-centric approach to application security, particularly for software that implements or relies on Internet protocols and services.
+> This document describes the Framework for Integrating Application Security into Software Engineering (FIASSE&trade;), a vendor independent framework designed to integrate application security principles and practices directly into the software engineering discipline. It addresses the common challenges of friction between Application Security (AppSec) and Development teams, the perceived slow progress in enhancing software security, the need to scale AppSec, and the need to empower developers to build securable code without requiring them to become penetration testing experts. The Securable Software Engineering Model (SSEM&trade;) provides a design language based on established software engineering terms, focusing on inherent security attributes of code and software architecture that contribute to security. This document outlines the core principles of the framework (FIASSE), its key attributes (SSEM), methods for its integration into the development processes, practical guidance for developers, and considerations for its adoption and evolution. It also defines a durable model as the foundation for FIASSE. The goal is to reduce the probability of material impact from cyber events by fostering a collaborative, developer-centric approach to application security, particularly for software that implements or relies on Internet protocols and services.
 
 ## Copyright Notice
 
@@ -30,10 +30,11 @@
     - [1.2. A Developer-Centric Security Paradigm](#12-a-developer-centric-security-paradigm)
     - [1.3. Document Purpose and Scope](#13-document-purpose-and-scope)
   - [2. Foundational Principles](#2-foundational-principles)
-    - [2.1. Resiliently Add Computing Value](#21-resiliently-add-computing-value)
-    - [2.2. Security Mission: Reducing Material Impact](#22-security-mission-reducing-material-impact)
-    - [2.3. Mindset Divergence: Hacker vs. Engineer](#23-mindset-divergence-hacker-vs-engineer)
-    - [2.3. Aligning Security with Development](#23-aligning-security-with-development)
+    - [2.1. The Securable Paradigm: No Static Secure State](#21-the-securable-paradigm-no-static-secure-state)
+    - [2.2. Resiliently Add Computing Value](#22-resiliently-add-computing-value)
+    - [2.3. Security Mission: Reducing Material Impact](#23-security-mission-reducing-material-impact)
+    - [2.4. Mindset Divergence: Hacker vs. Engineer](#24-mindset-divergence-hacker-vs-engineer)
+    - [2.5. Aligning Security with Development](#25-aligning-security-with-development)
   - [3. The Securable Software Engineering Model (SSEM)](#3-the-securable-software-engineering-model-ssem)
     - [3.1. Overview and Objectives](#31-overview-and-objectives)
     - [3.2. Core Securable Attributes](#32-core-securable-attributes)
@@ -104,7 +105,7 @@ This document posits that expecting every software engineer to adopt the mindset
 
 The purpose of this document is to introduce the Securable Software Engineering Model (SSEM). SSEM is a framework designed to align AppSec objectives with business goals. It provides a common language and a set of principles to guide the creation of secure software.
 
-You will notice the proliferent use of the word 'securable' throughout this document. The purpose of its emphatic use is to remind readers that there is no static state of secure. Application Security must therefore align with the business objectives for software development.
+You will notice the proliferent use of the word 'securable' throughout this document to emphasize the dynamic nature of software security. see Section 2.1 for a detailed explanation of this term. Application Security must align with the business objectives for software development because of this dynamic nature.
 
 This document will cover:
 
@@ -120,23 +121,40 @@ This document is intended for AppSec professionals, software engineers, engineer
 
 ## 2. Foundational Principles
 
-### 2.1. Resiliently Add Computing Value
+### 2.1. The Securable Paradigm: No Static Secure State
+
+The deliberate and consistent use of the term "securable" throughout this document reflects a fundamental principle: there is no static state of "secure" for software systems. Unlike traditional security approaches that may imply a binary secure/insecure classification, the concept of "securable" acknowledges that security is an ongoing, dynamic process rather than a fixed destination.
+
+Software exists in a constantly evolving threat landscape where new vulnerabilities emerge, attack vectors evolve, business requirements change, and dependencies change. What may be considered secure today could become vulnerable tomorrow due to newly discovered exploits, changes in the threat environment, or modifications to the system itself. This reality necessitates a shift from pursuing an illusory state of perfect security to building software with inherent qualities that enable it to adapt to and withstand evolving threats.
+
+Consider the difference between a house that is currently locked (a static 'secure' state) and a house built with strong foundations, high-quality locks, a well-maintained alarm system, and clear lines of sight ('securable'). The 'securable' house is designed with inherent qualities that allow it to be made and remain secure against evolving threats over time, even if a window is momentarily left open or a new lock-picking technique emerges. FIASSE focuses on embedding these inherent 'securable' qualities into software architecture and code.
+
+The "securable" paradigm emphasizes:
+
+- **Adaptive Resilience**: Software should be designed with the capability to respond to and recover from security events.
+- **Evolutionary Security**: Security measures must evolve alongside the software and its operating environment.
+- **Continuous Improvement**: Security is an iterative process that requires ongoing attention and refinement.
+- **Business Alignment**: Security efforts must align with business objectives and risk tolerance, not pursue security for its own sake.
+
+This approach aligns security practices with the reality of software development, where systems are continuously modified, extended, and deployed in changing environments. By focusing on building securable software, development teams can create systems that maintain their protective qualities even as they evolve, rather than systems that become brittle and insecure when changed.
+
+### 2.2. Resiliently Add Computing Value
 
 The primary directive of software engineering is to add valuable software in a way that is robust enough to withstand change, stress, and attack. This means creating software that not only meets functional requirements but also possesses inherent qualities that allow it to adapt, persist, and maintain its integrity over time and under various conditions. It also includes the ability to withstand operational failures, accommodate evolving business needs, and resist security threats. Software Engineering refers to the broader discipline of designing, developing, and maintaining software in a systematic and organized way [Wikipedia-SE].
 
 This principle underscores the idea that security is not an add-on but an intrinsic component of well-engineered software, contributing directly to its ability to deliver value reliably and sustainably.
 
-### 2.2. Security Mission: Reducing Material Impact
+### 2.3. Security Mission: Reducing Material Impact
 
-The core mission of cybersecurity, as articulated by Rick Howard in "Cyber Security First Principles," is to 'Reduce the Probability of Material Impact of a cyber event, aligned with the business's risk appetite'. Complete elimination of breaches, while an ideal, is often not a functional business goal. Security strategies MUST, therefore, align with overarching business objectives. This requires a balanced approach, particularly from experienced professionals. While formal buy-in and metrics are necessary, AppSec's role extends to enabling Development teams to meet security expectations and pass security assessments. Effectively preparing applications for our connected world.
+The core mission of cybersecurity, as articulated by Rick Howard in "Cyber Security First Principles," is to 'Reduce the Probability of Material Impact of a cyber event, aligned with the business's risk appetite'. Complete elimination of breaches, while an ideal, is often not a functional business goal. Security strategies MUST, therefore, align with overarching business objectives. This requires a balanced approach. While formal buy-in and metrics are necessary, AppSec's role extends to enabling Development teams to meet security expectations and pass security assessments. Effectively preparing applications for our connected world.
 
-### 2.3. Mindset Divergence: Hacker vs. Engineer
+### 2.4. Mindset Divergence: Hacker vs. Engineer
 
-The perspective that all programmers should be penetration testers, or think like attackers, to eliminate security problems overlooks a critical distinction. While understanding how systems can be compromised is valuable, it does not inherently translate into the knowledge of how to build them securely. There is a significant difference between identifying a vulnerability and implementing a robust, scalable software engineering solution.
+The perspective that all programmers should be penetration testers, or think like attackers, or put security first, to eliminate security problems overlooks a critical distinction. While understanding how systems can be compromised is valuable, it does not inherently translate into the knowledge of how to build them securely. There is a significant difference between identifying a vulnerability and implementing a robust, scalable software engineering solution. This also complements the reality that line-level fixing does not scale effectively.
 
 Expecting developers to become expert penetration testers is akin to requiring them to master formal software testing or Quality Assurance (QA) disciplines merely to write unit tests. Programmers MUST test their own code, but they do not need to become QA experts. A similar principle applies to security assurance.
 
-### 2.3. Aligning Security with Development
+### 2.5. Aligning Security with Development
 
 True alignment between security and development requires a return to first principles. Instead of imposing security-centric jargon and processes that may seem alien to developers, SSEM advocates for using well-established Software Engineering terms to describe securable code attributes. This fosters understanding and empowers developers to address security confidently without years of dedicated security experience. The goal is to instill confidence in developers, enabling them to recognize securable attributes in existing code and understand what building securely entails from an engineering perspective. As will be discussed, this also requires specific participation from AppSec professionals in the early stages of the Software Development Lifecycle (SDLC), particularly during requirements gathering and feature planning.
 
@@ -171,7 +189,7 @@ Definition: Maintainability is the "degree of effectiveness and efficiency with 
 
 ##### 3.2.1.1. Analyzability
 
-Definition: “The degree of effectiveness and efficiency with which it is possible to assess the impact on a product or system of an intended change to one or more of its parts, or to diagnose a product for deficiencies or causes of failures, or to identify parts to be modified” (ISO 25010, §4.2.7.3). This means the ability to find the cause of a behavior within the code. From a security standpoint, code must be understandable to find and fix vulnerabilities.
+Definition: “The degree of effectiveness and efficiency with which it is possible to assess the impact on a product or system of an intended change to one or more of its parts, or to diagnose a product for deficiencies or causes of failures, or to identify parts to be modified” (ISO 25010, §4.2.7.3). This means the ability to find the cause of a behavior within the code. From a security standpoint, code must be understandable to find and fix vulnerabilities. Analyzability directly correlates to the speed and efficiency of vulnerability remediation.
 
 Contributing Factors:
 
@@ -191,6 +209,8 @@ Contributing Factors:
 - Unit Complexity: Complex units are harder to modify safely.
 - Module Coupling: The number of incoming dependencies for modules; high coupling can lead to cascading changes and unintended consequences.
 
+Modifiability is particularly important for security because it allows for rapid response to newly discovered vulnerabilities or changing security requirements. It enables teams to adapt their codebase without extensive rework, which is crucial in a fast-paced development environment.
+
 ##### 3.2.1.3. Testability
 
 Definition: “The degree of effectiveness and efficiency with which test criteria can be established for a system, product or component and tests can be performed to determine whether those criteria have been met” (ISO 25010, §4.2.7.5). This is the ability to write a test for a piece of code without needing to change the code under test. Effective testing is crucial for verifying security controls and detecting regressions.
@@ -200,26 +220,41 @@ Contributing Factors:
 - Volume: Larger codebases can be more challenging to test comprehensively.
 - Unit Complexity: Complex units are more difficult to test thoroughly.
 - Component Independence: The percentage of code in modules with no incoming dependencies from modules in other top-level components; higher independence facilitates isolated testing.
+- Unit Coupling: The number of incoming dependencies for units; high coupling can complicate testing by introducing dependencies that must also be tested.
+
+Testability is essential for security because it allows teams to verify that security controls are functioning as intended and that changes do not introduce new vulnerabilities. It also supports the development of automated tests, which can be run continuously. Because of this, it correlates to the scaling of Security Assurance.
 
 #### 3.2.2. Trustworthiness
 
-Definition: Trustworthiness is "the degree to which a system (including all its components and procedures) can be expected to achieve a set of requirements, such as security requirements" (RFC 4949). A trustworthy system operates within defined levels of trust and meets specified security properties. Key attributes contributing to trustworthiness include:
+Definition: Trustworthiness is "the degree to which a system (including all its components and procedures) can be expected to achieve a set of requirements, such as security requirements" (RFC 4949). A trustworthy system operates within defined levels of trust and meets specified security properties. The FIASSE approach differs from a security-controls-centric view by focusing on the inherent qualities of the code that enable trustworthiness. 
+
+Trustworthiness is foundational to securable software. It requires a coordinated effort to ensure that the software consistently achieves its security goals. To achieve this, strong architectural design and style are essential. This includes defining clear trust boundaries, and establishing areas of the codebase that are expected to be more flexible.
+
+Key attributes contributing to trustworthiness include:
 
 ##### 3.2.2.1. Confidentiality
 
 Definition: "The property that data is not disclosed to system entities unless they have been authorized to know the data" (RFC 4949). This ensures that sensitive information is protected from unauthorized access.
 
+This approach emphasizes that confidentiality is a fundamental attribute. By focusing on the inherent qualities of the code that enable confidentiality, SSEM avoids the pitfalls of a purely controls-centric view. It recognizes that confidentiality is not just about implementing specific security controls but about designing software that inherently protects sensitive information.
+
 ##### 3.2.2.2. Non-repudiation
 
 Definition: The "ability to prove the occurrence of a claimed event or action and its originating entities" (ISO/IEC 27000:2018). This prevents entities from falsely denying having performed an action or sent a message.
+
+Focusing on non-repudiation means ensuring that actions taken by users or systems can be traced back to their origin. This involves implementing logging, auditing, and secure authentication. These strategies provide transparency to support the maintenance and troubleshooting of the system, and they also enable accountability and authenticity.
 
 ##### 3.2.2.3. Accountability
 
 Definition: "The property of a system or system resource that ensures that the actions of a system entity may be traced uniquely to that entity" (RFC 4949). This involves managing principals and their access, enabling the attribution of actions to specific users or processes, which is crucial for auditing and incident response.
 
+Focusing on accountability means ensuring that every action taken by a user or system can be traced back to its source. This involves implementing strategies such as logging, auditing, and secure authentication. These strategies provide transparency to support the maintenance and troubleshooting of the system, and they also enable accountability and authenticity.
+
 ##### 3.2.2.4. Authenticity
 
 Definition: "The property that an entity is what it claims to be" (ISO/IEC 27000:2018). This ensures that users, systems, or information are genuine and can be verified.
+
+Focusing on authenticity means ensuring that the entities involved in a transaction or communication are who they claim to be. This involves implementing strategies such as digital signatures, certificates, and secure authentication methods. These strategies provide assurance that the entities involved in a transaction or communication are who they claim to be, which is essential for maintaining trust in the system.
 
 #### 3.2.3. Reliability
 
@@ -229,17 +264,31 @@ Definition: Reliability is the "degree to which a system, product or component p
 
 Definition: "The property of a system or a system resource being accessible and usable upon demand by an authorized system entity, according to performance specifications for the system" (RFC 4949). This ensures that the system is operational and accessible when needed.
 
+For security this means that the system is designed to be resilient against attacks like Distributed Denial of Service (DDoS) attacks. It also means that the system can recover quickly from failures or disruptions, ensuring that it remains accessible to authorized users.
+
 ##### 3.2.3.2. Integrity
 
 Definition: Encompasses both data integrity, "the property that data has not been changed, destroyed, or lost in an unauthorized or accidental manner," and system integrity, where a system "performs its intended function in an unimpaired manner free from unauthorized manipulation" (RFC 4949). This ensures the accuracy, completeness, and soundness of data and system operations.
+
+For security this means implementing measures such as cryptographic hashing, checksums, and access controls to prevent unauthorized modification or corruption of data. Emphasizing this attribute in a fundamental way ensures that the system can be trusted holisticly, not just in isolated components.
+
+This approach recognizes that integrity is not just about preventing unauthorized changes but also about ensuring that the system operates correctly and consistently, even in the face of potential threats or failures.
 
 ##### 3.2.3.3. Fault Tolerance
 
 Definition: "The ability of a system to continue to operate correctly even though a component has failed" (RFC 4949). This allows the system to withstand partial failures without complete breakdown.
 
+Focusing on this as a fundamental attribute means it is not just for specific features but for the system as a whole. It involves designing the system to handle errors gracefully, recover from failures, and maintain functionality even when parts of the system are compromised or unavailable.
+
 ##### 3.2.3.4. Resilience
 
 Definition: "The ability of a system to: (a) continue to operate during and after a failure of some part of the system (i.e., provide a degree of fault tolerance); and (b) recover from the failure and restore full operations" (RFC 4949). This also aligns with the concept of an application's ability to continue running predictably, even under unfavorable circumstances or load (as noted in Section 6.4).
+
+Strategies for resilience include:
+
+- Coding Defensively: Writing code that anticipates input outside the expected bounds and ignores those inputs rather than failing.
+- Predictable code execution: Ensuring that the code behaves consistently under various conditions.
+- Strong trust boundaries: Clearly defining areas of the codebase that exert strictly controlled execution.
 
 ### 3.3. SSEM as a Design Language
 
@@ -300,18 +349,22 @@ To avoid this, AppSec SHOULD:
 1. Focus on True Positives: Validate findings to ensure accuracy.
 2. Identify Root Causes: Address systemic issues rather than just symptoms.
 3. Prioritize by Impact: Focus on issues that are plentiful or affect sensitive resources.
-4. Collaborate on Solutions: Work with development teams to formulate wide impact solutions instead of just line-level fixes.
+4. Collaborate on Solutions: Work with development to formulate wide impact solutions instead of just line-level fixes.
 5. Verify Fixes: Ensure remediation is effective and consider automated regression tests.
 
 #### 5.1.2. Pitfalls of Exploit-First Training
 
 Another form of "Shoveling Left" is security training for developers that focuses primarily on exploitation techniques ("learn the hack to stop the attack"). While understanding attack vectors can be beneficial in some security domains, simply knowing how to exploit a vulnerability in software does not equate to knowing the needed engineering solution to prevent or remediate it.
 
-Exploit-centric training often fails to address whether a vulnerability stems from a typo, an architectural flaw, or a misunderstanding of requirements. It does not inherently teach developers how to prevent issues systematically or build more secure systems.
+Because exploit-first training fails to address guidance for daily development tasks, it does not inherently teach developers how to prevent issues systematically or build more secure systems. Further, it does not address what qualities identify securable code. This can lead to a false sense of security, where developers feel they understand the risks but lack the practical knowledge to implement effective controls. This can also be confusing to security professionals, as they may assume that developers will somehow naturally apply exploit knowledge to their coding practices.
+
+This style of training often fails to encourage the natural inclination to ask "What can go wrong?" at any point. Instead, exploit-first training focuses on an anti-pattern of predefined issues without context or reason. Without a practical understanding of how to build securable software, it fails to ground itself in the realities of software engineering.
 
 ### 5.2. Strategic Use of Security Output
 
-While scanning and testing tools are valuable for AppSec to understand the current security posture, their output MUST be used strategically. It should not be assumed that security requirements are implicit or that developers should be blamed for missing controls if clear expectations were not set. Without such expectations, disagreements can arise.
+While scanning and testing tools are valuable for AppSec to understand the current security posture, their output MUST be used strategically. It should not be assumed that security requirements are implicit or that developers should be blamed for missing controls if clear expectations were not set. Productive software engineers have a structured workflow designed to deliver value. Any disruption of this workflow can lead to degraded software quality and the flaws that Application Security is trying to prevent.
+
+This is also why fix requests should never circumvent the processes that software engineers rely on. Misunderstandings and mistakes result from bypassing established workflows. Therefore AppSec should not expect developers to act on security findings without clear, actionable information and the opportunity to properly execute their workflow.
 
 ## 6. Practical Guidance for Secure Software Development
 
@@ -376,7 +429,11 @@ Understanding different development roles is useful for tailoring guidance and e
 
 ### 7.0. Application Security's Role
 
-It should be understood in early stages of FIASSE adoption that Application Security's role in development is that of assurance. The only shared responsibility between AppSec and Development teams is the timely delivery of the end result. This ensures the focus of Software Engineers remains on building securable code through a self-governed process. AppSec is to provide guidance through participation in development activities, essentially evaluating their own effectiveness by performing assurance activities.
+It should be understood in early stages of FIASSE adoption that Application Security's role in development is that of assurance. The only shared responsibility between AppSec and Development teams is the timely delivery of the end result. This ensures the focus of Software Engineers remains on building securable code through a self-governed process. AppSec is to provide guidance through participation in development activities like design and requirements. This establishes the guardrails for development to operate in as intended. Admittedly, AppSec is not responsible for development's level of adherence to the architecure of the system or feature requirements.
+
+Therefore security metrics are a measure of the effective participation of AppSec in the development process, not a measure of Development's adherence to security. The overall security posture of an application reflects how well expectations are set. This is a key distinction that allows AppSec to focus on providing value through requiremnts, design, and assurance rather than policing or micromanaging development teams.
+
+By spending valuable time in design activities, AppSec can guide larger numbers of developers that are adhearing to the principals of FIASSE. It will also fosters a culture of shared responsibility for security, where developers are empowered to take ownership of their code while having the support and guidance of AppSec professionals following established software engineering practices.
 
 ### 7.1. Empowering Senior Software Engineers
 
@@ -447,17 +504,13 @@ As low-code and no-code development platforms become more prevalent, FIASSE prin
 - Embedding automated security checks within these platforms.
 - Ensuring that pre-built components and templates adhere to secure coding principles.
 
-As FIASSE is adopted and developed, we will expand on this subject with specific examples and guidelines for low-code and no-code platforms.
-
 #### 8.1.3. Cloud-Native and Serverless Architectures
 
 The shift towards microservices, containers, and serverless computing necessitates an emphasis within FIASSE on:
 
-- Secure API design and robust authentication/authorization mechanisms.
+- Secure API design and robust authentication/authorization.
 - Comprehensive Identity and Access Management (IAM) for distributed systems.
 - Resilient architecture principles to mitigate cloud-specific threats.
-
-As FIASSE is adopted and developed, we will expand on this subject with specific examples and guidelines for cloud-native and serverless architectures.
 
 #### 8.1.4. Continuous Security Engineering
 
@@ -467,17 +520,13 @@ FIASSE naturally aligns with Continuous Security Engineering philosophies by emb
 - Improved security observability for real-time monitoring and incident response.
 - Continued development of developer-friendly security tooling that integrates seamlessly into their workflows.
 
-As FIASSE is adopted and developed, we will expand on this subject with specific examples and guidelines for Continuous Security Engineering practices.
-
 #### 8.1.5. Quantum-Resistant Cryptography
 
 As quantum computing capabilities advance, posing a threat to current cryptographic standards, FIASSE will incorporate guidance on:
 
 - Transitioning to quantum-safe cryptographic algorithms.
 - Secure key management strategies suitable for a post-quantum era.
-- Resilient data protection mechanisms that anticipate future cryptographic challenges.
-
-As FIASSE is adopted and developed, we will expand on this subject with specific examples and guidelines for quantum-resistant cryptography.
+- Resilient data protection that anticipate future cryptographic challenges.
 
 #### 8.1.6. Ethical AI and Security Governance
 
@@ -485,8 +534,6 @@ With AI playing a larger role in software development, ethical considerations an
 
 - Guidelines to ensure AI-generated code adheres to FIASSE principles and SSEM attributes.
 - Guidance for governing AI-driven development processes using SSEM.
-
-Soon we will expand on this subject with specific examples and guidelines for quantum-resistant cryptography.
 
 ### 8.2. Organizational Adoption Strategies
 
