@@ -1,4 +1,4 @@
-# GitHub Copilot Instructions - Secure .NET Development with FIASSE Framework
+# GitHub Copilot Instructions for Secure .NET Development with FIASSE Framework
 
 ## Project Overview
 
