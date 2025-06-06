@@ -99,7 +99,7 @@ Furthermore, many well-intentioned strategies, including the prevalent "shift le
 
 ### 1.2. A Developer-Centric Security Paradigm
 
-This document posits that expecting every software engineer to adopt the mindset and skillset of a penetration tester ("hacker") is neither scalable nor the most effective path to secure software. Instead, if AppSec practices are effective and well-integrated, software engineers can build secure systems by leveraging sound software engineering principles. This approach focuses on empowering developers with the knowledge and tools to build securable software as a natural part of their discipline.
+This document advocates for a developer-centric security paradigm. Rather than expecting software engineers to adopt a penetration tester's mindset (a distinction further explored in Section 2.4), this approach emphasizes empowering developers. While leveraging sound software engineering principles is foundational, it is complemented by clear security requirements and robust assurance activities. With these elements effectively integrated, engineers can build securable systems as a natural part of their discipline.
 
 ### 1.3. Document Purpose and Scope
 
@@ -162,13 +162,14 @@ True alignment between security and development requires a return to first princ
 
 ### 3.1. Overview and Objectives
 
-The Securable Software Engineering Model (SSEM) provides a design language focused on code and software architecture. It defines securable attributes using terms familiar to developers, abstracting away from specific security processes or exploit-centric language. This allows software engineers to confidently address security as an integral part of their work.
+The Securable Software Engineering Model (SSEM) is centered on providing a **design language** that uses established software engineering terms to define securable attributes within code and software architecture. This abstracts security away from specialized jargon or exploit-centric views, enabling software engineers to confidently integrate security considerations as a natural part of their development work.
 
-SSEM is designed to:
+A key objective of SSEM, facilitated by this design language, is to **shift the conversation** regarding software security. Instead of a binary "Is it secure?" assessment, the focus moves to a more nuanced and actionable question: "Do we meet our defined goals for this particular securable attribute?" (The broader impact and application of SSEM as a design language is detailed in Section 3.3).
+
+SSEM is further designed to:
 
 - Account for the iterative nature of software development and agile methodologies.
-- Serve as a mental model, a checklist, or a means to set clear expectations.
-- Shift the conversation from a binary "Is it secure?" to a more nuanced "Do we meet our goals for this particular attribute?"
+- Serve as a mental model, a checklist, or a means to set clear expectations for securable design.
 
 | **Maintainability** | **Trustworthiness** | **Reliability** |
 |:-----------------|:-----------------:|--------------:|
@@ -236,7 +237,7 @@ Key attributes contributing to trustworthiness include:
 
 Definition: "The property that data is not disclosed to system entities unless they have been authorized to know the data" (RFC 4949). This ensures that sensitive information is protected from unauthorized access.
 
-This approach emphasizes that confidentiality is a fundamental attribute. By focusing on the inherent qualities of the code that enable confidentiality, SSEM avoids the pitfalls of a purely controls-centric view. It recognizes that confidentiality is not just about implementing specific security controls but about designing software that inherently protects sensitive information.
+FIASSE emphasizes confidentiality as a fundamental attribute achieved by designing software with inherent qualities that protect sensitive information, rather than relying solely on overlaid security controls.
 
 ##### 3.2.2.2. Non-repudiation
 
@@ -248,7 +249,7 @@ Focusing on non-repudiation means ensuring that actions taken by users or system
 
 Definition: "The property of a system or system resource that ensures that the actions of a system entity may be traced uniquely to that entity" (RFC 4949). This involves managing principals and their access, enabling the attribution of actions to specific users or processes, which is crucial for auditing and incident response.
 
-Focusing on accountability means ensuring that every action taken by a user or system can be traced back to its source. This involves implementing strategies such as logging, auditing, and secure authentication. These strategies provide transparency to support the maintenance and troubleshooting of the system, and they also enable accountability and authenticity.
+Achieving accountability relies on robust methods for managing principals and their access rights. While it leverages strategies common to non-repudiation, such as comprehensive logging and secure authentication, its core focus is the unique and verifiable attribution of every system action to a specific entity. This is essential for effective auditing and incident response.
 
 ##### 3.2.2.4. Authenticity
 
@@ -302,17 +303,7 @@ A design language fosters a shared understanding around specific technical value
 
 ### 4.1. Applying SSEM to Dependency Management
 
-SSEM principles should also be applied to managing software dependencies. Dependency Management must go beyond scanning for vulnerabilities (a reactive tactic detailed further in Section 6.5) to proactively considering the following SSEM attributes:
-
-- Analyzability: Requires a thorough understanding of each dependency's full scope, including its transitive dependencies, its specific purpose within the application, and its potential attack surface. Maintaining a clear inventory and a documented rationale for every included dependency is crucial.
-- Modifiability: Encourages designing systems with loosely coupled dependencies to facilitate easier updates, patching, or replacement if a vulnerability is discovered, a dependency becomes obsolete, or a more secure alternative is identified. This aligns with architectural modifiability.
-- Testability: Involves ensuring that dependencies can be effectively managed during testing (e.g., through mocking, stubbing, or version pinning) and that their integration points are themselves robustly testable.
-- Trustworthiness (Authenticity and Integrity): Mandates implementing processes to verify the source and integrity of dependencies (e.g., using signed packages, checksums, and trusted repositories) before their integration into the codebase.
-- Reliability: Entails assessing how a dependency's failure modes (e.g., unavailability, performance degradation, security compromise) could impact the overall system's reliability and resilience, and subsequently planning appropriate mitigations.
-
-Once FIASSE has been adopted, potential dependencies can be evaluated against the values of the culture it aims to create. This includes assessing whether a dependency aligns with the principles of SSEM, such as maintainability, trustworthiness, and reliability. Because core principals are established, attributes that may otherwise seem too subjective, can be included in the decision making process more comfortably and with more certainty.
-
-By embedding these SSEM considerations into how dependencies are selected, integrated, monitored, and updated, security becomes an inherent part of this common and critical development practice.
+SSEM principles are not limited to first-party code; they are equally critical when managing software dependencies. Proactively applying SSEM attributes to the selection, integration, and maintenance of third-party libraries is essential for building securable systems. Detailed practical guidance on dependency management through the lens of SSEM is provided in Section 6.5.
 
 ### 4.2. Natively Extending Development Processes
 
@@ -332,7 +323,7 @@ The teams should be careful to avoid introducing unnecessary complexity or frict
 
 ### 4.4. Early Integration: Planning and Requirements
 
-While security is an intrinsic component of well-engineered software, there are aspects of security that are functional requirements. SSEM encourages AppSec participation in requirements gathering and feature planning. This ensures that security is not an afterthought but a foundational aspect of the design. Techniques such as defining Threat Scenarios and Security Acceptance Criteria (discussed further in Section 6.1.2) make expectations explicit from the outset.
+FIASSE advocates for setting expectations at the earliest stages of the development, particularly during planning and requirements definition. This ensures security is a foundational design aspect rather than an afterthought. Detailed methods for integrating security into requirements, such as defining Threat Scenarios and Security Acceptance Criteria, are discussed in Section 6.1.2.
 
 ## 5. Addressing Common AppSec Anti-Patterns
 
@@ -354,11 +345,9 @@ To avoid this, AppSec SHOULD:
 
 #### 5.1.2. Pitfalls of Exploit-First Training
 
-Another form of "Shoveling Left" is security training for developers that focuses primarily on exploitation techniques ("learn the hack to stop the attack"). While understanding attack vectors can be beneficial in some security domains, simply knowing how to exploit a vulnerability in software does not equate to knowing the needed engineering solution to prevent or remediate it.
+Security training for developers that primarily emphasizes exploitation techniques ("learn the hack to stop the attack") is another manifestation of "Shoveling Left." As discussed in Section 2.4, understanding how to compromise a system (the 'hacker' mindset) is distinct from knowing how to engineer a robust and securable one (the 'engineer' mindset).
 
-Because exploit-first training fails to address guidance for daily development tasks, it does not inherently teach developers how to prevent issues systematically or build more secure systems. Further, it does not address what qualities identify securable code. This can lead to a false sense of security, where developers feel they understand the risks but lack the practical knowledge to implement effective controls. This can also be confusing to security professionals, as they may assume that developers will somehow naturally apply exploit knowledge to their coding practices.
-
-This style of training often fails to encourage the natural inclination to ask "What can go wrong?" at any point. Instead, exploit-first training focuses on an anti-pattern of predefined issues without context or reason. Without a practical understanding of how to build securable software, it fails to ground itself in the realities of software engineering.
+This type of training often fails because it does not equip developers with the engineering principles needed for their daily tasks, nor does it teach them how to identify or build code with inherently securable qualities (as defined by SSEM). Consequently, developers might gain a superficial understanding of risks without the practical knowledge to implement effective, systemic preventative measures. This can lead to a false sense of security and does little to foster the proactive, engineering-focused question of "What can go wrong?" in a way that leads to better design and implementation.
 
 ### 5.2. Strategic Use of Security Output
 
@@ -378,14 +367,14 @@ Basic communication is essential. Development teams should be informed about new
 
 #### 6.1.2. Integrating Security into Requirements
 
-Beyond informal communication, AppSec should participate actively in formal requirements gathering processes. Instead of solely reviewing and auditing after development, participation ensures security is perceived as a component of the product instead of a gate threatening productivity.
+Active AppSec participation in formal requirements gathering is crucial. This shifts security from a post-development review or audit to an integral component of the product, aligning it with productivity rather than being perceived as a gate.
 
 Key methods include:
 
 - Threat Scenarios: Describing potential misuse cases or attack paths relevant to the feature being developed. This helps identify necessary controls.
 - Security Acceptance Criteria: Defining specific, testable conditions that a feature must meet to be considered secure. These criteria allow QA to perform security testing by verifying requirements.
 
-Integrating security into foundational design decisions through requirements ensures proper realization of Trustworthiness and attributes like Integrity and Fault Tolerance. Leveraging requirements allows Development to address security concerns without thinking of them as separate from every-day operations. Requirements are an often underutilized yet powerful tool for security.
+By embedding security into foundational design decisions via requirements, attributes like Trustworthiness, Integrity, and Fault Tolerance are more effectively realized. This approach allows Development teams to address security concerns as part of their standard workflow, making requirements an often underutilized yet powerful tool for security.
 
 ### 6.2. Threat Modeling as a Collaborative Practice
 
@@ -412,11 +401,21 @@ These are verifiable actions that AppSec can assess.
 
 ### 6.5. Dependency Management
 
-Dependency management starts when a library is introduced to the system, or even earlier if possible.  The library should be evaluated for being fit to support your system and its values. This includes assessing whether the library aligns with the principles of SSEM, such as maintainability, trustworthiness, and reliability. Not all code that is shared is intended for reuse in systems that need to be resilient. This is a key aspect of the FIASSE mindset, which emphasizes the importance of understanding the implications of dependencies on the overall system architecture and security posture.
+Dependency management starts when a library is introduced to the system, or even earlier if possible. The library should be evaluated for being fit to support your system and its values. This is a key aspect of the FIASSE mindset, which emphasizes the importance of understanding the implications of dependencies on the overall system architecture and security posture.
+
+Applying SSEM principles proactively to dependency selection and management, beyond merely scanning for known vulnerabilities, is crucial. This involves considering:
+
+- **Analyzability**: Thoroughly understand each dependency's full scope, including its transitive dependencies, its specific purpose within the application, and its potential attack surface. Maintain a clear inventory and a documented rationale for every included dependency.
+- **Modifiability**: Design systems with loosely coupled dependencies to facilitate easier updates, patching, or replacement if a vulnerability is discovered, a dependency becomes obsolete, or a more secure alternative is identified. This aligns with architectural modifiability.
+- **Testability**: Ensure that dependencies can be effectively managed during testing (e.g., through mocking, stubbing, or version pinning) and that their integration points are themselves robustly testable.
+- **Trustworthiness (Authenticity and Integrity)**: Implement processes to verify the source and integrity of dependencies (e.g., using signed packages, checksums, and trusted repositories) before their integration into the codebase.
+- **Reliability**: Assess how a dependency's failure modes (e.g., unavailability, performance degradation, security compromise) could impact the overall system's reliability and resilience, and subsequently plan appropriate mitigations.
+
+Not all code that is shared is intended for reuse in systems that need to be resilient. Once FIASSE has been adopted, potential dependencies can be evaluated against the values of the culture it aims to create, ensuring alignment with these SSEM attributes.
 
 Regularly updating software dependencies is a fundamental tactic for maintaining system resilience. Updates often include fixes for known bugs, including security vulnerabilities. This should be a routine process, integrated into sprints or regular maintenance cycles.
 
-Key considerations for dependency management:
+Further key considerations for dependency management include:
 
 - Avoid unnecessary dependencies. Each dependency introduces the need for additional maintenance.
 - If no direct update fixes a known flaw in a dependency, further analysis is required to identify mitigation strategies (e.g., compensating controls, forking and patching, or reimplementation).
