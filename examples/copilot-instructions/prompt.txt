@@ -1,0 +1,1 @@
+Generate a copilot-instructions.md for python with heavy emphasis on security as defined in the FAISE framework and usign the suggestions in the OWASP Cheat Sheet. @fetch https://raw.githubusercontent.com/Xcaciv/securable_software_engineering/refs/heads/main/docs/FIASSE-RFC.md @fetch https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Python_Security_Cheat_Sheet.md

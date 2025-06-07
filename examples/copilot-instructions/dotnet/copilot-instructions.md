@@ -4,12 +4,7 @@
 
 This document provides comprehensive guidance for developing secure .NET applications using GitHub Copilot, integrating the **Framework for Integrating Application Security into Software Engineering (FIASSE)** and the **Securable Software Engineering Model (SSEM)**. The focus is on building inherently securable code that aligns with both software engineering excellence and cybersecurity objectives.
 
-### FIASSE Core Principles
-
-1. **Resiliently Add Computing Value**: Create software that withstands change, stress, and attack
-2. **Reduce Material Impact**: Align security with business risk appetite
-3. **Developer-Centric Security**: Empower developers without requiring penetration testing expertise
-4. **Engineering-First Approach**: Use established software engineering terms for security concepts
+**Resiliently Add Computing Value**: Create software that withstands change, stress, and attack
 
 ## Securable Software Engineering Model (SSEM) Attributes
 
@@ -22,7 +17,6 @@ When prompting Copilot, emphasize these three core categories and their sub-attr
 
 ### Trustworthiness  
 - **Confidentiality**: Protect sensitive data from unauthorized access
-- **Non-repudiation**: Ensure actions can be proven and attributed
 - **Accountability**: Enable unique tracing of system entity actions
 - **Authenticity**: Verify entities are what they claim to be
 
@@ -187,11 +181,11 @@ public class SecureDataProtector
 }
 ```
 
-#### Input Validation and XSS Prevention (OWASP A03 - Injection)
+#### Input Validation
 
-- **ALWAYS** validate input at trust boundaries using allowlists
+- **ALWAYS** validate input at trust boundaries using strong typing and allowlists, avoid open text input when possible.
 - Use parameterized queries exclusively for database operations
-- Implement comprehensive output encoding
+- Implement comprehensive output encoding that considers all contexts (HTML, JavaScript, etc.)
 - Apply defense-in-depth validation strategies
 
 ```csharp
@@ -246,7 +240,7 @@ public async Task<Note> CreateNoteAsync(CreateNoteRequest request)
 }
 ```
 
-#### CSRF Protection (OWASP A05 - Security Misconfiguration)
+#### CSRF Protection
 
 - **MANDATORY**: Implement anti-forgery tokens on all state-changing operations
 - Use automatic validation for enhanced security
@@ -428,8 +422,6 @@ public class SecurityExceptionMiddleware
 ```
 
 ## Secure Dependency Management (FIASSE Principle)
-
-When evaluating dependencies with Copilot, apply SSEM attributes:
 
 ### Dependency Security Checklist
 

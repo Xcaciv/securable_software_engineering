@@ -44,9 +44,9 @@
         - [3.2.1.3. Testability](#3213-testability)
       - [3.2.2. Trustworthiness](#322-trustworthiness)
         - [3.2.2.1. Confidentiality](#3221-confidentiality)
-        - [3.2.2.2. Non-repudiation](#3222-non-repudiation)
-        - [3.2.2.3. Accountability](#3223-accountability)
-        - [3.2.2.4. Authenticity](#3224-authenticity)
+        - [3.2.2.2. Accountability](#3222-accountability)
+          - [3.2.2.2.1 Non-repudiation](#32221-non-repudiation)
+        - [3.2.2.3. Authenticity](#3223-authenticity)
       - [3.2.3. Reliability](#323-reliability)
         - [3.2.3.1. Availability](#3231-availability)
         - [3.2.3.2. Integrity](#3232-integrity)
@@ -239,19 +239,19 @@ Definition: "The property that data is not disclosed to system entities unless t
 
 FIASSE emphasizes confidentiality as a fundamental attribute achieved by designing software with inherent qualities that protect sensitive information, rather than relying solely on overlaid security controls.
 
-##### 3.2.2.2. Non-repudiation
-
-Definition: The "ability to prove the occurrence of a claimed event or action and its originating entities" (ISO/IEC 27000:2018). This prevents entities from falsely denying having performed an action or sent a message.
-
-Focusing on non-repudiation means ensuring that actions taken by users or systems can be traced back to their origin. This involves implementing logging, auditing, and secure authentication. These strategies provide transparency to support the maintenance and troubleshooting of the system, and they also enable accountability and authenticity.
-
-##### 3.2.2.3. Accountability
+##### 3.2.2.2. Accountability
 
 Definition: "The property of a system or system resource that ensures that the actions of a system entity may be traced uniquely to that entity" (RFC 4949). This involves managing principals and their access, enabling the attribution of actions to specific users or processes, which is crucial for auditing and incident response.
 
 Achieving accountability relies on robust methods for managing principals and their access rights. While it leverages strategies common to non-repudiation, such as comprehensive logging and secure authentication, its core focus is the unique and verifiable attribution of every system action to a specific entity. This is essential for effective auditing and incident response.
 
-##### 3.2.2.4. Authenticity
+###### 3.2.2.2.1 Non-repudiation
+
+Definition: The "ability to prove the occurrence of a claimed event or action and its originating entities" (ISO/IEC 27000:2018). This prevents entities from falsely denying having performed an action or sent a message.
+
+Focusing on non-repudiation means ensuring that actions taken by users or systems can be traced back to their origin. This involves implementing logging, auditing, and secure authentication. These strategies provide transparency to support the maintenance and troubleshooting of the system, and they also enable accountability and authenticity.
+
+##### 3.2.2.3. Authenticity
 
 Definition: "The property that an entity is what it claims to be" (ISO/IEC 27000:2018). This ensures that users, systems, or information are genuine and can be verified.
 
