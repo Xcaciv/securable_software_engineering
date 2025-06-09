@@ -53,6 +53,20 @@
         - [3.2.3.3. Fault Tolerance](#3233-fault-tolerance)
         - [3.2.3.4. Resilience](#3234-resilience)
     - [3.3. SSEM as a Design Language](#33-ssem-as-a-design-language)
+    - [3.4 Measuring SSEM Attributes](#34-measuring-ssem-attributes)
+      - [3.4.1. Measuring Maintainability](#341-measuring-maintainability)
+        - [3.4.1.1. Analyzability](#3411-analyzability)
+        - [3.4.1.2. Modifiability](#3412-modifiability)
+        - [3.4.1.3. Testability](#3413-testability)
+      - [3.4.2. Measuring Trustworthiness](#342-measuring-trustworthiness)
+        - [3.4.2.1. Confidentiality](#3421-confidentiality)
+        - [3.4.2.2. Accountability](#3422-accountability)
+        - [3.4.2.3. Authenticity](#3423-authenticity)
+      - [3.4.3. Measuring Reliability](#343-measuring-reliability)
+        - [3.4.3.1. Availability](#3431-availability)
+        - [3.4.3.2. Integrity](#3432-integrity)
+        - [3.4.3.3. Fault Tolerance](#3433-fault-tolerance)
+        - [3.4.3.4. Resilience](#3434-resilience)
   - [4. Integrating SSEM into Development Lifecycles](#4-integrating-ssem-into-development-lifecycles)
     - [4.1. Applying SSEM to Dependency Management](#41-applying-ssem-to-dependency-management)
     - [4.2. Natively Extending Development Processes](#42-natively-extending-development-processes)
@@ -298,6 +312,115 @@ By defining these attributes using established software engineering terminology,
 This design language plays a crucial role in creating a cohesive product. It complements architecture to help Development understand how principles and key qualities are to be understood and applied across the codebase. This guides the Software Engineer to make the countless smaller decisions that make while writing code.
 
 A design language fosters a shared understanding around specific technical values. This can bring together a culture of quality made up of diversely inclined professionals to focus on these common goals and ideals. This is achieved by the shift in conversations around security as mentioned in Section 3.1, where the focus is on meeting goals for specific attributes rather than binary security assessments. This cultural alignment can strongly influence the product's internal structure to support these technical values. This is contrast with the traditional approach of find-and-fix monotony.
+
+### 3.4 Measuring SSEM Attributes
+
+Measuring the attributes defined by SSEM is crucial for understanding the current state of software securability and for tracking progress over time. These measurements can range from quantitative metrics, often obtainable from static analysis tools or system monitoring, to more qualitative assessments based on reviews and adherence to established practices. The goal is to move towards more objective ways of discussing and improving these inherent qualities, enabling teams to answer the question: "Do we meet our defined goals for this particular securable attribute?"
+
+It's important to note that the most relevant metrics will depend on the specific system, its context, and organizational goals. The following examples are illustrative and not exhaustive.
+
+#### 3.4.1. Measuring Maintainability
+
+##### 3.4.1.1. Analyzability
+
+- **Quantitative:**
+  - **Volume (Lines of Code - LoC):** Tracked per module/system. Lower LoC for a given functionality can indicate better analyzability.
+  - **Duplication Percentage:** Measured by static analysis tools (e.g., SonarQube, PMD). Lower is better.
+  - **Unit Size (e.g., mLoC/cLoC):** Average lines of code per method or class. Excessively large units are harder to analyze.
+  - **Unit Complexity (e.g., Cyclomatic Complexity):** Measured by static analysis tools. Lower complexity per unit is generally better.
+  - **Comment Density/Quality:** Ratio of comment lines to code lines, or qualitative review of comment usefulness.
+- **Qualitative/Process-based:**
+  - **Time to Understand (TTU):** Average time it takes a developer unfamiliar with a code section to understand its purpose and flow for a specific task (e.g., bug fix).
+  - **Developer Surveys:** Periodically ask developers to rate the analyzability of modules they work with.
+
+##### 3.4.1.2. Modifiability
+
+- **Quantitative:**
+  - **Module Coupling (Afferent/Efferent):** Number of incoming (afferent) and outgoing (efferent) dependencies for modules. Lower afferent coupling for a module often means it's easier to change without impacting many other parts.
+  - **Change Impact Size:** Number of files/modules typically affected by a common type of change. Smaller is better.
+  - **Regression Rate:** Percentage of changes that introduce new defects. Lower is better.
+- **Qualitative/Process-based:**
+  - **Ease of Change Assessment:** During code reviews, assess how easy it would be to make a hypothetical related change.
+  - **Time to Implement Change:** Average time to implement standard types of modifications or feature enhancements.
+
+##### 3.4.1.3. Testability
+
+- **Quantitative:**
+  - **Code Coverage:** Percentage of code covered by automated tests (unit, integration). Higher is generally better.
+  - **Unit Test Density:** Number of unit tests per KLoC or per class/module.
+  - **Mocking/Stubbing Complexity:** Difficulty or amount of setup required to isolate units for testing.
+- **Qualitative/Process-based:**
+  - **Ease of Writing Tests:** Developer feedback on how easy it is to write meaningful tests for new or existing code.
+  - **Test Execution Time:** While not a direct measure of testability, excessively long test suite runs can disincentivize testing.
+
+#### 3.4.2. Measuring Trustworthiness
+
+##### 3.4.2.1. Confidentiality
+
+- **Quantitative:**
+  - **Number of Identified Data Leaks:** From penetration tests, code reviews, or incidents.
+  - **Access Control Violations:** Number of logged unauthorized access attempts (prevented or successful).
+- **Qualitative/Process-based:**
+  - **Data Classification Adherence:** Review of how well data is classified and if protections align with classification.
+  - **Principle of Least Privilege Review:** Assessment of whether components and users only have necessary permissions.
+  - **Effectiveness of Encryption:** Review of encryption algorithms used, key management practices.
+
+##### 3.4.2.2. Accountability
+
+- **Quantitative:**
+  - **Audit Log Coverage:** Percentage of critical system actions that are logged with sufficient detail.
+  - **Traceability Success Rate:** Percentage of audited actions that can be uniquely traced to an entity.
+- **Qualitative/Process-based:**
+  - **Audit Log Review Findings:** Results from periodic reviews of audit logs for completeness and usefulness.
+  - **Non-repudiation Strength:** Assessment of the strength of evidence linking actions to entities (e.g., use of digital signatures).
+
+##### 3.4.2.3. Authenticity
+
+- **Quantitative:**
+  - **Authentication Failures:** Number of failed login attempts (can indicate brute-forcing or issues).
+  - **Use of Strong Authentication:** Percentage of authentication points using multi-factor authentication or strong credential types.
+- **Qualitative/Process-based:**
+  - **Verification of Identities:** Review of processes for verifying user and system identities.
+  - **Integrity of Authentication Mechanisms:** Assessment of the security of authentication protocols and implementations.
+
+#### 3.4.3. Measuring Reliability
+
+##### 3.4.3.1. Availability
+
+- **Quantitative:**
+  - **Uptime Percentage:** (e.g., 99.99%).
+  - **Mean Time Between Failures (MTBF).**
+  - **Mean Time To Recovery (MTTR).**
+- **Qualitative/Process-based:**
+  - **Redundancy Review:** Assessment of system redundancy for critical components.
+  - **Disaster Recovery Test Results.**
+
+##### 3.4.3.2. Integrity
+
+- **Quantitative:**
+  - **Number of Data Corruption Incidents.**
+  - **Checksum/Hash Validation Success Rate:** For data at rest and in transit.
+- **Qualitative/Process-based:**
+  - **Input Validation Effectiveness:** Review of input validation mechanisms at trust boundaries.
+  - **System File Integrity Monitoring Alerts.**
+
+##### 3.4.3.3. Fault Tolerance
+
+- **Quantitative:**
+  - **Service Degradation under Failure:** Measure of performance or functionality loss when components fail.
+- **Qualitative/Process-based:**
+  - **Chaos Engineering Results:** System behavior during controlled failure experiments.
+  - **Single Point of Failure (SPOF) Analysis:** Number of identified SPOFs.
+  - **Effectiveness of Error Handling:** Review of how gracefully the system handles unexpected errors.
+
+##### 3.4.3.4. Resilience
+
+- **Quantitative:**
+  - **Recovery Time Objective (RTO) Adherence:** How often RTOs are met after an incident.
+  - **Performance Under Stress:** System performance metrics during load testing or simulated attacks (e.g., DDoS).
+- **Qualitative/Process-based:**
+  - **Defensive Coding Practices Review:** Assessment of code for practices like proper input validation, output encoding, and robust error handling.
+  - **Incident Response Plan Effectiveness:** Review of how well the system and team recover from security incidents or operational failures.
 
 ## 4. Integrating SSEM into Development Lifecycles
 
