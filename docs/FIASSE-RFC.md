@@ -99,7 +99,7 @@ Furthermore, many well-intentioned strategies, including the prevalent "shift le
 
 ### 1.2. A Developer-Centric Security Paradigm
 
-This document advocates for a developer-centric security paradigm. Rather than expecting software engineers to adopt a penetration tester's mindset (a distinction further explored in Section 2.4), this approach emphasizes empowering developers. While leveraging sound software engineering principles is foundational, it is complemented by clear security requirements and robust assurance activities. With these elements effectively integrated, engineers can build securable systems as a natural part of their discipline.
+This document advocates for a developer-centric security paradigm. Rather than expecting software engineers to adopt a penetration tester's mindset (a distinction further explored in Section 2.4), this approach emphasizes empowering developers. While leveraging sound software engineering principles is foundational, it is complemented by clear security requirements and robust assurance activities. With these elements effectively integrated, engineers can build securable systems as a natural part of their discipline. The common misconception is that the gap between security and development is an issue. This document makes the case that the gap is not a problem; rather, it is the lack of understanding of how software is produced and alignment with those processes.
 
 ### 1.3. Document Purpose and Scope
 
