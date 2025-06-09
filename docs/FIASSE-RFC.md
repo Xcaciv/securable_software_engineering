@@ -176,7 +176,7 @@ True alignment between security and development requires a return to first princ
 
 ### 3.1. Overview and Objectives
 
-The Securable Software Engineering Model (SSEM) is centered on providing a **design language** that uses established software engineering terms to define securable attributes within code and software architecture. This abstracts security away from specialized jargon or exploit-centric views, enabling software engineers to confidently integrate security considerations as a natural part of their development work.
+The Securable Software Engineering Model (SSEM) is centered on providing a **design language** that uses established software engineering terms to define the core attributes that make software "securable" as conceptualized in this document (see Section 2.1). These attributes, detailed in Section 3.2, allow SSEM to abstract security away from specialized jargon or exploit-centric views, enabling software engineers to confidently integrate security considerations as a natural part of their development work.
 
 A key objective of SSEM, facilitated by this design language, is to **shift the conversation** regarding software security. Instead of a binary "Is it secure?" assessment, the focus moves to a more nuanced and actionable question: "Do we meet our defined goals for this particular securable attribute?" (The broader impact and application of SSEM as a design language is detailed in Section 3.3).
 
