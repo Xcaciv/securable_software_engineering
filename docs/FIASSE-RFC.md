@@ -444,6 +444,8 @@ While software engineering may lack formal licensing like other engineering disc
 
 The teams should be careful to avoid introducing unnecessary complexity or friction into the review process. This means that the merge review is used as guard rails and not as a gate. The goal is to grow the FIASSE mindset within the team, not to create a negative experience for the developers.
 
+In the future guidance for merge reviews, we will explore how to effectively integrate SSEM attributes into the review process in detail.
+
 ### 4.4. Early Integration: Planning and Requirements
 
 FIASSE advocates for setting expectations at the earliest stages of the development, particularly during planning and requirements definition. This ensures security is a foundational design aspect rather than an afterthought. Detailed methods for integrating security into requirements, such as defining Threat Scenarios and Security Acceptance Criteria, are discussed in Section 6.1.2.
@@ -667,12 +669,13 @@ Adopting FIASSE does not require a structured approach. However, organizations c
    - Identify existing security practices and how they align with SSEM attributes.
    - Determine the current level of understanding and acceptance of Software Engineering principles among development teams.
    - Assess the misalignments FIASSE can address.
-2. **Identify Key Influencers:** Identify senior software engineers and other key stakeholders who are able to internalize the framework and the principals. These individuals can champion FIASSE adoption. These individuals should have a strong understanding of software engineering.
-3. **Educate and Train Teams:** Provide comprehensive training on FIASSE activities and SSEM attributes to Key Influencers. Introductory training should be role-specific and integrated into onboarding and continuous learning programs.
+2. **Integrate SSEM Terminology:** Deliberately incorporate SSEM attributes (Maintainability, Trustworthiness, Reliability) and their sub-attributes into existing developer documentation, coding standards, style guides, and training materials. This helps socialize the concepts and provides a common language for discussing and evaluating securability.
+3. **Identify Key Influencers:** Identify senior software engineers and other key stakeholders who are able to internalize the framework and the principals. These individuals can champion FIASSE adoption. These individuals should have a strong understanding of software engineering.
+4. **Educate and Train Teams:** Provide comprehensive training on FIASSE activities and SSEM attributes to Key Influencers. Introductory training should be role-specific and integrated into onboarding and continuous learning programs.
    - Development and AppSec should understand that FIASSE is meant to be discussed in the context of software engineering, not as a separate security initiative.
    - After the initial training, primary delivery of on-going training should be delivered in the context of merge reviews, architecture discussions, and requirements gathering. Leaders should be encouraged to bring FIASSE discussions into these activities.
-4. **Foster Collaboration:** Promote regular collaboration between AppSec and Development teams. Discourage AppSec from simply reviewing items in isolation; instead, encourage AppSec to engage in Development activities such as requiremnts gathering.
-5. **Continuously Monitor and Improve:** FIASSE is an ongoing process. Implement real-time security observability and use the gathered insights to continuously refine security strategies and FIASSE implementation.
+5. **Foster Collaboration:** Promote regular collaboration between AppSec and Development teams. Discourage AppSec from simply reviewing items in isolation; instead, encourage AppSec to engage in Development activities such as requiremnts gathering.
+6. **Continuously Monitor and Improve:** FIASSE is an ongoing process. Implement real-time security observability and use the gathered insights to continuously refine security strategies and FIASSE implementation.
 
 The applicability of FIASSE spans various organizational types, including large technology companies integrating it into Continuous Security Engineering, financial institutions enhancing data protection, AI and cloud-based companies designing secure architectures, and open-source projects adopting secure development guidelines.
 
