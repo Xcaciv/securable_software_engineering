@@ -509,9 +509,11 @@ A key concept taken from threat modeling is the identification of **trust bounda
 
 ### 6.3. Managing Flexibility and Control
 
-Software engineers often value flexibility in code, as it can facilitate feature implementation and bug fixing. Attackers, however, seek uncontrolled flexibility as a means to deviate from intended behavior.
+Software engineers often value flexibility in code, as it can facilitate feature implementation and bug fixing. Attackers, however, seek uncontrolled flexibility as a means to force the application to deviate from intended behavior.
 
 The issue is not flexibility itself, but the lack of appropriate control, especially at trust boundaries. An example of uncontrolled flexibility might be a function capable of executing arbitrary query statements with arbitrary parameters without restriction. Control is essential to ensure trustworthy execution, maintain system Integrity, and support Fault Tolerance. While flexibility is necessary for Maintainability.
+
+Think of trust boundaries like the hard candy shell of a jellybean: the soft, flexible interior represents the bulk of the application's logic, while the hard shell represents the critical points where external data or untrusted operations are carefully controlled. Just as the candy shell protects the jellybean's interior, well defined trust boundaries protect the core application from potentially harmful external influences. Defining and communicating these boundaries during the design phase makes it clear which areas of code are responsible for tight control, allowing developers to focus their efforts on maintaining the integrity and trustworthiness of these critical interfaces.
 
 ### 6.4. Resilient Coding and System Resilience
 
@@ -519,6 +521,7 @@ Resilience refers to an application's ability to continue running predictably, e
 
 This drives the need for concrete developer actions such as:
 
+- Strong typing to ensure data is usable in the intended way.
 - Filtering and validating all input at trust boundaries. Input validation ensures that data conforms to expected formats, types, lengths, and ranges before processing.
 - Properly escaping and encoding all output destined for other systems or interpreters (exiting trust boundaries). This prevents injection attacks by ensuring that data is treated as data, not executable code.
 
