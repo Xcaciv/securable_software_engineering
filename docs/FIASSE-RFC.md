@@ -52,7 +52,7 @@
         - [3.2.3.2. Integrity](#3232-integrity)
         - [3.2.3.3. Fault Tolerance](#3233-fault-tolerance)
         - [3.2.3.4. Resilience](#3234-resilience)
-    - [3.3. SSEM as a Design Language](#33-ssem-as-a-design-language)
+    - [3.3 SSEM as a Design Language](#33-ssem-as-a-design-language)
     - [3.4 Measuring SSEM Attributes](#34-measuring-ssem-attributes)
       - [3.4.1. Measuring Maintainability](#341-measuring-maintainability)
         - [3.4.1.1. Analyzability](#3411-analyzability)
@@ -67,7 +67,7 @@
         - [3.4.3.2. Integrity](#3432-integrity)
         - [3.4.3.3. Fault Tolerance](#3433-fault-tolerance)
         - [3.4.3.4. Resilience](#3434-resilience)
-  - [4. Integrating SSEM into Development Lifecycles](#4-integrating-ssem-into-development-lifecycles)
+  - [4. Integrating SSEM into Development Strategy](#4-integrating-ssem-into-development-strategy)
     - [4.1. Applying SSEM to Dependency Management](#41-applying-ssem-to-dependency-management)
     - [4.2. Natively Extending Development Processes](#42-natively-extending-development-processes)
     - [4.3. The Role of Merge/Pull Request Reviews](#43-the-role-of-mergepull-request-reviews)
@@ -176,9 +176,9 @@ True alignment between security and development requires a return to first princ
 
 ### 3.1. Overview and Objectives
 
-The Securable Software Engineering Model (SSEM) is centered on providing a **design language** that uses established software engineering terms to define the core attributes that make software "securable" as conceptualized in this document (see Section 2.1). These attributes, detailed in Section 3.2, allow SSEM to abstract security away from specialized jargon or exploit-centric views, enabling software engineers to confidently integrate security considerations as a natural part of their development work.
+The Securable Software Engineering Model (SSEM) is centered on providing a design language that uses established software engineering terms to define the core attributes that make software "securable" as conceptualized in this document (see Section 2.1). These attributes, detailed in Section 3.2, allow SSEM to abstract security away from specialized jargon or exploit-centric views, enabling software engineers to confidently integrate security considerations as a natural part of their development work.
 
-A key objective of SSEM, facilitated by this design language, is to **shift the conversation** regarding software security. Instead of a binary "Is it secure?" assessment, the focus moves to a more nuanced and actionable question: "Do we meet our defined goals for this particular securable attribute?" (The broader impact and application of SSEM as a design language is detailed in Section 3.3).
+A key objective of SSEM, facilitated by this design language, is to shift the conversation regarding software security. Instead of a binary "Is it secure?" assessment, the focus moves to a more nuanced and actionable question: "Do we meet our defined goals for this particular securable attribute?" (The broader impact and application of SSEM as a design language is detailed in Section 3.3).
 
 SSEM is further designed to:
 
@@ -196,11 +196,11 @@ SSEM is not a rigid framework but a flexible model that can adapt to various sof
 
 ### 3.2. Core Securable Attributes
 
-SSEM identifies several fundamental and universal attributes of securable code. These attributes are inherent qualities of well-engineered software that also contribute directly to its security. They are grouped into three primary categories: Maintainability, Trustworthiness, and Reliability, each encompassing specific sub-attributes detailed below.
+SSEM identifies several fundamental and universal attributes that are the building blocks of securable software—software designed with the inherent qualities needed to adapt and maintain its security posture in an evolving landscape (as discussed in Section 2.1). These attributes are not merely abstract concepts but represent tangible characteristics of well-engineered software that directly contribute to its overall security and resilience. They are grouped into three primary categories: Maintainability, Trustworthiness, and Reliability, each encompassing specific sub-attributes detailed below. By focusing on these, developers can proactively build systems that are easier to secure and keep secure over time.
 
 #### 3.2.1. Maintainability
 
-Definition: Maintainability is the "degree of effectiveness and efficiency with which a product or system can be modified by the intended maintainers" (ISO/IEC 25010:2011). In the context of SSEM, this means software can be evolved, corrected, and adapted to new threats or requirements without undue effort or introducing new vulnerabilities. It encompasses the following sub-attributes:
+Definition: Maintainability is the "degree of effectiveness and efficiency with which a product or system can be modified by the intended maintainers" (ISO/IEC 25010:2011). In the context of SSEM, this means software can be evolved, corrected, and adapted to new threats or requirements without undue effort or introducing new vulnerabilities. This focus on ease of modification and adaptation is central to building securable software, as it directly supports the ability to respond to the dynamic threat landscape and evolving security needs outlined in Section 2.1. It encompasses the following sub-attributes:
 
 ##### 3.2.1.1. Analyzability
 
@@ -305,7 +305,7 @@ Strategies for resilience include:
 - Predictable code execution: Ensuring that the code behaves consistently under various conditions.
 - Strong trust boundaries: Clearly defining areas of the codebase that exert strictly controlled execution.
 
-### 3.3. SSEM as a Design Language
+### 3.3 SSEM as a Design Language
 
 By defining these attributes using established software engineering terminology, SSEM provides a common design language. This enables developers to discuss, reason about, and implement security considerations using concepts already familiar to them. It shifts the focus from myopic treatment of vulnerabilities to cohesive creation of software with inherent securable qualities.
 
@@ -315,9 +315,7 @@ A design language fosters a shared understanding around specific technical value
 
 ### 3.4 Measuring SSEM Attributes
 
-Measuring the attributes defined by SSEM is crucial for understanding the current state of software securability and for tracking progress over time. These measurements can range from quantitative metrics, often obtainable from static analysis tools or system monitoring, to more qualitative assessments based on reviews and adherence to established practices. The goal is to move towards more objective ways of discussing and improving these inherent qualities, enabling teams to answer the question: "Do we meet our defined goals for this particular securable attribute?"
-
-It's important to note that the most relevant metrics will depend on the specific system, its context, and organizational goals. The following examples are illustrative and not exhaustive.
+Measuring the attributes defined by SSEM is essential to quantify and evaluate the securable qualities of software. This section outlines approaches for measuring each of the core attributes: Maintainability, Trustworthiness, and Reliability. These measurements provide actionable insights to guide developers in enhancing the securability of their software.
 
 #### 3.4.1. Measuring Maintainability
 
@@ -422,7 +420,7 @@ It's important to note that the most relevant metrics will depend on the specifi
   - **Defensive Coding Practices Review:** Assessment of code for practices like proper input validation, output encoding, and robust error handling.
   - **Incident Response Plan Effectiveness:** Review of how well the system and team recover from security incidents or operational failures.
 
-## 4. Integrating SSEM into Development Lifecycles
+## 4. Integrating SSEM into Development Strategy
 
 ### 4.1. Applying SSEM to Dependency Management
 
