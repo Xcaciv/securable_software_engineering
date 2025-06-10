@@ -11,7 +11,7 @@
 
 ## Abstract
 
-> This document describes the Framework for Integrating Application Security into Software Engineering (FIASSE&trade;), a vendor independent framework designed to integrate application security principles and practices directly into the software engineering discipline. It addresses the common challenges of friction between Application Security (AppSec) and Development teams, the perceived slow progress in enhancing software security, the need to scale AppSec, and the need to empower developers to build securable code without requiring them to become penetration testing experts. The Securable Software Engineering Model (SSEM&trade;) provides a design language based on established software engineering terms, focusing on inherent security attributes of code and software architecture that contribute to security. This document outlines the core principles of the framework (FIASSE), its key attributes (SSEM), methods for its integration into the development processes, practical guidance for developers, and considerations for its adoption and evolution. It also defines a durable model as the foundation for FIASSE. The goal is to reduce the probability of material impact from cyber events by fostering a collaborative, developer-centric approach to application security, particularly for software that implements or relies on Internet protocols and services.
+> This document describes the Framework for Integrating Application Security into Software Engineering (FIASSE&trade;), a vendor independent framework designed to integrate application security principles and practices directly into the software engineering discipline. FIASSE addresses the common challenges of friction between Application Security (AppSec) and Development teams, the perceived slow progress in enhancing software security, the need to scale AppSec, and the need to empower developers to build securable code without requiring them to become penetration testing experts. Within this framework, the Securable Software Engineering Model (SSEM&trade;) provides a specific design language based on established software engineering terms, focusing on inherent security attributes of code and software architecture that contribute to security. This document outlines the core principles of the FIASSE framework, the key attributes defined by its SSEM model, methods for their integration into the development processes, practical guidance for developers, and considerations for adoption and evolution. It also defines a durable model as the foundation for FIASSE. The goal is to reduce the probability of material impact from cyber events by fostering a collaborative, developer-centric approach to application security, particularly for software that implements or relies on Internet protocols and services.
 
 ## Copyright Notice
 
@@ -52,8 +52,22 @@
         - [3.2.3.2. Integrity](#3232-integrity)
         - [3.2.3.3. Fault Tolerance](#3233-fault-tolerance)
         - [3.2.3.4. Resilience](#3234-resilience)
-    - [3.3. SSEM as a Design Language](#33-ssem-as-a-design-language)
-  - [4. Integrating SSEM into Development Lifecycles](#4-integrating-ssem-into-development-lifecycles)
+    - [3.3 SSEM as a Design Language](#33-ssem-as-a-design-language)
+    - [3.4 Measuring SSEM Attributes](#34-measuring-ssem-attributes)
+      - [3.4.1. Measuring Maintainability](#341-measuring-maintainability)
+        - [3.4.1.1. Analyzability](#3411-analyzability)
+        - [3.4.1.2. Modifiability](#3412-modifiability)
+        - [3.4.1.3. Testability](#3413-testability)
+      - [3.4.2. Measuring Trustworthiness](#342-measuring-trustworthiness)
+        - [3.4.2.1. Confidentiality](#3421-confidentiality)
+        - [3.4.2.2. Accountability](#3422-accountability)
+        - [3.4.2.3. Authenticity](#3423-authenticity)
+      - [3.4.3. Measuring Reliability](#343-measuring-reliability)
+        - [3.4.3.1. Availability](#3431-availability)
+        - [3.4.3.2. Integrity](#3432-integrity)
+        - [3.4.3.3. Fault Tolerance](#3433-fault-tolerance)
+        - [3.4.3.4. Resilience](#3434-resilience)
+  - [4. Integrating SSEM into Development Strategy](#4-integrating-ssem-into-development-strategy)
     - [4.1. Applying SSEM to Dependency Management](#41-applying-ssem-to-dependency-management)
     - [4.2. Natively Extending Development Processes](#42-natively-extending-development-processes)
     - [4.3. The Role of Merge/Pull Request Reviews](#43-the-role-of-mergepull-request-reviews)
@@ -99,23 +113,23 @@ Furthermore, many well-intentioned strategies, including the prevalent "shift le
 
 ### 1.2. A Developer-Centric Security Paradigm
 
-This document advocates for a developer-centric security paradigm. Rather than expecting software engineers to adopt a penetration tester's mindset (a distinction further explored in Section 2.4), this approach emphasizes empowering developers. While leveraging sound software engineering principles is foundational, it is complemented by clear security requirements and robust assurance activities. With these elements effectively integrated, engineers can build securable systems as a natural part of their discipline.
+This document advocates for a developer-centric security paradigm. Rather than expecting software engineers to adopt a penetration tester's mindset (a distinction further explored in Section 2.4), this approach emphasizes empowering developers. While leveraging sound software engineering principles is foundational, it is complemented by clear security requirements and robust assurance activities. With these elements effectively integrated, engineers can build securable systems as a natural part of their discipline. The common misconception is that the gap between security and development is an issue. This document makes the case that the gap is not a problem; rather, it is the lack of understanding of how software is produced and alignment with those processes.
 
 ### 1.3. Document Purpose and Scope
 
-The purpose of this document is to introduce the Securable Software Engineering Model (SSEM). SSEM is a framework designed to align AppSec objectives with business goals. It provides a common language and a set of principles to guide the creation of secure software.
+The purpose of this document is to introduce the Framework for Integrating Application Security into Software Engineering (FIASSE) and its core component, the Securable Software Engineering Model (SSEM). FIASSE provides the overarching strategic approach and processes for integrating security into software engineering. SSEM, as a model within FIASSE, offers a common design language and a set of principles to guide the creation of secure software, aligning AppSec objectives with business goals.
 
 You will notice the proliferent use of the word 'securable' throughout this document to emphasize the dynamic nature of software security. see Section 2.1 for a detailed explanation of this term. Application Security must align with the business objectives for software development because of this dynamic nature.
 
 This document will cover:
 
-- Foundational principles underpinning SSEM.
+- Foundational principles underpinning FIASSE and SSEM.
 - The core attributes of securable software as defined by SSEM.
-- Strategies for integrating SSEM into existing development processes.
-- Common pitfalls in AppSec and how SSEM helps to avoid them.
+- Strategies for integrating FIASSE (and SSEM) into existing development processes.
+- Common pitfalls in AppSec and how FIASSE helps to avoid them.
 - Practical guidance for developers to build securable code.
-- The roles of different engineering personnel in adopting SSEM.
-- The potential evolution of SSEM in response to emerging software engineering trends and strategies for organizational adoption.
+- The roles of different engineering personnel in adopting FIASSE.
+- The potential evolution of FIASSE in response to emerging software engineering trends and strategies for organizational adoption.
 
 This document is intended for AppSec professionals, software engineers, engineering managers, and anyone involved in the Software Development Lifecycle (SDLC) who seeks to improve application security outcomes.
 
@@ -140,7 +154,7 @@ This approach aligns security practices with the reality of software development
 
 ### 2.2. Resiliently Add Computing Value
 
-The primary directive of software engineering is to add valuable software in a way that is robust enough to withstand change, stress, and attack. This means creating software that not only meets functional requirements but also possesses inherent qualities that allow it to adapt, persist, and maintain its integrity over time and under various conditions. It also includes the ability to withstand operational failures, accommodate evolving business needs, and resist security threats. Software Engineering refers to the broader discipline of designing, developing, and maintaining software in a systematic and organized way [Wikipedia-SE].
+The primary directive of software engineering is to add valuable software in a way that is robust enough to withstand change, stress, and attack. This means creating software that not only meets functional requirements but also possesses securable qualities — such as those defined by SSEM like high Analyzability, Modifiability, and Testability—that allow it to adapt, persist, and maintain its integrity over time and under various conditions. These qualities enable it to withstand operational failures, accommodate evolving business needs, and resist security threats more effectively. Software Engineering refers to the broader discipline of designing, developing, and maintaining software in a systematic and organized way [Wikipedia-SE].
 
 This principle underscores the idea that security is not an add-on but an intrinsic component of well-engineered software, contributing directly to its ability to deliver value reliably and sustainably.
 
@@ -156,15 +170,15 @@ Expecting developers to become expert penetration testers is akin to requiring t
 
 ### 2.5. Aligning Security with Development
 
-True alignment between security and development requires a return to first principles. Instead of imposing security-centric jargon and processes that may seem alien to developers, SSEM advocates for using well-established Software Engineering terms to describe securable code attributes. This fosters understanding and empowers developers to address security confidently without years of dedicated security experience. The goal is to instill confidence in developers, enabling them to recognize securable attributes in existing code and understand what building securely entails from an engineering perspective. As will be discussed, this also requires specific participation from AppSec professionals in the early stages of the Software Development Lifecycle (SDLC), particularly during requirements gathering and feature planning.
+True alignment between security and development requires a return to first principles. Instead of imposing security-centric jargon and processes that may seem alien to developers, SSEM advocates for using well-established Software Engineering terms to describe securable code attributes (the SSEM properties like Analyzability, Modifiability, Testability, Confidentiality, etc.). This fosters understanding and empowers developers to address security confidently without years of dedicated security experience. The goal is to instill confidence in developers, enabling them to recognize these securable attributes in existing code — for example, identifying highly Analyzable code by its clarity and ease of understanding, or Testable code by the simplicity of writing unit tests for it — and understand what building securable software entails from an engineering perspective. As will be discussed, this also requires specific participation from AppSec professionals in the early stages of the Software Development Lifecycle (SDLC), particularly during requirements gathering and feature planning.
 
 ## 3. The Securable Software Engineering Model (SSEM)
 
 ### 3.1. Overview and Objectives
 
-The Securable Software Engineering Model (SSEM) is centered on providing a **design language** that uses established software engineering terms to define securable attributes within code and software architecture. This abstracts security away from specialized jargon or exploit-centric views, enabling software engineers to confidently integrate security considerations as a natural part of their development work.
+The Securable Software Engineering Model (SSEM) is centered on providing a design language that uses established software engineering terms to define the core attributes that make software "securable" as conceptualized in this document (see Section 2.1). These attributes, detailed in Section 3.2, allow SSEM to abstract security away from specialized jargon or exploit-centric views, enabling software engineers to confidently integrate security considerations as a natural part of their development work.
 
-A key objective of SSEM, facilitated by this design language, is to **shift the conversation** regarding software security. Instead of a binary "Is it secure?" assessment, the focus moves to a more nuanced and actionable question: "Do we meet our defined goals for this particular securable attribute?" (The broader impact and application of SSEM as a design language is detailed in Section 3.3).
+A key objective of SSEM, facilitated by this design language, is to shift the conversation regarding software security. Instead of a binary "Is it secure?" assessment, the focus moves to a more nuanced and actionable question: "Do we meet our defined goals for this particular securable attribute?" (The broader impact and application of SSEM as a design language is detailed in Section 3.3).
 
 SSEM is further designed to:
 
@@ -182,11 +196,11 @@ SSEM is not a rigid framework but a flexible model that can adapt to various sof
 
 ### 3.2. Core Securable Attributes
 
-SSEM identifies several fundamental and universal attributes of securable code. These attributes are inherent qualities of well-engineered software that also contribute directly to its security. They are grouped into three primary categories: Maintainability, Trustworthiness, and Reliability, each encompassing specific sub-attributes detailed below.
+SSEM identifies several fundamental and universal attributes that are the building blocks of securable software—software designed with the inherent qualities needed to adapt and maintain its security posture in an evolving landscape (as discussed in Section 2.1). These attributes are not merely abstract concepts but represent tangible characteristics of well-engineered software that directly contribute to its overall security and resilience. They are grouped into three primary categories: Maintainability, Trustworthiness, and Reliability, each encompassing specific sub-attributes detailed below. By focusing on these, developers can proactively build systems that are easier to secure and keep secure over time.
 
 #### 3.2.1. Maintainability
 
-Definition: Maintainability is the "degree of effectiveness and efficiency with which a product or system can be modified by the intended maintainers" (ISO/IEC 25010:2011). In the context of SSEM, this means software can be evolved, corrected, and adapted to new threats or requirements without undue effort or introducing new vulnerabilities. It encompasses the following sub-attributes:
+Definition: Maintainability is the "degree of effectiveness and efficiency with which a product or system can be modified by the intended maintainers" (ISO/IEC 25010:2011). In the context of SSEM, this means software can be evolved, corrected, and adapted to new threats or requirements without undue effort or introducing new vulnerabilities. This focus on ease of modification and adaptation is central to building securable software, as it directly supports the ability to respond to the dynamic threat landscape and evolving security needs outlined in Section 2.1. It encompasses the following sub-attributes:
 
 ##### 3.2.1.1. Analyzability
 
@@ -291,7 +305,7 @@ Strategies for resilience include:
 - Predictable code execution: Ensuring that the code behaves consistently under various conditions.
 - Strong trust boundaries: Clearly defining areas of the codebase that exert strictly controlled execution.
 
-### 3.3. SSEM as a Design Language
+### 3.3 SSEM as a Design Language
 
 By defining these attributes using established software engineering terminology, SSEM provides a common design language. This enables developers to discuss, reason about, and implement security considerations using concepts already familiar to them. It shifts the focus from myopic treatment of vulnerabilities to cohesive creation of software with inherent securable qualities.
 
@@ -299,7 +313,114 @@ This design language plays a crucial role in creating a cohesive product. It com
 
 A design language fosters a shared understanding around specific technical values. This can bring together a culture of quality made up of diversely inclined professionals to focus on these common goals and ideals. This is achieved by the shift in conversations around security as mentioned in Section 3.1, where the focus is on meeting goals for specific attributes rather than binary security assessments. This cultural alignment can strongly influence the product's internal structure to support these technical values. This is contrast with the traditional approach of find-and-fix monotony.
 
-## 4. Integrating SSEM into Development Lifecycles
+### 3.4 Measuring SSEM Attributes
+
+Measuring the attributes defined by SSEM is essential to quantify and evaluate the securable qualities of software. This section outlines approaches for measuring each of the core attributes: Maintainability, Trustworthiness, and Reliability. These measurements provide actionable insights to guide developers in enhancing the securability of their software.
+
+#### 3.4.1. Measuring Maintainability
+
+##### 3.4.1.1. Analyzability
+
+- **Quantitative:**
+  - **Volume (Lines of Code - LoC):** Tracked per module/system. Lower LoC for a given functionality can indicate better analyzability.
+  - **Duplication Percentage:** Measured by static analysis tools (e.g., SonarQube, PMD). Lower is better.
+  - **Unit Size (e.g., mLoC/cLoC):** Average lines of code per method or class. Excessively large units are harder to analyze.
+  - **Unit Complexity (e.g., Cyclomatic Complexity):** Measured by static analysis tools. Lower complexity per unit is generally better.
+  - **Comment Density/Quality:** Ratio of comment lines to code lines, or qualitative review of comment usefulness.
+- **Qualitative/Process-based:**
+  - **Time to Understand (TTU):** Average time it takes a developer unfamiliar with a code section to understand its purpose and flow for a specific task (e.g., bug fix).
+  - **Developer Surveys:** Periodically ask developers to rate the analyzability of modules they work with.
+
+##### 3.4.1.2. Modifiability
+
+- **Quantitative:**
+  - **Module Coupling (Afferent/Efferent):** Number of incoming (afferent) and outgoing (efferent) dependencies for modules. Lower afferent coupling for a module often means it's easier to change without impacting many other parts.
+  - **Change Impact Size:** Number of files/modules typically affected by a common type of change. Smaller is better.
+  - **Regression Rate:** Percentage of changes that introduce new defects. Lower is better.
+- **Qualitative/Process-based:**
+  - **Ease of Change Assessment:** During code reviews, assess how easy it would be to make a hypothetical related change.
+  - **Time to Implement Change:** Average time to implement standard types of modifications or feature enhancements.
+
+##### 3.4.1.3. Testability
+
+- **Quantitative:**
+  - **Code Coverage:** Percentage of code covered by automated tests (unit, integration). Higher is generally better.
+  - **Unit Test Density:** Number of unit tests per KLoC or per class/module.
+  - **Mocking/Stubbing Complexity:** Difficulty or amount of setup required to isolate units for testing.
+- **Qualitative/Process-based:**
+  - **Ease of Writing Tests:** Developer feedback on how easy it is to write meaningful tests for new or existing code.
+  - **Test Execution Time:** While not a direct measure of testability, excessively long test suite runs can disincentivize testing.
+
+#### 3.4.2. Measuring Trustworthiness
+
+##### 3.4.2.1. Confidentiality
+
+- **Quantitative:**
+  - **Number of Identified Data Leaks:** From penetration tests, code reviews, or incidents.
+  - **Access Control Violations:** Number of logged unauthorized access attempts (prevented or successful).
+- **Qualitative/Process-based:**
+  - **Data Classification Adherence:** Review of how well data is classified and if protections align with classification.
+  - **Principle of Least Privilege Review:** Assessment of whether components and users only have necessary permissions.
+  - **Effectiveness of Encryption:** Review of encryption algorithms used, key management practices.
+
+##### 3.4.2.2. Accountability
+
+- **Quantitative:**
+  - **Audit Log Coverage:** Percentage of critical system actions that are logged with sufficient detail.
+  - **Traceability Success Rate:** Percentage of audited actions that can be uniquely traced to an entity.
+- **Qualitative/Process-based:**
+  - **Audit Log Review Findings:** Results from periodic reviews of audit logs for completeness and usefulness.
+  - **Non-repudiation Strength:** Assessment of the strength of evidence linking actions to entities (e.g., use of digital signatures).
+
+##### 3.4.2.3. Authenticity
+
+- **Quantitative:**
+  - **Authentication Failures:** Number of failed login attempts (can indicate brute-forcing or issues).
+  - **Use of Strong Authentication:** Percentage of authentication points using multi-factor authentication or strong credential types.
+- **Qualitative/Process-based:**
+  - **Verification of Identities:** Review of processes for verifying user and system identities.
+  - **Integrity of Authentication Mechanisms:** Assessment of the security of authentication protocols and implementations.
+
+#### 3.4.3. Measuring Reliability
+
+##### 3.4.3.1. Availability
+
+- **Quantitative:**
+  - **Uptime Percentage:** (e.g., 99.99%).
+  - **Mean Time Between Failures (MTBF).**
+  - **Mean Time To Recovery (MTTR).**
+- **Qualitative/Process-based:**
+  - **Redundancy Review:** Assessment of system redundancy for critical components.
+  - **Disaster Recovery Test Results.**
+
+##### 3.4.3.2. Integrity
+
+- **Quantitative:**
+  - **Number of Data Corruption Incidents.**
+  - **Checksum/Hash Validation Success Rate:** For data at rest and in transit.
+- **Qualitative/Process-based:**
+  - **Input Validation Effectiveness:** Review of input validation mechanisms at trust boundaries.
+  - **System File Integrity Monitoring Alerts.**
+
+##### 3.4.3.3. Fault Tolerance
+
+- **Quantitative:**
+  - **Service Degradation under Failure:** Measure of performance or functionality loss when components fail.
+- **Qualitative/Process-based:**
+  - **Chaos Engineering Results:** System behavior during controlled failure experiments.
+  - **Single Point of Failure (SPOF) Analysis:** Number of identified SPOFs.
+  - **Effectiveness of Error Handling:** Review of how gracefully the system handles unexpected errors.
+
+##### 3.4.3.4. Resilience
+
+- **Quantitative:**
+  - **Recovery Time Objective (RTO) Adherence:** How often RTOs are met after an incident.
+  - **Performance Under Stress:** System performance metrics during load testing or simulated attacks (e.g., DDoS).
+- **Qualitative/Process-based:**
+  - **Defensive Coding Practices Review:** Assessment of code for practices like proper input validation, output encoding, and robust error handling.
+  - **Incident Response Plan Effectiveness:** Review of how well the system and team recover from security incidents or operational failures.
+
+## 4. Integrating SSEM into Development Strategy
 
 ### 4.1. Applying SSEM to Dependency Management
 
@@ -320,6 +441,8 @@ Examples include:
 While software engineering may lack formal licensing like other engineering disciplines, the merge review (or pull request review) process serves as a crucial point for mentoring, guidance, and validation. For security, this is where securable code review can scale effectively. It acts as an agile training ground where developers learn from peers and receive feedback in a constructive environment. SSEM attributes can provide a concrete basis for these reviews.
 
 The teams should be careful to avoid introducing unnecessary complexity or friction into the review process. This means that the merge review is used as guard rails and not as a gate. The goal is to grow the FIASSE mindset within the team, not to create a negative experience for the developers.
+
+In the future guidance for merge reviews, we will explore how to effectively integrate SSEM attributes into the review process in detail.
 
 ### 4.4. Early Integration: Planning and Requirements
 
@@ -384,9 +507,11 @@ A key concept taken from threat modeling is the identification of **trust bounda
 
 ### 6.3. Managing Flexibility and Control
 
-Software engineers often value flexibility in code, as it can facilitate feature implementation and bug fixing. Attackers, however, seek uncontrolled flexibility as a means to deviate from intended behavior.
+Software engineers often value flexibility in code, as it can facilitate feature implementation and bug fixing. Attackers, however, seek uncontrolled flexibility as a means to force the application to deviate from intended behavior.
 
 The issue is not flexibility itself, but the lack of appropriate control, especially at trust boundaries. An example of uncontrolled flexibility might be a function capable of executing arbitrary query statements with arbitrary parameters without restriction. Control is essential to ensure trustworthy execution, maintain system Integrity, and support Fault Tolerance. While flexibility is necessary for Maintainability.
+
+Think of trust boundaries like the hard candy shell of a jellybean: the soft, flexible interior represents the bulk of the application's logic, while the hard shell represents the critical points where external data or untrusted operations are carefully controlled. Just as the candy shell protects the jellybean's interior, well defined trust boundaries protect the core application from potentially harmful external influences. Defining and communicating these boundaries during the design phase makes it clear which areas of code are responsible for tight control, allowing developers to focus their efforts on maintaining the integrity and trustworthiness of these critical interfaces.
 
 ### 6.4. Resilient Coding and System Resilience
 
@@ -394,6 +519,7 @@ Resilience refers to an application's ability to continue running predictably, e
 
 This drives the need for concrete developer actions such as:
 
+- Strong typing to ensure data is usable in the intended way.
 - Filtering and validating all input at trust boundaries. Input validation ensures that data conforms to expected formats, types, lengths, and ranges before processing.
 - Properly escaping and encoding all output destined for other systems or interpreters (exiting trust boundaries). This prevents injection attacks by ensuring that data is treated as data, not executable code.
 
@@ -430,9 +556,11 @@ Understanding different development roles is useful for tailoring guidance and e
 
 It should be understood in early stages of FIASSE adoption that Application Security's role in development is that of assurance. The only shared responsibility between AppSec and Development teams is the timely delivery of the end result. This ensures the focus of Software Engineers remains on building securable code through a self-governed process. AppSec is to provide guidance through participation in development activities like design and requirements. This establishes the guardrails for development to operate in as intended. Admittedly, AppSec is not responsible for development's level of adherence to the architecure of the system or feature requirements.
 
-Therefore security metrics are a measure of the effective participation of AppSec in the development process, not a measure of Development's adherence to security. The overall security posture of an application reflects how well expectations are set. This is a key distinction that allows AppSec to focus on providing value through requiremnts, design, and assurance rather than policing or micromanaging development teams.
+Therefore security metrics (those derived from Application Security Testing tools and pentests) are a measure of the effective participation of AppSec in the development process, not a measure of Software Engineering's adherence to security. The overall security posture of an application reflects how well expectations are set. This is a key distinction that allows AppSec to focus on providing value through requirements, design, and assurance rather than policing or micromanaging development teams.
 
-By spending valuable time in design activities, AppSec can guide larger numbers of developers that are adhearing to the principals of FIASSE. It will also fosters a culture of shared responsibility for security, where developers are empowered to take ownership of their code while having the support and guidance of AppSec professionals following established software engineering practices.
+If the posture stays stagnant over time, adjustments to development culture and/or leadership are necessary. AppSec can encourage culture change by promoting FIASSE and sponsoring activities including continued education. It can be difficult to accept the limits of AppSec's influence, but it is essential to recognize that the responsibility for balancing business value creation with security needs ultimately lies with the development team as a whole.
+
+By spending valuable time in design activities, AppSec can guide larger numbers of developers that are adhering to the principals of FIASSE. It will also foster a culture of shared responsibility for security, where developers are empowered to take ownership of their code while having the support and guidance of AppSec professionals following established software engineering practices.
 
 ### 7.1. Empowering Senior Software Engineers
 
@@ -542,12 +670,13 @@ Adopting FIASSE does not require a structured approach. However, organizations c
    - Identify existing security practices and how they align with SSEM attributes.
    - Determine the current level of understanding and acceptance of Software Engineering principles among development teams.
    - Assess the misalignments FIASSE can address.
-2. **Identify Key Influencers:** Identify senior software engineers and other key stakeholders who are able to internalize the framework and the principals. These individuals can champion FIASSE adoption. These individuals should have a strong understanding of software engineering.
-3. **Educate and Train Teams:** Provide comprehensive training on FIASSE activities and SSEM attributes to Key Influencers. Introductory training should be role-specific and integrated into onboarding and continuous learning programs.
+2. **Integrate SSEM Terminology:** Deliberately incorporate SSEM attributes (Maintainability, Trustworthiness, Reliability) and their sub-attributes into existing developer documentation, coding standards, style guides, and training materials. This helps socialize the concepts and provides a common language for discussing and evaluating securability.
+3. **Identify Key Influencers:** Identify senior software engineers and other key stakeholders who are able to internalize the framework and the principals. These individuals can champion FIASSE adoption. These individuals should have a strong understanding of software engineering.
+4. **Educate and Train Teams:** Provide comprehensive training on FIASSE activities and SSEM attributes to Key Influencers. Introductory training should be role-specific and integrated into onboarding and continuous learning programs.
    - Development and AppSec should understand that FIASSE is meant to be discussed in the context of software engineering, not as a separate security initiative.
    - After the initial training, primary delivery of on-going training should be delivered in the context of merge reviews, architecture discussions, and requirements gathering. Leaders should be encouraged to bring FIASSE discussions into these activities.
-4. **Foster Collaboration:** Promote regular collaboration between AppSec and Development teams. Discourage AppSec from simply reviewing items in isolation; instead, encourage AppSec to engage in Development activities such as requiremnts gathering.
-5. **Continuously Monitor and Improve:** FIASSE is an ongoing process. Implement real-time security observability and use the gathered insights to continuously refine security strategies and FIASSE implementation.
+5. **Foster Collaboration:** Promote regular collaboration between AppSec and Development teams. Discourage AppSec from simply reviewing items in isolation; instead, encourage AppSec to engage in Development activities such as requiremnts gathering.
+6. **Continuously Monitor and Improve:** FIASSE is an ongoing process. Implement real-time security observability and use the gathered insights to continuously refine security strategies and FIASSE implementation.
 
 The applicability of FIASSE spans various organizational types, including large technology companies integrating it into Continuous Security Engineering, financial institutions enhancing data protection, AI and cloud-based companies designing secure architectures, and open-source projects adopting secure development guidelines.
 
