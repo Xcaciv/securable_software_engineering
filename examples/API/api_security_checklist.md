@@ -526,10 +526,6 @@ This checklist integrates principles from FIASSE and the SSEM. It is organized b
   - [ ] Tabletop exercises (discussing hypothetical scenarios) - e.g., quarterly.
   - [ ] Simulation exercises (simulating parts of an incident response) - e.g., semi-annually.
     Use the results of these tests to identify gaps and improve the plan.
-- Deployment, Operations & Maintenance:
-- [ ] Review and update the IR plan and evidence collection procedures at least annually, or after any significant incident or architectural change.
-- [ ] Integrate security alerting from monitoring systems (Section 4) into the incident identification process of the IR plan.
-- [ ] Implement robust, automated data backup procedures for all critical API data. Define backup frequency, retention periods, and storage locations (e.g., off-site, immutable).
 
 ### 10.3 Testing & Validation
 
@@ -542,6 +538,9 @@ This checklist integrates principles from FIASSE and the SSEM. It is organized b
 
 ### 10.4 Deployment, Operations & Maintenance
 
+- [ ] Review and update the IR plan and evidence collection procedures at least annually, or after any significant incident or architectural change.
+- [ ] Integrate security alerting from monitoring systems (Section 4) into the incident identification process of the IR plan.
+- [ ] Implement robust, automated data backup procedures for all critical API data. Define backup frequency, retention periods, and storage locations (e.g., off-site, immutable).
 - [ ] During an incident, provide timely updates to relevant internal stakeholders. After an incident, and based on legal and PR guidance, communicate transparently with affected customers and regulatory bodies as required by law or policy. Focus on facts, impact, remediation actions, and steps taken to prevent recurrence.
 - [ ] After every significant security incident or near-miss, conduct a thorough post-incident review (lessons learned or root cause analysis). The goals are to:
   - [ ] Understand the full timeline and impact of the incident.
@@ -551,4 +550,3 @@ This checklist integrates principles from FIASSE and the SSEM. It is organized b
     [ ] Track action items from the review to completion.
 - [ ] Review and update the BCP/DR plan at least annually, or after significant infrastructure/architectural changes or DR tests.
 - [ ] Ensure that API dependencies' BCP/DR plans are periodically reviewed or that contractual SLAs cover necessary availability and recovery.
-
