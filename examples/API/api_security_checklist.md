@@ -1,8 +1,8 @@
-# FIASSE/SSEM Aligned API Security Checklist (Functional Perspective)
+# FIASSE/SSEM Aligned API Security Checklist
 
 This checklist integrates principles from FIASSE and the SSEM. It is organized by cross-cutting functional security areas. Within each area, checklist items are aligned with SSEM's core attributes (Maintainability, Trustworthiness, Reliability) and categorized by software engineering phase to help build 'securable' APIs.
 
-**Preamble:** This checklist should be tailored based on the specific threats identified for your API during threat modeling exercises. Not all items will apply equally to all APIs. Prioritize checks based on the API's data sensitivity, exposure (internal vs. external), and the impact of a potential compromise.
+**Preamble:** This checklist should be tailored based on the specific threats identified for your API during threat modeling exercises. Not all items will apply equally to all APIs. Prioritize checks based on the API's data sensitivity, exposure (internal vs. external), and the impact of a potential compromise. For a light weight version meant for devlopment as an every-day-carry checklist, see the [Developer API Security Checklist](dev_api_checklist.md).
 
 ## 1. Authentication & Authorization
 
@@ -42,18 +42,18 @@ This checklist integrates principles from FIASSE and the SSEM. It is organized b
 
 ### 1.3 Testing & Validation
 
-- [ ] Develop specific, automated test cases for each defined role and permission, covering positive/negative scenarios and attempts to bypass controls (e.g., IDOR, privilege escalation paths identified in threat models).
+- [ ] Develop specific, automated test cases for each defined role and permission, covering positive/negative scenarios and attempts to bypass controls (e.g., privilege escalation paths identified in threat models).
 - [ ] Test auth configuration changes (e.g., adding a new role, modifying a permission) in a staging environment before production deployment.
-- [ ] Ensure test environment allows for easy simulation of different user roles, permissions, and policy configurations.
+- [ ] Ensure test environment allows for authenticating to different user roles, permissions, and policy configurations.
 - [ ] Conduct specific tests for authentication bypass (e.g., parameter tampering, token manipulation, replay attacks).
 - [ ] Conduct specific tests for authorization bypass:
   - [ ] Horizontal privilege escalation (accessing data of other users at the same privilege level).
-  - [ ] Vertical privilege escalation (gaining higher privileges than assigned).
-  - [ ] Test for Insecure Direct Object References (IDOR) by attempting to access resources not authorized for the current user.
+  - [ ] Vertical privilege escalation (accessing data of a higher privileges than assigned).
+  - [ ] Test for unauthorized access by attempting to access resources directly.
 - [ ] Verify secure handling of credentials and session tokens (e.g., not logged, not in GET requests, `HttpOnly` and `Secure` flags for cookies if used).
-- [ ] Test JWT implementation for common vulnerabilities (e.g., `alg:none`, weak secrets, signature stripping, key confusion).
+- [ ] Test JWT usage for validation and enforcement.
 - [ ] Conduct load testing on auth systems to ensure performance under expected and peak load.
-- [ ] Conduct specific failure injection tests (e.g., simulate IdP outage, database connection failure for policy store) to verify fail-secure behavior and high availability mechanisms.
+- [ ] Conduct specific failure injection tests (e.g., simulate identity provider outage, database connection failure for policy store) to verify fail-secure behavior and high availability mechanisms.
 
 ### 1.4 Deployment, Operations & Maintenance
 
@@ -70,7 +70,7 @@ This checklist integrates principles from FIASSE and the SSEM. It is organized b
 ### 2.1 Design & Architecture
 
 - [ ] Document data classification levels (e.g., public, internal, confidential, restricted) and map them to specific data elements handled by the API.
-- [ ] Design data protection mechanisms (e.g., specific encryption libraries, KMS integration points) for clarity, using established design patterns, and ensure they are documented.
+- [ ] Design data protection mechanisms (e.g., specific encryption libraries, key management service integration points) for clarity, using established design patterns, and ensure they are documented.
 - [ ] Ensure cryptographic operations are implemented via a dedicated, well-abstracted module/service to facilitate updates or algorithm changes.
 - [ ] Design cryptographic modules to be testable with known key values and vectors in isolated test environments.
 - [ ] Mandate and document the use of specific TLS versions (e.g., TLS 1.2 or higher, prefer TLS 1.3) and approved cipher suites for all data in transit.
@@ -79,13 +79,13 @@ This checklist integrates principles from FIASSE and the SSEM. It is organized b
   - [ ] Use of an approved Key Management Service (KMS) or Hardware Security Module (HSM) for high-value keys.
   - [ ] Defined key generation, distribution, storage, rotation, and revocation procedures.
   - [ ] Minimal exposure of keys to applications and personnel.
-- [ ] Identify all sensitive data elements (as per data classification) and design controls to prevent their unnecessary exposure in URLs, query parameters, logs, or error messages. Document these controls.
+- [ ] Identify and document all sensitive data elements (as per data classification) and design controls to prevent their unnecessary exposure in URLs, query parameters, logs, or error messages.
 - [ ] Design key management systems (KMS, HSMs) for high availability and resilience, matching or exceeding the API's availability targets. Document high availability strategy for KMS.
 - [ ] Assess and document the performance impact of cryptographic operations on API response times.
 
 ### 2.2 Development & Implementation
 
-- [ ] Implement data protection measures using well-documented code, adhering to established coding standards, and using approved, standard, vetted cryptographic libraries (specify which ones, e.g., BouncyCastle, libsodium, JCA/JCE).
+- [ ] Implement data protection measures using well-documented code, adhering to established coding standards, and using approved, standard, vetted cryptographic libraries (specify which ones, e.g., libsodium, JCA/JCE).
 - [ ] Configuration for cryptographic operations (e.g., algorithm choices, key identifiers) is stored in version-controlled configuration files, not hardcoded.
 - [ ] Enforce HTTPS with current TLS configurations (e.g., TLS 1.2+, strong cipher suites as per policy) for all API communication.
 - [ ] Implement HTTP Strict Transport Security (HSTS) header with an appropriate `max-age` and `includeSubDomains` if applicable. Consider preloading.
@@ -96,7 +96,7 @@ This checklist integrates principles from FIASSE and the SSEM. It is organized b
 - [ ] Store API keys, secrets, and cryptographic keys in the approved secure storage solution (e.g., vault service). Avoid hardcoding secrets in code, configuration files, or deployment scripts.
 - [ ] Implement and test automated key rotation for cryptographic keys and secrets according to defined policy (e.g., every 90 days for API keys, annually for signing keys).
 - [ ] Ensure JWT secrets/keys are managed as per the secure key management strategy, are unique per environment, and are of sufficient complexity/entropy.
-- [ ] Encode data in API responses using the `Content-Type` header (e.g., `application/json; charset=utf-8`). For HTML-like `Content-Type`s, apply context-aware output encoding to prevent XSS if responses might be rendered directly in a browser.
+- [ ] Encode data in API responses using the `Content-Type` header (e.g., `application/json; charset=utf-8`). For HTML-like `Content-Type`s, apply context-aware output encoding to ensure predictable browser rendering.
 - [ ] Implement cryptographic operations efficiently to minimize performance impact, using hardware acceleration where available and appropriate.
 - [ ] Implement proper error handling for cryptographic operations (e.g., key fetch failure, decryption error) to prevent denial of service or unexpected API behavior.
 
@@ -127,45 +127,45 @@ This checklist integrates principles from FIASSE and the SSEM. It is organized b
 
 ### 3.1 Design & Architecture
 
-    - [ ] Design input validation to use a shared library/module across API endpoints, with validation rules externalized to version-controlled configuration files (e.g., JSON Schema, OpenAPI spec extensions) for easy updates.
-    - [ ] Mandate that all input validation rules (data types, formats, lengths, ranges, allowed characters/regex) for each field of every API endpoint are documented within the API specification (e.g., OpenAPI `pattern`, `minLength`, `maxLength`, `enum`, `format` attributes).
-    - [ ] For every API endpoint and every input parameter (headers, URL parameters, query parameters, request body fields): define and document strict validation rules for data type, format (e.g., using regex for strings, specific date formats), length (min/max), range (min/max for numbers), and allowed character sets/values (allow-list preferred). Specify maximum allowable sizes for request bodies and individual fields.
-    - [ ] For each API endpoint, explicitly define and document the allowed HTTP methods (e.g., GET, POST, PUT, DELETE). Design endpoints to reject requests using disallowed methods with a `405 Method Not Allowed` status code.
-    - [ ] Design API endpoints to validate the `Content-Type` header against an allow-list of expected media types (e.g., `application/json`). Plan to reject requests with unsupported `Content-Type` with a `415 Unsupported Media Type`. Similarly, plan to validate `Accept` headers and respond with `406 Not Acceptable` if the requested type cannot be served.
-    - [ ] Design input processing logic to include robust error handling for exceptions arising from malformed or unexpected data. Define maximum acceptable sizes for inputs (e.g., request body, string lengths, array sizes) to prevent resource exhaustion.
+- [ ] Design input validation to use a shared library/module across API endpoints, with validation rules externalized to version-controlled configuration files (e.g., JSON Schema, OpenAPI spec extensions) for easy updates.
+- [ ] Mandate that all input validation rules (data types, formats, lengths, ranges, allowed characters/regex) for each field of every API endpoint are documented within the API specification (e.g., OpenAPI `pattern`, `minLength`, `maxLength`, `enum`, `format` attributes).
+- [ ] For every API endpoint and every input parameter (headers, URL parameters, query parameters, request body fields): define and document strict validation rules for data type, format (e.g., using regex for strings, specific date formats), length (min/max), range (min/max for numbers), and allowed character sets/values (allow-list preferred). Specify maximum allowable sizes for request bodies and individual fields.
+- [ ] For each API endpoint, explicitly define and document the allowed HTTP methods (e.g., GET, POST, PUT, DELETE). Design endpoints to reject requests using disallowed methods with a `405 Method Not Allowed` status code.
+- [ ] Design API endpoints to validate the `Content-Type` header against an allow-list of expected media types (e.g., `application/json`). Plan to reject requests with unsupported `Content-Type` with a `415 Unsupported Media Type`. Similarly, plan to validate `Accept` headers and respond with `406 Not Acceptable` if the requested type cannot be served.
+- [ ] Design input processing logic to include robust error handling for exceptions arising from malformed or unexpected data. Define maximum acceptable sizes for inputs (e.g., request body, string lengths, array sizes) to prevent resource exhaustion.
 
 ### 3.2 Development & Implementation
 
-    - [ ] Implement the shared input validation library/module, ensuring it's well-commented, especially for complex validation logic. Enforce its usage across all relevant API endpoints.
-    - [ ] Implement server-side validation for ALL input parameters based on the defined rules. For invalid input, return a generic error message (e.g., "Invalid input") with an appropriate HTTP status code (e.g., `400 Bad Request`, `422 Unprocessable Entity`) and log detailed error information (including specific validation failures) internally only.
-    - [ ] Implement HTTP method validation on all endpoints, returning `405 Method Not Allowed` for inappropriate methods as per design.
-    - [ ] Implement `Content-Type` and `Accept` header validation as per design, returning `415` or `406` status codes respectively for unsupported types.
-    - [ ] To prevent injection flaws (SQLi, NoSQLi, OS Commandi, LDAPi, XSS, etc.):
-      - [ ] Use parameterized queries or server-side prepared statements for all database interactions.
-      - [ ] Utilize ORMs/ODMs with their built-in protections enabled and correctly configured; understand and avoid unsafe ORM/ODM patterns.
-      - [ ] Implement context-aware output encoding (e.g., HTML, JavaScript, URL) for any user-supplied data reflected in API responses, especially if responses might be rendered in a browser.
-      - [ ] Use input sanitization only as a secondary defense; document all sanitization logic and its specific purpose.
-    - [ ] When parsing XML, configure the parser to disable DTD processing and external entity resolution to prevent XXE vulnerabilities.
-    - [ ] When parsing XML, YAML, or other formats supporting complex object graphs or references (e.g., with anchors/aliases), configure parsers to limit entity expansion, document depth, number of elements/objects, and overall payload size to prevent resource exhaustion attacks (e.g., Billion Laughs, XML Bomb).
-    - [ ] Implement input processing and validation logic such that failures for one request (e.g., due to malformed data) do not corrupt shared state, exhaust resources (e.g., connection pools, memory), or otherwise impact the processing of other valid requests.
+- [ ] Implement the shared input validation library/module, ensuring it's well-commented, especially for complex validation logic. Enforce its usage across all relevant API endpoints.
+- [ ] Implement server-side validation for ALL input parameters based on the defined rules. For invalid input, return a generic error message (e.g., "Invalid input") with an appropriate HTTP status code (e.g., `400 Bad Request`, `422 Unprocessable Entity`) and log detailed error information (including specific validation failures) internally only.
+- [ ] Implement HTTP method validation on all endpoints, returning `405 Method Not Allowed` for inappropriate methods as per design.
+- [ ] Implement `Content-Type` and `Accept` header validation as per design, returning `415` or `406` status codes respectively for unsupported types.
+- [ ] To prevent injection flaws (SQLi, NoSQLi, OS Commandi, LDAPi, XSS, etc.):
+  - [ ] Use parameterized queries or server-side prepared statements for all database interactions.
+  - [ ] Utilize ORMs/ODMs with their built-in protections enabled and correctly configured; understand and avoid unsafe ORM/ODM patterns.
+  - [ ] Implement context-aware output encoding (e.g., HTML, JavaScript, URL) for any user-supplied data reflected in API responses, especially if responses might be rendered in a browser.
+  - [ ] Use input sanitization only as a secondary defense; document all sanitization logic and its specific purpose.
+- [ ] When parsing XML, configure the parser to disable DTD processing and external entity resolution to prevent XXE vulnerabilities.
+- [ ] When parsing XML, YAML, or other formats supporting complex object graphs or references (e.g., with anchors/aliases), configure parsers to limit entity expansion, document depth, number of elements/objects, and overall payload size to prevent resource exhaustion attacks (e.g., Billion Laughs, XML Bomb).
+- [ ] Implement input processing and validation logic such that failures for one request (e.g., due to malformed data) do not corrupt shared state, exhaust resources (e.g., connection pools, memory), or otherwise impact the processing of other valid requests.
 
 ### 3.3 Testing & Validation
 
-    - [ ] Develop and maintain a suite of unit and integration tests for the input validation library and its application, covering valid inputs, common invalid inputs (e.g., wrong type, out of range), boundary values, and known malicious patterns (e.g., basic injection strings like `\' OR \'1\'=\'1\'`).
-    - [ ] Conduct automated fuzz testing against all API endpoints using tools (e.g., OWASP ZAP, custom scripts) that generate a wide range of malformed, oversized, and unexpected inputs, targeting common vulnerabilities. Document fuzzing test plans and results.
-    - [ ] Perform targeted security testing (manual and automated using DAST tools) for specific injection vulnerabilities (SQLi, NoSQLi, OS Command Injection, XXE, XSS, template injection, etc.) relevant to the API's technology stack and data handling. Verify that defenses are effective.
-    - [ ] Test parsers for complex data types (XML, JSON, YAML) with malformed, excessively large, or deeply nested inputs to verify they handle errors gracefully, do not crash, and are not vulnerable to resource exhaustion or injection attacks (e.g., XXE, Billion Laughs).
-    - [ ] Perform stress testing by sending high volumes of requests containing invalid data and requests containing excessively large (but structurally valid where applicable, up to defined limits) inputs. Verify the API remains stable, responsive for legitimate traffic, and correctly enforces defined size limits.
+- [ ] Develop and maintain a suite of unit and integration tests for the input validation library and its application, covering valid inputs, common invalid inputs (e.g., wrong type, out of range), boundary values, and known malicious patterns (e.g., basic injection strings like `\' OR \'1\'=\'1\'`).
+- [ ] Conduct automated fuzz testing against all API endpoints using tools (e.g., OWASP ZAP, custom scripts) that generate a wide range of malformed, oversized, and unexpected inputs, targeting common vulnerabilities. Document fuzzing test plans and results.
+- [ ] Perform targeted security testing (manual and automated using DAST tools) for specific injection vulnerabilities (SQLi, NoSQLi, OS Command Injection, XXE, XSS, template injection, etc.) relevant to the API's technology stack and data handling. Verify that defenses are effective.
+- [ ] Test parsers for complex data types (XML, JSON, YAML) with malformed, excessively large, or deeply nested inputs to verify they handle errors gracefully, do not crash, and are not vulnerable to resource exhaustion or injection attacks (e.g., XXE, Billion Laughs).
+- [ ] Perform stress testing by sending high volumes of requests containing invalid data and requests containing excessively large (but structurally valid where applicable, up to defined limits) inputs. Verify the API remains stable, responsive for legitimate traffic, and correctly enforces defined size limits.
 
 ### 3.4 Deployment, Operations & Maintenance
 
-    - [ ] Schedule and conduct periodic reviews (e.g., quarterly, or post-incident) of input validation rules and configurations against emerging threats (e.g., new OWASP Top 10, CVEs related to input processing) and application changes. Document review outcomes and track updates to rules.
-    - [ ] Subscribe to security mailing lists, vulnerability databases (e.g., NVD, project-specific advisories for used frameworks/libraries), and threat intelligence feeds. Establish a documented process to review new, relevant injection vectors and update input validation rules, defenses, and tests accordingly.
-    - [ ] Implement monitoring and alerting for:
-      - High rates of input validation failures (overall or per endpoint/IP).
-      - Specific types of validation failures (e.g., patterns indicative of scanning or attack).
-      - Failures originating from specific IP addresses/clients.
-        Investigate alerts promptly to identify potential attacks, misconfigured clients, or API bugs.
+- [ ] Schedule and conduct periodic reviews (e.g., quarterly, or post-incident) of input validation rules and configurations against emerging threats (e.g., new OWASP Top 10, CVEs related to input processing) and application changes. Document review outcomes and track updates to rules.
+- [ ] Subscribe to security mailing lists, vulnerability databases (e.g., NVD, project-specific advisories for used frameworks/libraries), and threat intelligence feeds. Establish a documented process to review new, relevant injection vectors and update input validation rules, defenses, and tests accordingly.
+- [ ] Implement monitoring and alerting for:
+  - [ ] High rates of input validation failures (overall or per endpoint/IP).
+  - [ ] Specific types of validation failures (e.g., patterns indicative of scanning or attack).
+  - [ ] Failures originating from specific IP addresses/clients.
+    Investigate alerts promptly to identify potential attacks, misconfigured clients, or API bugs.
 
 ## 4. Logging, Monitoring & Auditing
 
