@@ -33,7 +33,7 @@
     - [2.1. The Securable Paradigm: No Static Secure State](#21-the-securable-paradigm-no-static-secure-state)
     - [2.2. Resiliently Add Computing Value](#22-resiliently-add-computing-value)
     - [2.3. Security Mission: Reducing Material Impact](#23-security-mission-reducing-material-impact)
-    - [2.4. Mindset Divergence: Hacker vs. Engineer](#24-mindset-divergence-hacker-vs-engineer)
+    - [2.4. Mindset Convergence: Hacker vs. Engineer](#24-mindset-convergence-hacker-vs-engineer)
     - [2.5. Aligning Security with Development](#25-aligning-security-with-development)
   - [3. The Securable Software Engineering Model (SSEM)](#3-the-securable-software-engineering-model-ssem)
     - [3.1. Overview and Objectives](#31-overview-and-objectives)
@@ -154,23 +154,23 @@ This approach aligns security practices with the reality of software development
 
 ### 2.2. Resiliently Add Computing Value
 
-The primary directive of software engineering is to add valuable software in a way that is robust enough to withstand change, stress, and attack. This means creating software that not only meets functional requirements but also possesses securable qualities — such as those defined by SSEM like high Analyzability, Modifiability, and Testability — that allow it to adapt, persist, and maintain its integrity over time and under various conditions. These qualities enable it to withstand operational failures, accommodate evolving business needs, and resist security threats more effectively. Software Engineering refers to the broader discipline of designing, developing, and maintaining software in a systematic and organized way [Wikipedia-SE].
+The primary directive of software engineering in a business context is to create valuable code in a way that is robust enough to withstand change, stress, and attack. Expressed concisely: "Resiliently add computing value". This means creating software that not only meets functional requirements but also possesses securable qualities — such as those defined by SSEM like high Analyzability, Modifiability, and Testability — that allow it to adapt, persist, and maintain its integrity over time and under various conditions. These qualities enable it to withstand operational failures, accommodate evolving business needs, and resist security threats more effectively. Software Engineering refers to the broader discipline of designing, developing, and maintaining software in a systematic and organized way [Wikipedia-SE].
 
 This principle underscores the idea that security is not an add-on but an intrinsic component of well-engineered software, contributing directly to its ability to deliver value reliably and sustainably.
 
 ### 2.3. Security Mission: Reducing Material Impact
 
-The core mission of cybersecurity, as articulated by Rick Howard in "Cyber Security First Principles," is to 'Reduce the Probability of Material Impact of a cyber event, aligned with the business's risk appetite'. Complete elimination of breaches, while an ideal, is often not a functional business goal. Security strategies MUST, therefore, align with overarching business objectives. This requires a balanced approach. While formal buy-in and metrics are necessary, AppSec's role extends to enabling Development teams to meet security expectations and pass security assessments. Effectively preparing applications for our connected world.
+The core mission of cybersecurity, as articulated by Rick Howard in "Cyber Security First Principles," is to "Reduce the probability of material impact of a cyber event". Complete elimination of breaches, while an ideal, is often not a functional business goal. Security strategies MUST, therefore, align with overarching business objectives. This requires a balanced approach. While formal buy-in and metrics are necessary, AppSec's role extends to enabling Development teams to meet security expectations and pass security assessments. Effectively reducing the chance of a successful attack and minimizing potential damage.
 
-### 2.4. Mindset Divergence: Hacker vs. Engineer
+### 2.4. Mindset Convergence: Hacker vs. Engineer
 
-The perspective that all programmers should be penetration testers, or think like attackers, or put security first, to eliminate security problems overlooks a critical distinction. While understanding how systems can be compromised is valuable, it does not inherently translate into the knowledge of how to build them securely. There is a significant difference between identifying a vulnerability and implementing a robust, scalable software engineering solution. This also complements the reality that line-level fixing does not scale effectively.
+The perspective that all programmers should put security first, think like attackers, or also be pentesters, to eliminate security problems overlooks a critical distinction. While understanding how systems can be compromised is valuable, it does not inherently translate into the knowledge of how to build them securely. It is unreasonable to expect business value to be a secondary concern. There is a significant difference between identifying a vulnerability and implementing a robust, scalable software engineering solution. This also complements the reality that line-level fixing does not scale effectively.
 
-Expecting developers to become expert penetration testers is akin to requiring them to master formal software testing or Quality Assurance (QA) disciplines merely to write unit tests. Programmers MUST test their own code, but they do not need to become QA experts. A similar principle applies to security assurance.
+Additionally, the two mindsets do not represent a gap. Instead, they are complementary disciplines used to conduct business. Just as we don't talk about the complementary roles of Accounting and Operations as a gap, we should not view the roles of Security and Development in this way.
 
 ### 2.5. Aligning Security with Development
 
-True alignment between security and development requires a return to first principles. Instead of imposing security-centric jargon and processes that may seem alien to developers, SSEM advocates for using well-established Software Engineering terms to describe securable code attributes (the SSEM properties like Analyzability, Modifiability, Testability, Confidentiality, etc.). This fosters understanding and empowers developers to address security confidently without years of dedicated security experience. The goal is to instill confidence in developers, enabling them to recognize these securable attributes in existing code — for example, identifying highly Analyzable code by its clarity and ease of understanding, or Testable code by the simplicity of writing unit tests for it — and understand what building securable software entails from an engineering perspective. As will be discussed, this also requires specific participation from AppSec professionals in the early stages of the Software Development Lifecycle (SDLC), particularly during requirements gathering and feature planning.
+True alignment between security and development requires a return to first principles. Instead of imposing security-centric jargon and processes that may seem alien to developers, SSEM advocates for using well-established Software Engineering terms to describe securable code attributes (the SSEM properties like Analyzability, Modifiability, Testability, Confidentiality, etc.). This fosters understanding and empowers developers to address security confidently without years of dedicated security experience. The goal is to instill confidence in developers, enabling them to recognize these securable attributes in existing code — for example, identifying highly Analyzable code by its clarity and ease of understanding or low Cyclomatic complexity. Or by recognizing Testable code by the simplicity of writing unit tests for it. Security cultivates confidence by understand what building securable software entails from an engineering perspective. As will be discussed, this also requires specific participation from AppSec professionals in the early stages of the Software Development Lifecycle (SDLC), particularly during requirements gathering and feature planning.
 
 ## 3. The Securable Software Engineering Model (SSEM)
 
@@ -185,12 +185,13 @@ SSEM is further designed to:
 - Account for the iterative nature of software development and agile methodologies.
 - Serve as a mental model, a checklist, or a means to set clear expectations for securable design.
 
+Here are the core attributes of SSEM are grouped into three primary categories, each representing a fundamental aspect of securable software:
+
 | **Maintainability** | **Trustworthiness** | **Reliability** |
 |:-----------------|:-----------------:|--------------:|
-| Analyzability    | Confidentiality | Availability  |
-| Modifiability    | Non-repudiation | Integrity     |
-| Testability      | Accountability  | Fault Tolerance|
-|                  | Authenticity    | Resilience     |
+| Analyzability    | Confidentiality   | Availability  |
+| Modifiability    | Accountability    | Integrity     |
+| Testability      | Authenticity      | Resilience    |
 
 SSEM is not a rigid framework but a flexible model that can adapt to various software engineering practices. It emphasizes the inherent qualities of well-engineered software that contribute directly to security, rather than prescribing specific security controls or processes. This allows it to scale effectively without requiring security to adopt toilsome or overly complex processes that may not align with the development team's workflow.
 
