@@ -50,8 +50,7 @@
       - [3.2.3. Reliability](#323-reliability)
         - [3.2.3.1. Availability](#3231-availability)
         - [3.2.3.2. Integrity](#3232-integrity)
-        - [3.2.3.3. Fault Tolerance](#3233-fault-tolerance)
-        - [3.2.3.4. Resilience](#3234-resilience)
+        - [3.2.3.3. Resilience](#3233-resilience)
     - [3.3 SSEM as a Design Language](#33-ssem-as-a-design-language)
     - [3.4 Measuring SSEM Attributes](#34-measuring-ssem-attributes)
       - [3.4.1. Measuring Maintainability](#341-measuring-maintainability)
@@ -65,8 +64,7 @@
       - [3.4.3. Measuring Reliability](#343-measuring-reliability)
         - [3.4.3.1. Availability](#3431-availability)
         - [3.4.3.2. Integrity](#3432-integrity)
-        - [3.4.3.3. Fault Tolerance](#3433-fault-tolerance)
-        - [3.4.3.4. Resilience](#3434-resilience)
+        - [3.4.3.3. Resilience](#3433-resilience)
   - [4. Integrating SSEM into Development Strategy](#4-integrating-ssem-into-development-strategy)
     - [4.1. Applying SSEM to Dependency Management](#41-applying-ssem-to-dependency-management)
     - [4.2. Natively Extending Development Processes](#42-natively-extending-development-processes)
@@ -290,21 +288,18 @@ For security this means implementing measures such as cryptographic hashing, che
 
 This approach recognizes that integrity is not just about preventing unauthorized changes but also about ensuring that the system operates correctly and consistently, even in the face of potential threats or failures.
 
-##### 3.2.3.3. Fault Tolerance
-
-Definition: "The ability of a system to continue to operate correctly even though a component has failed" (RFC 4949). This allows the system to withstand partial failures without complete breakdown.
-
-Focusing on this as a fundamental attribute means it is not just for specific features but for the system as a whole. It involves designing the system to handle errors gracefully, recover from failures, and maintain functionality even when parts of the system are compromised or unavailable.
-
-##### 3.2.3.4. Resilience
+##### 3.2.3.3. Resilience
 
 Definition: "The ability of a system to: (a) continue to operate during and after a failure of some part of the system (i.e., provide a degree of fault tolerance); and (b) recover from the failure and restore full operations" (RFC 4949). This also aligns with the concept of an application's ability to continue running predictably, even under unfavorable circumstances or load (as noted in Section 6.4).
 
-Strategies for resilience include:
+Resilience inherently includes **Fault Tolerance**, defined as "the ability of a system to continue to operate correctly even though a component has failed" (RFC 4949). This allows the system to withstand partial failures without complete breakdown. Achieving resilience means that fault tolerance is not just an attribute of specific features but is considered for the system as a whole. It involves designing the system to handle errors gracefully, recover from failures, and maintain functionality even when parts of the system are compromised or unavailable.
+
+Strategies for building resilient systems include:
 
 - Coding Defensively: Writing code that anticipates input outside the expected bounds and ignores those inputs rather than failing.
 - Predictable code execution: Ensuring that the code behaves consistently under various conditions.
 - Strong trust boundaries: Clearly defining areas of the codebase that exert strictly controlled execution.
+- Implementing robust error handling and recovery mechanisms to manage partial failures effectively.
 
 ### 3.3 SSEM as a Design Language
 
@@ -403,16 +398,7 @@ Measuring the attributes defined by SSEM is essential to quantify and evaluate t
   - **Input Validation Effectiveness:** Review of input validation mechanisms at trust boundaries.
   - **System File Integrity Monitoring Alerts.**
 
-##### 3.4.3.3. Fault Tolerance
-
-- **Quantitative:**
-  - **Service Degradation under Failure:** Measure of performance or functionality loss when components fail.
-- **Qualitative/Process-based:**
-  - **Chaos Engineering Results:** System behavior during controlled failure experiments.
-  - **Single Point of Failure (SPOF) Analysis:** Number of identified SPOFs.
-  - **Effectiveness of Error Handling:** Review of how gracefully the system handles unexpected errors.
-
-##### 3.4.3.4. Resilience
+##### 3.4.3.3. Resilience
 
 - **Quantitative:**
   - **Recovery Time Objective (RTO) Adherence:** How often RTOs are met after an incident.
