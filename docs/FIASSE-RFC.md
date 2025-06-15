@@ -45,9 +45,8 @@
       - [3.2.2. Trustworthiness](#322-trustworthiness)
         - [3.2.2.1. Confidentiality](#3221-confidentiality)
         - [3.2.2.2. Accountability](#3222-accountability)
-          - [3.2.2.2.1 Non-repudiation](#32221-non-repudiation)
         - [3.2.2.3. Authenticity](#3223-authenticity)
-      - [3.2.3. Reliability](#323-reliability)
+        - [3.2.3. Reliability](#323-reliability)
         - [3.2.3.1. Availability](#3231-availability)
         - [3.2.3.2. Integrity](#3232-integrity)
         - [3.2.3.3. Resilience](#3233-resilience)
@@ -258,19 +257,19 @@ Definition: "The property of a system or system resource that ensures that the a
 
 Achieving accountability relies on robust methods for managing principals and their access rights. While it leverages strategies common to non-repudiation, such as comprehensive logging and secure authentication, its core focus is the unique and verifiable attribution of every system action to a specific entity. This is essential for effective auditing and incident response.
 
-###### 3.2.2.2.1 Non-repudiation
-
-Definition: The "ability to prove the occurrence of a claimed event or action and its originating entities" (ISO/IEC 27000:2018). This prevents entities from falsely denying having performed an action or sent a message.
-
-Focusing on non-repudiation means ensuring that actions taken by users or systems can be traced back to their origin. This involves implementing logging, auditing, and secure authentication. These strategies provide transparency to support the maintenance and troubleshooting of the system, and they also enable accountability and authenticity.
-
 ##### 3.2.2.3. Authenticity
 
-Definition: "The property that an entity is what it claims to be" (ISO/IEC 27000:2018). This ensures that users, systems, or information are genuine and can be verified.
+Definition: "The property that an entity is what it claims to be" (ISO/IEC 27000:2018). This ensures that users, systems, or information are genuine and can be verified. Authenticity is strongly supported by **Non-repudiation**, which is the "ability to prove the occurrence of a claimed event or action and its originating entities" (ISO/IEC 27000:2018). Non-repudiation prevents entities from falsely denying having performed an action or sent a message.
 
-Focusing on authenticity means ensuring that the entities involved in a transaction or communication are who they claim to be. This involves implementing strategies such as digital signatures, certificates, and secure authentication methods. These strategies provide assurance that the entities involved in a transaction or communication are who they claim to be, which is essential for maintaining trust in the system.
+Focusing on authenticity, therefore, means ensuring that the entities involved in a transaction or communication are who they claim to be, and that their actions can be irrefutably linked to them. This involves implementing strategies such as:
 
-#### 3.2.3. Reliability
+- Secure authentication methods (e.g., multi-factor authentication).
+- Digital signatures and certificates to verify the origin and integrity of data and communications.
+- Comprehensive logging and auditing to trace actions back to their origin.
+
+These strategies provide assurance that the entities involved are genuine and accountable for their actions, which is essential for maintaining trust in the system. They also provide transparency to support the maintenance and troubleshooting of the system.
+
+##### 3.2.3. Reliability
 
 Definition: Reliability is the "degree to which a system, product or component performs specified functions under specified conditions for a specified period of time" (ISO/IEC 25010:2011). In SSEM, this means the software operates consistently and predictably, even under adverse conditions or when facing unexpected inputs or attacks. It includes the following attributes:
 
