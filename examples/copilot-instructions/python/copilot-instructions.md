@@ -265,30 +265,7 @@ def secure_file_upload(file, upload_folder: str) -> str:
     return file_path
 ```
 
-## FAISE Framework Integration
-
-### Core SSEM Attributes for Python Development
-
-When implementing features, always consider these SSEM attributes:
-
-#### Maintainability
-- **Analyzability**: Write clear, well-documented code with proper naming conventions
-- **Modifiability**: Design modular code with low coupling and high cohesion
-- **Testability**: Write code that is easily testable with clear interfaces
-
-#### Trustworthiness
-- **Confidentiality**: Protect sensitive data through proper encryption and access controls
-- **Authenticity**: Implement robust authentication and authorization mechanisms
-- **Accountability**: Ensure all actions can be traced and audited
-- **Non-repudiation**: Implement logging and digital signatures where appropriate
-
-#### Reliability
-- **Availability**: Design systems that remain operational under various conditions
-- **Integrity**: Ensure data accuracy and prevent unauthorized modifications
-- **Fault Tolerance**: Handle errors gracefully and continue operation when possible
-- **Resilience**: Build systems that can recover from failures and attacks
-
-### Trust Boundaries in Python Applications
+### 11. Trust Boundaries in Python Applications
 
 Identify and secure trust boundaries in your Python applications:
 
@@ -384,53 +361,6 @@ def verify_token(credentials: HTTPAuthorizationCredentials = Depends(security)):
         )
 ```
 
-## Project-Specific Security Remediations
-
-Based on the PRD document, when using Copilot to assist with this project, focus on fixing these security vulnerabilities:
-
-1. Replace plaintext password storage with proper hashing (SEC-001)
-2. Parameterize all database queries to prevent SQL injection (SEC-002)
-3. Implement proper content sanitization to prevent XSS (SEC-003)
-4. Add CSRF protection to all state-changing operations (SEC-004)
-5. Implement proper authorization checks for resource access (SEC-005)
-6. Validate and sanitize file paths to prevent path traversal (SEC-006)
-7. Remove or properly secure command execution functionality (SEC-007)
-8. Implement secure file upload validation and handling (SEC-008)
-9. Improve session security mechanisms (SEC-009)
-10. Implement proper error handling to prevent information disclosure (SEC-010)
-
-## GitHub Copilot Usage Tips
-
-1. **Comment-Driven Development**: When working with Copilot, write clear comments describing what you want to achieve before letting Copilot generate code.
-
-```python
-# Implement a secure password hashing method using Argon2
-```
-
-2. **Contextual Prompting**: Provide context in your comments to get better suggestions.
-
-```python
-# Create a validator for Note entities to prevent XSS attacks in content
-```
-
-3. **Iterate and Refine**: Don't accept the first suggestion - review, revise, and ask Copilot to improve.
-
-```python
-# Refactor this method to use async/await pattern with proper error handling
-```
-
-4. **Implementing Patterns**: Ask Copilot to implement specific patterns.
-
-```python
-# Implement repository pattern for NoteService with proper SQLAlchemy usage
-```
-
-5. **Fix Security Issues**: Specifically target security improvements.
-
-```python
-# Refactor this method to prevent SQL injection by using parameterized queries
-```
-
 ## Testing Considerations
 
 - Write unit tests for all service methods
@@ -441,7 +371,7 @@ Based on the PRD document, when using Copilot to assist with this project, focus
 
 ## Modernization Recommendations
 
-When working with legacy code, ask Copilot to help modernize patterns:
+When working with legacy code:
 
 1. Replace older session management with modern authentication libraries
 2. Upgrade from direct database connections to ORM patterns (SQLAlchemy, Django ORM)
@@ -449,6 +379,3 @@ When working with legacy code, ask Copilot to help modernize patterns:
 4. Implement proper model validation with Pydantic or similar
 5. Add API endpoints with OpenAPI documentation where appropriate
 
-## Conclusion
-
-This document serves as a guide for using GitHub Copilot effectively with Python web application projects. Following these Python best practices and security remediation guidelines will help ensure the application is developed according to modern standards and security requirements as defined by the FAISE framework.
