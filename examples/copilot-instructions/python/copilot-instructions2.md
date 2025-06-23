@@ -1,3 +1,7 @@
+Below is a draft for a `copilot-instructions.md` file. It highlights secure Python practices under the FAISE framework while incorporating recommendations from the OWASP Python Security Cheat Sheet and the FIASSE RFC. Feel free to adjust specifics as needed for your project.
+
+---
+
 # Copilot Instructions for Secure Python Development
 
 This document defines security guidelines for Python projects. It emphasizes best practices across all development stages while following the **FAISE** framework—**Foundational**, **Architectural**, **Implementation**, **Security Controls**, and **Evaluation**. These instructions are informed by the recommendations in the [FIASSE RFC](https://raw.githubusercontent.com/Xcaciv/securable_software_engineering/refs/heads/main/docs/FIASSE-RFC.md) and the [OWASP Python Security Cheat Sheet](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Python_Security_Cheat_Sheet.md).
@@ -108,6 +112,3 @@ By integrating these guidelines into your Python projects, your development work
 
 *Explore further nuanced guidelines on secure coding practices and threat modeling to keep your team ahead of potential vulnerabilities.*
 
---- 
-
-If there are specific frameworks or application types (e.g., Flask, FastAPI) to tailor these guidelines toward, additional instructions can be provided. Enjoy building secure software with confidence!
