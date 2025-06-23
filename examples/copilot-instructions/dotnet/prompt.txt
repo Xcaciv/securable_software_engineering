@@ -8,7 +8,7 @@ Your task is to create a comprehensive `copilot-instructions.md` file for secure
 
 2.  **.NET Specialization:** Enhance the foundational principles with specific, modern .NET security practices.
     *   Fetch the **OWASP .NET Security Cheat Sheet**: `@fetch https://raw.githubusercontent.com/OWASP/CheatSheetSeries/refs/heads/master/cheatsheets/DotNet_Security_Cheat_Sheet.md`
-    *   From the cheat sheet, extract and include guidelines applicable to **.NET 8.x/9.x and later**. Focus on areas like ASP.NET Core Identity, authorization attributes, secure cookie configuration, modern cryptography (`AesGcm`, `IDataProtector`), secrets management (Azure Key Vault), structured logging, EF Core for SQLi prevention, XSS protection in Razor, secure serialization with `System.Text.Json`, and proper security header configuration.
+    *   From the cheat sheet, extract and include guidelines applicable to **.NET 8.x/9.x and later**. Focus on areas like ASP.NET Core Identity, authorization attributes, secure cookie configuration, modern cryptography (`AesGcm`, `IDataProtector`), secrets management (Azure Key Vault), structured logging, injection prevention, XSS protection in Razor, secure serialization with `System.Text.Json`, and proper security header configuration.
 
 3.  **Structure:** Organize the final `copilot-instructions.md` file with the general SSEM principles first, followed by a clearly marked section for the specific .NET guidance.
 
