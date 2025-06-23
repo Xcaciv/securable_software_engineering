@@ -1,113 +1,119 @@
-# Copilot Instructions for Secure Python Development
+# Copilot Instructions for Securable Python Development
 
-This document defines security guidelines for Python projects. It emphasizes best practices across all development stages while following the **FAISE** framework—**Foundational**, **Architectural**, **Implementation**, **Security Controls**, and **Evaluation**. These instructions are informed by the recommendations in the [FIASSE RFC](https://raw.githubusercontent.com/Xcaciv/securable_software_engineering/refs/heads/main/docs/FIASSE-RFC.md) and the [OWASP Python Security Cheat Sheet](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Python_Security_Cheat_Sheet.md).
+This document provides guidance for generating "securable" Python code, based on the principles of the **Framework for Integrating Application Security into Software Engineering (FIASSE)** and the **Securable Software Engineering Model (SSEM)**. The goal is to produce code that is not just "secure" at a point in time, but "securable" by design, meaning it is maintainable, trustworthy, and reliable.
 
----
+## Core SSEM Principles
 
-## Overview
+These principles should guide the generation of all code, regardless of the specific language or framework.
 
-- **Objective:** Ensure that Python applications are built with robust security controls, minimizing risk and maintaining integrity throughout the development lifecycle.
-- **FAISE Framework:**  
-  - **Foundational:** Establish a secure development environment and dependency management.
-  - **Architectural:** Structure your application with secure defaults and strict component isolation.
-  - **Implementation:** Write secure code using modern Python idioms and safe libraries.
-  - **Security Controls:** Implement runtime security measures (e.g., authentication, logging, and error isolation).
-  - **Evaluation:** Regularly audit and test your codebase using static and dynamic analysis tools.
+### 1. Maintainability
 
----
+Code must be easy to understand, modify, and test. This is the foundation of securability.
 
-## 1. Foundational
+*   **Analyzability:**
+    *   Generate well-commented code that clearly explains the "why" behind the logic, not just the "what".
+    *   Use clear and consistent naming conventions (PEP 8 for Python).
+    *   Keep functions and classes small and focused on a single responsibility.
+    *   Avoid code duplication.
+*   **Modifiability:**
+    *   Produce modular code with low coupling and high cohesion.
+    *   Use dependency injection and interfaces to decouple components.
+    *   Avoid hardcoding configuration values.
+*   **Testability:**
+    *   Generate code that is easy to unit test.
+    *   Functions should have clear inputs and outputs and minimize side effects.
+    *   When generating code, also generate corresponding unit tests that cover valid inputs, invalid inputs, and edge cases.
 
-- **Environment Isolation:**  
-  - Always develop within virtual environments (using `venv` or similar tools) to isolate dependencies and prevent system-level conflicts.
-  - Enforce *dependency pinning* (via `pip-tools`, `poetry`, etc.) to avoid unexpected upgrades or vulnerabilities.
+### 2. Trustworthiness
 
-- **Dependency Security:**  
-  - Regularly scan for vulnerabilities using tools like [Safety](https://pypi.org/project/safety/) or `pip-audit`.
-  - Periodically review and update dependencies in line with known vulnerability advisories.
+The system should operate as expected and protect sensitive data.
 
----
+*   **Confidentiality:**
+    *   Protect sensitive data from unauthorized access.
+    *   Use modern, strong cryptography for data in transit and at rest.
+    *   Implement the principle of least privilege.
+*   **Accountability:**
+    *   Ensure that actions can be traced to a specific entity.
+    *   Implement robust logging and auditing.
+*   **Authenticity:**
+    *   Verify the identity of users and systems.
+    *   Use strong authentication mechanisms, such as multi-factor authentication.
+    *   Ensure the integrity of data and communications using digital signatures and certificates.
 
-## 2. Architectural
+### 3. Reliability
 
-- **Configuration Management:**  
-  - Centralize configuration and sensitive information management (e.g., using environment variables, `.env` files, or secure vaults like AWS Secrets Manager).
-  - Maintain clear separation of development, testing, and production environments. Enable secure communication protocols (e.g., enforce HTTPS by default).
+The system should operate consistently and predictably, even under adverse conditions.
 
-- **Principle of Least Privilege:**  
-  - Architect your system with strict access controls so that modules only have the minimum access required to function.
-  - Consider microservices or modularized designs to reduce the impact of a single component failure.
-
----
-
-## 3. Implementation
-
-- **Input Validation & Sanitization:**  
-  - Sanitize all data inputs to prevent injection attacks. Regularly use libraries such as `bleach` for HTML content and `schema` for data structure validation.
-  - Validate input at the boundary of your application to intercept malicious data as early as possible.
-
-- **Safe Data Handling:**  
-  - Prefer safe serialization formats (e.g., JSON or `orjson`) over insecure methods such as `pickle`, which can execute arbitrary code on deserialization.
-  - Use Python’s formatted string literals (f-strings) or `.format()` over the `%` operator to enhance readability and security.
-
-- **Error Handling:**  
-  - Avoid exposing sensitive details in error messages. Implement a robust logging mechanism that sanitizes or redacts sensitive information.
-  - Establish clear, centralized error management and exception handling guidelines.
-
----
-
-## 4. Security Controls
-
-- **Authentication and Authorization:**  
-  - Utilize well-maintained libraries (e.g., Flask-Login, Django Auth, or Authlib) to manage user authentication.
-  - Implement Role-Based Access Control (RBAC) wherever feasible and verify permissions rigorously.
-
-- **Audit and Logging:**  
-  - Log security-critical events with clear timestamps, context information, and user identifiers.
-  - Regularly review audit logs to uncover abnormal behaviors or attempt patterns indicative of breaches.
-
-- **Secrets Management:**  
-  - Never hardcode API keys, credentials, or other secrets in your codebase. Use environment variables or dedicated API key management services.
-  - Consider integrating with cloud-native secret management solutions for enhanced security.
+*   **Availability:**
+    *   Design the system to be resilient to denial-of-service attacks.
+    *   Implement mechanisms for quick recovery from failures.
+*   **Integrity:**
+    *   Protect data from unauthorized modification or corruption.
+    *   Use cryptographic hashing and checksums to verify data integrity.
+    *   Implement strong input validation at all trust boundaries.
+*   **Resilience:**
+    *   Write defensive code that anticipates and handles unexpected inputs and errors gracefully.
+    *   Implement robust error handling and recovery mechanisms.
+    *   Define clear trust boundaries and enforce strict controls on data and process execution at these boundaries.
 
 ---
 
-## 5. Evaluation
+## Python-Specific Guidance (Python 3.12+)
 
-- **Static Analysis:**  
-  - Integrate tools such as `bandit` and `pylint` (with security plugins) into your continuous integration (CI) process to catch vulnerabilities early.
-  - Run regular static code analyses as part of routine code reviews.
+This section provides specific rules and best practices for secure Python development.
 
-- **Dynamic Testing:**  
-  - Adopt dynamic testing, including fuzzing and penetration testing, to simulate real-world attacks.
-  - Encourage developers to write security-centric tests using frameworks like `pytest` to validate secure coding patterns.
+### Identity and Authorization
 
-- **Threat Modeling:**  
-  - Conduct periodic threat modeling sessions to assess security risks and adjust controls accordingly.
-  - Stay informed on emerging threats specific to Python by following relevant security mailing lists and advisories.
+*   Use modern identity and access management (IAM) libraries like `Authlib` or `FastAPI`'s built-in security features.
+*   Implement attribute-based access control (ABAC) or role-based access control (RBAC) for fine-grained authorization.
+*   Do not hardcode credentials. Use a secrets management solution like HashiCorp Vault or AWS Secrets Manager.
 
----
+### Secure Cookie Configuration
 
-## Additional Recommendations
+*   When using cookies for session management, set the `Secure`, `HttpOnly`, and `SameSite=Strict` attributes.
+*   Use a short expiration time for session cookies.
+*   Regenerate the session ID after a user authenticates.
 
-- **Documentation and Training:**  
-  - Maintain comprehensive documentation of your secure development practices.
-  - Educate your team about these guidelines and encourage the use of code checklists to ensure adherence.
+### Modern Cryptography
 
-- **Secure Defaults:**  
-  - Ensure your production configurations disable debug modes (`DEBUG=False`) and enforce proper error handling.
-  - Regularly review dependency licenses to ensure compliance with organizational policies.
+*   Use the `cryptography` library for all cryptographic operations.
+*   Use strong, modern algorithms like AES-256-GCM for symmetric encryption and RSA with OAEP padding for asymmetric encryption.
+*   Avoid using outdated or weak algorithms like DES, RC4, or MD5.
 
-- **Tooling Integration:**  
-  - Consider integrating additional security tools or custom linters to complement established best practices.
-  - Automate as much of the security assessment as possible through CI/CD pipelines, making security a continuous process.
+### Secrets Management
 
----
+*   Use the `hvac` library to interact with HashiCorp Vault for secrets management.
+*   Store secrets in Vault and retrieve them at runtime. Do not store secrets in configuration files or source code.
 
-By integrating these guidelines into your Python projects, your development workflow can proactively manage risks and foster a secure, resilient application environment. This file serves as an evolving blueprint: update practices as new threats emerge and reflect emerging best practices in Python security.
+### Structured Logging
 
-*Explore further nuanced guidelines on secure coding practices and threat modeling to keep your team ahead of potential vulnerabilities.*
+*   Use a structured logging library like `structlog` to produce machine-readable logs.
+*   Log all security-relevant events, including authentication successes and failures, access control decisions, and input validation failures.
+*   Do not log sensitive information, such as passwords or API keys.
 
---- 
+### Injection Prevention
 
-If there are specific frameworks or application types (e.g., Flask, FastAPI) to tailor these guidelines toward, additional instructions can be provided. Enjoy building secure software with confidence!
+*   Use parameterized queries or Object-Relational Mapping (ORM) libraries like SQLAlchemy to prevent SQL injection.
+*   Do not use `eval()` or `exec()` with untrusted input.
+*   Sanitize all user input before using it in shell commands or other contexts where it could be interpreted as code.
+
+### Cross-Site Scripting (XSS) Protection
+
+*   Use a templating engine like Jinja2 that provides automatic output escaping to prevent XSS.
+*   Set the `Content-Security-Policy` (CSP) header to restrict the sources of content that can be loaded by the browser.
+
+### Secure Serialization
+
+*   Use JSON for data serialization. Avoid using `pickle`, as it can execute arbitrary code.
+*   If you must use `pickle`, only unpickle data from a trusted source.
+
+### Security Headers
+
+*   Set the following security headers in all HTTP responses:
+    *   `Strict-Transport-Security` (HSTS)
+    *   `X-Content-Type-Options`
+    *   `X-Frame-Options`
+    *   `X-XSS-Protection`
+    *   `Content-Security-Policy`
+    *   `Referrer-Policy`
+
