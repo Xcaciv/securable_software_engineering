@@ -2,6 +2,8 @@
 
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
+**Note:** This repository is a work in progress and is not yet complete. Contributions are welcome!
+
 ## Overview
 
 This repository contains resources and materials for the Framework for Integrating Application Security into Software Engineering (FIASSE, pronounced /feiz/). FIASSE promotes a **developer-centric approach** to build **securable** software — recognizing that security is a dynamic, ongoing process like development. It introduces the Securable Software Engineering Model (SSEM) as a **common design language** that uses established software engineering terms to integrate security seamlessly into the development lifecycle, aiming to build resilient applications that protect data and withstand threats.

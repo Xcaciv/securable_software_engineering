@@ -378,3 +378,4 @@ Request Copilot to implement specific security patterns, referencing OWASP Top 1
 // SSEM Attributes:
 // - RELIABILITY: Implement robust error handling using TypedResults; return appropriate HTTP status codes.
 // - TRUSTWORTHINESS (Authenticity, Confidentiality): Enforce authentication (e.g., JWT Bearer) and authorization (user can only access/modify their own preferences).
+```
