@@ -59,5 +59,5 @@ A every-day-carry checklist developers can use independently to build secure API
 
 ---
 
-Encourage developers to treat this as part of their definition of done for every API. It’s fast, focused, and aligned with real-world threats.
+It is best practice to treat this as part of the Definition of Done for every API change. It’s fast, focused, and aligned with real-world threats.
 

@@ -2,7 +2,7 @@
 
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
-**Note:** This repository is a work in progress and is not yet complete. Contributions are welcome!
+**Note:** This repository is an ongoing work. Contributions are welcome!
 
 ## Overview
 
@@ -21,6 +21,15 @@ To provide practical guidelines that **empower developers** to create securable 
 - **Resiliently Add Computing Value**: Ensuring software not only meets functional requirements but also possesses securable qualities that allow it to adapt, persist, and maintain integrity over time and under stress.
 - **Requirements as a First-Class Citizen in AppSec**: Grounding secure software engineering in clearly defined security expectations and requirements from the outset.
 
+## Complementary Resources
+
+This repository complements the soon to be established [FIASSE website](https://fiasse.org).
+This framework is focused on Software Engineering and is complemented by assurance frameworks from OWASP:
+
+- Assurance example: [OWASP Software Assurance Reference Model (SARM)](https://owasp.org/www-project-software-assurance-reference-model/)
+- Assurance verification: [OWASP Application Security Verification Standard (ASVS)](https://owasp.org/www-project-application-security-verification-standard/)
+- Assurance maturity: [OWASP Software Assurance Maturity Model (SAMM)](https://owasp.org/www-project-software-assurance-maturity-model/)
+
 ## Repository Contents
 
 - Definition and Documentation of the Securable Software Engineering Model (SSEM)
@@ -31,6 +40,10 @@ To provide practical guidelines that **empower developers** to create securable 
 
 1. Review the documentation in the `/docs` directory
 2. Explore the examples in the `/examples` directory
+
+## Summary
+
+This source defines securable software as systems designed for resilience and adaptability, emphasizing that true security is an ongoing process, not a static achievement. It introduces the Securable Software Engineering Model (SSEM), which frames security not as a separate discipline but as an inherent quality of well-engineered software, focusing on attributes like Maintainability, Trustworthiness, and Reliability (including Resilience). The FIASSE RFC advocates for integrating security practices directly into the development workflow—moving from a "security as an afterthought" approach to a proactive, collaborative model where product owners, developers, and security professionals work together from the earliest stages of design, particularly through collaborative threat modeling and by applying concepts like the "jellybean analogy" for managing flexibility and control. Ultimately, the goal shifts from an impossible "zero breaches" to reducing the probability of material impact from cyber events, empowering all stakeholders to contribute to building more robust, resilient, and inherently securable systems.
 
 ## Contributing
 
