@@ -24,7 +24,7 @@ To provide practical guidelines that **empower developers** to create securable 
 ## Complementary Resources
 
 This repository complements the soon to be established [FIASSE website](https://fiasse.org).
-This framework is focused on Software Engineering and is complemented by assurance frameworks from OWASP:
+This framework is focused on securable Software Engineering and is complemented by assurance frameworks from OWASP:
 
 - Assurance example: [OWASP Software Assurance Reference Model (SARM)](https://owasp.org/www-project-software-assurance-reference-model/)
 - Assurance verification: [OWASP Application Security Verification Standard (ASVS)](https://owasp.org/www-project-application-security-verification-standard/)
