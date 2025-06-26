@@ -1,0 +1,19 @@
+# Requirements for publishpdf.py
+# Used to convert markdown to HTML and generate PDF
+
+# Markdown processing
+markdown>=3.4.0
+pymdown-extensions>=9.0
+
+# PDF generation
+weasyprint>=59.0
+
+# PDF conversion
+xhtml2pdf>=0.2.10
+
+# Additional dependencies for better HTML/CSS support
+cffi>=1.15.0
+cairocffi>=1.4.0
+
+# Optional: For better code highlighting
+pygments>=2.14.0
