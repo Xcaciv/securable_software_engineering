@@ -114,9 +114,9 @@ This document advocates for a developer-centric security paradigm. Rather than e
 
 ### 1.3. Document Purpose and Scope
 
-The purpose of this document is to introduce the Framework for Integrating Application Security into Software Engineering (FIASSE) and its core component, the Securable Software Engineering Model (SSEM). FIASSE provides the overarching strategic approach and processes for integrating security into software engineering. SSEM, as a model within FIASSE, offers a common design language and a set of principles to guide the creation of secure software, aligning AppSec objectives with business goals.
+The purpose of this document is to introduce the Framework for Integrating Application Security into Software Engineering (FIASSE) and its core component, the Securable Software Engineering Model (SSEM). FIASSE (/feiz/) provides the overarching strategic approach and processes for integrating security into software engineering. SSEM (/si:m/), as a model within FIASSE, offers a common design language and a set of principles to guide the creation of secure software, aligning AppSec objectives with business goals.
 
-You will notice the proliferent use of the word 'securable' throughout this document to emphasize the dynamic nature of software security. see Section 2.1 for a detailed explanation of this term. Application Security must align with the business objectives for software development because of this dynamic nature.
+You will notice the proliferent use of the word 'securable' throughout this document to emphasize the dynamic nature of software security. See Section 2.1 for a detailed explanation of this term. Application Security must align with the business objectives for software development because of this dynamic nature.
 
 This document will cover:
 
