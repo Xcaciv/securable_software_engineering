@@ -6,7 +6,7 @@
 
 ## Overview
 
-This repository contains resources and materials for the Framework for Integrating Application Security into Software Engineering (FIASSE, pronounced /feiz/). FIASSE promotes a **developer-centric approach** to build **securable** software — recognizing that security is a dynamic, ongoing process like development. It introduces the Securable Software Engineering Model (SSEM) as a **common design language** that uses established software engineering terms to integrate security seamlessly into the development lifecycle, aiming to build resilient applications that protect data and withstand threats.
+This repository contains resources and materials for the Framework for Integrating Application Security into Software Engineering (FIASSE). FIASSE (pronounced /feiz/) promotes a **developer-centric, principled approach** to build **securable** software — recognizing that security is a dynamic, ongoing process like development. It introduces the Securable Software Engineering Model (SSEM) as a **common design language** that uses established software engineering terms to integrate security seamlessly into the development lifecycle, aiming to build resilient applications that protect data and withstand threats.
 
 ## Purpose
 
@@ -24,7 +24,7 @@ To provide practical guidelines that **empower developers** to create securable 
 ## Complementary Resources
 
 This repository complements the soon to be established [FIASSE website](https://fiasse.org).
-This framework is focused on Software Engineering and is complemented by assurance frameworks from OWASP:
+This framework is focused on securable Software Engineering and is complemented by assurance frameworks from OWASP:
 
 - Assurance example: [OWASP Software Assurance Reference Model (SARM)](https://owasp.org/www-project-software-assurance-reference-model/)
 - Assurance verification: [OWASP Application Security Verification Standard (ASVS)](https://owasp.org/www-project-application-security-verification-standard/)
