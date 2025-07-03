@@ -46,7 +46,7 @@
         - [3.2.2.1. Confidentiality](#3221-confidentiality)
         - [3.2.2.2. Accountability](#3222-accountability)
         - [3.2.2.3. Authenticity](#3223-authenticity)
-        - [3.2.3. Reliability](#323-reliability)
+      - [3.2.3. Reliability](#323-reliability)
         - [3.2.3.1. Availability](#3231-availability)
         - [3.2.3.2. Integrity](#3232-integrity)
         - [3.2.3.3. Resilience](#3233-resilience)
@@ -269,7 +269,7 @@ Focusing on authenticity, therefore, means ensuring that the entities involved i
 
 These strategies provide assurance that the entities involved are genuine and accountable for their actions, which is essential for maintaining trust in the system. They also provide transparency to support the maintenance and troubleshooting of the system.
 
-##### 3.2.3. Reliability
+#### 3.2.3. Reliability
 
 Definition: Reliability is the "degree to which a system, product or component performs specified functions under specified conditions for a specified period of time" (ISO/IEC 25010:2011). In SSEM, this means the software operates consistently and predictably, even under adverse conditions or when facing unexpected inputs or attacks. It includes the following attributes:
 
@@ -563,7 +563,7 @@ Senior engineers should be empowered to:
 
 ### 7.2. Guiding Developing Software Engineers
 
-Software engineers who are still gaining experience (aka. Jr Programmers, Artisan or Ancillary Coders) benefit greatly from mental checklists like SSEM and the methodologies FIASSE describes. They may not always intuitively know "What can go wrong?" but can learn through structured guidance, merge reviews, and pair programming.
+Software engineers who are still gaining experience (aka. Jr Programmers, Artisan or Ancillary Coders) benefit greatly from mental checklists like SSEM and the methodologies FIASSE describes. They may not always intuitively know "What can go wrong?" but can learn through structured guidance, merge reviews, and pair programming. While following established best practices is a good start, it is not sufficient on its own to produce securable products. FIASSE provides the context for *why* certain practices are important, helping software engineers build a more robust engineering intuition.
 
 These engineers should be encouraged to:
 
