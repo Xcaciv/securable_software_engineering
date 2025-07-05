@@ -53,7 +53,7 @@ This framework is focused on securable Software Engineering and is complemented 
 - Assurance verification: [OWASP Application Security Verification Standard (ASVS)](https://owasp.org/www-project-application-security-verification-standard/)
 - Assurance maturity: [OWASP Software Assurance Maturity Model (SAMM)](https://owasp.org/www-project-software-assurance-maturity-model/)
 
-Various other OWASP resources are explained in the [OWASP Developer Guide](https://owasp.org/www-project-developer-guide/), which is a comprehensive resource for secure software development practices.
+OWASP also hosts neumerous projects that document security requirements and features, such as [OWASP Mobile Application Security](https://mas.owasp.org/). Various other OWASP resources are explained in the [OWASP Developer Guide](https://owasp.org/www-project-developer-guide/), which is a comprehensive resource for secure software practices.
 
 The NCSC's [Software Security Code of Practice](https://www.ncsc.gov.uk/collection/software-security-code-of-practice-implementation-guidance) defines desired outcomes and some key strategies. While FIASSE framework focuses on first-level follow-on principles and strategies for achieving securable outcomes, intended for Development and Assurance teams to align with business strategies. SSEM specifies the attributes that are used to produce the desired outcomes, and the FIASSE methodology provides practical guidance for implementing these attributes in software engineering practices.
 
