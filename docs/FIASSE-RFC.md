@@ -110,25 +110,25 @@ Furthermore, many well-intentioned strategies, including the prevalent "shift le
 
 ### 1.2. A Developer-Centric Security Paradigm
 
-This document advocates for a developer-centric security paradigm. Rather than expecting software engineers to adopt a penetration tester's mindset (a distinction further explored in Section 2.4), this approach emphasizes empowering developers. While leveraging sound software engineering principles is foundational, it is complemented by clear security requirements and robust assurance activities. With these elements effectively integrated, engineers can build securable systems as a natural part of their discipline. The common misconception is that the gap between security and development is an issue. This document makes the case that the gap is not a problem; rather, it is the lack of understanding of how software is produced and alignment with those processes.
+This document advocates for a developer-centric security paradigm. Rather than expecting software engineers to adopt an adversarial mindset (a distinction further explored in Section 2.4), this approach emphasizes empowering developers. While leveraging sound software engineering principles is foundational, it is complemented by clear security requirements and robust assurance activities. With these elements effectively integrated, engineers can build securable systems as a natural part of their discipline. The common misconception is that the gap between security and development is an issue. This document makes the case that the gap is not a problem; rather, it is the lack of consideration for the business processes and skillsets involved in producing software.
 
 ### 1.3. Document Purpose and Scope
 
-The purpose of this document is to introduce the Framework for Integrating Application Security into Software Engineering (FIASSE) and its core component, the Securable Software Engineering Model (SSEM). FIASSE (/feiz/) provides the overarching strategic approach and processes for integrating security into software engineering. SSEM (/si:m/), as a model within FIASSE, offers a common design language and a set of principles to guide the creation of secure software, aligning AppSec objectives with business goals.
+The purpose of this document is to introduce the Framework for Integrating Application Security into Software Engineering (FIASSE) and its core component, the Securable Software Engineering Model (SSEM). FIASSE (/feiz/) provides the overarching strategic approach and practices that integrate security into software engineering. SSEM (/si:m/), as a model within FIASSE, offers a common design language and a set of principles to guide the creation of secure software, aligning AppSec objectives with business goals.
 
 You will notice the proliferent use of the word 'securable' throughout this document to emphasize the dynamic nature of software security. See Section 2.1 for a detailed explanation of this term. Application Security must align with the business objectives for software development because of this dynamic nature.
 
 This document will cover:
 
-- Foundational principles underpinning FIASSE and SSEM.
-- The core attributes of securable software as defined by SSEM.
-- Strategies for integrating FIASSE (and SSEM) into existing development processes.
-- Common pitfalls in AppSec and how FIASSE helps to avoid them.
-- Practical guidance for developers to build securable code.
-- The roles of different engineering personnel in adopting FIASSE.
-- The potential evolution of FIASSE in response to emerging software engineering trends and strategies for organizational adoption.
+- Foundational principles underpinning FIASSE and SSEM (see [Section 2. Foundational Principles](#2-foundational-principles))
+- The core attributes of securable software as defined by SSEM (see [Section 3.2. Core Securable Attributes](#32-core-securable-attributes))
+- Strategies for integrating FIASSE (and SSEM) into existing development processes (see [Section 4. Integrating SSEM into Development Strategy](#4-integrating-ssem-into-development-strategy))
+- Common pitfalls in AppSec and how FIASSE helps to avoid them (see [Section 5. Addressing Common AppSec Anti-Patterns](#5-addressing-common-appsec-anti-patterns))
+- Practical guidance for developers to build securable code (see [Section 6. Practical Guidance for Secure Software Development](#6-practical-guidance-for-secure-software-development))
+- The roles of different engineering personnel in adopting FIASSE (see [Section 7. Roles and Responsibilities in SSEM Adoption](#7-roles-and-responsibilities-in-ssem-adoption))
+- The potential evolution of FIASSE in response to emerging software engineering trends and strategies for organizational adoption (see [Section 8. Evolution and Adoption of FIASSE](#8-evolution-and-adoption-of-fiasse))
 
-This document is intended for AppSec professionals, software engineers, engineering managers, and anyone involved in the Software Development Lifecycle (SDLC) who seeks to improve application security outcomes.
+This document is intended for AppSec professionals, software engineers, engineering managers, and anyone involved in the software development who seeks to improve application security outcomes.
 
 ## 2. Foundational Principles
 
@@ -147,13 +147,13 @@ The "securable" paradigm emphasizes:
 - **Continuous Improvement**: Security is an iterative process that requires ongoing attention and refinement.
 - **Business Alignment**: Security efforts must align with business objectives and risk tolerance, not pursue security for its own sake.
 
-This approach aligns security practices with the reality of software development, where systems are continuously modified, extended, and deployed in changing environments. By focusing on building securable software, development teams can create systems that maintain their protective qualities even as they evolve, rather than systems that become brittle and insecure when changed.
+This approach aligns security practices with the reality of software development, where systems are continuously modified, extended, and deployed in changing environments. By focusing on building securable software, development teams can create systems that maintain their protective qualities even as they evolve instead of becoming brittle and insecure when changed.
 
 ### 2.2. Resiliently Add Computing Value
 
-The primary directive of software engineering in a business context is to create valuable code in a way that is robust enough to withstand change, stress, and attack. Expressed concisely: "Resiliently add computing value". This means creating software that not only meets functional requirements but also possesses securable qualities — such as those defined by SSEM like high Analyzability, Modifiability, and Testability — that allow it to adapt, persist, and maintain its integrity over time and under various conditions. These qualities enable it to withstand operational failures, accommodate evolving business needs, and resist security threats more effectively. Software Engineering refers to the broader discipline of designing, developing, and maintaining software in a systematic and organized way [Wikipedia-SE].
+The primary directive of software engineering in a business context is to create valuable code in a way that is robust enough to withstand change, stress, and attack. Expressed concisely: "Resiliently add computing value". This means creating software that not only meets functional requirements but also possesses securable qualities — like Analyzability, Modifiability, and Testability — that allow it to persist its integrity over time regardless of conditions. These qualities enable it to accommodate evolving business needs over time while remaining fortified against threats.
 
-This principle underscores the idea that security is not an add-on but an intrinsic component of well-engineered software, contributing directly to its ability to deliver value reliably and sustainably.
+It should be noted that Software Engineering refers to the broader discipline of designing, developing, and maintaining software in a systematic and organized way [Wikipedia-SE]. This underscores the idea that security is not merely a test at the end of the process, but an intrinsic component of well-engineered software. Security contributes directly to a software product's ability to deliver value reliably and sustainably.
 
 ### 2.3. Security Mission: Reducing Material Impact
 
@@ -161,13 +161,13 @@ The core mission of cybersecurity, as articulated by Rick Howard in "Cyber Secur
 
 ### 2.4. Mindset Convergence: Hacker vs. Engineer
 
-The perspective that all programmers should put security first, think like attackers, or also be pentesters, to eliminate security problems overlooks a critical distinction. While understanding how systems can be compromised is valuable, it does not inherently translate into the knowledge of how to build them securely. It is unreasonable to expect business value to be a secondary concern. There is a significant difference between identifying a vulnerability and implementing a robust, scalable software engineering solution. This also complements the reality that line-level fixing does not scale effectively.
+The perspective that all programmers should put security first, think like attackers, or also be pentesters, to eliminate security problems overlooks a critical distinction. While understanding how systems can be compromised is valuable, it does not inherently translate as knowledge of how to build securely. It is unreasonable to expect business value to be a secondary concern. There is a significant difference between identifying a vulnerability and implementing a robust, scalable software engineering solution. This also complements the reality that line-level fixing does not scale effectively.
 
-Additionally, the two mindsets do not represent a gap. Instead, they are complementary disciplines used to conduct business. Just as we don't talk about the complementary roles of Accounting and Operations as a gap, we should not view the roles of Security and Development in this way.
+Additionally, the two mindsets do not represent a gap. Instead, they are complementary disciplines: development adding value which security reduces risk of losing. Just as we don't talk about the complementary roles of Accounting and Operations as a gap, we should not view the roles of Security and Development in this way. Further, security should not feel the need to disrupt the value-adding operation.
 
 ### 2.5. Aligning Security with Development
 
-True alignment between security and development requires a return to first principles. Instead of imposing security-centric jargon and processes that may seem alien to developers, SSEM advocates for using well-established Software Engineering terms to describe securable code attributes (the SSEM properties like Analyzability, Modifiability, Testability, Confidentiality, etc.). This fosters understanding and empowers developers to address security confidently without years of dedicated security experience. The goal is to instill confidence in developers, enabling them to recognize these securable attributes in existing code — for example, identifying highly Analyzable code by its clarity and ease of understanding or low Cyclomatic complexity. Or by recognizing Testable code by the simplicity of writing unit tests for it. Security cultivates confidence by understand what building securable software entails from an engineering perspective. As will be discussed, this also requires specific participation from AppSec professionals in the early stages of the Software Development Lifecycle (SDLC), particularly during requirements gathering and feature planning.
+As mentioned above, true alignment between security and development requires a return to first principles. Instead of imposing security-centric jargon and processes that may slow or disrupt development, FIASSE advocates for using well-established Software Engineering terms to describe securable code attributes (SSEM properties like Analyzability, Modifiability, Testability, Confidentiality, etc.). This fosters understanding and empowers developers to address security confidently without years of dedicated security experience. The goal is to instill confidence and enable security to recognize these securable attributes in existing code. For example, identifying highly Analyzable code by its clarity and ease of understanding or low Cyclomatic complexity. Then understanding that this attribute plays an important role in accurately identifying security weaknesses, even before they are exploitable. Or by recognizing that Testable code can be altered quickly with high confidence in quality outcomes and that it will remain fortified. Development adds to Security's confidence by understanding what building securable software entails from an engineering perspective. As will be discussed, this also requires specific participation from AppSec professionals in the early stages of the Software Development Lifecycle (SDLC), particularly during requirements gathering and feature planning.
 
 ## 3. The Securable Software Engineering Model (SSEM)
 
@@ -493,7 +493,7 @@ A key concept taken from threat modeling is the identification of **trust bounda
 
 ### 6.3. Managing Flexibility and Control
 
-Software engineers often value flexibility in code, as it can facilitate feature implementation and bug fixing. Attackers, however, seek uncontrolled flexibility as a means to force the application to deviate from intended behavior.
+Software engineers value flexibility in code, as it can facilitate feature implementation and bug fixing. Attackers, however, seek uncontrolled flexibility as a means to force the application to deviate from intended behavior.
 
 The issue is not flexibility itself, but the lack of appropriate control, especially at trust boundaries. An example of uncontrolled flexibility might be a function capable of executing arbitrary query statements with arbitrary parameters without restriction. Control is essential to ensure trustworthy execution, maintain system Integrity, and support Fault Tolerance. While flexibility is necessary for Maintainability.
 
