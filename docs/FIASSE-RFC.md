@@ -67,7 +67,7 @@
   - [4. Integrating SSEM into Development Strategy](#4-integrating-ssem-into-development-strategy)
     - [4.1. Applying SSEM to Dependency Management](#41-applying-ssem-to-dependency-management)
     - [4.2. Natively Extending Development Processes](#42-natively-extending-development-processes)
-    - [4.3. The Role of Merge/Pull Request Reviews](#43-the-role-of-mergepull-request-reviews)
+    - [4.3. The Role of Merge Reviews](#43-the-role-of-merge-reviews)
     - [4.4. Early Integration: Planning and Requirements](#44-early-integration-planning-and-requirements)
   - [5. Addressing Common AppSec Anti-Patterns](#5-addressing-common-appsec-anti-patterns)
     - [5.1. The "Shoveling Left" Phenomenon](#51-the-shoveling-left-phenomenon)
@@ -81,6 +81,7 @@
     - [6.2. Threat Modeling as a Collaborative Practice](#62-threat-modeling-as-a-collaborative-practice)
     - [6.3. Managing Flexibility and Control](#63-managing-flexibility-and-control)
     - [6.4. Resilient Coding and System Resilience](#64-resilient-coding-and-system-resilience)
+      - [6.4.1. Input Handling](#641-input-handling)
     - [6.5. Dependency Management](#65-dependency-management)
   - [7. Roles and Responsibilities in SSEM Adoption](#7-roles-and-responsibilities-in-ssem-adoption)
     - [7.0. Application Security's Role](#70-application-securitys-role)
@@ -239,7 +240,7 @@ Testability is essential for security because it allows teams to verify that sec
 
 #### 3.2.2. Trustworthiness
 
-Definition: Trustworthiness is "the degree to which a system (including all its components and procedures) can be expected to achieve a set of requirements, such as security requirements" (RFC 4949). A trustworthy system operates within defined levels of trust and meets specified security properties. The FIASSE approach differs from a security-controls-centric view by focusing on the inherent qualities of the code that enable trustworthiness. 
+Definition: Trustworthiness is "the degree to which a system (including all its components and procedures) can be expected to achieve a set of requirements, such as security requirements" (RFC 4949). A trustworthy system operates within defined levels of trust and meets specified security properties. The FIASSE approach differs from a security-controls-centric view by focusing on the inherent qualities of the code that enable trustworthiness.
 
 Trustworthiness is foundational to securable software. It requires a coordinated effort to ensure that the software consistently achieves its security goals. To achieve this, strong architectural design and style are essential. This includes defining clear trust boundaries, and establishing areas of the codebase that are expected to be more flexible.
 
@@ -302,11 +303,11 @@ Strategies for building resilient systems include:
 
 ### 3.3 SSEM as a Design Language
 
-§By defining these attributes using established software engineering terminology, SSEM provides a common design language. This enables developers to discuss, reason about, and implement security considerations using concepts already familiar to them. It shifts the focus from myopic treatment of vulnerabilities to cohesive creation of software with inherent securable qualities.
+By defining these attributes using established software engineering terminology, SSEM provides a common design language. This enables developers to discuss, reason about, and implement security considerations using concepts already familiar to them. It shifts the focus from myopic treatment of vulnerabilities to cohesive creation of software with inherent securable qualities with intention from the design phase on.
 
-This design language plays a crucial role in creating a cohesive product. It complements architecture to help Development understand how principles and key qualities are to be understood and applied across the codebase. This guides the Software Engineer to make the countless smaller decisions that make while writing code.
+This design language plays a crucial role in creating a cohesive product. It equips security to highlight key context-specific considerations. This guides the Software Engineer to make the countless smaller decisions during implementation.
 
-A design language fosters a shared understanding around specific technical values. This can bring together a culture of quality made up of diversely inclined professionals to focus on these common goals and ideals. This is achieved by the shift in conversations around security as mentioned in Section 3.1, where the focus is on meeting goals for specific attributes rather than binary security assessments. This cultural alignment can strongly influence the product's internal structure to support these technical values. This is contrast with the traditional approach of find-and-fix monotony.
+A design language can bring together a culture of quality made up of diversely inclined professionals to focus on these common goals and ideals. This is achieved by the shift in conversations around security as mentioned in Section 3.1, where the focus is on meeting goals for specific attributes. This is in contrast with a vulnerability specific find-and-fix monotony that does not scale. This cultural alignment can strongly influence the product's internal structure to support these technical values.
 
 ### 3.4 Measuring SSEM Attributes
 
@@ -422,11 +423,15 @@ Examples include:
 - Predefined checklists: Develop flexible checklists that incorporate SSEM attributes and security considerations that can be used in various contexts.
 - Usability: Framing usability not just as aesthetics but as building trust from a security standpoint (e.g., clear error messages, intuitive permissions management).
 
-### 4.3. The Role of Merge/Pull Request Reviews
+### 4.3. The Role of Merge Reviews
 
 While software engineering may lack formal licensing like other engineering disciplines, the merge review (or pull request review) process serves as a crucial point for mentoring, guidance, and validation. For security, this is where securable code review can scale effectively. It acts as an agile training ground where developers learn from peers and receive feedback in a constructive environment. SSEM attributes can provide a concrete basis for these reviews.
 
 The teams should be careful to avoid introducing unnecessary complexity or friction into the review process. This means that the merge review is used as guard rails and not as a gate. The goal is to grow the FIASSE mindset within the team, not to create a negative experience for the developers.
+
+Code review through merge requests is the single most effective technique for identifying security vulnerabilities early in the development process [OWASP-CRG]. While automated scans can find common or known issues, they often have no way of understanding the context of the change or the architecture of the system. However, automated scans can be used to quickly identify areas of code that may require more in-depth review. Bringing human insight and expertise into the review process ensures that code is less likely to need to be revisited later for quality or security issues.
+
+The collaborative nature of merge reviews allows for the sharing of insight and expertise. When FIASSE trained application security professionals are able to participate, they too share their valuable insights and expertise with software engineering teams. Over time this can elevate the overall capability of the team to understand the implications of SSEM attributes fostering an appreciation for the desired securable results.
 
 In the future guidance for merge reviews, we will explore how to effectively integrate SSEM attributes into the review process in detail.
 
@@ -499,6 +504,8 @@ The issue is not flexibility itself, but the lack of appropriate control, especi
 
 Think of trust boundaries like the hard candy shell of a jellybean: the soft, flexible interior represents the bulk of the application's logic, while the hard shell represents the critical points where external data or untrusted operations are carefully controlled. Just as the candy shell protects the jellybean's interior, well defined trust boundaries protect the core application from potentially harmful external influences. Defining and communicating these boundaries during the design phase makes it clear which areas of code are responsible for tight control, allowing developers to focus their efforts on maintaining the integrity and trustworthiness of these critical interfaces.
 
+One way to allow flexibility while maintaining control is by implementing strict input handling at the trust boundaries. The advantage of this is that it allows the developer to focus on the flexibility of the code without worrying about unexpected input causing unintended behavior. This unexpected behavior could be simple bugs or more serious security vulnerabilities. This is covered further in Section 6.4.1.
+
 ### 6.4. Resilient Coding and System Resilience
 
 Resilience refers to an application's ability to continue running predictably, even under unfavorable circumstances or load. Tactical resilience is achieved through **defensive coding** practices that promote predictable execution.
@@ -510,6 +517,23 @@ This drives the need for concrete developer actions such as:
 - Properly escaping and encoding all output destined for other systems or interpreters (exiting trust boundaries). This prevents injection attacks by ensuring that data is treated as data, not executable code.
 
 These are verifiable actions that AppSec can assess.
+
+#### 6.4.1. Input Handling
+
+Strict input handling is a critical aspect of resilient coding. The most basic input handling applies a minimal acceptable range for each parameter at the point of input. This is accomplished through three key practices:
+
+- Canonicalization/Normalization:
+  - Ensures that input data conforms to expected formats, types, lengths, and ranges before processing.
+  - Prevents unexpected or malicious data from entering the system.
+- Sanitization:
+  - Cleans input data to remove or neutralize potentially harmful content.
+  - Prevents malicious data from being executed or interpreted as code, protecting against injection attacks.
+- Validation:
+  - Checks that input data meets specific criteria before processing.
+  - Ensures that only valid and expected data is processed, reducing the risk of injection attacks or unexpected behavior.
+  - Always prefer allowing explicit values instead of rejecting unexpected values.
+
+With some platforms it may make sense to signify that an input value has been fully handled by passing it as a contextualized object instead of a scalar value after validation. (If this is the desired pattern, it should be documented and communicated to the team.)
 
 ### 6.5. Dependency Management
 
@@ -691,6 +715,8 @@ AppSec can allow development teams to build securable code confidently and auton
 [OpenSSF] Open Source Security Foundation (OpenSSF). (Referenced for data on developer security learning curves).
 
 [Wikipedia-SE] Wikipedia, "Software engineering". <https://en.wikipedia.org/wiki/Software_engineering>.
+
+[OWASP-CRG] OWASP Code Review Guide. <https://owasp.org/www-project-code-review-guide/>.
 
 ## 12. Author's Address
 
