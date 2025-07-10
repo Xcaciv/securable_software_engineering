@@ -415,7 +415,7 @@ SSEM principles are not limited to first-party code; they are equally critical w
 
 ### 4.2. Natively Extending Development Processes
 
-A key principle for reducing friction and effectively preparing development teams is to integrate security into existing development workflows rather than imposing separate, external security gates. This involves understanding and extending current practices.
+§A key principle for reducing friction and effectively preparing development teams is to integrate security into existing development workflows rather than imposing separate, external security gates. This involves understanding and extending current practices.
 
 Examples include:
 
@@ -425,19 +425,23 @@ Examples include:
 
 ### 4.3. The Role of Merge Reviews
 
-While software engineering may lack formal licensing like other engineering disciplines, the merge review (or pull request review) process serves as a crucial point for mentoring, guidance, and validation. For security, this is where securable code review can scale effectively. It acts as an agile training ground where developers learn from peers and receive feedback in a constructive environment. SSEM attributes can provide a concrete basis for these reviews.
+While software engineering may lack formal licensing like other engineering disciplines, the merge review (or pull request review) process serves as a crucial point for mentoring, guidance, and validation. There are far reaching benifits to this process. For security, this is where securable code review can scale effectively. It acts as an agile training ground where developers learn from peers and receive feedback in a constructive environment. SSEM attributes can provide a concrete basis for these reviews.
 
 The teams should be careful to avoid introducing unnecessary complexity or friction into the review process. This means that the merge review is used as guard rails and not as a gate. The goal is to grow the FIASSE mindset within the team, not to create a negative experience for the developers.
 
 Code review through merge requests is the single most effective technique for identifying security vulnerabilities early in the development process [OWASP-CRG]. While automated scans can find common or known issues, they often have no way of understanding the context of the change or the architecture of the system. However, automated scans can be used to quickly identify areas of code that may require more in-depth review. Bringing human insight and expertise into the review process ensures that code is less likely to need to be revisited later for quality or security issues.
 
-The collaborative nature of merge reviews allows for the sharing of insight and expertise. When FIASSE trained application security professionals are able to participate, they too share their valuable insights and expertise with software engineering teams. Over time this can elevate the overall capability of the team to understand the implications of SSEM attributes fostering an appreciation for the desired securable results.
+The collaborative nature of merge reviews allows for the sharing of insight and expertise. They can provide a fresh perspective to the programmers who may hve become too fimiliar with the code. Also, when FIASSE trained application security professionals are able to participate, they too share their valuable insights and expertise with software engineering teams. Over time this can elevate the overall capability of the team to understand the implications of SSEM attributes fostering an appreciation for the desired securable results.
+
+It should be noted teams implementing structured reviews report up to 80% fewer post-release bugs [CodeReviewBenefits].
+
+Merge reviews can also be used as an opportunity to ask 'What can go wrong?' to use threat modeling principles to examine code level issues that could threaten Trustworthiness and Reliability.  The simplified scope of a merge review helps to put to the side the complexity of a larger system. This sort of targeted approach can make it easier to identify potential risks and vulnerabilities.
 
 In the future guidance for merge reviews, we will explore how to effectively integrate SSEM attributes into the review process in detail.
 
 ### 4.4. Early Integration: Planning and Requirements
 
-FIASSE advocates for setting expectations at the earliest stages of the development, particularly during planning and requirements definition. This ensures security is a foundational design aspect rather than an afterthought. Detailed methods for integrating security into requirements, such as defining Threat Scenarios and Security Acceptance Criteria, are discussed in Section 6.1.2.
+FIASSE advocates for setting expectations at the earliest stages of the development, particularly during planning and requirements definition. This ensures security is a foundational design aspect rather than an afterthought. Fixing vulnerabilities in the design phase costs 100 times less than addressing them in production [VulnCosts]. Detailed methods for integrating security into requirements, such as defining Threat Scenarios and Security Acceptance Criteria, are discussed in Section 6.1.2.
 
 ## 5. Addressing Common AppSec Anti-Patterns
 
@@ -502,9 +506,9 @@ Software engineers value flexibility in code, as it can facilitate feature imple
 
 The issue is not flexibility itself, but the lack of appropriate control, especially at trust boundaries. An example of uncontrolled flexibility might be a function capable of executing arbitrary query statements with arbitrary parameters without restriction. Control is essential to ensure trustworthy execution, maintain system Integrity, and support Fault Tolerance. While flexibility is necessary for Maintainability.
 
-Think of trust boundaries like the hard candy shell of a jellybean: the soft, flexible interior represents the bulk of the application's logic, while the hard shell represents the critical points where external data or untrusted operations are carefully controlled. Just as the candy shell protects the jellybean's interior, well defined trust boundaries protect the core application from potentially harmful external influences. Defining and communicating these boundaries during the design phase makes it clear which areas of code are responsible for tight control, allowing developers to focus their efforts on maintaining the integrity and trustworthiness of these critical interfaces.
+Minimize what is trusted and harden the trust boundaries. Think of trust boundaries like the hard candy shell of a jellybean: the soft, flexible interior represents the bulk of the application's logic, while the hard shell represents the critical points where external data or untrusted operations are carefully controlled. Just as the candy shell protects the jellybean's interior, well defined trust boundaries protect the core application from potentially harmful external influences. Defining and communicating these boundaries during the design phase makes it clear which areas of code are responsible for tight control, allowing developers to focus their efforts on maintaining the integrity and trustworthiness of these critical interfaces.
 
-One way to allow flexibility while maintaining control is by implementing strict input handling at the trust boundaries. The advantage of this is that it allows the developer to focus on the flexibility of the code without worrying about unexpected input causing unintended behavior. This unexpected behavior could be simple bugs or more serious security vulnerabilities. This is covered further in Section 6.4.1.
+One way to allow flexibility while maintaining control is by implementing strict input handling at the trust boundaries. The trust boundary entry point allows the input handling to adapt to the context the value is arriving from. The advantage of this is that it allows the developer to focus on the flexibility of the code without worrying about unexpected input causing unintended behavior. This unexpected behavior could be simple bugs or more serious security vulnerabilities. This is covered further in Section 6.4.1.
 
 ### 6.4. Resilient Coding and System Resilience
 
@@ -515,6 +519,9 @@ This drives the need for concrete developer actions such as:
 - Strong typing to ensure data is usable in the intended way.
 - Filtering and validating all input at trust boundaries. Input validation ensures that data conforms to expected formats, types, lengths, and ranges before processing.
 - Properly escaping and encoding all output destined for other systems or interpreters (exiting trust boundaries). This prevents injection attacks by ensuring that data is treated as data, not executable code.
+- Sandboxing the use of null values to input checks and database communication. Use exceptions to handle exceptional cases.
+- Implement comprehensive and strategic error handling to manage unexpected conditions gracefully, rather than allowing the application to crash or behave unpredictably.
+- Using immutable data structures for threaded programming to prevent insecure modification and ensure thread safety and prevent race conditions.
 
 These are verifiable actions that AppSec can assess.
 
@@ -533,7 +540,7 @@ Strict input handling is a critical aspect of resilient coding. The most basic i
   - Ensures that only valid and expected data is processed, reducing the risk of injection attacks or unexpected behavior.
   - Always prefer allowing explicit values instead of rejecting unexpected values.
 
-With some platforms it may make sense to signify that an input value has been fully handled by passing it as a contextualized object instead of a scalar value after validation. (If this is the desired pattern, it should be documented and communicated to the team.)
+With some platforms it may make sense to signify that an input value has been fully handled by passing it as a contextualized object instead of a scalar value after validation. (If this is the desired pattern, be sure to document and communicate it to the team.)
 
 ### 6.5. Dependency Management
 
@@ -717,6 +724,10 @@ AppSec can allow development teams to build securable code confidently and auton
 [Wikipedia-SE] Wikipedia, "Software engineering". <https://en.wikipedia.org/wiki/Software_engineering>.
 
 [OWASP-CRG] OWASP Code Review Guide. <https://owasp.org/www-project-code-review-guide/>.
+
+[CodeReviewBenefits] Top 6 Benefits of Code Reviews and What It Means for Your Team. <https://www.index.dev/blog/benefits-of-code-reviews>.
+
+[VulnCosts] Penetration Testing ROI: 5 Metrics to Communicate Real Value. <https://www.softwaresecured.com/post/penetration-testing-roi-5-metrics-to-communicate-real-value>.
 
 ## 12. Author's Address
 
