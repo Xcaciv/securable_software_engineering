@@ -415,11 +415,13 @@ SSEM principles are not limited to first-party code; they are equally critical w
 
 ### 4.2. Natively Extending Development Processes
 
-§A key principle for reducing friction and effectively preparing development teams is to integrate security into existing development workflows rather than imposing separate, external security gates. This involves understanding and extending current practices.
+A key principle for reducing friction and effectively preparing development teams is to integrate security into existing development workflows rather than imposing separate, external security gates. This involves understanding and extending current practices.
 
-Examples include:
+Security often puts itself in the reviewer seat. While assurance is important to security, it is more impactful to be involved in requirements, architecture and design. This also avoids an adversarial relationship with people you need to collaborate with. Security positioned as a partner is likely to be better informed and in a better position to provide value.
 
-- Architecture review: Consider business concerns to emphasize security implications. (e.g., DDOS protection to preserve business integrity).
+In addition to a role that extends product and design roles, security can also offer strategic extensions to development activities including:
+
+- Architecture: Consider business concerns to emphasize security implications. (e.g., throttling and DDOS protection to preserve business integrity).
 - Predefined checklists: Develop flexible checklists that incorporate SSEM attributes and security considerations that can be used in various contexts.
 - Usability: Framing usability not just as aesthetics but as building trust from a security standpoint (e.g., clear error messages, intuitive permissions management).
 
@@ -429,15 +431,15 @@ While software engineering may lack formal licensing like other engineering disc
 
 The teams should be careful to avoid introducing unnecessary complexity or friction into the review process. This means that the merge review is used as guard rails and not as a gate. The goal is to grow the FIASSE mindset within the team, not to create a negative experience for the developers.
 
-Code review through merge requests is the single most effective technique for identifying security vulnerabilities early in the development process [OWASP-CRG]. While automated scans can find common or known issues, they often have no way of understanding the context of the change or the architecture of the system. However, automated scans can be used to quickly identify areas of code that may require more in-depth review. Bringing human insight and expertise into the review process ensures that code is less likely to need to be revisited later for quality or security issues.
+Code review through merge requests is the single most effective technique for identifying security vulnerabilities early in the development process [OWASP-CRG]. While automated scans can find common or known issues, they often have no way of understanding the context of the change or the architecture of the system. However, automated scans *can* be used to quickly identify areas of code that may require more in-depth review. Bringing human insight and expertise into the review process ensures that code is less likely to need to be revisited later for quality or security issues.
 
-The collaborative nature of merge reviews allows for the sharing of insight and expertise. They can provide a fresh perspective to the programmers who may hve become too fimiliar with the code. Also, when FIASSE trained application security professionals are able to participate, they too share their valuable insights and expertise with software engineering teams. Over time this can elevate the overall capability of the team to understand the implications of SSEM attributes fostering an appreciation for the desired securable results.
+The collaborative nature of merge reviews allows for the sharing of insight and expertise. They can provide a fresh perspective to the programmers who may have become too familiar with the code. Also, when FIASSE trained application security professionals are able to participate, they too share their valuable insights and expertise with software engineering teams. Over time this can elevate the overall capability of the team to understand the implications of SSEM attributes fostering an appreciation for the desired securable results.
 
 It should be noted teams implementing structured reviews report up to 80% fewer post-release bugs [CodeReviewBenefits].
 
 Merge reviews can also be used as an opportunity to ask 'What can go wrong?' to use threat modeling principles to examine code level issues that could threaten Trustworthiness and Reliability.  The simplified scope of a merge review helps to put to the side the complexity of a larger system. This sort of targeted approach can make it easier to identify potential risks and vulnerabilities.
 
-In the future guidance for merge reviews, we will explore how to effectively integrate SSEM attributes into the review process in detail.
+In the future guidance for merge reviews, we will explore how to effectively integrate SSEM attributes into the review process in detail. It is essential for security professionals to be instructed on how to effectively participate in these reviews, providing value without ignoring basic software engineering principles.
 
 ### 4.4. Early Integration: Planning and Requirements
 
@@ -456,16 +458,17 @@ A prime example of "Shoveling Left" is dumping raw findings from security scanni
 To avoid this, AppSec SHOULD:
 
 1. Focus on True Positives: Validate findings to ensure accuracy.
-2. Identify Root Causes: Address systemic issues rather than just symptoms.
-3. Prioritize by Impact: Focus on issues that are plentiful or affect sensitive resources.
-4. Collaborate on Solutions: Work with development to formulate wide impact solutions instead of just line-level fixes.
-5. Verify Fixes: Ensure remediation is effective and consider automated regression tests.
+2. Analyze trends and issue pooling patterns: Look for patterns across multiple findings and tools to identify systemic issues.
+3. Identify Root Causes: Address systemic issues rather than just symptoms.
+4. Prioritize by Impact: Focus on issues that are plentiful or affect sensitive resources.
+5. Collaborate on Solutions: Work with development to formulate wide impact solutions instead of just line-level mitigations.
+6. Verify Fixes: Ensure remediation is effective and consider automated regression tests.
 
 #### 5.1.2. Pitfalls of Exploit-First Training
 
 Security training for developers that primarily emphasizes exploitation techniques ("learn the hack to stop the attack") is another manifestation of "Shoveling Left." As discussed in Section 2.4, understanding how to compromise a system (the 'hacker' mindset) is distinct from knowing how to engineer a robust and securable one (the 'engineer' mindset).
 
-This type of training often fails because it does not equip developers with the engineering principles needed for their daily tasks, nor does it teach them how to identify or build code with inherently securable qualities (as defined by SSEM). Consequently, developers might gain a superficial understanding of risks without the practical knowledge to implement effective, systemic preventative measures. This can lead to a false sense of security and does little to foster the proactive, engineering-focused question of "What can go wrong?" in a way that leads to better design and implementation.
+This type of training often fails because it does not equip developers with the engineering principles needed for their daily tasks, nor does it teach them how to identify or build code with inherently securable qualities (esp. as defined by SSEM). Consequently, at best, developers might gain a superficial understanding of risks without the practical knowledge to implement effective, systemic preventative measures. This can lead to a false sense of security. Also, it does little to foster the proactive, engineering-focused examination of "What can go wrong?". The goal should be better design and implementation instead of line-level mitigations.
 
 ### 5.2. Strategic Use of Security Output
 
@@ -477,7 +480,7 @@ This is also why fix requests should never circumvent the processes that softwar
 
 ### 6.1. Establishing Clear Expectations
 
-Clear expectations are foundational to building securable products. AppSec can maximize its impact by setting these expectations effectively. This requires AppSec's alignment with the business processes involved in software development.
+§Clear expectations are foundational to building securable products. AppSec can maximize its impact by setting these expectations effectively. This requires AppSec's alignment with the business processes involved in software development.
 
 #### 6.1.1. Proactive Communication
 
