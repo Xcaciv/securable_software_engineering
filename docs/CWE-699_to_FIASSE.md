@@ -1,5 +1,7 @@
 # Comprehensive CWE-699 to FIASSE SSEM Mapping Table
 
+The following table can be used as a reference for understanding the practical connection between the Common Weakness Enumeration (CWE) categories and the FIASSE Software Security Engineering Model (SSEM) attributes.
+
 | CWE Category (Base/Class) | Example CWEs | SSEM Attribute(s) | FIASSE RFC Section(s) |
 | :-- | :-- | :-- | :-- |
 | **API / Function Errors (CWE-1228)** | 242, 676, 474 | Maintainability (Analyzability, Modifiability) | §3.2.1.1, §3.2.1.2, §6.4 |
