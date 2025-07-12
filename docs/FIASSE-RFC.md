@@ -480,18 +480,19 @@ This is also why fix requests should never circumvent the processes that softwar
 
 ### 6.1. Establishing Clear Expectations
 
-§Clear expectations are foundational to building securable products. AppSec can maximize its impact by setting these expectations effectively. This requires AppSec's alignment with the business processes involved in software development.
+Clear expectations are foundational to building securable products. AppSec can maximize its impact by setting these expectations effectively. This requires AppSec's alignment with the business processes involved in software development.
 
 #### 6.1.1. Proactive Communication
 
-Basic communication is essential. Development teams should be informed about new testing initiatives or security programs pertaining to the product they maintain. Demonstrating tools to interested senior developers can foster collaboration and identify key contacts for strategic collaboration efforts. Regular synchronization points can help offer support and maintain momentum. Soft skills are important for Application Security professionals to be effective in their role.
+Basic communication is essential. Development teams should be informed about new testing initiatives or security programs pertaining to the product they maintain. Demonstrating tools to those interested can foster collaboration and identify key contacts for strategic collaboration efforts. Regular synchronization points can help offer support and maintain momentum. Soft skills are important for Application Security professionals to be effective in this role.
 
 #### 6.1.2. Integrating Security into Requirements
 
 Active AppSec participation in formal requirements gathering is crucial. This shifts security from a post-development review or audit to an integral component of the product, aligning it with productivity rather than being perceived as a gate.
 
-Key methods include:
+Key deliverables can include:
 
+- Security Features: Defining specific security features that must be implemented, such as authentication mechanisms, encryption requirements, or access controls.
 - Threat Scenarios: Describing potential misuse cases or attack paths relevant to the feature being developed. This helps identify necessary controls.
 - Security Acceptance Criteria: Defining specific, testable conditions that a feature must meet to be considered secure. These criteria allow QA to perform security testing by verifying requirements.
 
@@ -499,7 +500,7 @@ By embedding security into foundational design decisions via requirements, attri
 
 ### 6.2. Threat Modeling as a Collaborative Practice
 
-Threat modeling is a valuable team activity, ideally performed early in the development process, similar to requirements gathering. Even a simple framework, such as the "Four Question Framework" (What are we building? What can go wrong? What are we going to do about it? Did we do a good job?), can highlight areas needing more detailed design or specific security requirements. Threat modeling can be organically integrated with the FIASSE mindset by simply asking "What can go wrong?" at any point in the process.
+§Threat modeling is a valuable team activity, ideally performed early in the development process, similar to requirements gathering. Even a simple framework, such as the "Four Question Framework" (What are we building? What can go wrong? What are we going to do about it? Did we do a good job?), can highlight areas needing more detailed design or specific security requirements. Threat modeling can be organically integrated with the FIASSE mindset by simply asking "What can go wrong?" at any point in the process.
 
 A key concept taken from threat modeling is the identification of **trust boundaries**. These are points in the system where data passes between entities with different levels of trust (e.g., user to application, application to database, service to service). Trust boundaries require heightened control over data and process execution.
 
