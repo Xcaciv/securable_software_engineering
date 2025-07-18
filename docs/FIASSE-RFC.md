@@ -556,6 +556,23 @@ Good candidates for this principle include:
 
 Adhering to The Derived Integrity Principle is a direct and powerful application of the SSEM attribute of **Integrity** (Section 3.2.3.2). It ensures that the system performs its intended function in an unimpaired manner, free from the unauthorized manipulation that client-supplied data could introduce.
 
+For example, immagine a user initiates a purchase using some sort of shopping API. They initiate the check out process. The client-side code might send a request like this:
+
+```json
+{
+  "action": "checkout",
+  "items": [
+    {
+      "itemId": "12345",
+      "quantity": 2,
+      "price": 5.97
+    }
+  ]
+}
+```
+
+Instead of trusting all of the data in this request, the server accepts the clients intent to check out with the items at the given quantities. It starts the checkout process with the item ids that exist in the system at the absolute value of the quantity. At no point in the checkout process does the server accept a price or total from the client.  Nor does it accept anything but existing items at a positive quantity. It may even flag a request including a price as invalid. Fundamentally, the server accepts the intent of the client to purchase the items specified, but does not allow the client to violate the *integrity* of the purchase.
+
 ### 6.5. Dependency Management
 
 Dependency management starts when a library is introduced to the system, or even earlier if possible. The library should be evaluated for being fit to support your system and its values. This is a key aspect of the FIASSE mindset, which emphasizes the importance of understanding the implications of dependencies on the overall system architecture and security posture.
