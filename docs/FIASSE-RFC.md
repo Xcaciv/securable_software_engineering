@@ -1,9 +1,9 @@
 # A Framework for Integrating Application Security into Software Engineering (FIASSE) and The Securable Software Engineering Model (SSEM)
 
 > Request for Comments:
-> 
+>
 > Obsoletes: None
-> 
+>
 > Category: Informational
 >
 > Alton Crossley
@@ -13,17 +13,10 @@
 
 > This document describes the Framework for Integrating Application Security into Software Engineering (FIASSE&trade;), a vendor independent framework designed to integrate application security principles and practices directly into the software engineering discipline. FIASSE (/feiz/) addresses the common challenges of friction between Application Security (AppSec) and Development teams, the perceived slow progress in enhancing software security, the need to scale AppSec, and the need to empower developers to build securable code without requiring them to become penetration testing experts. Within this framework, the Securable Software Engineering Model (SSEM&trade;) provides a specific design language based on established software engineering terms, focusing on inherent security attributes of code and software architecture. This document outlines the core principles of the FIASSE framework, the key attributes defined by its SSEM (/si:m/) model, methods for their integration into the development processes, practical guidance for developers, and considerations for adoption and evolution. It also defines a durable model as the foundation for FIASSE. The goal is to reduce the probability of material impact from cyber events by fostering a collaborative, developer-centric approach to application security, particularly for software that relies on the Internet.
 
-## Copyright Notice
-
-> Copyright (c) 2025 Alton Crossley All rights reserved.
->
-> see licence.txt for details.
-
 ## Table of Contents
 
 - [A Framework for Integrating Application Security into Software Engineering (FIASSE) and The Securable Software Engineering Model (SSEM)](#a-framework-for-integrating-application-security-into-software-engineering-fiasse-and-the-securable-software-engineering-model-ssem)
   - [Abstract](#abstract)
-  - [Copyright Notice](#copyright-notice)
   - [Table of Contents](#table-of-contents)
   - [1. Introduction](#1-introduction)
     - [1.1. The Application Security Challenge](#11-the-application-security-challenge)
@@ -82,6 +75,7 @@
     - [6.3. Managing Flexibility and Control](#63-managing-flexibility-and-control)
     - [6.4. Resilient Coding and System Resilience](#64-resilient-coding-and-system-resilience)
       - [6.4.1. Input Handling](#641-input-handling)
+      - [6.4.1.1. The Derived Integrity Principle](#6411-the-derived-integrity-principle)
     - [6.5. Dependency Management](#65-dependency-management)
   - [7. Roles and Responsibilities in SSEM Adoption](#7-roles-and-responsibilities-in-ssem-adoption)
     - [7.0. Application Security's Role](#70-application-securitys-role)
@@ -500,23 +494,23 @@ By embedding security into foundational design decisions via requirements, attri
 
 ### 6.2. Threat Modeling as a Collaborative Practice
 
-§Threat modeling is a valuable team activity, ideally performed early in the development process, similar to requirements gathering. Even a simple framework, such as the "Four Question Framework" (What are we building? What can go wrong? What are we going to do about it? Did we do a good job?), can highlight areas needing more detailed design or specific security requirements. Threat modeling can be organically integrated with the FIASSE mindset by simply asking "What can go wrong?" at any point in the process.
+Threat modeling is a valuable team activity, ideally performed early in the development process. When implementing formal threat modeling, it is important to avoid discouraging more organic approaches to the practice. It is often easier to start threat modeling using a simple framework, such as the "Four Question Framework" (What are we building? What can go wrong? What are we going to do about it? Did we do a good job?). This can highlight areas needing more detailed design or specific security requirements. Threat modeling can be organically integrated with the FIASSE mindset by simply asking "What can go wrong?" at any point in the process. This is sometimes known as "the sneaky method" of threat modeling.
 
-A key concept taken from threat modeling is the identification of **trust boundaries**. These are points in the system where data passes between entities with different levels of trust (e.g., user to application, application to database, service to service). Trust boundaries require heightened control over data and process execution.
+A key concept taken from threat modeling is the identification of **trust boundaries**. These are points in the system where data passes between entities with different levels of trust (e.g., user to application, application to database, service to service). Trust boundaries require heightened control over data and process execution. This concept should be allowed to influence implementation best practices, such as strict input handling. This is discussed further in Section 6.4.1.
 
 ### 6.3. Managing Flexibility and Control
 
 Software engineers value flexibility in code, as it can facilitate feature implementation and bug fixing. Attackers, however, seek uncontrolled flexibility as a means to force the application to deviate from intended behavior.
 
-The issue is not flexibility itself, but the lack of appropriate control, especially at trust boundaries. An example of uncontrolled flexibility might be a function capable of executing arbitrary query statements with arbitrary parameters without restriction. Control is essential to ensure trustworthy execution, maintain system Integrity, and support Fault Tolerance. While flexibility is necessary for Maintainability.
+The issue is not flexibility itself, but the lack of appropriate control, especially at trust boundaries. An example of uncontrolled flexibility might be a function capable of executing arbitrary query statements with arbitrary bind parameters without restriction. Control is essential to ensure trustworthy execution, maintain system Integrity, and support Fault Tolerance. While flexibility is necessary for Maintainability.
 
-Minimize what is trusted and harden the trust boundaries. Think of trust boundaries like the hard candy shell of a jellybean: the soft, flexible interior represents the bulk of the application's logic, while the hard shell represents the critical points where external data or untrusted operations are carefully controlled. Just as the candy shell protects the jellybean's interior, well defined trust boundaries protect the core application from potentially harmful external influences. Defining and communicating these boundaries during the design phase makes it clear which areas of code are responsible for tight control, allowing developers to focus their efforts on maintaining the integrity and trustworthiness of these critical interfaces.
+Minimize what is trusted and harden the trust boundaries. Think of trust boundaries like the hard candy shell of a jellybean: the soft, flexible interior represents the bulk of the application's logic. While the hard shell represents the critical points where external data or untrusted operations are carefully controlled so as not to make a sticky mess. Just as the candy shell protects the jellybean's interior from being exposed, well handled trust boundaries protect the core application from potentially harmful external influences. Defining and communicating these boundaries during the design phase makes it clear which areas of code are responsible for tight control, allowing developers to focus their efforts on maintaining the integrity and trustworthiness of these critical interfaces.
 
 One way to allow flexibility while maintaining control is by implementing strict input handling at the trust boundaries. The trust boundary entry point allows the input handling to adapt to the context the value is arriving from. The advantage of this is that it allows the developer to focus on the flexibility of the code without worrying about unexpected input causing unintended behavior. This unexpected behavior could be simple bugs or more serious security vulnerabilities. This is covered further in Section 6.4.1.
 
 ### 6.4. Resilient Coding and System Resilience
 
-Resilience refers to an application's ability to continue running predictably, even under unfavorable circumstances or load. Tactical resilience is achieved through **defensive coding** practices that promote predictable execution.
+§Resilience refers to an application's ability to continue running predictably, even under unfavorable circumstances or load. Tactical resilience is achieved through **defensive coding** practices that promote predictable execution.
 
 This drives the need for concrete developer actions such as:
 
@@ -545,6 +539,22 @@ Strict input handling is a critical aspect of resilient coding. The most basic i
   - Always prefer allowing explicit values instead of rejecting unexpected values.
 
 With some platforms it may make sense to signify that an input value has been fully handled by passing it as a contextualized object instead of a scalar value after validation. (If this is the desired pattern, be sure to document and communicate it to the team.)
+
+#### 6.4.1.1. The Derived Integrity Principle
+
+A beneficial practice in secure input handling is **The Derived Integrity Principle**. This principle states that any value critical to the integrity of a system's state or business logic **must** be derived or calculated in the trusted server-side context. It should never be accepted directly from a client. This establishes the server as the single source of truth for what is real and authoritative.
+
+Think of it this way: you would never let a customer walk into a store, pick up an item, and then tell the cashier how much it costs. The price is non-negotiable; it's derived from the store's own trusted system. The same logic must apply to our software.
+
+Applying this principle prevents entire classes of vulnerabilities related to business logic manipulation. The client's role is to express *intent* (e.g., "I want to purchase item X"), not to dictate the *facts* of the transaction (e.g., "and it will cost me $0.01").
+
+Good candidates for this principle include:
+
+- **Pricing and Totals:** The final cost of items in a shopping cart must be calculated on the server based on the product IDs and quantities, referencing a secure price database.
+- **User Permissions:** A user's role or permissions level should be loaded from a server-side session or database, not passed in a client request. A user should never be able to tell the system, "I am an administrator."
+- **Object State:** The status of an order (e.g., "shipped," "paid") must be managed by an internal state machine, not dictated by a parameter from the client.
+
+Adhering to The Derived Integrity Principle is a direct and powerful application of the SSEM attribute of **Integrity** (Section 3.2.3.2). It ensures that the system performs its intended function in an unimpaired manner, free from the unauthorized manipulation that client-supplied data could introduce.
 
 ### 6.5. Dependency Management
 
