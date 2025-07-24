@@ -250,9 +250,9 @@ FIASSE emphasizes confidentiality as a fundamental attribute achieved by designi
 
 ##### 3.2.2.2. Accountability
 
-Definition: "The property of a system or system resource that ensures that the actions of a system entity may be traced uniquely to that entity" (RFC 4949). This involves managing principals and their access, enabling the attribution of actions to specific users or processes, which is crucial for auditing and incident response.
+Definition: "The property of a system or system resource that ensures that the actions of a system entity may be traced uniquely to that entity" (RFC 4949). This involves managing principles and their access, enabling the attribution of actions to specific users or processes, which is crucial for auditing and incident response.
 
-Achieving accountability relies on robust methods for managing principals and their access rights. While it leverages strategies common to non-repudiation, such as comprehensive logging and secure authentication, its core focus is the unique and verifiable attribution of every system action to a specific entity. This is essential for effective auditing and incident response.
+Achieving accountability relies on robust methods for managing principles and their access rights. While it leverages strategies common to non-repudiation, such as comprehensive logging and secure authentication, its core focus is the unique and verifiable attribution of every system action to a specific entity. This is essential for effective auditing and incident response.
 
 ##### 3.2.2.3. Authenticity
 
@@ -614,7 +614,7 @@ Low adherence to requirements will also be reflected by results in other types o
 
 If the posture stays stagnant over time, adjustments to development culture and/or leadership may be necessary. AppSec can encourage culture change by promoting FIASSE and sponsoring activities including continued education. It can be difficult to accept the limits of AppSec's influence, but it is essential to recognize that the responsibility for balancing business value creation with security needs ultimately lies with the development team as a whole.
 
-By spending valuable time in design activities, AppSec can guide larger numbers of developers that are adhering to the principals of FIASSE. It will also foster a culture of shared responsibility for security, where developers are empowered to take ownership of their code while having the support and guidance of AppSec professionals following established software engineering practices.
+By spending valuable time in design activities, AppSec can guide larger numbers of developers that are adhering to the principles of FIASSE. It will also foster a culture of shared responsibility for security, where developers are empowered to take ownership of their code while having the support and guidance of AppSec professionals following established software engineering practices.
 
 ### 7.1. Empowering Senior Software Engineers
 
@@ -725,7 +725,7 @@ Adopting FIASSE does not require a structured approach. However, organizations c
    - Determine the current level of understanding and acceptance of Software Engineering principles among development teams.
    - Assess the misalignments FIASSE can address.
 2. **Integrate SSEM Terminology:** Deliberately incorporate SSEM attributes (Maintainability, Trustworthiness, Reliability) and their sub-attributes into existing developer documentation, coding standards, style guides, and training materials. This helps socialize the concepts and provides a common language for discussing and evaluating securability.
-3. **Identify Key Influencers:** Identify senior software engineers and other key stakeholders who are able to internalize the framework and the principals. These individuals can champion FIASSE adoption. These individuals should have a strong understanding of software engineering.
+3. **Identify Key Influencers:** Identify senior software engineers and other key stakeholders who are able to internalize the framework and the principles. These individuals can champion FIASSE adoption. These individuals should have a strong understanding of software engineering.
 4. **Educate and Train Teams:** Provide comprehensive training on FIASSE activities and SSEM attributes to Key Influencers. Introductory training should be role-specific and integrated into onboarding and continuous learning programs.
    - Development and AppSec should understand that FIASSE is meant to be discussed in the context of software engineering, not as a separate security initiative.
    - After the initial training, primary delivery of on-going training should be delivered in the context of merge reviews, architecture discussions, and requirements gathering. Leaders should be encouraged to bring FIASSE discussions into these activities.
