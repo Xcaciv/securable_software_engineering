@@ -28,8 +28,8 @@
     - [2.3. Security Mission: Reducing Material Impact](#23-security-mission-reducing-material-impact)
     - [2.4. Mindset Convergence: Hacker vs. Engineer](#24-mindset-convergence-hacker-vs-engineer)
     - [2.5. Aligning Security with Development](#25-aligning-security-with-development)
-  - [3. The Securable Software Engineering Model (SSEM)](#3-the-securable-software-engineering-model-ssem)
-    - [3.1. Overview and Objectives](#31-overview-and-objectives)
+  - [3. The Securable Principle](#3-the-securable-principle)
+    - [3.1. Securable Software Engineering Model Overview](#31-securable-software-engineering-model-overview)
     - [3.2. Core Securable Attributes](#32-core-securable-attributes)
       - [3.2.1. Maintainability](#321-maintainability)
         - [3.2.1.1. Analyzability](#3211-analyzability)
@@ -164,9 +164,11 @@ Additionally, the two mindsets do not represent a gap. Instead, they are complem
 
 As mentioned above, true alignment between security and development requires a return to first principles. Instead of imposing security-centric jargon and processes that may slow or disrupt development, FIASSE advocates for using well-established Software Engineering terms to describe securable code attributes (SSEM properties like Analyzability, Modifiability, Testability, Confidentiality, etc.). This fosters understanding and empowers developers to address security confidently without years of dedicated security experience. The goal is to instill confidence and enable security to recognize these securable attributes in existing code. For example, identifying highly Analyzable code by its clarity and ease of understanding or low Cyclomatic complexity. Then understanding that this attribute plays an important role in accurately identifying security weaknesses, even before they are exploitable. Or by recognizing that Testable code can be altered quickly with high confidence in quality outcomes and that it will remain fortified. Development adds to Security's confidence by understanding what building securable software entails from an engineering perspective. As will be discussed, this also requires specific participation from AppSec professionals in the early stages of the Software Development Lifecycle (SDLC), particularly during requirements gathering and feature planning.
 
-## 3. The Securable Software Engineering Model (SSEM)
+## 3. The Securable Principle
 
-### 3.1. Overview and Objectives
+This is a foundational principle of FIASSE. The Securable Principle shifts the focus from a traditional primary strategy of repeatedly asking "Is it secure?" to a more nuanced and actionable question: "Do we meet our defined goals for this particular securable attribute?" This approach recognizes that security is not a binary state but a spectrum of qualities that can be measured, improved, and maintained over time. There is no static secure state. Instead of focusing on security controls, this principle emphasizes building software with inherent qualities that promote security and protect data. This increases the likelihood of being able to protect against real-world threats over a period of time.
+
+### 3.1. Securable Software Engineering Model Overview
 
 The Securable Software Engineering Model (SSEM) is centered on providing a design language that uses established software engineering terms to define the core attributes that make software "securable" (see Section 2.1). These attributes allow SSEM to abstract security away from specialized jargon or exploit-centric views. For software engineers this enables them to confidently integrate security considerations as a natural part of their development work. It also helps security professionals identify how existing code meets security expectations and areas for improvement.
 
@@ -510,9 +512,9 @@ One way to allow flexibility while maintaining control is by implementing strict
 
 ### 6.4. Resilient Coding and System Resilience
 
-§Resilience refers to an application's ability to continue running predictably, even under unfavorable circumstances or load. Tactical resilience is achieved through **defensive coding** practices that promote predictable execution.
+Resilience refers to an application's ability to continue running predictably, even under unfavorable circumstances or load. Tactical resilience is achieved through **defensive coding** practices that promote predictable execution.
 
-This drives the need for concrete developer actions such as:
+This drives developer strategy to focus on the following:
 
 - Strong typing to ensure data is usable in the intended way.
 - Filtering and validating all input at trust boundaries. Input validation ensures that data conforms to expected formats, types, lengths, and ranges before processing.
@@ -521,7 +523,7 @@ This drives the need for concrete developer actions such as:
 - Implement comprehensive and strategic error handling to manage unexpected conditions gracefully, rather than allowing the application to crash or behave unpredictably.
 - Using immutable data structures for threaded programming to prevent insecure modification and ensure thread safety and prevent race conditions.
 
-These are verifiable actions that AppSec can assess.
+These are verifiable items that AppSec can assess.
 
 #### 6.4.1. Input Handling
 
@@ -542,7 +544,7 @@ With some platforms it may make sense to signify that an input value has been fu
 
 #### 6.4.1.1. The Derived Integrity Principle
 
-A beneficial practice in secure input handling is **The Derived Integrity Principle**. This principle states that any value critical to the integrity of a system's state or business logic **must** be derived or calculated in the trusted server-side context. It should never be accepted directly from a client. This establishes the server as the single source of truth for what is real and authoritative.
+A beneficial practice in secure input handling is **The Derived Integrity Principle**. This principle states that any value critical to the integrity of a system's state or business logic **must** be derived or calculated in the trusted server-side context. It should never be accepted directly from a client. This establishes the server as the single source of truth for what is real and authoritative instead of adopting the unknown integrity of the client.
 
 Think of it this way: you would never let a customer walk into a store, pick up an item, and then tell the cashier how much it costs. The price is non-negotiable; it's derived from the store's own trusted system. The same logic must apply to our software.
 
@@ -571,13 +573,15 @@ For example, immagine a user initiates a purchase using some sort of shopping AP
 }
 ```
 
-Instead of trusting all of the data in this request, the server accepts the clients intent to check out with the items at the given quantities. It starts the checkout process with the item ids that exist in the system at the absolute value of the quantity. At no point in the checkout process does the server accept a price or total from the client.  Nor does it accept anything but existing items at a positive quantity. It may even flag a request including a price as invalid. Fundamentally, the server accepts the intent of the client to purchase the items specified, but does not allow the client to violate the *integrity* of the purchase.
+Instead of trusting all of the data in this request, the server accepts the clients intent to check out with the items at the given quantities. It starts the checkout process with the item ids that exist in the system at the absolute value of the quantity. At no point in the checkout process does the server accept a price or total from the client.  Nor does it accept anything but existing items at a positive quantity. It may even flag a request including a price as invalid. Fundamentally, the server accepts the intent of the client to purchase the items specified, but does not allow the client to violate the *integrity* of the purchase. It does so by **deriving integity** from the server side inventory and calculations.
+
+A more advanced example of this principle in action is with JWTs (JSON Web Tokens). If the server accepts any algorithm specified in the JWT for signature verification. This allows the client to dictate the integrity of the token.
 
 ### 6.5. Dependency Management
 
-Dependency management starts when a library is introduced to the system, or even earlier if possible. The library should be evaluated for being fit to support your system and its values. This is a key aspect of the FIASSE mindset, which emphasizes the importance of understanding the implications of dependencies on the overall system architecture and security posture.
+Dependency management starts before a library is introduced to the system. The library should be evaluated for being fit to support your system and its values. This is a key aspect of the FIASSE mindset, which emphasizes the importance of understanding the implications of dependencies on the securable posture of the system.
 
-Applying SSEM principles proactively to dependency selection and management, beyond merely scanning for known vulnerabilities, is crucial. This involves considering:
+Applying SSEM principles proactively to dependency selection and management, beyond merely scanning for known vulnerabilities, can be very useful. This involves considering:
 
 - **Analyzability**: Thoroughly understand each dependency's full scope, including its transitive dependencies, its specific purpose within the application, and its potential attack surface. Maintain a clear inventory and a documented rationale for every included dependency.
 - **Modifiability**: Design systems with loosely coupled dependencies to facilitate easier updates, patching, or replacement if a vulnerability is discovered, a dependency becomes obsolete, or a more secure alternative is identified. This aligns with architectural modifiability.
@@ -594,7 +598,7 @@ Further key considerations for dependency management include:
 - Avoid unnecessary dependencies. Each dependency introduces the need for additional maintenance.
 - If no direct update fixes a known flaw in a dependency, further analysis is required to identify mitigation strategies (e.g., compensating controls, forking and patching, or reimplementation).
 - Organizations should have a clear policy regarding the use and maintenance of open-source dependencies, including processes for addressing vulnerabilities found within them.
-- Reliance solely on CVE (Common Vulnerabilities and Exposures) reporting may not be sufficient. A thorough analysis of dependencies and their transitive "baggage" is recommended.
+- Reliance solely on CVE (Common Vulnerabilities and Exposures) is not sufficient. A thorough analysis of dependencies and their transitive "baggage" is recommended.
 
 ## 7. Roles and Responsibilities in SSEM Adoption
 
@@ -602,17 +606,19 @@ Understanding different development roles is useful for tailoring guidance and e
 
 ### 7.0. Application Security's Role
 
-It should be understood in early stages of FIASSE adoption that Application Security's role in development is that of assurance. The only shared responsibility between AppSec and Development teams is the timely delivery of the end result. This ensures the focus of Software Engineers remains on building securable code through a self-governed process. AppSec is to provide guidance through participation in development activities like design and requirements. This establishes the guardrails for development to operate in as intended. Admittedly, AppSec is not responsible for development's level of adherence to the architecure of the system or feature requirements.
+It should be understood in early stages of FIASSE adoption that Application Security's role in development is that of assurance. The only shared responsibility between AppSec and Development teams is the timely delivery of the end result. This ensures the focus of Software Engineers remains on building securable code through a self-governed process. AppSec is to provide guidance through participation in development activities like design and requirements. This establishes the guardrails for development to operate in as intended. Admittedly, AppSec is not responsible for development's level of adherence to the architecure of the system or feature requirements. Thankfully standard Quality Assurance and User Acceptance processes are in place to ensure that the end result meets the expectations of the business and its users.
 
 Therefore security metrics (those derived from Application Security Testing tools and pentests) are a measure of the effective participation of AppSec in the development process, not a measure of Software Engineering's adherence to security. The overall security posture of an application reflects how well expectations are set. This is a key distinction that allows AppSec to focus on providing value through requirements, design, and assurance rather than policing or micromanaging development teams.
 
-If the posture stays stagnant over time, adjustments to development culture and/or leadership are necessary. AppSec can encourage culture change by promoting FIASSE and sponsoring activities including continued education. It can be difficult to accept the limits of AppSec's influence, but it is essential to recognize that the responsibility for balancing business value creation with security needs ultimately lies with the development team as a whole.
+Low adherence to requirements will also be reflected by results in other types of testing. Remember, application security will never outperform quality assurance because quality is a foundation for securable software.
+
+If the posture stays stagnant over time, adjustments to development culture and/or leadership may be necessary. AppSec can encourage culture change by promoting FIASSE and sponsoring activities including continued education. It can be difficult to accept the limits of AppSec's influence, but it is essential to recognize that the responsibility for balancing business value creation with security needs ultimately lies with the development team as a whole.
 
 By spending valuable time in design activities, AppSec can guide larger numbers of developers that are adhering to the principals of FIASSE. It will also foster a culture of shared responsibility for security, where developers are empowered to take ownership of their code while having the support and guidance of AppSec professionals following established software engineering practices.
 
 ### 7.1. Empowering Senior Software Engineers
 
-Experienced, top-tier software engineers are critical to the success of any AppSec program. AppSec professionals should work collaboratively *with* these engineers in design activities.
+§Experienced, top-tier software engineers are critical to the success of any AppSec program. AppSec professionals should work collaboratively *with* these engineers in design activities.
 
 Senior engineers should be empowered to:
 
