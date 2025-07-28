@@ -89,12 +89,11 @@
       - [8.1.3. Cloud-Native and Serverless Architectures](#813-cloud-native-and-serverless-architectures)
       - [8.1.4. Continuous Security Engineering](#814-continuous-security-engineering)
       - [8.1.5. Quantum-Resistant Cryptography](#815-quantum-resistant-cryptography)
-      - [8.1.6. Ethical AI and Security Governance](#816-ethical-ai-and-security-governance)
+      - [8.1.6. AI and Security Governance](#816-ai-and-security-governance)
     - [8.2. Organizational Adoption Strategies](#82-organizational-adoption-strategies)
-  - [9. Security Considerations](#9-security-considerations)
-  - [10. Conclusion](#10-conclusion)
-  - [11. References](#11-references)
-  - [12. Author's Address](#12-authors-address)
+  - [9. Conclusion](#9-conclusion)
+  - [10. References](#10-references)
+  - [11. Author's Acknowledgements](#11-authors-acknowledgements)
 
 ## 1. Introduction
 
@@ -606,7 +605,7 @@ Understanding different development roles is useful for tailoring guidance and e
 
 ### 7.0. Application Security's Role
 
-It should be understood in early stages of FIASSE adoption that Application Security's role in development is that of assurance. The only shared responsibility between AppSec and Development teams is the timely delivery of the end result. This ensures the focus of Software Engineers remains on building securable code through a self-governed process. AppSec is to provide guidance through participation in development activities like design and requirements. This establishes the guardrails for development to operate in as intended. Admittedly, AppSec is not responsible for development's level of adherence to the architecure of the system or feature requirements. Thankfully standard Quality Assurance and User Acceptance processes are in place to ensure that the end result meets the expectations of the business and its users.
+It should be understood in early stages of FIASSE adoption that Application Security's role in development is that of assurance. The only shared responsibility between AppSec and Development teams is the timely delivery of the end result. This ensures the focus of Software Engineers remains on building securable code through a self-governed process. AppSec is to provide guidance through participation in development activities like design and requirements. This establishes the guardrails for development to operate in as intended. Admittedly, AppSec is not responsible for development's level of adherence to the architecture of the system or feature requirements. Thankfully standard Quality Assurance and User Acceptance processes are in place to ensure that the end result meets the expectations of the business and its users.
 
 Therefore security metrics (those derived from Application Security Testing tools and pentests) are a measure of the effective participation of AppSec in the development process, not a measure of Software Engineering's adherence to security. The overall security posture of an application reflects how well expectations are set. This is a key distinction that allows AppSec to focus on providing value through requirements, design, and assurance rather than policing or micromanaging development teams.
 
@@ -618,7 +617,7 @@ By spending valuable time in design activities, AppSec can guide larger numbers 
 
 ### 7.1. Empowering Senior Software Engineers
 
-§Experienced, top-tier software engineers are critical to the success of any AppSec program. AppSec professionals should work collaboratively *with* these engineers in design activities.
+Experienced, top-tier software engineers are critical to the success of any AppSec program. AppSec professionals should work collaboratively *with* these engineers in design activities.
 
 Senior engineers should be empowered to:
 
@@ -631,17 +630,17 @@ Senior engineers should be empowered to:
 
 ### 7.2. Guiding Developing Software Engineers
 
-Software engineers who are still gaining experience (aka. Jr Programmers, Artisan or Ancillary Coders) benefit greatly from mental checklists like SSEM and the methodologies FIASSE describes. They may not always intuitively know "What can go wrong?" but can learn through structured guidance, merge reviews, and pair programming. While following established best practices is a good start, it is not sufficient on its own to produce securable products. FIASSE provides the context for *why* certain practices are important, helping software engineers build a more robust engineering intuition.
+Software engineers who are still gaining experience (aka. Jr Programmers, Artisan or Ancillary Coders) benefit greatly from mental models like SSEM and the methodologies FIASSE describes. They may not always intuitively know "What can go wrong?" but can learn through structured guidance, merge reviews, and pair programming. While following established best practices is a good start, it is important to emphasize the Software Engineering discipline and how the attributes of the SSEM benefit both the programmer and security posture of the system. FIASSE provides the context for *why* certain practices are important, helping software engineers build a more robust engineering intuition. It helps them build their taste and smell for good and bad code.
 
 These engineers should be encouraged to:
 
 - Focus on becoming strong software engineers.
-- Ask for clear Security Requirements, Acceptance Criteria, and Threat Scenarios.
+- Ask for clear Requirements and Acceptance Criteria.
 - Be cautious about introducing new external dependencies without due diligence.
-- Actively seek code reviews from senior team members.
+- Actively seek code reviews from senior team members to learn and build confidence.
 - Write unit tests that cover exceptional conditions and out-of-bounds values.
 - Learn and apply defensive coding techniques, particularly input validation and output encoding.
-- Be mindful of trust boundaries in the code they write.
+- Be mindful of trust boundaries in the code they write and seek to deeply understand the architecture.
 - Seek understanding of FIASSE and SSEM to learn how fundamental principles effect outcomes.
 
 ### 7.3. The Role of Product Owners and Managers
@@ -650,7 +649,9 @@ Product Owners and Managers play a crucial role in ensuring that FIASSE activiti
 
 - Advocate for FIASSE considerations during the planning and prioritization of features.
 - Collaborate with AppSec and Development teams to define clear expectations through user stories, threat scenarios, and acceptance criteria.
-- Allocate time and resources for regular software engineering training and awareness programs around FIASSE.
+- Allocate time and resources for:
+  - regular software engineering training and awareness programs around FIASSE
+  - regular dependency maintenance and evaluation
 
 ## 8. Evolution and Adoption of FIASSE
 
@@ -683,38 +684,30 @@ As low-code and no-code development platforms become more prevalent, FIASSE prin
 
 - Establishing security guidelines based on FIASSE and tailored for citizen developers.
 - Embedding automated security checks within these platforms.
-- Ensuring that pre-built components and templates adhere to secure coding principles.
+- Ensuring that pre-built components and templates adhere to SSEM's secure coding principles.
 
 #### 8.1.3. Cloud-Native and Serverless Architectures
 
 The shift towards microservices, containers, and serverless computing necessitates an emphasis within FIASSE on:
 
-- Secure API design and robust authentication/authorization.
-- Comprehensive Identity and Access Management (IAM) for distributed systems.
+- Secure API design to support robust authentication/authorization security requirements.
 - Resilient architecture principles to mitigate cloud-specific threats.
 
 #### 8.1.4. Continuous Security Engineering
 
-FIASSE naturally aligns with Continuous Security Engineering philosophies by embedding security into CI/CD pipelines. Future adaptations will likely further strengthen this alignment through:
+FIASSE naturally aligns with Continuous Security Engineering philosophies by embedding security into the way security uses CI/CD pipelines. Future adaptations will likely further strengthen this alignment through:
 
-- Enhanced automation of security testing at various stages of the build and deployment process.
-- Improved security observability for real-time monitoring and incident response.
-- Continued development of developer-friendly security tooling that integrates seamlessly into their workflows.
+- Enhanced guidance on avoiding 'Shovel Left' anti-patterns in security automation.
+- Improved actionable security intelligence through observability for real-time monitoring and incident response.
+- Continued development of developer-friendly security processes.
 
 #### 8.1.5. Quantum-Resistant Cryptography
 
-As quantum computing capabilities advance, posing a threat to current cryptographic standards, FIASSE will incorporate guidance on:
+As quantum computing capabilities advance, posing a threat to current cryptographic standards, FIASSE may incorporate additional cryptography-specific guidance.
 
-- Transitioning to quantum-safe cryptographic algorithms.
-- Secure key management strategies suitable for a post-quantum era.
-- Resilient data protection that anticipate future cryptographic challenges.
+#### 8.1.6. AI and Security Governance
 
-#### 8.1.6. Ethical AI and Security Governance
-
-With AI playing a larger role in software development, ethical considerations and robust governance become critical. FIASSE may evolve to include:
-
-- Guidelines to ensure AI-generated code adheres to FIASSE principles and SSEM attributes.
-- Guidance for governing AI-driven development processes using SSEM.
+With AI playing a larger role in software development, security considerations and robust governance become critical. There are existing OWASP projects focused on AI security that FIASSE may direct readers to for further guidance.
 
 ### 8.2. Organizational Adoption Strategies
 
@@ -729,24 +722,18 @@ Adopting FIASSE does not require a structured approach. However, organizations c
 4. **Educate and Train Teams:** Provide comprehensive training on FIASSE activities and SSEM attributes to Key Influencers. Introductory training should be role-specific and integrated into onboarding and continuous learning programs.
    - Development and AppSec should understand that FIASSE is meant to be discussed in the context of software engineering, not as a separate security initiative.
    - After the initial training, primary delivery of on-going training should be delivered in the context of merge reviews, architecture discussions, and requirements gathering. Leaders should be encouraged to bring FIASSE discussions into these activities.
-5. **Foster Collaboration:** Promote regular collaboration between AppSec and Development teams. Discourage AppSec from simply reviewing items in isolation; instead, encourage AppSec to engage in Development activities such as requiremnts gathering.
+5. **Foster Collaboration:** Promote regular collaboration between AppSec and Development teams. Discourage AppSec from simply reviewing items in isolation; instead, encourage AppSec to engage in Development activities such as requirements gathering.
 6. **Continuously Monitor and Improve:** FIASSE is an ongoing process. Implement real-time security observability and use the gathered insights to continuously refine security strategies and FIASSE implementation.
 
 The applicability of FIASSE spans various organizational types, including large technology companies integrating it into Continuous Security Engineering, financial institutions enhancing data protection, AI and cloud-based companies designing secure architectures, and open-source projects adopting secure development guidelines.
 
-## 9. Security Considerations
-
-This entire document is focused on improving application security. The FIASSE itself is a framework designed to systematically address security in development. By promoting attributes like Analyzability, Modifiability, and Testability, and by advocating for practices such as early integration of security requirements, threat modeling, defensive coding, and robust dependency management, FIASSE aims to reduce the likelihood of vulnerabilities and mitigate the potential impact of security incidents.
-
-The successful implementation of FIASSE relies on organizational commitment to security aligning with development activities. Failure to address the cultural aspects of collaboration between AppSec and Development, or neglecting the strategic application of security tooling, can undermine the effectiveness of the framework.
-
-## 10. Conclusion
+## 9. Conclusion
 
 Building securable software is not solely the responsibility of individual programmers; it MUST be a natural and integral part of the Software Engineering discipline. FIASSE offers a framework to achieve this by fostering a common understanding between Application Security and Development teams.
 
 AppSec can allow development teams to build securable code confidently and autonomously. This collaborative, developer-centric approach, as outlined by FIASSE, aims to reduce friction, avoid common pitfalls like "Shoveling Left," and ultimately lead to more secure software outcomes that align with business objectives.
 
-## 11. References
+## 10. References
 
 [Howard] Howard, R., "Cyber Security First Principles: A Reboot of Strategy and Tactics", Cybersecurity First Principles, LLC, 2019.
 
@@ -766,7 +753,10 @@ AppSec can allow development teams to build securable code confidently and auton
 
 [VulnCosts] Penetration Testing ROI: 5 Metrics to Communicate Real Value. <https://www.softwaresecured.com/post/penetration-testing-roi-5-metrics-to-communicate-real-value>.
 
-## 12. Author's Address
+## 11. Author's Acknowledgements
 
-Editor
+Editors
+[Details TBD]
+
+Advisors
 [Details TBD]
