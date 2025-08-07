@@ -124,6 +124,10 @@ This document will cover:
 
 This document is intended for AppSec professionals, software engineers, engineering managers, and anyone involved in the software development who seeks to improve application security outcomes.
 
+FIASSE recognizes that security organizations may employ both Application Security (AppSec) and Product Security roles. Further employing both these practices is encouraged. AppSec professionals focus on the technical aspects of security and work directly with developers to integrate SSEM attributes into code and applying FIASSE processes. They are responsible for security assurance. Product Security professionals operate at a higher strategic level, translating business risk into security requirements and managing customer communications around security. They also ensure regulatory compliance and aligning security with with broader business objectives.
+
+FIASSE serves as a unifying framework for both roles: SSEM provides the technical language and measurable attributes needed for secure development practices. hTe framework's emphasis is on business alignment (Section 2.3) and clear expectations (Section 6.1). Product Security teams can effectively translate strategic security objectives into actionable development requirements with enhansed clarity. Rather than creating silos, FIASSE fosters collaboration by establishing a common shared understanding of what constitutes securable software across both technical and strategic security functions.
+
 ## 2. Foundational Principles
 
 ### 2.1. The Securable Paradigm: No Static Secure State
