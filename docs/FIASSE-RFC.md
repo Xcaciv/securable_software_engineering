@@ -130,7 +130,7 @@ Product Security professionals operate at a higher strategic level, translating 
 
 FIASSE serves as a unifying framework for both roles: SSEM provides the technical language and measurable attributes needed for secure development practices. The framework's emphasis is on business alignment (Section 2.3) and clear expectations (Section 6.1) enable Product Security teams to effectively translate strategic security objectives into actionable development requirements with enhansed clarity. 
 
-Rather than creating silos, FIASSE fosters collaboration by establishing a common shared understanding of what constitutes securable software across both technical and strategic security functions.
+Rather than creating silos, FIASSE fosters collaboration by filling the void in shared software engineering understanding of what constitutes securable software across both technical and strategic security functions.
 
 ## 2. Foundational Principles
 
