@@ -14,7 +14,7 @@ To provide practical guidelines that **empower developers** to create securable 
 
 ## How is it Different?
 
-You can think of the SSEM as an *allow* list instead of a *block* list. If the OWASP TOP 10 is a block list OWASP FIASSE is an allow list. This is to build on top of software engineering skills to build securable software. This is in contrast with require new skills to understand exploits in order to make practical application to writing code.
+Think of the SSEM as an *allow* list rather than a *block* list. While the OWASP Top 10 highlights what to avoid (a block list), OWASP FIASSE provides a set of positive attributes and practices to follow (an allow list). This approach leverages existing software engineering skills to build securable software, rather than requiring developers to learn exploit techniques or adopt a vulnerability-focused mindset. The emphasis is on enabling practical, secure coding through familiar engineering principles.
 
 This framework highlights that business value is captured when security requirements are clearly defined within the *source* of work for development. By establishing expectations this way, the likelihood of security flaws being discovered and needing remediation later is significantly reduced.
 
