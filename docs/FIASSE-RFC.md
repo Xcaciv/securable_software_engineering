@@ -85,7 +85,7 @@
       - [6.4.1.1. The Derived Integrity Principle](#6411-the-derived-integrity-principle)
     - [6.5. Dependency Management](#65-dependency-management)
   - [7. Roles and Responsibilities in SSEM Adoption](#7-roles-and-responsibilities-in-ssem-adoption)
-    - [7.0. Application Security's Role](#70-application-securitys-role)
+    - [7.0. Security's Role](#70-securitys-role)
     - [7.1. Empowering Senior Software Engineers](#71-empowering-senior-software-engineers)
     - [7.2. Guiding Developing Software Engineers](#72-guiding-developing-software-engineers)
     - [7.3. The Role of Product Owners and Managers](#73-the-role-of-product-owners-and-managers)
@@ -618,13 +618,13 @@ Further key considerations for dependency management include:
 
 Understanding different development roles is useful for tailoring guidance and effectively integrating SSEM.
 
-### 7.0. Application Security's Role
+### 7.0. Security's Role
 
-It should be understood in early stages of FIASSE adoption that Application Security's role in development is that of assurance. The only shared responsibility between AppSec and Development teams is the timely delivery of the end result. This ensures the focus of Software Engineers remains on building securable code through a self-governed process. AppSec is to provide guidance through participation in development activities like design and requirements. This establishes the guardrails for development to operate in as intended. Admittedly, AppSec is not responsible for development's level of adherence to the architecture of the system or feature requirements. Thankfully standard Quality Assurance and User Acceptance processes are in place to ensure that the end result meets the expectations of the business and its users.
+Security Assurance takes joint responsibility pertaining to the timely delivery of the end result. This ensures the focus of Software Engineers remains on building securable code through a self-governed process that has verified outcomes. Security should provide guidance through participation in development activities like design and requirements gathering. This establishes the guardrails for development to operate as intended. Admittedly, AppSec is not responsible for development's level of adherence to the architecture of the system or feature requirements. Thankfully standard Quality Assurance and User Acceptance processes are in place to ensure that the end result meets the expectations of the business and its users.
 
-Therefore security metrics (those derived from Application Security Testing tools and pentests) are a measure of the effective participation of AppSec in the development process, not a measure of Software Engineering's adherence to security. The overall security posture of an application reflects how well expectations are set. This is a key distinction that allows AppSec to focus on providing value through requirements, design, and assurance rather than policing or micromanaging development teams.
+Therefore security metrics (those derived from Application Security Testing tools and pentests) are a measure of the effective partnership of security with development, this is not a measure of Software Engineering's adherence to security. The overall security posture of an application reflects how well expectations are set, how well programmers apply best practices and if product allows items to be worked. This is a key distinction that allows security to focus on providing value through requirements, design, and assurance rather than policing or micromanaging development teams looking for line-level fixes.
 
-Low adherence to requirements will also be reflected by results in other types of testing. Remember, application security will never outperform quality assurance because quality is a foundation for securable software.
+Low adherence to requirements will also be reflected by results in other types of testing as well. Remember, application security will never outperform quality assurance because quality is a foundation for securable software.
 
 If the posture stays stagnant over time, adjustments to development culture and/or leadership may be necessary. AppSec can encourage culture change by promoting FIASSE and sponsoring activities including continued education. It can be difficult to accept the limits of AppSec's influence, but it is essential to recognize that the responsibility for balancing business value creation with security needs ultimately lies with the development team as a whole.
 
