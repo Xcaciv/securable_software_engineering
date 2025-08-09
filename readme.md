@@ -16,7 +16,7 @@ To provide practical guidelines that **empower developers** to create securable 
 
 You can think of the SSEM as an *allow* list instead of a *block* list. If the OWASP TOP 10 is a block list OWASP FIASSE is an allow list. This is to build on top of software engineering skills to build securable software. This is in contrast with require new skills to understand exploits in order to make practical application to writing code.
 
-This framework also emphasizes that
+This framework highlights that business value is captured when security requirements are clearly defined within the *source* of work for development. By establishing expectations this way, the likelihood of security flaws being discovered and needing remediation later is significantly reduced.
 
 ## Key Principles
 
