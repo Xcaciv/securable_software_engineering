@@ -82,6 +82,7 @@
     - [6.3. Managing Flexibility and Control](#63-managing-flexibility-and-control)
     - [6.4. Resilient Coding and System Resilience](#64-resilient-coding-and-system-resilience)
       - [6.4.1. Input Handling](#641-input-handling)
+      - [6.4.1.1. The Request Surface Minimization Principle](#6411-the-request-surface-minimization-principle)
       - [6.4.1.1. The Derived Integrity Principle](#6411-the-derived-integrity-principle)
     - [6.5. Dependency Management](#65-dependency-management)
   - [7. Roles and Responsibilities in SSEM Adoption](#7-roles-and-responsibilities-in-ssem-adoption)
@@ -555,6 +556,12 @@ Strict input handling is a critical aspect of resilient coding. The most basic i
   - Always prefer allowing explicit values instead of rejecting unexpected values.
 
 With some platforms it may make sense to signify that an input value has been fully handled by passing it as a contextualized object instead of a scalar value after validation. (If this is the desired pattern, be sure to document and communicate it to the team.)
+
+#### 6.4.1.1. The Request Surface Minimization Principle
+
+One tactic for resilient handing of input is to avoid the assumption that the entire request or envelope is intended to be processed. This inclines the programmer to access specific values within the request instead of all values. In some cases this has allowed developers to avoid certain types of injection attacks, and is generally a good sanitization tactic. This can also work to preserve resilience by simply ignoring values that are out of scope.
+
+As a security benefit is that the request can be analyzed for fraud or other attempts at alteration of the payload without adversely effecting application operation. It should be noted that requests that deviate from expectation should be logged at a minimum or rejected in sensitive situations.
 
 #### 6.4.1.1. The Derived Integrity Principle
 
