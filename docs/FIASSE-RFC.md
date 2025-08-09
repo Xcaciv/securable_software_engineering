@@ -11,7 +11,14 @@
 
 ## Abstract
 
-> This document describes the Framework for Integrating Application Security into Software Engineering (FIASSE&trade;), a vendor independent framework designed to integrate application security principles and practices directly into the software engineering discipline. FIASSE (/feiz/) addresses the common challenges of friction between Application Security (AppSec) and Development teams, the perceived slow progress in enhancing software security, the need to scale AppSec, and the need to empower developers to build securable code without requiring them to become penetration testing experts. Within this framework, the Securable Software Engineering Model (SSEM&trade;) provides a specific design language based on established software engineering terms, focusing on inherent security attributes of code and software architecture. This document outlines the core principles of the FIASSE framework, the key attributes defined by its SSEM (/si:m/) model, methods for their integration into the development processes, practical guidance for developers, and considerations for adoption and evolution. It also defines a durable model as the foundation for FIASSE. The goal is to reduce the probability of material impact from cyber events by fostering a collaborative, developer-centric approach to application security, particularly for software that relies on the Internet.
+> This document describes the Framework for Integrating Application Security into Software Engineering (FIASSE), a vendor independent framework designed to integrate application security principles and practices directly into the software engineering discipline. FIASSE (/feiz/) addresses the following common challenges:
+
+- Friction between Application Security (AppSec) and Development teams
+- Perceived slow progress in enhancing software security
+- Scaling AppSec
+- The need to impower developers to build securable code without requiring them to become penetration testing experts
+
+> Within this framework, the Securable Software Engineering Model (SSEM) provides a specific design language based on established software engineering terms, focusing on inherent security attributes of code and software architecture. This document outlines the core principles, attributes, and practical guidance for developers. SSEM also defines a durable model as the foundation for the framework. The goal is to resiliently add computing value while reducing the probability of material impact from cyber events in the ever changing landscape of software engineering.
 
 ## Table of Contents
 
@@ -128,7 +135,7 @@ FIASSE recognizes that security organizations may employ both Application Securi
 
 Product Security professionals operate at a higher strategic level, translating business risk into security requirements and managing customer communications around security. They also ensure regulatory compliance and aligning security with with broader business objectives.
 
-FIASSE serves as a unifying framework for both roles: SSEM provides the technical language and measurable attributes needed for secure development practices. The framework's emphasis is on business alignment (Section 2.3) and clear expectations (Section 6.1) enable Product Security teams to effectively translate strategic security objectives into actionable development requirements with enhansed clarity. 
+FIASSE serves as a unifying framework for both roles: SSEM provides the technical language and measurable attributes needed for secure development practices. The framework's emphasis is on business alignment (Section 2.3) and clear expectations (Section 6.1) enable Product Security teams to effectively translate strategic security objectives into actionable development requirements with enhansed clarity.
 
 Rather than creating silos, FIASSE fosters collaboration by filling the void in shared software engineering understanding of what constitutes securable software across both technical and strategic security functions.
 
