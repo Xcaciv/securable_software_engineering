@@ -6,11 +6,17 @@
 
 ## Overview
 
-This repository contains resources and materials for the OWASP Framework for Integrating Application Security into Software Engineering (FIASSE). FIASSE (pronounced /feiz/) promotes a **developer-centric, principled approach** to build **securable** software — recognizing that security is a dynamic, ongoing process like development. It introduces the Securable Software Engineering Model (SSEM) as a **common design language** that uses established software engineering terms to integrate security seamlessly into the development lifecycle, aiming to build resilient applications that protect data and withstand threats.
+This repository contains resources and materials for the OWASP Framework for Integrating Application Security into Software Engineering (FIASSE). FIASSE (pronounced /feiz/) promotes a **developer-centric, principled approach** to build **securable** software — recognizing that security is a dynamic, ongoing process like development. It introduces the Securable Software Engineering Model (SSEM) as a **common design language** that uses established software engineering terms to integrate security into software architecture, software design and programming. It aims to build resilient applications that withstand threats.
 
 ## Purpose
 
 To provide practical guidelines that **empower developers** to create securable software without requiring deep security expertise, and to guide security professionals in effectively integrating their security experience into software engineering. FIASSE achieves this through a **Software Engineering lens**, reducing cognitive load and fostering collaboration between development and security teams.
+
+## How is it Different?
+
+You can think of the SSEM as an *allow* list instead of a *block* list. If the OWASP TOP 10 is a block list OWASP FIASSE is an allow list. This is to build on top of software engineering skills to build securable software. This is in contrast with require new skills to understand exploits in order to make practical application to writing code.
+
+This framework also emphasizes that
 
 ## Key Principles
 
