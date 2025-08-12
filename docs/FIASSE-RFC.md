@@ -11,7 +11,14 @@
 
 ## Abstract
 
-> This document describes the Framework for Integrating Application Security into Software Engineering (FIASSE&trade;), a vendor independent framework designed to integrate application security principles and practices directly into the software engineering discipline. FIASSE (/feiz/) addresses the common challenges of friction between Application Security (AppSec) and Development teams, the perceived slow progress in enhancing software security, the need to scale AppSec, and the need to empower developers to build securable code without requiring them to become penetration testing experts. Within this framework, the Securable Software Engineering Model (SSEM&trade;) provides a specific design language based on established software engineering terms, focusing on inherent security attributes of code and software architecture. This document outlines the core principles of the FIASSE framework, the key attributes defined by its SSEM (/si:m/) model, methods for their integration into the development processes, practical guidance for developers, and considerations for adoption and evolution. It also defines a durable model as the foundation for FIASSE. The goal is to reduce the probability of material impact from cyber events by fostering a collaborative, developer-centric approach to application security, particularly for software that relies on the Internet.
+> This document describes the Framework for Integrating Application Security into Software Engineering (FIASSE), a vendor independent framework designed to integrate application security principles and practices directly into the software engineering discipline. FIASSE (/feiz/) addresses the following common challenges:
+
+- Friction between Application Security (AppSec) and Development teams
+- Perceived slow progress in enhancing software security
+- Scaling AppSec
+- The need to impower developers to build securable code without requiring them to become penetration testing experts
+
+> Within this framework, the Securable Software Engineering Model (SSEM) provides a specific design language based on established software engineering terms, focusing on inherent security attributes of code and software architecture. This document outlines the core principles, attributes, and practical guidance for developers. SSEM also defines a durable model as the foundation for the framework. The goal is to resiliently add computing value while reducing the probability of material impact from cyber events in the ever changing landscape of software engineering.
 
 ## Table of Contents
 
@@ -75,10 +82,11 @@
     - [6.3. Managing Flexibility and Control](#63-managing-flexibility-and-control)
     - [6.4. Resilient Coding and System Resilience](#64-resilient-coding-and-system-resilience)
       - [6.4.1. Input Handling](#641-input-handling)
+      - [6.4.1.1. The Request Surface Minimization Principle](#6411-the-request-surface-minimization-principle)
       - [6.4.1.1. The Derived Integrity Principle](#6411-the-derived-integrity-principle)
     - [6.5. Dependency Management](#65-dependency-management)
   - [7. Roles and Responsibilities in SSEM Adoption](#7-roles-and-responsibilities-in-ssem-adoption)
-    - [7.0. Application Security's Role](#70-application-securitys-role)
+    - [7.0. Security's Role](#70-securitys-role)
     - [7.1. Empowering Senior Software Engineers](#71-empowering-senior-software-engineers)
     - [7.2. Guiding Developing Software Engineers](#72-guiding-developing-software-engineers)
     - [7.3. The Role of Product Owners and Managers](#73-the-role-of-product-owners-and-managers)
@@ -122,6 +130,14 @@ This document will cover:
 - The potential evolution of FIASSE in response to emerging software engineering trends and strategies for organizational adoption (see [Section 8. Evolution and Adoption of FIASSE](#8-evolution-and-adoption-of-fiasse))
 
 This document is intended for AppSec professionals, software engineers, engineering managers, and anyone involved in the software development who seeks to improve application security outcomes.
+
+FIASSE recognizes that security organizations may employ both Application Security (AppSec) and Product Security roles. Further, employing both of these practices is encouraged. AppSec professionals focus on the technical aspects of security and work directly with developers to integrate SSEM attributes into code and applying FIASSE processes. They are responsible for security assurance. Application Security professionals align themselves with the business by aligning with development's processes including prioritization.
+
+Product Security professionals operate at a higher strategic level, translating business risk into security requirements and managing customer communications around security. They also ensure regulatory compliance and aligning security with with broader business objectives.
+
+FIASSE serves as a unifying framework for both roles: SSEM provides the technical language and measurable attributes needed for secure development practices. The framework's emphasis is on business alignment (Section 2.3) and clear expectations (Section 6.1) enable Product Security teams to effectively translate strategic security objectives into actionable development requirements with enhansed clarity.
+
+Rather than creating silos, FIASSE fosters collaboration by filling the void in shared software engineering understanding of what constitutes securable software across both technical and strategic security functions.
 
 ## 2. Foundational Principles
 
@@ -462,7 +478,7 @@ To avoid this, AppSec SHOULD:
 
 Security training for developers that primarily emphasizes exploitation techniques ("learn the hack to stop the attack") is another manifestation of "Shoveling Left." As discussed in Section 2.4, understanding how to compromise a system (the 'hacker' mindset) is distinct from knowing how to engineer a robust and securable one (the 'engineer' mindset).
 
-This type of training often fails because it does not equip developers with the engineering principles needed for their daily tasks, nor does it teach them how to identify or build code with inherently securable qualities (esp. as defined by SSEM). Consequently, at best, developers might gain a superficial understanding of risks without the practical knowledge to implement effective, systemic preventative measures. This can lead to a false sense of security. Also, it does little to foster the proactive, engineering-focused examination of "What can go wrong?". The goal should be better design and implementation instead of line-level mitigations.
+This type of training can be ineffective because it does not equip developers with the engineering principles needed for their daily tasks, nor does it teach them how to identify or build code with inherently securable qualities (esp. as defined by SSEM). Consequently, at best, developers might gain a superficial understanding of risks without the practical knowledge to implement effective, systemic preventative measures. This can lead to a false sense of security. Also, it does little to foster the proactive, engineering-focused examination of "What can go wrong?". The goal should be better design and implementation instead of line-level mitigations.
 
 ### 5.2. Strategic Use of Security Output
 
@@ -540,6 +556,12 @@ Strict input handling is a critical aspect of resilient coding. The most basic i
 
 With some platforms it may make sense to signify that an input value has been fully handled by passing it as a contextualized object instead of a scalar value after validation. (If this is the desired pattern, be sure to document and communicate it to the team.)
 
+#### 6.4.1.1. The Request Surface Minimization Principle
+
+One tactic for resilient handing of input is to avoid the assumption that the entire request or envelope is intended to be processed. This inclines the programmer to access specific values within the request instead of all values. In some cases this has allowed developers to avoid certain types of injection attacks, and is generally a good sanitization tactic. This can also work to preserve resilience by simply ignoring values that are out of scope.
+
+As a security benefit is that the request can be analyzed for fraud or other attempts at alteration of the payload without adversely effecting application operation. It should be noted that requests that deviate from expectation should be logged at a minimum or rejected in sensitive situations.
+
 #### 6.4.1.1. The Derived Integrity Principle
 
 A beneficial practice in secure input handling is **The Derived Integrity Principle**. This principle states that any value critical to the integrity of a system's state or business logic **must** be derived or calculated in the trusted server-side context. It should never be accepted directly from a client. This establishes the server as the single source of truth for what is real and authoritative instead of adopting the unknown integrity of the client.
@@ -571,7 +593,7 @@ For example, immagine a user initiates a purchase using some sort of shopping AP
 }
 ```
 
-Instead of trusting all of the data in this request, the server accepts the clients intent to check out with the items at the given quantities. It starts the checkout process with the item ids that exist in the system at the absolute value of the quantity. At no point in the checkout process does the server accept a price or total from the client.  Nor does it accept anything but existing items at a positive quantity. It may even flag a request including a price as invalid. Fundamentally, the server accepts the intent of the client to purchase the items specified, but does not allow the client to violate the *integrity* of the purchase. It does so by **deriving integity** from the server side inventory and calculations.
+Instead of trusting all of the data in this request, the server accepts the clients intent to check out with the items at the given quantities. It starts the checkout process with the item ids that exist in the system at the absolute value of the quantity. At no point in the checkout process does the server accept a price or total from the client.  Nor does it accept anything but existing items at a positive quantity. It may even flag a request including a price, logging or perhaps even rejecting it before trying to process it. Fundamentally, the server accepts the intent of the client to purchase the items specified, but does not allow the client to violate the *integrity* of the purchase. It does so by **deriving integrity** from the server side inventory and calculations.
 
 A more advanced example of this principle in action is with JWTs (JSON Web Tokens). If the server accepts any algorithm specified in the JWT for signature verification. This allows the client to dictate the integrity of the token.
 
@@ -602,13 +624,13 @@ Further key considerations for dependency management include:
 
 Understanding different development roles is useful for tailoring guidance and effectively integrating SSEM.
 
-### 7.0. Application Security's Role
+### 7.0. Security's Role
 
-It should be understood in early stages of FIASSE adoption that Application Security's role in development is that of assurance. The only shared responsibility between AppSec and Development teams is the timely delivery of the end result. This ensures the focus of Software Engineers remains on building securable code through a self-governed process. AppSec is to provide guidance through participation in development activities like design and requirements. This establishes the guardrails for development to operate in as intended. Admittedly, AppSec is not responsible for development's level of adherence to the architecture of the system or feature requirements. Thankfully standard Quality Assurance and User Acceptance processes are in place to ensure that the end result meets the expectations of the business and its users.
+Security Assurance takes joint responsibility pertaining to the timely delivery of the end result. This ensures the focus of Software Engineers remains on building securable code through a self-governed process that has verified outcomes. Security should provide guidance through participation in development activities like design and requirements gathering. This establishes the guardrails for development to operate as intended. Admittedly, AppSec is not responsible for development's level of adherence to the architecture of the system or feature requirements. Thankfully standard Quality Assurance and User Acceptance processes are in place to ensure that the end result meets the expectations of the business and its users.
 
-Therefore security metrics (those derived from Application Security Testing tools and pentests) are a measure of the effective participation of AppSec in the development process, not a measure of Software Engineering's adherence to security. The overall security posture of an application reflects how well expectations are set. This is a key distinction that allows AppSec to focus on providing value through requirements, design, and assurance rather than policing or micromanaging development teams.
+Therefore security metrics (those derived from Application Security Testing tools and pentests) are a measure of the effective partnership of security with development, this is not a measure of Software Engineering's adherence to security. The overall security posture of an application reflects how well expectations are set, how well programmers apply best practices and if product allows items to be worked. This is a key distinction that allows security to focus on providing value through requirements, design, and assurance rather than policing or micromanaging development teams looking for line-level fixes.
 
-Low adherence to requirements will also be reflected by results in other types of testing. Remember, application security will never outperform quality assurance because quality is a foundation for securable software.
+Low adherence to requirements will also be reflected by results in other types of testing as well. Remember, application security will never outperform quality assurance because quality is a foundation for securable software.
 
 If the posture stays stagnant over time, adjustments to development culture and/or leadership may be necessary. AppSec can encourage culture change by promoting FIASSE and sponsoring activities including continued education. It can be difficult to accept the limits of AppSec's influence, but it is essential to recognize that the responsibility for balancing business value creation with security needs ultimately lies with the development team as a whole.
 
@@ -712,7 +734,7 @@ Adopting FIASSE does not require a structured approach. However, organizations c
    - Identify existing security practices and how they align with SSEM attributes.
    - Determine the current level of understanding and acceptance of Software Engineering principles among development teams.
    - Assess the misalignments FIASSE can address.
-2. **Integrate SSEM Terminology:** Deliberately incorporate SSEM attributes (Maintainability, Trustworthiness, Reliability) and their sub-attributes into existing developer documentation, coding standards, style guides, and training materials. This helps socialize the concepts and provides a common language for discussing and evaluating securability.
+2. **Integrate SSEM Terminology:** Deliberately incorporate SSEM attributes (Maintainability, Trustworthiness, Reliability) and their sub-attributes into existing developer documentation, coding standards, style guides, and training materials. This helps socialize the concepts and provides a common language for discussing and evaluating securability. This can be a challenging step depending on the organization.
 3. **Identify Key Influencers:** Identify senior software engineers and other key stakeholders who are able to internalize the framework and the principles. These individuals can champion FIASSE adoption. These individuals should have a strong understanding of software engineering.
 4. **Educate and Train Teams:** Provide comprehensive training on FIASSE activities and SSEM attributes to Key Influencers. Introductory training should be role-specific and integrated into onboarding and continuous learning programs.
    - Development and AppSec should understand that FIASSE is meant to be discussed in the context of software engineering, not as a separate security initiative.
