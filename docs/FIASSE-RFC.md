@@ -88,7 +88,6 @@
       - [8.1.2. Low-Code and No-Code Platforms](#812-low-code-and-no-code-platforms)
       - [8.1.3. Cloud-Native and Serverless Architectures](#813-cloud-native-and-serverless-architectures)
       - [8.1.4. Continuous Security Engineering](#814-continuous-security-engineering)
-      - [8.1.5. Quantum-Resistant Cryptography](#815-quantum-resistant-cryptography)
       - [8.1.6. AI and Security Governance](#816-ai-and-security-governance)
     - [8.2. Organizational Adoption Strategies](#82-organizational-adoption-strategies)
   - [9. Conclusion](#9-conclusion)
@@ -695,15 +694,11 @@ The shift towards microservices, containers, and serverless computing necessitat
 
 #### 8.1.4. Continuous Security Engineering
 
-FIASSE naturally aligns with Continuous Security Engineering philosophies by embedding security into the way security uses CI/CD pipelines. Future adaptations will likely further strengthen this alignment through:
+FIASSE naturally aligns with Continuous Security Engineering philosophies by embedding security into the way software is iteratively developed. Future adaptations will likely further strengthen this alignment through:
 
 - Enhanced guidance on avoiding 'Shovel Left' anti-patterns in security automation.
 - Improved actionable security intelligence through observability for real-time monitoring and incident response.
 - Continued development of developer-friendly security processes.
-
-#### 8.1.5. Quantum-Resistant Cryptography
-
-As quantum computing capabilities advance, posing a threat to current cryptographic standards, FIASSE may incorporate additional cryptography-specific guidance.
 
 #### 8.1.6. AI and Security Governance
 
