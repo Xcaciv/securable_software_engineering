@@ -12,15 +12,15 @@ However, we strongly encourage community engagement through discussions and feed
 
 ### Opening Issues for Discussion
 
-We welcome discussions and questions through GitHub Issues:
+We welcome discussions and questions through GitHub Discussions:
 
-1. Navigate to the [Issues](../../issues) tab in the repository
-2. Click the "New Issue" button
-3. Select the appropriate issue template (if available) or create a blank issue
+1. Navigate to the [Discussions](../../discussions) tab in the repository
+2. Click the "New Discussion" button
+3. Select the appropriate discussion category (if available) or create a blank discussion
 4. Clearly describe your topic, question, or suggestion
-5. Add relevant labels to categorize your issue
+5. Add relevant labels to categorize your discussion
 
-Issues are perfect for:
+Discussions are perfect for:
 
 - Asking questions about secure software engineering practices
 - Suggesting improvements to existing documentation
