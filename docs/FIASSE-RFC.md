@@ -460,32 +460,35 @@ FIASSE advocates for setting expectations at the earliest stages of the developm
 
 ### 5.1. The "Shoveling Left" Phenomenon
 
-"Shoveling Left" is defined as the practice of supplying impractical information to developers and leaving the responsibility on them to make sense of it. This anti-pattern often manifests in how vulnerabilities are reported, training is conducted, and testing results are delivered. It can undermine AppSec's credibility and lead to developer disengagement.
+"Shoveling Left" is defined as the practice of supplying impractical information to developers and leaving the responsibility on them to make sense of it. This anti-pattern often manifests in several ways: how vulnerabilities are reported, how training is conducted, and how testing results are delivered. It can undermine AppSec's credibility and lead to developer disengagement.
 
 #### 5.1.1. Ineffective Vulnerability Reporting
 
 A prime example of "Shoveling Left" is dumping raw findings from security scanning tools directly into the development team's backlog. This approach often lacks context, prioritization, and actionable guidance. While initial progress might be observed, momentum is typically lost, and issues may reappear (the "whack-a-mole" effect). Raw tool output, on its own, is rarely impactful enough to drive sustained improvement.
 
-To avoid this, AppSec SHOULD:
+To avoid this, AppSec should:
+
 
 1. Focus on True Positives: Validate findings to ensure accuracy.
 2. Analyze trends and issue pooling patterns: Look for patterns across multiple findings and tools to identify systemic issues.
 3. Identify Root Causes: Address systemic issues rather than just symptoms.
 4. Prioritize by Impact: Focus on issues that are plentiful or affect sensitive resources.
-5. Collaborate on Solutions: Work with development to formulate wide impact solutions instead of just line-level mitigations.
+5. Collaborate on Solutions: Work with development to formulate wide-impact solutions instead of just line-level mitigations.
+
 6. Verify Fixes: Ensure remediation is effective and consider automated regression tests.
 
 #### 5.1.2. Pitfalls of Exploit-First Training
 
 Security training for developers that primarily emphasizes exploitation techniques ("learn the hack to stop the attack") is another manifestation of "Shoveling Left." As discussed in Section 2.4, understanding how to compromise a system (the 'hacker' mindset) is distinct from knowing how to engineer a robust and securable one (the 'engineer' mindset).
 
-This type of training can be ineffective because it does not equip developers with the engineering principles needed for their daily tasks, nor does it teach them how to identify or build code with inherently securable qualities (esp. as defined by SSEM). Consequently, at best, developers might gain a superficial understanding of risks without the practical knowledge to implement effective, systemic preventative measures. This can lead to a false sense of security. Also, it does little to foster the proactive, engineering-focused examination of "What can go wrong?". The goal should be better design and implementation instead of line-level mitigations.
+This type of training can be ineffective because it does not equip developers with the engineering principles needed for their daily tasks. Additionally, it fails to teach them how to identify or build code with inherently securable qualities (esp. as defined by SSEM). Consequently, at best, developers might gain a superficial understanding of risks without the practical knowledge to implement effective, systemic preventative measures. This can lead to a false sense of security and does little to foster the proactive, engineering-focused examination of "What can go wrong?". The goal should be better design and implementation instead of line-level mitigations.
 
 ### 5.2. Strategic Use of Security Output
 
-While scanning and testing tools are valuable for AppSec to understand the current security posture, their output MUST be used strategically. It should not be assumed that security requirements are implicit or that developers should be blamed for missing controls if clear expectations were not set. Productive software engineers have a structured workflow designed to deliver value. Any disruption of this workflow can lead to degraded software quality and the flaws that Application Security is trying to prevent.
+While scanning and testing tools are valuable for AppSec to understand the current security posture, their output must be used strategically. It should not be assumed that security requirements are implicit or that developers should be blamed for missing controls if clear expectations were not set. Productive software engineers have a structured workflow designed to deliver value. Any disruption of this workflow can lead to degraded software quality and the flaws that Application Security is trying to prevent.
 
-This is also why fix requests should never circumvent the processes that software engineers rely on. Misunderstandings and mistakes result from bypassing established workflows. Therefore AppSec should not expect developers to act on security findings without clear, actionable information and the opportunity to properly execute their workflow.
+Therefore, fix requests should never circumvent the processes that software engineers rely on, as this can lead to misunderstandings and mistakes. Bypassing established workflows leads to misunderstandings and mistakes. Therefore, AppSec should not expect developers to act on security findings without clear, actionable information and the opportunity to properly execute their workflow.
+
 
 ## 6. Practical Guidance for Secure Software Development
 
@@ -495,7 +498,7 @@ Clear expectations are foundational to building securable products. AppSec can m
 
 #### 6.1.1. Proactive Communication
 
-Basic communication is essential. Development teams should be informed about new testing initiatives or security programs pertaining to the product they maintain. Demonstrating tools to those interested can foster collaboration and identify key contacts for strategic collaboration efforts. Regular synchronization points can help offer support and maintain momentum. Soft skills are important f for Application Security professionals to be effective in this role.
+Basic communication is essential. Development teams should be informed about new testing initiatives or security programs pertaining to the product they maintain. Demonstrating tools to those interested can foster collaboration and identify key contacts for strategic collaboration efforts. Regular synchronization points can help offer support and maintain momentum. Soft skills are important for Application Security professionals to be effective in this role.
 
 #### 6.1.2. Integrating Security into Requirements
 
@@ -519,11 +522,11 @@ A key concept taken from threat modeling is the identification of **trust bounda
 
 Software engineers value flexibility in code, as it can facilitate feature implementation and bug fixing. Attackers, however, seek uncontrolled flexibility as a means to force the application to deviate from intended behavior.
 
-The issue is not flexibility itself, but the lack of appropriate control, especially at trust boundaries. An example of uncontrolled flexibility might be a function capable of executing arbitrary query statements with arbitrary bind parameters without restriction. Control is essential to ensure trustworthy execution, maintain system Integrity, and support Fault Tolerance. While flexibility is necessary for Maintainability.
+The issue is flexibility itself, as it requires appropriate control, especially at trust boundaries. An example of uncontrolled flexibility might be a function capable of executing arbitrary query statements with arbitrary bind parameters without restriction. Control is essential to ensure trustworthy execution, maintain system Integrity, and support Fault Tolerance. While flexibility is necessary for Maintainability.
 
-Minimize what is trusted and harden the trust boundaries. Think of trust boundaries like the hard candy shell of a jellybean: the soft, flexible interior represents the bulk of the application's logic. While the hard shell represents the critical points where external data or untrusted operations are carefully controlled so as not to make a sticky mess. Just as the candy shell protects the jellybean's interior from being exposed, well handled trust boundaries protect the core application from potentially harmful external influences. Defining and communicating these boundaries during the design phase makes it clear which areas of code are responsible for tight control, allowing developers to focus their efforts on maintaining the integrity and trustworthiness of these critical interfaces.
+To enhance security, minimize what is trusted and harden the trust boundaries. Think of trust boundaries like the hard candy shell of a jellybean: the soft, flexible interior represents the bulk of the application's logic. While the hard shell represents the critical points where external data or untrusted operations are carefully controlled so as not to make a sticky mess. Just as the candy shell protects the jellybean's interior from being exposed, well-handled trust boundaries protect the core application from potentially harmful external influences. Defining and communicating these boundaries during the design phase makes it clear which areas of code are responsible for tight control, allowing developers to focus their efforts on maintaining the integrity and trustworthiness of these critical interfaces.
 
-One way to allow flexibility while maintaining control is by implementing strict input handling at the trust boundaries. The trust boundary entry point allows the input handling to adapt to the context the value is arriving from. The advantage of this is that it allows the developer to focus on the flexibility of the code without worrying about unexpected input causing unintended behavior. This unexpected behavior could be simple bugs or more serious security vulnerabilities. This is covered further in Section 6.4.1.
+One way to allow flexibility while maintaining control is by implementing strict input handling at the trust boundaries. The trust boundary entry point allows the input handling to adapt to the context the value is arriving from. The advantage of this is that it allows the developer to focus on the flexibility of the code without worrying about unexpected input causing unintended behavior. This unexpected behavior could be simple bugs or serious security vulnerabilities. This is covered further in Section 6.4.1.
 
 ### 6.4. Resilient Coding and System Resilience
 
@@ -555,13 +558,13 @@ Strict input handling is a critical aspect of resilient coding. The most basic i
   - Ensures that only valid and expected data is processed, reducing the risk of injection attacks or unexpected behavior.
   - Always prefer allowing explicit values instead of rejecting unexpected values.
 
-With some platforms it may make sense to signify that an input value has been fully handled by passing it as a contextualized object instead of a scalar value after validation. (If this is the desired pattern, be sure to document and communicate it to the team.)
+In some platforms, it may be beneficial to signify that an input value has been fully handled by passing it as a contextualized object rather than a scalar value after validation; if this pattern is desired, ensure it is documented and communicated to the team.
 
 #### 6.4.1.1. The Request Surface Minimization Principle
 
-One tactic for resilient handing of input is to avoid the assumption that the entire request or envelope is intended to be processed. This inclines the programmer to access specific values within the request instead of all values. In some cases this has allowed developers to avoid certain types of injection attacks, and is generally a good sanitization tactic. This can also work to preserve resilience by simply ignoring values that are out of scope.
+One tactic for resilient handling of input is to avoid the assumption that the entire request or envelope is intended to be processed. This encourages the programmer to access specific values within the request rather than all values. In some cases, this has allowed developers to avoid certain types of injection attacks, and is generally a good sanitization tactic. This can also work to preserve resilience by simply ignoring values that are out of scope.
 
-As a security benefit is that the request can be analyzed for fraud or other attempts at alteration of the payload without adversely effecting application operation. It should be noted that requests that deviate from expectation should be logged at a minimum or rejected in sensitive situations.
+A security benefit is that the system can analyze requests for fraud or other attempts at altering the payload without adversely affecting application operation. It should be noted that requests that deviate from expectation should be logged at a minimum or rejected in sensitive situations.
 
 #### 6.4.1.1. The Derived Integrity Principle
 
@@ -594,7 +597,7 @@ For example, immagine a user initiates a purchase using some sort of shopping AP
 }
 ```
 
-Instead of trusting all of the data in this request, the server accepts the clients intent to check out with the items at the given quantities. It starts the checkout process with the item ids that exist in the system at the absolute value of the quantity. At no point in the checkout process does the server accept a price or total from the client.  Nor does it accept anything but existing items at a positive quantity. It may even flag a request including a price, logging or perhaps even rejecting it before trying to process it. Fundamentally, the server accepts the intent of the client to purchase the items specified, but does not allow the client to violate the *integrity* of the purchase. It does so by **deriving integrity** from the server side inventory and calculations.
+Instead of trusting all of the data in this request, the server accepts the clients intent to check out with the items at the given quantities. It starts the checkout process with the item ids that exist in the system at the absolute value of the quantity. At no point in the checkout process does the server accept a price or total from the client. It only accepts existing items at a positive quantity. It may even flag a request including a price, logging or perhaps even rejecting it before trying to process it. Fundamentally, the server accepts the intent of the client to purchase the items specified, but does not allow the client to violate the *integrity* of the purchase. It does so by **deriving integrity** from the server side inventory and calculations.
 
 A more advanced example of this principle in action is with JWTs (JSON Web Tokens). If the server accepts any algorithm specified in the JWT for signature verification. This allows the client to dictate the integrity of the token.
 
@@ -635,24 +638,26 @@ Low adherence to requirements will also be reflected by results in other types o
 
 If the posture stays stagnant over time, adjustments to development culture and/or leadership may be necessary. AppSec can encourage culture change by promoting FIASSE and sponsoring activities including continued education. It can be difficult to accept the limits of AppSec's influence, but it is essential to recognize that the responsibility for balancing business value creation with security needs ultimately lies with the development team as a whole.
 
-By spending valuable time in design activities, AppSec can guide larger numbers of developers that are adhering to the principles of FIASSE. It will also foster a culture of shared responsibility for security, where developers are empowered to take ownership of their code while having the support and guidance of AppSec professionals following established software engineering practices.
+By spending valuable time in design activities, AppSec can guide a larger number of developers who adhere to the principles of FIASSE. It will also foster a culture of shared responsibility for security, where developers are empowered to take ownership of their code while having the support and guidance of AppSec professionals following established software engineering practices.
 
 ### 7.1. Empowering Senior Software Engineers
 
-Experienced, top-tier software engineers are critical to the success of any AppSec program. AppSec professionals should work collaboratively *with* these engineers in design activities.
+Experienced, top-tier software engineers are critical to the success of any AppSec program. AppSec professionals should work collaboratively with these engineers in design activities.
+
 
 Senior engineers should be empowered to:
 
-- Ask 'What can go wrong?' and consider those issues at every stage of development.
+- Ask, "What can go wrong?" and consider those issues at every stage of development.
 - Drive the creation of Security Requirements, Acceptance Criteria, and Threat Scenarios.
-- Lead merge reviews, emphasizing SSEM attributes, software engineering principles.
+- Lead merge reviews, emphasizing SSEM attributes and software engineering principles.
+
 - Champion and schedule regular dependency maintenance.
 - Mentor peers as well as less experienced developers.
 - Liaise with AppSec teams to ensure smooth security alignment with software engineering practices.
 
 ### 7.2. Guiding Developing Software Engineers
 
-Software engineers who are still gaining experience (aka. Jr Programmers, Artisan or Ancillary Coders) benefit greatly from mental models like SSEM and the methodologies FIASSE describes. They may not always intuitively know "What can go wrong?" but can learn through structured guidance, merge reviews, and pair programming. While following established best practices is a good start, it is important to emphasize the Software Engineering discipline and how the attributes of the SSEM benefit both the programmer and security posture of the system. FIASSE provides the context for *why* certain practices are important, helping software engineers build a more robust engineering intuition. It helps them build their taste and smell for good and bad code.
+Software engineers who are still gaining experience (also known as Jr Programmers, Artisan, or Ancillary Coders) benefit greatly from mental models like SSEM and the methodologies FIASSE describes. They may sometimes struggle to intuitively know "What can go wrong?" but can learn through structured guidance, merge reviews, and pair programming. While following established best practices is a good start, it is important to emphasize the Software Engineering discipline and how the attributes of the SSEM benefit both the programmer and security posture of the system. FIASSE provides the context for why certain practices are important, helping software engineers build a more robust engineering intuition. It helps them build their taste and smell for good and bad code.
 
 These engineers should be encouraged to:
 
@@ -663,7 +668,7 @@ These engineers should be encouraged to:
 - Write unit tests that cover exceptional conditions and out-of-bounds values.
 - Learn and apply defensive coding techniques, particularly input validation and output encoding.
 - Be mindful of trust boundaries in the code they write and seek to deeply understand the architecture.
-- Seek understanding of FIASSE and SSEM to learn how fundamental principles effect outcomes.
+- Seek understanding of FIASSE and SSEM to learn how fundamental principles affect outcomes.
 
 ### 7.3. The Role of Product Owners and Managers
 
@@ -683,9 +688,9 @@ FIASSE is positioned to evolve alongside emerging trends in software engineering
 
 #### 8.1.1. AI-Driven Software Development
 
-The increasing use of AI-powered tools, particularly Generative AI, for code generation, bug detection, code fixes and automated testing presents both significant opportunities and challenges for software security. While these tools can accelerate development, they also risk propagating insecure coding patterns or generating code that is difficult to analyze, modify, and test securely if not properly guided.
+The increasing use of AI-powered tools, particularly Generative AI, for code generation, bug detection, code fixes, and automated testing, presents significant opportunities and challenges for software security. While these tools can accelerate development, they also risk propagating insecure coding patterns; without proper guidance, they may generate code that is difficult to analyze, modify, and test securely.
 
-FIASSE is well-suited to address this by providing a framework for **Prompt Engineering for Securable Code**. This involves crafting prompts for Generative AI tools that explicitly or implicitly request code exhibiting FIASSE's core securable attributes:
+FIASSE is well-suited to address this by providing a framework for Prompt Engineering for Securable Code. This involves crafting prompts for Generative AI tools that explicitly or implicitly request code exhibiting FIASSE's core securable attributes:
 
 - Analyzability in Prompts: Prompts can direct AI to generate code that is well-commented, uses clear and consistent naming conventions, adheres to established coding standards, and possesses a logical, understandable structure. For example, a prompt might specify, "Generate a Python function to parse CSV data, ensuring comprehensive comments for each logical step and adherence to PEP 8 style guidelines."
 - Modifiability in Prompts: Prompts can guide AI to produce modular code with low coupling and high cohesion, clear interfaces, and an avoidance of duplicated logic. An example could be, "Develop a Java class for user authentication that is easily extensible for new authentication methods and avoids hardcoding configuration parameters."
@@ -696,7 +701,7 @@ Beyond these core attributes, prompts can also incorporate broader security cons
 - Requesting code that implements specific security controls (e.g., "Generate code to sanitize user input for predictable code execution.").
 - Include security requirements and FIASSE attributes as part of the Product Requirements Document (prd.md).
 - Include FIASSE attributes as part of the Acceptance Criteria Document (acd.md).
-- Include FIASSE attributes as part of the code standards for generation (eg copilot-instructions.md).
+- Include FIASSE attributes as part of the code standards for generation (e.g., copilot-instructions.md).
 
 Integrating FIASSE into prompt engineering aims to shift the output of AI code generators towards producing code that is not only functional but also inherently more securable from its inception. This proactive approach complements other AI-enhanced security practices.
 
@@ -732,24 +737,24 @@ With AI playing a larger role in software development, security considerations a
 Adopting FIASSE does not require a structured approach. However, organizations can benefit from a strategic implementation plan to ensure successful integration of FIASSE principles into their software development practices. Here are some recommended steps:
 
 1. **Assess Current Practices:** Evaluate if the organization is open to adopting FIASSE principles and practices. This may involve discussions with key stakeholders and a review of existing workflows.
-   - Identify existing security practices and how they align with SSEM attributes.
-   - Determine the current level of understanding and acceptance of Software Engineering principles among development teams.
-   - Assess the misalignments FIASSE can address.
-2. **Integrate SSEM Terminology:** Deliberately incorporate SSEM attributes (Maintainability, Trustworthiness, Reliability) and their sub-attributes into existing developer documentation, coding standards, style guides, and training materials. This helps socialize the concepts and provides a common language for discussing and evaluating securability. This can be a challenging step depending on the organization.
+  - Identify existing security practices and how they align with SSEM attributes.
+  - Determine the current level of understanding and acceptance of Software Engineering principles among development teams.
+  - Assess the misalignments FIASSE can address.
+2. **Integrate SSEM Terminology:** Deliberately incorporate SSEM attributes (Maintainability, Trustworthiness, Reliability) and their sub-attributes into existing developer documentation, coding standards, style guides, and training materials. This helps socialize the concepts and provides a common language for discussing and evaluating securability. This step can be challenging depending on the organization.
 3. **Identify Key Influencers:** Identify senior software engineers and other key stakeholders who are able to internalize the framework and the principles. These individuals can champion FIASSE adoption. These individuals should have a strong understanding of software engineering.
 4. **Educate and Train Teams:** Provide comprehensive training on FIASSE activities and SSEM attributes to Key Influencers. Introductory training should be role-specific and integrated into onboarding and continuous learning programs.
-   - Development and AppSec should understand that FIASSE is meant to be discussed in the context of software engineering, not as a separate security initiative.
-   - After the initial training, primary delivery of on-going training should be delivered in the context of merge reviews, architecture discussions, and requirements gathering. Leaders should be encouraged to bring FIASSE discussions into these activities.
+  - Development and AppSec should understand that FIASSE is meant to be discussed in the context of software engineering, not as a separate security initiative.
+  - After the initial training, primary delivery of ongoing training should be delivered in the context of merge reviews, architecture discussions, and requirements gathering.g. Leaders should be encouraged to bring FIASSE discussions into these activities.
 5. **Foster Collaboration:** Promote regular collaboration between AppSec and Development teams. Discourage AppSec from simply reviewing items in isolation; instead, encourage AppSec to engage in Development activities such as requirements gathering.
 6. **Continuously Monitor and Improve:** FIASSE is an ongoing process. Implement real-time security observability and use the gathered insights to continuously refine security strategies and FIASSE implementation.
 
-The applicability of FIASSE spans various organizational types, including large technology companies integrating it into Continuous Security Engineering, financial institutions enhancing data protection, AI and cloud-based companies designing secure architectures, and open-source projects adopting secure development guidelines.
+FIASSE is applicable to various organizational types, such as large technology companies integrating it into Continuous Security Engineering, financial institutions enhancing data protection, AI and cloud-based companies designing secure architectures, and open-source projects adopting secure development guidelines.
 
 ## 9. Conclusion
 
 Building securable software is not solely the responsibility of individual programmers; it MUST be a natural and integral part of the Software Engineering discipline. FIASSE offers a framework to achieve this by fostering a common understanding between Application Security and Development teams.
 
-AppSec can allow development teams to build securable code confidently and autonomously. This collaborative, developer-centric approach, as outlined by FIASSE, aims to reduce friction, avoid common pitfalls like "Shoveling Left," and ultimately lead to more secure software outcomes that align with business objectives.
+FIASSE allows development teams to build securable code confidently and autonomously. This collaborative, developer-centric approach aims to reduce friction, avoid common pitfalls like "Shoveling Left," and ultimately lead to more secure software outcomes that align with business objectives.
 
 ## 10. References
 
