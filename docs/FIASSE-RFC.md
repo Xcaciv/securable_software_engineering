@@ -106,20 +106,20 @@ Within this framework, the Securable Software Engineering Model (SSEM) provides 
 
 ### 1.1. The Application Security Challenge
 
-Organizations invest significantly in secure coding initiatives and security testing tools, yet often do not observe commensurate outcomes in application security (AppSec). Tangible progress can feel slow, and friction between AppSec and Development teams is a common impediment. The friction between AppSec and Development teams is further complicated by the advent of Generative AI tools for code generation, which, while powerful, also present a risk of amplifying past security mistakes or introducing new, subtle vulnerabilities if not guided by sound engineering principles. Ensuring that AI-generated code is inherently securable is a new facet of this challenge. A fundamental question arises: how can development teams consistently create securable code if they are not deeply versed in security expertise?
-Furthermore, many well-intentioned strategies, including the prevalent "shift left" movement, have often yielded disappointing results in practice, failing to impact the software produced.
+Organizations invest significantly in secure coding initiatives and security testing tools, yet often do not observe commensurate outcomes in application security (AppSec). Tangible progress can feel slow, and friction between AppSec and Development teams is a common impediment. The friction between AppSec and Development teams is further complicated by Generative AI tools for code generation. While powerful, these tools can amplify past security mistakes or introduce new vulnerabilities if not guided by sound engineering principles. Ensuring AI-generated code is securable is a new facet of this challenge. A fundamental question arises: how can development teams consistently create securable code if they lack deep security expertise?
+Furthermore, many well-intentioned strategies, including the prevalent "shift left" movement, have often produced disappointing results in practice, failing to impact the software produced.
 
 ### 1.2. A Developer-Centric Security Paradigm
 
-This document advocates for a developer-centric security paradigm. Rather than expecting software engineers to adopt an adversarial mindset (a distinction further explored in Section 2.4), this approach emphasizes empowering developers. While leveraging sound software engineering principles is foundational, it is complemented by clear security requirements and robust assurance activities. With these elements effectively integrated, engineers can build securable systems as a natural part of their discipline. A common misconception is that the gap between security and development is inherently problematic, whereas the real issue lies in the lack of consideration for the business processes and skillsets involved in producing software. This document makes the case that the gap is not a problem; rather, it is the lack of consideration for the business processes and skillsets involved in producing software.
+This document advocates for a developer-centric security paradigm. Rather than expecting software engineers to adopt an adversarial mindset (a distinction further explored in Section 2.4), this approach emphasizes empowering developers. While leveraging sound software engineering principles is foundational, it is complemented by clear security requirements and robust assurance activities. With these elements effectively integrated, engineers can build securable systems as a natural part of their discipline. A common misconception is that the gap between security and development is inherently problematic; the real issue is the lack of consideration for the business processes and skillsets involved in producing software. This document makes the case that the gap is a non-issue; rather, it is the lack of consideration for the business processes and skillsets involved in producing software.
 
 ### 1.3. Document Purpose and Scope
 
 The purpose of this document is to introduce the Framework for Integrating Application Security into Software Engineering (FIASSE) and its core component, the Securable Software Engineering Model (SSEM). FIASSE (/feiz/) provides the overarching strategic approach and practices that integrate security into software engineering. SSEM (/si:m/), as a model within FIASSE, offers a common design language and a set of principles to guide the creation of secure software, aligning AppSec objectives with business goals.
 
-You will notice the proliferent use of the word 'securable' throughout this document to emphasize the dynamic nature of software security. See Section 2.1 for a detailed explanation of this term. Application Security must align with the business objectives for software development because of this dynamic nature.
+The term 'securable' is used throughout this document to emphasize the dynamic nature of software security. See Section 2.1 for a detailed explanation of this term. Because of this dynamic nature, Application Security must align with the business objectives for software development.
 
-This document will provide a comprehensive understanding and cover the following topics:
+This document aims to provide a comprehensive understanding and will cover the following topics:
 
 - Foundational principles underpinning FIASSE and SSEM (see [Section 2. Foundational Principles](#2-foundational-principles))
 - The core attributes of securable software as defined by SSEM (see [Section 3.2. Core Securable Attributes](#32-core-securable-attributes))
@@ -131,13 +131,13 @@ This document will provide a comprehensive understanding and cover the following
 
 This document is intended for AppSec professionals, software engineers, engineering managers, and anyone involved in the software development who seeks to improve application security outcomes.
 
-FIASSE recognizes that security organizations may employ both Application Security (AppSec) and Product Security roles. AppSec professionals focus on the technical aspects of security and work directly with developers to integrate SSEM attributes into code and applying FIASSE processes. They are responsible for security assurance. Application Security professionals align themselves with the business by aligning with development's processes including prioritization.
+In the context of FIASSE, security organizations may employ both Application Security (AppSec) and Product Security roles. AppSec professionals focus on the technical aspects of security and work directly with developers to integrate SSEM attributes into code and applies FIASSE processes. They are responsible for security assurance and align with development's processes, including prioritization.
 
 Product Security professionals operate at a higher strategic level, translating business risk into security requirements and managing customer communications around security. They also ensure regulatory compliance and align security with broader business objectives.
 
-FIASSE serves as a unifying framework for both roles: SSEM provides the technical language and measurable attributes needed for secure development practices. The framework's emphasis is on business alignment (Section 2.3) and clear expectations (Section 6.1) enable Product Security teams to effectively translate strategic security objectives into actionable development requirements with enhanced clarity.
+FIASSE serves as a unifying framework for both roles: SSEM provides the technical language and measurable attributes needed for secure development practices. The framework emphasizes business alignment (Section 2.3) and clear expectations (Section 6.1), enabling Product Security teams to translate strategic security objectives into actionable development requirements with clarity.
 
-Rather than creating silos, FIASSE fosters collaboration by filling the void in shared software engineering understanding of what constitutes securable software across both technical and strategic security functions.
+Rather than creating silos, FIASSE fosters collaboration by fostering a shared understanding of what constitutes securable software across technical and strategic security functions.
 
 ## 2. Foundational Principles
 
