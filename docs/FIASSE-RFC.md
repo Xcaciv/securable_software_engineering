@@ -195,7 +195,6 @@ SSEM is further designed to:
 
 Here are the core attributes of SSEM grouped into three primary categories, each representing a fundamental aspect of securable software:
 
-
 | **Maintainability** | **Trustworthiness** | **Reliability** |
 |:-----------------|:-----------------:|--------------:|
 | Analyzability    | Confidentiality   | Availability  |
@@ -289,7 +288,6 @@ Definition: Encompasses both data integrity, "the property that data has not bee
 
 For security, this means implementing measures such as cryptographic hashing, checksums, and access controls to prevent unauthorized modification or corruption of data. Emphasizing this attribute in a fundamental way ensures that the system can be trusted holistically, not just in isolated components.
 
-
 This approach recognizes that integrity is not just about preventing unauthorized changes. It also ensures that the system operates correctly and consistently, even in the face of potential threats or failures.
 
 ##### 3.2.3.3. Resilience
@@ -375,7 +373,6 @@ Measuring the attributes defined by SSEM is essential to quantify and evaluate t
   - **Audit Log Review Findings:** Results from periodic reviews of audit logs for completeness and usefulness.
   - **Non-repudiation Strength:** An assessment of the strength of evidence linking actions to entities (e.g., use of digital signatures).
 
-
 ##### 3.4.2.3. Authenticity
 
 - **Quantitative:**
@@ -445,7 +442,6 @@ Code review through merge requests is the single most effective technique for id
 
 The collaborative nature of merge reviews allows for the sharing of insight and expertise; they provide a fresh perspective to programmers who may have become too familiar with the code. When FIASSE-trained application security professionals participate, they share valuable insights and expertise with software engineering teams. Over time, this can elevate the overall capability of the team to understand the implications of SSEM attributes, fostering an appreciation for the desired securable results.
 
-
 It should be noted that teams implementing structured reviews report up to 80% fewer post-release bugs [CodeReviewBenefits].
 
 Merge reviews can also be used as an opportunity to ask 'What can go wrong?' to use threat modeling principles to examine code-level issues that could threaten Trustworthiness and Reliability. The simplified scope of a merge review helps to put aside the complexity of a larger system. This sort of targeted approach can make it easier to identify potential risks and vulnerabilities.
@@ -468,7 +464,6 @@ A prime example of "Shoveling Left" is dumping raw findings from security scanni
 
 To avoid this, AppSec should:
 
-
 1. Focus on True Positives: Validate findings to ensure accuracy.
 2. Analyze trends and issue pooling patterns: Look for patterns across multiple findings and tools to identify systemic issues.
 3. Identify Root Causes: Address systemic issues rather than just symptoms.
@@ -488,7 +483,6 @@ This type of training can be ineffective because it does not equip developers wi
 While scanning and testing tools are valuable for AppSec to understand the current security posture, their output must be used strategically. It should not be assumed that security requirements are implicit or that developers should be blamed for missing controls if clear expectations were not set. Productive software engineers have a structured workflow designed to deliver value. Any disruption of this workflow can lead to degraded software quality and the flaws that Application Security is trying to prevent.
 
 Therefore, fix requests should never circumvent the processes that software engineers rely on, as this can lead to misunderstandings and mistakes. Bypassing established workflows leads to misunderstandings and mistakes. Therefore, AppSec should not expect developers to act on security findings without clear, actionable information and the opportunity to properly execute their workflow.
-
 
 ## 6. Practical Guidance for Secure Software Development
 
@@ -644,7 +638,6 @@ By spending valuable time in design activities, AppSec can guide a larger number
 
 Experienced, top-tier software engineers are critical to the success of any AppSec program. AppSec professionals should work collaboratively with these engineers in design activities.
 
-
 Senior engineers should be empowered to:
 
 - Ask, "What can go wrong?" and consider those issues at every stage of development.
@@ -743,8 +736,10 @@ Adopting FIASSE does not require a structured approach. However, organizations c
 2. **Integrate SSEM Terminology:** Deliberately incorporate SSEM attributes (Maintainability, Trustworthiness, Reliability) and their sub-attributes into existing developer documentation, coding standards, style guides, and training materials. This helps socialize the concepts and provides a common language for discussing and evaluating securability. This step can be challenging depending on the organization.
 3. **Identify Key Influencers:** Identify senior software engineers and other key stakeholders who are able to internalize the framework and the principles. These individuals can champion FIASSE adoption. These individuals should have a strong understanding of software engineering.
 4. **Educate and Train Teams:** Provide comprehensive training on FIASSE activities and SSEM attributes to Key Influencers. Introductory training should be role-specific and integrated into onboarding and continuous learning programs.
+
   - Development and AppSec should understand that FIASSE is meant to be discussed in the context of software engineering, not as a separate security initiative.
-  - After the initial training, primary delivery of ongoing training should be delivered in the context of merge reviews, architecture discussions, and requirements gathering.g. Leaders should be encouraged to bring FIASSE discussions into these activities.
+  - After the initial training, primary delivery of ongoing training should be delivered in the context of merge reviews, architecture discussions, and requirements gathering. Leaders should be encouraged to bring FIASSE discussions into these activities.
+
 5. **Foster Collaboration:** Promote regular collaboration between AppSec and Development teams. Discourage AppSec from simply reviewing items in isolation; instead, encourage AppSec to engage in Development activities such as requirements gathering.
 6. **Continuously Monitor and Improve:** FIASSE is an ongoing process. Implement real-time security observability and use the gathered insights to continuously refine security strategies and FIASSE implementation.
 
