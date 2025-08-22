@@ -437,7 +437,7 @@ In addition to a role that extends product and design roles, security can also o
 
 ### 4.3. The Role of Merge Reviews
 
-While software engineering may lack formal licensing like other engineering disciplines, the merge review (or pull request review) process serves as a crucial point for mentoring, guidance, and validation. There are far-reaching benefits to this process. For security, this is where securable code review can scale effectively. It acts as an agile training ground where developers learn from peers and receive feedback in a constructive environment. SSEM attributes can provide a concrete basis for these reviews.
+While software engineering may lack formal mentoring like other engineering disciplines, the merge review (or pull request review) process serves as a crucial point for mentoring, guidance, and validation. There are far-reaching benefits to this process. For security, this is where securable code review can scale effectively. It acts as an agile training ground where developers learn from peers and receive feedback in a constructive environment. SSEM attributes can provide a concrete basis for these reviews.
 
 The teams should be careful to avoid introducing unnecessary complexity or friction into the review process. This means the team uses the merge review as guardrails, not as a gate. The goal is to grow the FIASSE mindset within the team, to create a positive experience for the developers.
 
