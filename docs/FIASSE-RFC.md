@@ -264,7 +264,7 @@ Achieving accountability relies on robust methods for managing principles and th
 
 ##### 3.2.2.3. Authenticity
 
-Definition: "The property that an entity is what it claims to be" (ISO/IEC 27000:2018). This ensures that users, systems, or information are genuine and can be verified. Authenticity is strongly supported by **Non-repudiation**, which is the "ability to prove the occurrence of a claimed event or action and its originating entities" (ISO/IEC 27000:2018). Non-repudiation prevents entities from falsely denying having performed an action or sent a message.
+Definition: "The property that an entity is what it claims to be" (ISO/IEC 27000:2018). This ensures that users, systems, or information are genuine and can be verified. Authenticity is strongly supported by non-repudiation, which is the "ability to prove the occurrence of a claimed event or action and its originating entities" (ISO/IEC 27000:2018). Non-repudiation prevents entities from falsely denying having performed an action or sent a message.
 Focusing on authenticity means ensuring that the entities involved in a transaction or communication are who they claim to be; their actions must be irrefutably linked to them. This involves implementing strategies such as:
 
 - Secure authentication methods (e.g., multi-factor authentication).
