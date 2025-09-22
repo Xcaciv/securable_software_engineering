@@ -35,6 +35,7 @@ Within this framework, the Securable Software Engineering Model (SSEM) provides 
     - [2.3. Security Mission: Reducing Material Impact](#23-security-mission-reducing-material-impact)
     - [2.4. Mindset Convergence: Hacker vs. Engineer](#24-mindset-convergence-hacker-vs-engineer)
     - [2.5. Aligning Security with Development](#25-aligning-security-with-development)
+    - [2.6. The Importance of Transparency](#26-the-importance-of-transparency)
   - [3. The Securable Principle](#3-the-securable-principle)
     - [3.1. Securable Software Engineering Model Overview](#31-securable-software-engineering-model-overview)
     - [3.2. Core Securable Attributes](#32-core-securable-attributes)
@@ -50,8 +51,13 @@ Within this framework, the Securable Software Engineering Model (SSEM) provides 
         - [3.2.3.1. Availability](#3231-availability)
         - [3.2.3.2. Integrity](#3232-integrity)
         - [3.2.3.3. Resilience](#3233-resilience)
-    - [3.3 SSEM as a Design Language](#33-ssem-as-a-design-language)
-    - [3.4 Measuring SSEM Attributes](#34-measuring-ssem-attributes)
+    - [3.3. Securable Code Strategy](#33-securable-code-strategy)
+      - [3.3.1. Transparency](#331-transparency)
+        - [3.3.1.1. Maintainability through Transparency](#3311-maintainability-through-transparency)
+        - [3.3.1.2. Trustworthiness through Transparency](#3312-trustworthiness-through-transparency)
+        - [3.3.1.3. Transparency Tactics](#3313-transparency-tactics)
+      - [3.3.2. SSEM as a Design Language](#332-ssem-as-a-design-language)
+    - [3.4. Measuring SSEM Attributes](#34-measuring-ssem-attributes)
       - [3.4.1. Measuring Maintainability](#341-measuring-maintainability)
         - [3.4.1.1. Analyzability](#3411-analyzability)
         - [3.4.1.2. Modifiability](#3412-modifiability)
@@ -64,7 +70,7 @@ Within this framework, the Securable Software Engineering Model (SSEM) provides 
         - [3.4.3.1. Availability](#3431-availability)
         - [3.4.3.2. Integrity](#3432-integrity)
         - [3.4.3.3. Resilience](#3433-resilience)
-  - [4. Integrating SSEM into Development Strategy](#4-integrating-ssem-into-development-strategy)
+  - [4. Integrating Security into Development Strategy](#4-integrating-security-into-development-strategy)
     - [4.1. Applying SSEM to Dependency Management](#41-applying-ssem-to-dependency-management)
     - [4.2. Natively Extending Development Processes](#42-natively-extending-development-processes)
     - [4.3. The Role of Merge Reviews](#43-the-role-of-merge-reviews)
@@ -178,6 +184,12 @@ Additionally, the two mindsets do not represent a gap. Instead, they are complem
 
 As mentioned above, true alignment between security and development requires a return to first principles. Instead of imposing security-centric jargon and processes that may slow or disrupt development, FIASSE advocates for using well-established software engineering terms to describe securable code attributes (SSEM properties like Analyzability, Modifiability, Testability, Confidentiality, etc.). This fosters understanding and empowers developers to address security confidently without years of dedicated security experience. The goal is to instill confidence and enable security to recognize these securable attributes in existing code. For example, identifying highly Analyzable code by its clarity and ease of understanding or low Cyclomatic complexity. Then understanding that this attribute plays an important role in accurately identifying security weaknesses, even before they are exploitable. Or by recognizing that Testable code can be altered quickly with high confidence in quality outcomes and that it will remain fortified. Development adds to Security's confidence by understanding what building securable software entails from an engineering perspective. As will be discussed, this also requires specific participation from AppSec professionals in the early stages of the Software Development Lifecycle (SDLC), particularly during requirements gathering and feature planning.
 
+### 2.6. The Importance of Transparency
+
+Transparency is the principle of designing a system so that its internal state and behavior are observable and understandable to authorized parties. It is a foundational engineering strategy that underpins several core SSEM attributes, enabling trust and simplifying analysis. Transparency is about showing clear, contextualized visibility into how the system operates, makes decisions, and handles data.
+
+Transparency is achieved through deliberate instrumentation and clear auditing capabilities. Depending exclusively on tools for transparency can lead to a reactive posture, as it may not provide the foundational observability needed for proactive system analysis. A transparent system is designed to be observable fundamentally, making it easier to analyze, maintain, and secure.
+
 ## 3. The Securable Principle
 
 This is a foundational principle of FIASSE. The Securable Principle shifts the focus from the traditional strategy of repeatedly asking "Is it secure?" to a more nuanced and actionable approach by questioning: "Do we meet our defined goals for this particular securable attribute?" This approach recognizes that security is not a binary state but a spectrum of qualities that can be measured, improved, and maintained over time. There is no static secure state. Instead of focusing on security controls, this principle emphasizes building software with inherent qualities that promote security and protect data. This increases the likelihood of being able to protect against real-world threats over a period of time.
@@ -270,7 +282,8 @@ Focusing on authenticity means ensuring that the entities involved in a transact
 - Secure authentication methods (e.g., multi-factor authentication).
 - Digital signatures and certificates to verify the origin and integrity of data and communications.
 - Comprehensive logging and auditing to trace actions back to their origin.
-These strategies provide assurance that the entities involved are genuine and accountable for their actions, which is essential for maintaining trust in the system. They also provide transparency to support the maintenance and troubleshooting of the system.
+
+These strategies provide assurance that the entities involved are genuine and accountable for their actions, which is essential for maintaining trust in the system. They also provide transparency to support the maintenance and troubleshooting of the system. Further, transparency complements accountability by ensuring that the mechanisms for tracing actions are clear, and data is accessible to authorized parties.
 
 #### 3.2.3. Reliability
 
@@ -294,7 +307,7 @@ This approach recognizes that integrity is not just about preventing unauthorize
 
 Definition: "The ability of a system to: (a) continue to operate during and after a failure of some part of the system (i.e., provide a degree of fault tolerance); and (b) recover from the failure and restore full operations" (RFC 4949). This also aligns with the concept of an application's ability to continue running predictably, even under unfavorable circumstances or load (as noted in Section 6.4).
 
-Resilience inherently includes **Fault Tolerance**, defined as "the ability of a system to continue to operate correctly even though a component has failed" (RFC 4949). This allows the system to withstand partial failures without complete breakdown. Achieving resilience means that fault tolerance is not just an attribute of specific features but is considered for the system as a whole. It involves designing the system to handle errors gracefully, recover from failures, and maintain functionality even when parts of the system are compromised or unavailable.
+Resilience inherently includes fault tolerance, defined as "the ability of a system to continue to operate correctly even though a component has failed" (RFC 4949). This allows the system to withstand partial failures without complete breakdown. Achieving resilience means that fault tolerance is not just an attribute of specific features but is considered for the system as a whole. It involves designing the system to handle errors gracefully, recover from failures, and maintain functionality even when parts of the system are compromised or unavailable.
 
 Strategies for building resilient systems include:
 
@@ -303,7 +316,31 @@ Strategies for building resilient systems include:
 - Strong trust boundaries: Clearly defining areas of the codebase that exert strictly controlled execution.
 - Implementing robust error handling and recovery mechanisms to manage partial failures effectively.
 
-### 3.3 SSEM as a Design Language
+### 3.3. Securable Code Strategy
+
+#### 3.3.1. Transparency
+
+Transparency directly strengthens key SSEM attributes and is a fundamental strategy. Achieving transparency requires a foundational design approach rather than relying solely on tooling. It should be achieved through instrumentation capabilities and clear auditing at a code level.
+
+##### 3.3.1.1. Maintainability through Transparency
+
+A transparent system is inherently easier to debug and understand. When developers can clearly trace data flow, state changes, and decision logic through structured logs and metrics, they can diagnose deficiencies and determine the effects of changes with greater speed and accuracy. As a result, this transparency makes the system more maintainable over its lifecycle.
+
+##### 3.3.1.2. Trustworthiness through Transparency
+
+Transparency is the mechanism that makes Accountability possible. To uniquely trace an action to an entity, a clear, immutable, and auditable trail of that action must exist. Likewise, Authenticity is reinforced when authentication and authorization events are transparently logged, allowing for verification and investigation. This verifiable behavior is the bedrock of Trustworthiness.
+
+##### 3.3.1.3. Transparency Tactics
+
+Engineering transparency into a system is an investment that benefits security and operational stability.
+
+- Log events as structured data, including rich context. This makes logs machine-parsable and vastly more useful for analysis, monitoring, and alerting.
+- For permission changes, data access, configuration updates, and other security-sensitive events, create detailed and immutable audit trails. The log should capture the "who, what, where, when, and why" of the action.
+- A system that manages user roles should log the requesting administrator, the target user, the old role, the new role, and a timestamp, providing an undeniable record for accountability.
+- To enhance transparency, expose health and performance metrics through instrumentation. Expose key operational metrics through a standardized API. Metrics like memory or CPU utilization, authentication failures, or input handling error counts. This way, the system provides transparent insight into its real-time behavior.
+- Whenever data or control flows across a trust boundary, consider logging useful event information. Include the outcome of any validation, sanitization, or transformation that is outside normal expectations. Optional debug logging of all events can also be useful. Documenting a clear path of execution makes security analysis as well as debugging much easier.
+
+#### 3.3.2. SSEM as a Design Language
 
 By defining these attributes using established software engineering terminology, SSEM provides a common design language. This enables developers to discuss, reason about, and implement security considerations using concepts already familiar to them. It shifts the focus from myopic treatment of vulnerabilities to cohesive creation of software with inherent securable qualities with intention from the design phase on.
 
@@ -311,7 +348,7 @@ This design language plays a crucial role in creating a cohesive product by equi
 
 A design language can bring together a culture of quality made up of diversely inclined professionals to focus on these common goals and ideals. This is achieved by the shift in conversations around security as mentioned in Section 3.1, where the focus is on meeting goals for specific attributes. This contrasts with a find-and-fix monotony that fails to scale. This cultural alignment can strongly influence the product's internal structure to support these technical values.
 
-### 3.4 Measuring SSEM Attributes
+### 3.4. Measuring SSEM Attributes
 
 Measuring the attributes defined by SSEM is essential to quantify and evaluate the securable qualities of software. This section outlines approaches for measuring each of the core attributes: Maintainability, Trustworthiness, and Reliability. These measurements provide actionable insights to guide developers in enhancing the securability of their software.
 
@@ -413,7 +450,7 @@ Measuring the attributes defined by SSEM is essential to quantify and evaluate t
   - **Defensive Coding Practices Review:** Assessment of code for practices like proper input validation, output encoding, and robust error handling.
   - **Incident Response Plan Effectiveness:** Review of how well the system and team recover from security incidents or operational failures.
 
-## 4. Integrating SSEM into Development Strategy
+## 4. Integrating Security into Development Strategy
 
 ### 4.1. Applying SSEM to Dependency Management
 
