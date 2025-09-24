@@ -84,7 +84,9 @@ Within this framework, the Securable Software Engineering Model (SSEM) provides 
     - [6.1. Establishing Clear Expectations](#61-establishing-clear-expectations)
       - [6.1.1. Proactive Communication](#611-proactive-communication)
       - [6.1.2. Integrating Security into Requirements](#612-integrating-security-into-requirements)
-    - [6.2. Threat Modeling as a Collaborative Practice](#62-threat-modeling-as-a-collaborative-practice)
+    - [6.2. Threat Modeling](#62-threat-modeling)
+    - [6.2.1. Threat Modeling at the Code Level](#621-threat-modeling-at-the-code-level)
+    - [6.2.2. Threat Modeling from a Software Engineering Perspective](#622-threat-modeling-from-a-software-engineering-perspective)
     - [6.3. Managing Flexibility and Control](#63-managing-flexibility-and-control)
     - [6.4. Resilient Coding and System Resilience](#64-resilient-coding-and-system-resilience)
       - [6.4.1. Input Handling](#641-input-handling)
@@ -543,13 +545,25 @@ Key deliverables can include:
 
 By embedding security into foundational design decisions via requirements, attributes like Trustworthiness, Integrity, and Fault Tolerance are more effectively realized. This approach allows Development teams to address security concerns as part of their standard workflow, making requirements an often underutilized yet powerful tool for security.
 
-### 6.2. Threat Modeling as a Collaborative Practice
+### 6.2. Threat Modeling
 
 Threat modeling is a valuable team activity, ideally performed early in the development process. When implementing formal threat modeling, it is important to avoid discouraging more organic approaches to the practice. It is often easier to start threat modeling using a simple framework, such as the "Four Question Framework" (What are we building? What can go wrong? What are we going to do about it? Did we do a good job?). This can highlight areas needing more detailed design or specific security requirements. Threat modeling can be organically integrated with the FIASSE mindset by simply asking "What can go wrong?" at any point in the process. This is sometimes known as "the sneaky method" of threat modeling.
 
-A key concept taken from threat modeling is the identification of **trust boundaries**. These are points in the system where data passes between entities with different levels of trust (e.g., user to application, application to database, service to service). Trust boundaries require heightened control over data and process execution. This concept should be allowed to influence implementation best practices, such as strict input handling. This is discussed further in Section 6.4.1.
+### 6.2.1. Threat Modeling at the Code Level
+
+Asking "What can go wrong?" at the code level can aid in identifying potential issues. When done among pairs of software engineers or with teams it can help junior software engineers develop their sense of taste for good code. Here are some example situations:
+
+- Merge Reviews: Reviewing an entire codebase is impractical because the code is likely to change before the review can be completed. However, it is important to keep up with code changes. And as we all know, earlier is cheaper when it comes to code. For these reasons setting the scope of a code review to the changeset of a merge provides clear context and responsibility.
+- Static Analysis: It can be useful to review static analysis (bonus if scoped to a merge request) results with the intent of going deeper by thinking about the impact of a weakness using the Four Question Framework.
+- Pair Programming: Encouraging pair programming can facilitate knowledge sharing. It can also help prevent security issues and allow software engineers to get comfortable asking "What can go wrong?"
+
+### 6.2.2. Threat Modeling from a Software Engineering Perspective
+
+[Comming Soon]
 
 ### 6.3. Managing Flexibility and Control
+
+A key concept taken from threat modeling is the identification of **trust boundaries**. These are points in the system where data passes between entities with different levels of trust (e.g., user to application, application to database, service to service). Trust boundaries require heightened control over data and process execution. This concept should be allowed to influence implementation best practices, such as strict input handling. This is discussed further in Section 6.4.1.
 
 Software engineers value flexibility in code, as it can facilitate feature implementation and bug fixing. Attackers, however, seek uncontrolled flexibility as a means to force the application to deviate from intended behavior.
 
