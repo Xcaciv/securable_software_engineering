@@ -89,7 +89,7 @@ Within this framework, the Securable Software Engineering Model (SSEM) provides 
     - [6.2.2. Threat Modeling from a Software Engineering Perspective](#622-threat-modeling-from-a-software-engineering-perspective)
     - [6.3. Managing Flexibility and Control](#63-managing-flexibility-and-control)
     - [6.4. Resilient Coding and System Resilience](#64-resilient-coding-and-system-resilience)
-      - [6.4.1. Input Handling](#641-input-handling)
+      - [6.4.1. Canonical Input Handling](#641-canonical-input-handling)
       - [6.4.1.1. The Request Surface Minimization Principle](#6411-the-request-surface-minimization-principle)
       - [6.4.1.1. The Derived Integrity Principle](#6411-the-derived-integrity-principle)
     - [6.5. Dependency Management](#65-dependency-management)
@@ -336,6 +336,8 @@ Transparency is the mechanism that makes Accountability possible. To uniquely tr
 
 Engineering transparency into a system is an investment that benefits security and operational stability.
 
+- Writing clear, well-documented code is clearly where to start. Use meaningful naming conventions, finite data types, and comments to explain why things work that way.
+- Use version control like git to their
 - Log events as structured data, including rich context. This makes logs machine-parsable and vastly more useful for analysis, monitoring, and alerting.
 - For permission changes, data access, configuration updates, and other security-sensitive events, create detailed and immutable audit trails. The log should capture the "who, what, where, when, and why" of the action.
 - A system that manages user roles should log the requesting administrator, the target user, the old role, the new role, and a timestamp, providing an undeniable record for accountability.
@@ -588,9 +590,9 @@ This drives developer strategy to focus on the following:
 
 These are verifiable items that AppSec can assess.
 
-#### 6.4.1. Input Handling
+#### 6.4.1. Canonical Input Handling
 
-Strict input handling is a critical aspect of resilient coding. The most basic input handling applies a minimal acceptable range for each parameter at the point of input. This is accomplished through three key practices:
+Input handling is a critical aspect of resilient coding. The most basic input handling applies a minimal acceptable range for each parameter at the point of input. This is accomplished through three key practices:
 
 - Canonicalization/Normalization:
   - Ensures that input data conforms to expected formats, types, lengths, and ranges before processing.
