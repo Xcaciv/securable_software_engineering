@@ -86,7 +86,7 @@ Within this framework, the Securable Software Engineering Model (SSEM) provides 
       - [6.1.2. Integrating Security into Requirements](#612-integrating-security-into-requirements)
     - [6.2. Threat Modeling](#62-threat-modeling)
     - [6.2.1. Threat Modeling at the Code Level](#621-threat-modeling-at-the-code-level)
-    - [6.2.2. Threat Modeling from a Software Engineering Perspective](#622-threat-modeling-from-a-software-engineering-perspective)
+    - [6.2.2. Threat Modeling Solution Framework](#622-threat-modeling-solution-framework)
     - [6.3. Managing Flexibility and Control](#63-managing-flexibility-and-control)
     - [6.4. Resilient Coding and System Resilience](#64-resilient-coding-and-system-resilience)
       - [6.4.1. Canonical Input Handling](#641-canonical-input-handling)
@@ -559,9 +559,11 @@ Asking "What can go wrong?" at the code level can aid in identifying potential i
 - Static Analysis: It can be useful to review static analysis (bonus if scoped to a merge request) results with the intent of going deeper by thinking about the impact of a weakness using the Four Question Framework.
 - Pair Programming: Encouraging pair programming can facilitate knowledge sharing. It can also help prevent security issues and allow software engineers to get comfortable asking "What can go wrong?"
 
-### 6.2.2. Threat Modeling from a Software Engineering Perspective
+### 6.2.2. Threat Modeling Solution Framework
 
-[Comming Soon]
+Threats follow data. Understanding how data flows through a system is crucial for identifying potential vulnerabilities. By mapping out data flows, developers can pinpoint where sensitive information is handled and where it might be exposed to threats. Frameworks like STRIDE are useful because they give structure to the process and help us think about 'what can go wrong'.
+
+Previously we may have addressed 'what we are going to do about it' by simply stating the problem in inverse language without considering what that means practically. This may work well for configuration based solutions. Similarly, we could be inclined to think in terms of security controls. In the same way we use frameworks like STRIDE, we can leverage SSEM to bring structure and help us think about what we are going to do about it. Considering the SSEM attributes can lead us to existing architectural or logical solutions that address the threat in a more holistic way. Further, when it is identified that the solution is not an attribute of the system, we understand that it must be addressed through defining or refining security requirements.
 
 ### 6.3. Managing Flexibility and Control
 
