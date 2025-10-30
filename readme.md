@@ -69,6 +69,8 @@ The NCSC's [Software Security Code of Practice](https://www.ncsc.gov.uk/collecti
 
 Carnegie Mellon University's [CERT](https://www.cert.org/) is a set of language-level rules providing both "what not to do" examples showing vulnerable code patterns and "what to do" examples. FIASSE complements these rules by providing a principled approach that helps programmers understand the "why?" behind securable code.
 
+Software Factory Security Framework ([SF2](https://sf2framework.com/)) "provides security leaders with a strategic approach to scaling security capabilities while improving business outcomes." It is an organizational level framework that complements FIASSE's focus on software engineering practices.
+
 ## Contributing
 
 Contributions to improve documentation and examples are welcome. Please see our [contributing guidelines](CONTRIBUTING.md) for details.
