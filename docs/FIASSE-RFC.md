@@ -35,7 +35,7 @@ Within this framework, the Securable Software Engineering Model (SSEM) provides 
     - [2.3. Security Mission: Reducing Material Impact](#23-security-mission-reducing-material-impact)
     - [2.4. Mindset Convergence: Hacker vs. Engineer](#24-mindset-convergence-hacker-vs-engineer)
     - [2.5. Aligning Security with Development](#25-aligning-security-with-development)
-    - [2.6. The Importance of Transparency](#26-the-importance-of-transparency)
+    - [2.6. The Transparency Principle](#26-the-transparency-principle)
   - [3. The Securable Principle](#3-the-securable-principle)
     - [3.1. Securable Software Engineering Model Overview](#31-securable-software-engineering-model-overview)
     - [3.2. Core Securable Attributes](#32-core-securable-attributes)
@@ -186,7 +186,7 @@ Additionally, the two mindsets do not represent a gap. Instead, they are complem
 
 As mentioned above, true alignment between security and development requires a return to first principles. Instead of imposing security-centric jargon and processes that may slow or disrupt development, FIASSE advocates for using well-established software engineering terms to describe securable code attributes (SSEM properties like Analyzability, Modifiability, Testability, Confidentiality, etc.). This fosters understanding and empowers developers to address security confidently without years of dedicated security experience. The goal is to instill confidence and enable security to recognize these securable attributes in existing code. For example, identifying highly Analyzable code by its clarity and ease of understanding or low Cyclomatic complexity. Then understanding that this attribute plays an important role in accurately identifying security weaknesses, even before they are exploitable. Or by recognizing that Testable code can be altered quickly with high confidence in quality outcomes and that it will remain fortified. Development adds to Security's confidence by understanding what building securable software entails from an engineering perspective. As will be discussed, this also requires specific participation from AppSec professionals in the early stages of the Software Development Lifecycle (SDLC), particularly during requirements gathering and feature planning.
 
-### 2.6. The Importance of Transparency
+### 2.6. The Transparency Principle
 
 Transparency is the principle of designing a system so that its internal state and behavior are observable and understandable to authorized parties. It is a foundational engineering strategy that underpins several core SSEM attributes, enabling trust and simplifying analysis. Transparency is about showing clear, contextualized visibility into how the system operates, makes decisions, and handles data.
 
@@ -619,7 +619,7 @@ A security benefit is that the system can analyze requests for fraud or other at
 
 #### 6.4.1.1. The Derived Integrity Principle
 
-A beneficial practice in secure input handling is **The Derived Integrity Principle**. This principle states that any value critical to the integrity of a system's state or business logic **must** be derived or calculated in the trusted server-side context. It should never be accepted directly from a client. This establishes the server as the single source of truth for what is real and authoritative instead of adopting the unknown integrity of the client.
+A beneficial approach to input handling is that any value critical to the integrity of a system's state or business logic **must** be derived or calculated in a trusted context. It should never be accepted directly from a client. This establishes a single source of truth for what is real and authoritative instead of adopting the unknown integrity of a client.
 
 Think of it this way: you would never let a customer walk into a store, pick up an item, and then tell the cashier how much it costs. The price is non-negotiable; it's derived from the store's own trusted system. The same logic must apply to our software.
 
