@@ -85,9 +85,9 @@ Within this framework, the Securable Software Engineering Model (SSEM) provides 
       - [6.1.1. Proactive Communication](#611-proactive-communication)
       - [6.1.2. Integrating Security into Requirements](#612-integrating-security-into-requirements)
     - [6.2. Threat Modeling](#62-threat-modeling)
-    - [6.2.1. Threat Modeling at the Code Level](#621-threat-modeling-at-the-code-level)
+    - [6.2.1. Code Level Threat Identification](#621-code-level-threat-identification)
     - [6.2.2. Threat Modeling Solution Framework](#622-threat-modeling-solution-framework)
-    - [6.3. Managing Flexibility and Control](#63-managing-flexibility-and-control)
+    - [6.3. The Flexibility Principle](#63-the-flexibility-principle)
     - [6.4. Resilient Coding and System Resilience](#64-resilient-coding-and-system-resilience)
       - [6.4.1. Canonical Input Handling](#641-canonical-input-handling)
       - [6.4.1.1. The Request Surface Minimization Principle](#6411-the-request-surface-minimization-principle)
@@ -549,31 +549,33 @@ By embedding security into foundational design decisions via requirements, attri
 
 ### 6.2. Threat Modeling
 
-Threat modeling is a valuable team activity, ideally performed early in the development process. When implementing formal threat modeling, it is important to avoid discouraging more organic approaches to the practice. It is often easier to start threat modeling using a simple framework, such as the "Four Question Framework" (What are we building? What can go wrong? What are we going to do about it? Did we do a good job?). This can highlight areas needing more detailed design or specific security requirements. Threat modeling can be organically integrated with the FIASSE mindset by simply asking "What can go wrong?" at any point in the process. This is sometimes known as "the sneaky method" of threat modeling.
+Threat modeling is a valuable design activity. When implementing formal threat modeling, it is important to avoid discouraging those who would like to identify things that can go wrong during later stages. It is often easier to start threat modeling using a simple framework, such as the "Four Question Framework" (What are we building? What can go wrong? What are we going to do about it? Did we do a good job?). This can highlight areas needing more detailed design or specific security requirements.
 
-### 6.2.1. Threat Modeling at the Code Level
+### 6.2.1. Code Level Threat Identification
 
-Asking "What can go wrong?" at the code level can aid in identifying potential issues. When done among pairs of software engineers or with teams it can help junior software engineers develop their sense of taste for good code. Here are some example situations:
+Asking "What can go wrong?" at the code level can aid in identifying potential issues. When done among pairs of software engineers or with teams it can help junior software engineers develop their sense of taste for good code. Here are some example situations that threat identification can be applied:
 
 - Merge Reviews: Reviewing an entire codebase is impractical because the code is likely to change before the review can be completed. However, it is important to keep up with code changes. And as we all know, earlier is cheaper when it comes to code. For these reasons setting the scope of a code review to the changeset of a merge provides clear context and responsibility.
 - Static Analysis: It can be useful to review static analysis (bonus if scoped to a merge request) results with the intent of going deeper by thinking about the impact of a weakness using the Four Question Framework.
 - Pair Programming: Encouraging pair programming can facilitate knowledge sharing. It can also help prevent security issues and allow software engineers to get comfortable asking "What can go wrong?"
 
+Identifying threats at the code level should feed back into the Threat Model so that these threats can be assessed from a design perspective. It may highlight design solutions that scale better and are more maintainable.
+
 ### 6.2.2. Threat Modeling Solution Framework
 
-Threats follow data. Understanding how data flows through a system is crucial for identifying potential vulnerabilities. By mapping out data flows, developers can pinpoint where sensitive information is handled and where it might be exposed to threats. Frameworks like STRIDE are useful because they give structure to the process and help us think about 'what can go wrong'.
+Threats follow data. Understanding how data flows through a system is crucial for identifying potential vulnerabilities. By mapping out data flows, developers can pinpoint where sensitive information is handled and where it might be exposed to threats. Frameworks like STRIDE are useful because they give structure to the process and help us think about attacks.
 
 Previously we may have addressed 'what we are going to do about it' by simply stating the problem in inverse language without considering what that means practically. This may work well for configuration based solutions. Similarly, we could be inclined to think in terms of security controls. In the same way we use frameworks like STRIDE, we can leverage SSEM to bring structure and help us think about what we are going to do about it. Considering the SSEM attributes (esp. Trustworthiness and Reliability) can lead us to existing architectural or logical solutions that address the threat in a more holistic way. Further, when it is identified that the solution is not an attribute of the system, we are able to understand that it must be addressed through defining or refining security requirements.
 
-### 6.3. Managing Flexibility and Control
+### 6.3. The Flexibility Principle
 
 A key concept taken from threat modeling is the identification of **trust boundaries**. These are points in the system where data passes between entities with different levels of trust (e.g., user to application, application to database, service to service). Trust boundaries require heightened control over data and process execution. This concept should be allowed to influence implementation best practices, such as strict input handling. This is discussed further in Section 6.4.1.
 
 Software engineers value flexibility in code, as it can facilitate feature implementation and bug fixing. Attackers, however, seek uncontrolled flexibility as a means to force the application to deviate from intended behavior.
 
-The issue is flexibility itself, as it requires appropriate control, especially at trust boundaries. An example of uncontrolled flexibility might be a function capable of executing arbitrary query statements with arbitrary bind parameters without restriction. Control is essential to ensure trustworthy execution, maintain system Integrity, and support Fault Tolerance. While flexibility is necessary for Maintainability.
+The issue is not flexibility itself, but the exposure of the flexibility through careless handling of trust boundaries. An example of uncontrolled flexibility might be a function capable of executing arbitrary query statements with arbitrary bind parameters without restriction. Control is essential to ensure trustworthy execution, maintain system Integrity, and support Fault Tolerance. While flexibility is necessary for Maintainability.
 
-To enhance security, minimize what is trusted and harden the trust boundaries. Think of trust boundaries like the hard candy shell of a jellybean: the soft, flexible interior represents the bulk of the application's logic. While the hard shell represents the critical points where external data or untrusted operations are carefully controlled so as not to make a sticky mess. Just as the candy shell protects the jellybean's interior from being exposed, well-handled trust boundaries protect the core application from potentially harmful external influences. Defining and communicating these boundaries during the design phase makes it clear which areas of code are responsible for tight control, allowing developers to focus their efforts on maintaining the integrity and trustworthiness of these critical interfaces.
+To enhance security, minimize what is trusted and harden the trust boundaries. Think of trust boundaries like the hard shell of a turtle: the soft, flexible interior represents the bulk of the application's logic. While the hard shell represents the critical points where external data or untrusted operations are carefully controlled so as not to make a sticky mess. Just as the turtle's shell protects its interior from attack, well-handled trust boundaries protect the core application from potentially harmful external influences. Defining and communicating these boundaries during the design phase makes it clear which areas of code are responsible for tight control, allowing developers to focus their efforts on maintaining the integrity and trustworthiness of these critical interfaces. Data Flow Diagrams are invaluable in identifying these boundaries
 
 One way to allow flexibility while maintaining control is by implementing strict input handling at the trust boundaries. The trust boundary entry point allows the input handling to adapt to the context the value is arriving from. The advantage of this is that it allows the developer to focus on the flexibility of the code without worrying about unexpected input causing unintended behavior. This unexpected behavior could be simple bugs or serious security vulnerabilities. This is covered further in Section 6.4.1.
 
@@ -669,7 +671,7 @@ Regularly updating software dependencies is a fundamental tactic for maintaining
 Further key considerations for dependency management include:
 
 - Avoid unnecessary dependencies. Each dependency introduces the need for additional maintenance.
-- If no direct update fixes a known flaw in a dependency, further analysis is required to identify mitigation strategies (e.g., compensating controls, forking and patching, or reimplementation).
+- If no direct update fixes a known flaw in a dependency, further analysis is required to identify mitigation strategies (e.g., compensating controls, forking and patching, or re-implementation).
 - Organizations should have a clear policy regarding the use and maintenance of open-source dependencies, including processes for addressing vulnerabilities found within them.
 - Reliance solely on CVE (Common Vulnerabilities and Exposures) is not sufficient. A thorough analysis of dependencies and their transitive "baggage" is recommended.
 
