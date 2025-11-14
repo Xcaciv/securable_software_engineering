@@ -8,7 +8,7 @@
 
 TL;DR: please read the [RFC](docs/FIASSE-RFC.md). Explore [FIASSE website](https://fiasse.org). Visit [GitHub Discussions](https://github.com/owasp/www-project-fiasse/discussions) to contribute.
 
-This repository contains resources and materials for the OWASP Framework for Integrating Application Security into Software Engineering (FIASSE). FIASSE (pronounced /feiz/) promotes a **developer-centric, principled approach** to build **securable** software — recognizing that security is a dynamic, ongoing process like development. It introduces the Securable Software Engineering Model (SSEM) as a **common design language** that uses established software engineering terms to integrate security into software architecture, software design, and programming. The framework aims to build resilient applications that withstand threats.
+This repository contains resources and materials for the OWASP Framework for Integrating Application Security into Software Engineering (FIASSE). FIASSE (pronounced /feiz/ like 'phase') promotes a **developer-centric, principled approach** to build **securable** software — recognizing that security is a dynamic, ongoing process like development. It introduces the Securable Software Engineering Model (SSEM) as a **common design language** that uses established software engineering terms to integrate security into software architecture, design, and engineering. Integrating security into the principals that mold the code itself. The framework aims to build resilient applications that withstand threats over time.
 
 ## Purpose
 
@@ -63,6 +63,8 @@ This framework is focused on Securable Software Engineering and is complemented 
 
 OWASP also hosts numerous projects that document security requirements and features, such as [OWASP Mobile Application Security](https://mas.owasp.org/). The [OWASP Developer Guide](https://owasp.org/www-project-developer-guide/), which is a comprehensive resource for various other OWASP resources.
 
+Another great resource for reference requirements and assurance practices is [OpenCRE](https://opencre.org/) which collects together and maps various security frameworks.
+
 NIST [Secure Software Development Framework (SSDF)](https://csrc.nist.gov/publications/detail/sp/800-218/final) defines four phases that represent different facets for implementing secure software development practices. It aligns with FIASSE's principles by emphasizing the integration of security into the software development lifecycle.
 
 The NCSC's [Software Security Code of Practice](https://www.ncsc.gov.uk/collection/software-security-code-of-practice-implementation-guidance) defines desired outcomes and some key strategies. While FIASSE framework focuses on first-level follow-on principles and strategies for achieving securable outcomes, intended for Development and Assurance teams to align with business strategies. SSEM specifies the attributes that are used to produce the desired outcomes, and the FIASSE methodology provides practical guidance for implementing these attributes in software engineering practices.
@@ -78,3 +80,12 @@ Contributions to improve documentation and examples are welcome. Please see our 
 ## License
 
 Attribution 4.0 International (CC BY 4.0) - see the [LICENSE](licence.txt) file for details.
+
+## Acknowledgments
+
+This project is a collaborative effort by the OWASP community. We thank all contributors for their valuable input and dedication to improving software security.
+
+There is a [list of contributors](CONTRIBUTORS.md) who have participated in this project. Some early contributors that help shape the initial concepts and redteam the ideas include:
+
+- Spyros Gasteratos
+
