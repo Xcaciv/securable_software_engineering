@@ -322,7 +322,7 @@ Strategies for building resilient systems include:
 
 #### 3.3.1. Transparency
 
-Transparency directly strengthens key SSEM attributes and is a fundamental strategy. Achieving transparency requires a foundational design approach rather than relying solely on tooling. It should be achieved through instrumentation capabilities and clear auditing at a code level.
+Transparency directly strengthens key SSEM attributes and is a fundamental strategy. Achieving transparency requires a foundational design approach rather than relying solely on tooling. It should be achieved through instrumentation capabilities and clear auditing at a code level. Each of the SSEM attributes are proven through transparency in some form. **Note** that transparency is restricted by the attribute of confidentiality.
 
 ##### 3.3.1.1. Maintainability through Transparency
 
