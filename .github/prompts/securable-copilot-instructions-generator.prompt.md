@@ -1,9 +1,9 @@
 ---
 mode: "agent"
-tools: ['codebase', 'editFiles', 'extensions', 'fetch', 'githubRepo', 'search']
-description: "Generate a copilot-instructions"
+tools: ['codebase', 'editFiles', 'extensions', 'fetch', 'search']
+description: "Enhances copilot-instructions with securable software engineering principles and specific security practices."
 ---
-Your task is to create or update a `copilot-instructions.md` file that provides comprehensive guidance for secure development. Combine high-level security principles with specific, actionable rules, and include language- or framework-specific security practices as appropriate for the codebase.
+Your task is to create or update a copilot instructions file. (if an instructions file is not given in the context update or create `copilot-instructions.md`) Combine high-level security principles with specific, actionable rules, and include language- or framework-specific security practices as appropriate for the codebase.
 
 1.  **Foundation:** 
     *   Fetch the FIASSE RFC to establish guiding principles for generating "securable" software. @fetch https://raw.githubusercontent.com/Xcaciv/securable_software_engineering/refs/heads/main/docs/FIASSE-RFC.md
