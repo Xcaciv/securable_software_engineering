@@ -748,10 +748,10 @@ FIASSE is well-suited to address this by providing a framework for Prompt Engine
 
 Beyond these core attributes, prompts can also incorporate broader security considerations derived from FIASSE's principles:
 
-- Requesting code that implements specific security controls (e.g., "Generate code to sanitize user input for predictable code execution.").
-- Include security requirements and FIASSE attributes as part of the Product Requirements Document (prd.md).
-- Include FIASSE attributes as part of the Acceptance Criteria Document (acd.md).
-- Include FIASSE attributes as part of the code standards for generation (e.g., copilot-instructions.md).
+- Requesting code that implements reliability features (e.g., "Generate code to sanitize user input for predictable code execution.").
+- Include security requirements and SSEM attributes as part of the Product Requirements Document (prd.md).
+- Include SSEM attributes as part of the Acceptance Criteria Document (acd.md).
+- Include SSEM attributes as part of the code standards for generation (e.g., copilot-instructions.md).
 
 Integrating FIASSE into prompt engineering aims to shift the output of AI code generators towards producing code that is not only functional but also inherently more securable from its inception. This proactive approach complements other AI-enhanced security practices.
 
@@ -834,4 +834,5 @@ Editors
 [Details TBD]
 
 Advisors
-[Details TBD]
+  [Contributors](../CONTRIBUTORS.md)
+[more TBD]
