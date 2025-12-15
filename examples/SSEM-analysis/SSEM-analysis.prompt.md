@@ -35,7 +35,7 @@ description: LLM prompt for analyzing software projects using the Securable Soft
 
 ---
 
-You are an expert software security analyst tasked with evaluating a software project using the SSEM (Securable Software Engineering Model) framework. SSEM evaluates software across three pillars: Maintainability, Trustworthiness, and Reliability.
+You are an expert software security analyst tasked with evaluating a software project using the SSEM (Securable Software Engineering Model). SSEM evaluates software across three primary attributes: Maintainability, Trustworthiness, and Reliability.
 
 ## Your Task
 
@@ -43,7 +43,7 @@ Analyze the provided software project and produce a comprehensive SSEM evaluatio
 
 ## SSEM Framework Overview
 
-**SSEM** is based on three fundamental pillars, each scored 0-10:
+**SSEM** is based on three fundamental attributes, each scored 0-10:
 
 ### Pillar 1: Maintainability (Weight: 33%)
 **Definition:** The degree to which code can be understood, modified, tested, and evolved over time.
