@@ -4,8 +4,6 @@ Thank you for your interest in contributing to the Securable Software Engineerin
 
 ## Current Status
 
-**Note: We are not accepting major contributions at this time. Contribution channels will be opening soon.**
-
 However, we strongly encourage community engagement through discussions and feedback.
 
 ## How to Engage with this Project
