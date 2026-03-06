@@ -1,6 +1,6 @@
 # Contributing to Securable Software Engineering
 
-Thank you for your interest in contributing to the Securable Software Engineering repository! While we are not accepting major contributions at this time, we are preparing to open for contributions soon.
+Thank you for your interest in contributing to the Securable Software Engineering repository! 
 
 ## Current Status
 
