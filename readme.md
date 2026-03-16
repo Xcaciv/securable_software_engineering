@@ -85,7 +85,4 @@ Attribution 4.0 International (CC BY 4.0) - see the [LICENSE](licence.txt) file 
 
 This project is a collaborative effort by the OWASP community. We thank all contributors for their valuable input and dedication to improving software security.
 
-There is a [list of contributors](CONTRIBUTORS.md) who have participated in this project. Some early contributors that help shape the initial concepts and redteam the ideas include:
-
-- Spyros Gasteratos
-
+There is a [list of contributors](CONTRIBUTORS.md) who have participated in this project. Some early contributors that help shape the initial concepts and redteam the ideas.

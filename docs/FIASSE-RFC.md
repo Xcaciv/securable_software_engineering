@@ -1,13 +1,4 @@
-# A Framework for Integrating Application Security into Software Engineering (FIASSE) and The Securable Software Engineering Model (SSEM)
-
-> Request for Comments:
->
-> Obsoletes: None
->
-> Category: Informational
->
-> Alton Crossley
-> May 2025
+# A Framework for Integrating Application Security into Software Engineering (FIASSE)
 
 ## Abstract
 
@@ -617,7 +608,7 @@ One tactic for resilient handling of input is to avoid the assumption that the e
 
 A security benefit is that the system can analyze requests for fraud or other attempts at altering the payload without adversely affecting application operation. It should be noted that requests that deviate from expectation should be logged at a minimum or rejected in sensitive situations.
 
-#### 6.4.1.1. The Derived Integrity Principle
+#### 6.4.1.2. The Derived Integrity Principle
 
 A beneficial approach to input handling is that any value critical to the integrity of a system's state or business logic **must** be derived or calculated in a trusted context. It should never be accepted directly from a client. This establishes a single source of truth for what is real and authoritative instead of adopting the unknown integrity of a client.
 
