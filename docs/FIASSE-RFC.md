@@ -260,7 +260,7 @@ Key attributes contributing to trustworthiness include:
 ##### 3.2.2.1. Confidentiality
 
 Definition: "The property that data is not disclosed to system entities unless they have been authorized to know the data" (RFC 4949). This ensures that sensitive information is protected from unauthorized access.
-FIASSE emphasizes confidentiality as a fundamental attribute achieved by designing software with inherent qualities that protect sensitive information, rather than relying solely on overlaid security controls.
+FIASSE emphasizes confidentiality as a fundamental attribute achieved by constructing software with inherent qualities that protect sensitive information, rather than relying solely on overlaid security controls.
 
 ##### 3.2.2.2. Accountability
 
