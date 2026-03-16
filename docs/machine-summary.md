@@ -1,121 +1,144 @@
-# Guidance for Generating Securable Software based on FIASSE/SSEM
+# Guidance for Generating Securable Software Based on FIASSE/SSEM
 
-This document provides a summary of the Securable Software Engineering Model (SSEM) attributes, tailored for guiding a Large Language Model (LLM) like Copilot to generate code that is inherently more securable. The core principle is that securable software is built upon the pillars of **Maintainability**, **Trustworthiness**, and **Reliability**.
+This summary is intended to guide an LLM to generate software that is *inherently securable* or *securabel by construction*. This is *securability engineering*.
+
+## 0. Core Framing from FIASSE
+
+Use the **Securable Principle** as the primary framing for generated code:
+
+- Do not treat security as a binary state.
+- Prefer the question: "Do we meet our defined goals for this securable attribute?"
+- Build software with inherent qualities that are durable under change.
+
+Use **Transparency** as a core strategy across all attributes:
+
+- Favor code and system behavior that are observable and auditable to authorized parties.
+- Prefer structured logging and instrumentation at trust boundaries.
+- Remember transparency is constrained by **Confidentiality**.
+
+The core attribute groups remain:
+
+- **Maintainability**
+- **Trustworthiness**
+- **Reliability**
 
 ## 1. Maintainability
 
-**Principle**: Code that cannot be changed with confidence is not securable. The LLM should generate code that is easy for humans to understand, modify, and test.
+Maintainability is the degree to which software can be modified effectively and efficiently by intended maintainers (ISO/IEC 25010:2011).
 
 ### 1.1. Analyzability
 
-**Definition**: The ease with which code can be understood to diagnose issues or assess the impact of changes.
+Definition (RFC-aligned): the degree to which impact of change and causes of failures can be diagnosed efficiently.
 
-**LLM Guidance**:
+LLM guidance:
 
-- **Generate Clear Code**: Produce code with meaningful variable/function names and comprehensive comments that explain the "why," not just the "what."
-- **Control Complexity**: Keep functions and classes small, focused on a single responsibility, and with low cyclomatic complexity.
-- **Adhere to Standards**: Follow established language-specific style guides (e.g., PEP 8 for Python, GoF patterns for Java) to ensure consistency.
-- **Avoid Duplication**: Refactor repeated logic into reusable functions or classes.
-
-*Example Prompt Fragment*: "...generate a Python function that is highly analyzable, with clear comments explaining the logic, low complexity, and adherence to PEP 8."
+- Generate code with clear naming, bounded function/class size, and low complexity.
+- Minimize duplication and avoid hidden control flow.
+- Prefer comments that explain *why* a decision exists.
+- Keep component boundaries understandable so impact analysis is fast.
 
 ### 1.2. Modifiability
 
-**Definition**: The ability to modify code without introducing defects or degrading quality.
+Definition (RFC-aligned): the degree to which software can be modified without introducing defects or degrading quality.
 
-**LLM Guidance**:
+LLM guidance:
 
-- **Promote Modularity**: Generate modular code with low coupling (minimal dependencies) and high cohesion (related logic is grouped together).
-- **Use Abstractions**: Employ interfaces and abstract classes to decouple implementation details from the core logic.
-- **Externalize Configuration**: Avoid hardcoding values like connection strings, API keys, or feature flags. Generate code that reads them from configuration files or environment variables.
-
-*Example Prompt Fragment*: "...design a Java class for payment processing that is easily modifiable. Use an interface for the payment gateway so different gateways can be added later without changing the core class."
+- Favor low coupling and coherent module boundaries.
+- Use abstractions so changes stay local and avoid cascading edits.
+- Preserve existing behavior with focused tests when modifying code.
+- Keep security-critical logic explicit so remediation can be done quickly.
 
 ### 1.3. Testability
 
-**Definition**: The ease with which code can be tested to verify it meets requirements.
+Definition (RFC-aligned): the degree to which test criteria can be established and tests can be executed effectively.
 
-**LLM Guidance**:
+LLM guidance:
 
-- **Write Pure Functions**: Where possible, generate functions with clear inputs and outputs that have no side effects.
-- **Enable Dependency Injection**: Generate code that allows dependencies to be "injected" (passed as parameters) rather than instantiated internally. This makes mocking and testing in isolation possible.
-- **Generate Unit Tests**: When generating a function or class, also generate a corresponding set of unit tests that cover valid inputs, edge cases, and error conditions.
-
-*Example Prompt Fragment*: "...write a Go function to validate an email address, and also generate a comprehensive suite of unit tests for it using the standard `testing` package. The function should not have external dependencies."
+- Prefer deterministic units with clear inputs/outputs.
+- Enable isolated testing by injecting dependencies.
+- Generate tests for expected behavior, edge cases, and error paths.
+- Keep unit coupling low so tests can be authored and run quickly.
 
 ## 2. Trustworthiness
 
-**Principle**: The system should operate as expected and meet its security requirements. The LLM should generate code that protects data and ensures actions are authentic and traceable.
+Trustworthiness is the degree to which a system can be expected to satisfy requirements, including security requirements (RFC 4949).
 
 ### 2.1. Confidentiality
 
-**Definition**: Ensuring data is not disclosed to unauthorized entities.
+Definition: data is disclosed only to authorized entities (RFC 4949).
 
-**LLM Guidance**:
+LLM guidance:
 
-- **Implement Access Controls**: Generate code that enforces authorization checks before accessing data or performing sensitive actions.
-- **Use Modern Cryptography**: When encryption is needed, use strong, current, and well-vetted cryptographic libraries and algorithms. Avoid generating custom crypto implementations.
-- **Prevent Data Leakage**: Ensure sensitive data is not exposed in logs, error messages, or URLs.
-
-*Example Prompt Fragment*: "...generate a C# code snippet to retrieve user profile data. Ensure it first checks if the currently authenticated user has the 'Admin' role or if their ID matches the requested profile ID."
+- Enforce authorization before sensitive operations.
+- Avoid exposing secrets or sensitive fields in logs, errors, and URLs.
+- Use established cryptographic libraries and modern algorithms when needed.
+- Respect trust boundaries where data classification and access rules differ.
 
 ### 2.2. Accountability
 
-**Definition**: Ensuring actions of an entity can be traced uniquely to that entity.
+Definition: actions of an entity are uniquely traceable to that entity (RFC 4949).
 
-**LLM Guidance**:
+LLM guidance:
 
-- **Generate Detailed Audit Logs**: For sensitive operations (e.g., login, data modification, permission changes), generate structured logs that include who performed the action, what was changed, the timestamp, and the source IP address.
-- **Ensure Log Integrity**: Do not include user-controlled data in a way that could corrupt or manipulate the log format (log injection).
-
-*Example Prompt Fragment*: "...when a user's password is changed, generate a structured JSON log entry for accountability that includes the user ID, a static event message, and the timestamp."
+- Create immutable, structured audit trails for security-sensitive actions.
+- Capture who, what, where, when, and outcome in audit events.
+- Preserve log integrity and avoid log-forging vectors.
+- Ensure attribution remains verifiable for incident response.
 
 ### 2.3. Authenticity
 
-**Definition**: Ensuring an entity (user or system) is what it claims to be.
+Definition: an entity is what it claims to be (ISO/IEC 27000:2018).
 
-**LLM Guidance**:
+LLM guidance:
 
-- **Use Secure Authentication Mechanisms**: Implement standard, secure authentication patterns. For tokens, use libraries that properly validate signatures and claims (e.g., expiration).
-- **Verify Data Integrity**: When receiving data with a signature (like a JWT or a webhook payload), generate code to cryptographically verify the signature before trusting the content.
-
-*Example Prompt Fragment*: "...generate a Node.js function using the 'jsonwebtoken' library to verify a JWT. It must validate the signature against a secret from an environment variable and check the token's expiration."
+- Use strong authentication and robust credential/session handling.
+- Verify signatures and authenticity claims before trusting payloads.
+- Use non-repudiation-supporting mechanisms where appropriate (for example, signed events).
+- Log authentication/authorization events to support investigation and trust.
 
 ## 3. Reliability
 
-**Principle**: The system should perform its specified functions correctly and consistently, even under adverse conditions or attack.
+Reliability is the degree to which software performs specified functions under specified conditions for a specified period (ISO/IEC 25010:2011).
 
 ### 3.1. Availability
 
-**Definition**: The system is accessible and usable upon demand by an authorized entity.
+Definition: authorized entities can access and use the system on demand (RFC 4949).
 
-**LLM Guidance**:
+LLM guidance:
 
-- **Implement Timeouts and Retries**: For network requests to external services, generate code that includes sensible timeouts and a retry mechanism with exponential backoff.
-- **Handle Resource Management**: Ensure resources like database connections or file handles are properly closed in all execution paths (e.g., using `try-with-resources` in Java or `defer` in Go).
-
-*Example Prompt Fragment*: "...generate a Python function using the `requests` library to call an external API. It should have a 5-second timeout and retry up to 3 times on failure."
+- Design for graceful degradation under stress and partial failure.
+- Use timeouts, backoff, and recovery paths for dependent services.
+- Ensure resource cleanup and bounded resource usage.
+- Favor patterns that reduce outage blast radius.
 
 ### 3.2. Integrity
 
-**Definition**: Data and systems are protected from unauthorized or accidental modification.
+Definition: data is not changed, destroyed, or lost in an unauthorized/accidental manner, and the system runs without unauthorized manipulation (RFC 4949).
 
-**LLM Guidance**:
+LLM guidance:
 
-- **Apply the Derived Integrity Principle**: Never trust client-supplied data for critical logic. Generate code that derives or recalculates authoritative values (like price, permissions, or object state) on the server-side.
-- **Use Parameterized Queries**: To prevent SQL injection, exclusively use parameterized queries or prepared statements for database interactions. Never generate code that concatenates user input into SQL strings.
-- **Validate All Inputs**: Generate strict, allowlist-based validation for all data crossing a trust boundary.
-
-*Example Prompt Fragment*: "...generate a PHP script to update a product's inventory. The product ID and new quantity should be passed as parameters to a prepared statement. Do not trust any price information from the client."
+- Apply the **Derived Integrity Principle**: derive critical business/state values in trusted server context, never directly from client input.
+- Validate, canonicalize/normalize, and sanitize input at trust boundaries.
+- Preserve authoritative state transitions in controlled server logic.
+- Use integrity checks and access control to protect data and state.
 
 ### 3.3. Resilience
 
-**Definition**: The ability of a system to operate during and recover from failures or attacks. This is achieved through **defensive coding**.
+Definition: ability to continue operation through failures and recover to full operation (RFC 4949).
 
-**LLM Guidance**:
+LLM guidance:
 
-- **Implement Robust Error Handling**: Generate code that anticipates and gracefully handles potential errors (e.g., invalid input, network failures, file-not-found) instead of crashing.
-- **Sanitize Input and Encode Output**: Generate code that validates and sanitizes all input at trust boundaries. Ensure all data written to a different context (HTML, SQL, shell) is properly encoded to prevent injection attacks.
-- **Fail Securely**: In case of an unrecoverable error, ensure the system fails to a secure state that does not expose sensitive information.
+- Use defensive coding to keep execution predictable under abnormal conditions.
+- Implement robust error handling and explicit recovery behavior.
+- Encode/escape output for destination context to avoid interpreter injection.
+- Build with fault tolerance and clear trust boundaries.
 
-*Example Prompt Fragment*: "...generate a Java servlet that reads a 'username' parameter. It must validate the input against a strict alphanumeric pattern and use output encoding to display it safely on an HTML page to prevent XSS."
+## 4. Trust Boundary Input Pattern (RFC 6.4.1 Aligned)
+
+When generating input-handling code at trust boundaries, prefer this sequence:
+
+1. Canonicalize/normalize input into expected form.
+2. Sanitize potentially harmful content for the context.
+3. Validate against explicit allowlisted criteria.
+4. Ignore or reject out-of-scope request fields based on sensitivity.
+5. Log anomalous boundary events with useful context.
