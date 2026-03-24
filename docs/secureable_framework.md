@@ -769,7 +769,7 @@ FIASSE naturally aligns with Continuous Security Engineering philosophies by emb
 - Improved actionable security intelligence through observability for real-time monitoring and incident response.
 - Continued development of developer-friendly security processes.
 
-#### 8.1.6. AI and Security Governance
+#### 8.1.5. AI and Security Governance
 
 With AI playing a larger role in software development, security considerations and robust governance become critical. There are existing OWASP projects focused on AI security that FIASSE may direct readers to for further guidance.
 
