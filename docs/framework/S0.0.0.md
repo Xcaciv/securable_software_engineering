@@ -13,7 +13,7 @@ Within this framework, the Securable Software Engineering Model (SSEM) provides 
 
 ## Table of Contents
 
-- [A Framework for Integrating Application Security into Software Engineering (FIASSE) and The Securable Software Engineering Model (SSEM)](#a-framework-for-integrating-application-security-into-software-engineering-fiasse-and-the-securable-software-engineering-model-ssem)
+- [A Framework for Integrating Application Security into Software Engineering (FIASSE)](#a-framework-for-integrating-application-security-into-software-engineering-fiasse)
   - [Abstract](#abstract)
   - [Table of Contents](#table-of-contents)
   - [1. Introduction](#1-introduction)
