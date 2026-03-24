@@ -264,8 +264,8 @@ FIASSE emphasizes confidentiality as a fundamental attribute achieved by constru
 
 ##### 3.2.2.2. Accountability
 
-Definition: "The property of a system or system resource that ensures that the actions of a system entity may be traced uniquely to that entity" (RFC 4949). This involves managing principles and access to enable the attribution of actions to specific users or processes, which is crucial for auditing and incident response.
-Achieving accountability relies on robust methods for managing principles and their access rights. While it leverages strategies common to non-repudiation, such as comprehensive logging and secure authentication, its core focus is the unique and verifiable attribution of every system action to a specific entity. This is essential for effective auditing and incident response.
+Definition: "The property of a system or system resource that ensures that the actions of a system entity may be traced uniquely to that entity" (RFC 4949). This involves managing principals and access to enable the attribution of actions to specific users or processes, which is crucial for auditing and incident response.
+Achieving accountability relies on robust methods for managing principals and their access rights. While it leverages strategies common to non-repudiation, such as comprehensive logging and secure authentication, its core focus is the unique and verifiable attribution of every system action to a specific entity. This is essential for effective auditing and incident response.
 
 ##### 3.2.2.3. Authenticity
 
