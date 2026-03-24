@@ -6,6 +6,5 @@
         "SDLC",
         "SSDF",
         "SSEM"
-    ],
-    "snyk.advanced.autoSelectOrganization": true
+    ]
 }

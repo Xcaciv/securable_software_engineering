@@ -79,7 +79,7 @@ Contributions to improve documentation and examples are welcome. Please see our 
 
 ## License
 
-Attribution 4.0 International (CC BY 4.0) - see the [LICENSE](licence.txt) file for details.
+Attribution 4.0 International (CC BY-SA 4.0) - see the [LICENSE](licence.txt) file for details.
 
 ## Acknowledgments
 
