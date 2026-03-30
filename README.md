@@ -32,29 +32,31 @@ By clearly defining security requirements within the development process, this f
 ## Repository Contents
 
 - Definition and documentation of the Securable Software Engineering Model (SSEM)
-- Implementation guides for the FIASSE methodology
-- Examples of secure coding requirements and practices including Generative AI artifacts
+- TODO: Implementation guides for the FIASSE methodology
+- Examples have been moved to [Securability-Engineering/securable-framework-supplement](https://github.com/Securability-Engineering/securable-framework-supplement)
 
 ## Getting Started
 
 1. Review the documentation in the `/docs` directory
-2. Explore the examples in the `/examples` directory
+2. Discuss the concepts and principles with your teams and in the [GitHub Discussions](https://github.com/Xcaciv/securable_software_engineering/discussions)
+3. Start applying the principles in your software engineering practices like merge reviews and prompt engineering.
 
-- Bonus: Check out the `/examples/copilot-instructions` directory for examples of how to apply FIASSE principles in the context of Generative AI development and how to prompt for an instruction file of your own.
+- Bonus: Install the plugin matching your IDE or AI powered commandline-agent of choice (e.g. GitHub Copilot, Claude Code, OpenCode, etc.) and use the provided prompts to generate securable code. Look for "Securability Engineering" or "FIASSE" in the prompt library.
+- FIASSE is also included as part of the [OWASP Secure Agent Playbook](https://github.com/OWASP/secure-agent-playbook).
 
 ## Summary
 
-This repository defines securable software as resilient and adaptable systems. It emphasizes that true security is an ongoing process, not a static achievement. It introduces the Securable Software Engineering Model (SSEM), which frames security as an inherent quality of well-engineered software. To do this, it focuses on attributes like Maintainability, Trustworthiness, and Reliability (which includes Resilience). FIASSE advocates for integrating security practices directly into the development workflow. This moves from a "security as an afterthought" or a "shift left" approach to a proactive, collaborative model. The idea is that product owners, developers, and security professionals work together from the earliest stages of design, particularly through activities like security requirements definition, collaborative threat modeling, and acceptance criteria. This sets clear expectations for code activities and testing. Software engineers are given guidance on balancing flexibility and control. They are also given a definitive model for making security decisions. Ultimately, this empowers all stakeholders to contribute to building more robust, resilient, and inherently securable systems.
+This repository defines securable software as reliable, resilient and adaptable systems. It emphasizes that true security is an ongoing process, not a static achievement. It introduces the Securable Software Engineering Model (SSEM), which frames security as an inherent set of qualities of well-engineered software. To do this, it presents the attribute categories of Maintainability, Trustworthiness, and Reliability (which includes Resilience). FIASSE advocates for integrating security practices into the development workflow where they have the most impact. This moves from a "security as an afterthought" or a "shift left" approach to a proactive, collaborative model. The idea is that product owners, developers, and security professionals work together from the earliest stages of design, particularly through activities like security requirements definition, collaborative threat modeling, and acceptance criteria. This sets clear expectations for code activities and testing. Software engineers are given guidance on balancing flexibility and control. They are also given a definitive model for making security decisions. Ultimately, this empowers all stakeholders to contribute to building more robust, reliable, and inherently securable systems.
 
 FIASSE differs from existing approaches by not requiring developers to become security experts or adopt an adversarial mindset. This approach aims to reduce the cognitive load on developers while ensuring that security can be confident that their concerns are addressed through specific attributes of code and software engineering processes.
 
-FIASSE intends to be open, approachable, and collaborative. Contrast this with other projects that hide crucial information behind a pay-wall or elitist practices.
+FIASSE intends to be open, approachable, and collaborative.
 
 ## Complementary Resources
 
 This repository complements the [FIASSE website](https://fiasse.org).
 
-The OWASP FIASSE project is part of the [OWASP Foundation](https://owasp.org/www-project-fiasse/), a non-profit organization focused on the mission of eliminating insecure software. The OWASP Foundation provides a wealth of resources and frameworks that align with the principles of FIASSE.
+The [OWASP FIASSE](https://owasp.org/www-project-fiasse/) project is part of the [OWASP Foundation](https://owasp.org/), a non-profit organization focused on the mission of eliminating insecure software. The OWASP Foundation provides a wealth of resources and frameworks that align with the principles of FIASSE.
 
 This framework is focused on Securable Software Engineering and is complemented by assurance frameworks like those from OWASP:
 

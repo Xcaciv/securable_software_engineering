@@ -1,6 +1,6 @@
 # Guidance for Generating Securable Software Based on FIASSE/SSEM
 
-This summary is intended to guide an LLM to generate software that is *inherently securable* or *securabel by construction*. This is *securability engineering*.
+This summary is intended to guide an LLM to generate software that is *inherently securable* or *securable by construction*. This is *securability engineering*.
 
 ## 0. Core Framing from FIASSE
 
@@ -28,7 +28,7 @@ Maintainability is the degree to which software can be modified effectively and 
 
 ### 1.1. Analyzability
 
-Definition (RFC-aligned): the degree to which impact of change and causes of failures can be diagnosed efficiently.
+Definition (ISO 25010-aligned): the degree to which impact of change and causes of failures can be diagnosed efficiently.
 
 LLM guidance:
 
@@ -39,7 +39,7 @@ LLM guidance:
 
 ### 1.2. Modifiability
 
-Definition (RFC-aligned): the degree to which software can be modified without introducing defects or degrading quality.
+Definition (ISO 25010-aligned): the degree to which software can be modified without introducing defects or degrading quality.
 
 LLM guidance:
 
@@ -50,7 +50,7 @@ LLM guidance:
 
 ### 1.3. Testability
 
-Definition (RFC-aligned): the degree to which test criteria can be established and tests can be executed effectively.
+Definition (ISO 25010-aligned): the degree to which test criteria can be established and tests can be executed effectively.
 
 LLM guidance:
 
@@ -118,7 +118,7 @@ Definition: data is not changed, destroyed, or lost in an unauthorized/accidenta
 LLM guidance:
 
 - Apply the **Derived Integrity Principle**: derive critical business/state values in trusted server context, never directly from client input.
-- Validate, canonicalize/normalize, and sanitize input at trust boundaries.
+- Canonicalize/normalize, sanitize, and validate input at trust boundaries.
 - Preserve authoritative state transitions in controlled server logic.
 - Use integrity checks and access control to protect data and state.
 
@@ -133,7 +133,7 @@ LLM guidance:
 - Encode/escape output for destination context to avoid interpreter injection.
 - Build with fault tolerance and clear trust boundaries.
 
-## 4. Trust Boundary Input Pattern (RFC 6.4.1 Aligned)
+## 4. Trust Boundary Input Pattern (Section 6.4.1 Aligned)
 
 When generating input-handling code at trust boundaries, prefer this sequence:
 
