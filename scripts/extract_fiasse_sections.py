@@ -3,7 +3,8 @@ Extract FIASSE RFC section markdown from a single source file into a subdirector
 Also, given the --combine switch, combines extracted sections into a single document from a directory of source files.
 
 Splits on ## x[.x[.x[.x]]]. section headers (e.g. 1., 1.1., 2.3.1.) and writes each section
-to S<section_id>.md in the destination directory. Use for turning multi-section
+to S<section_id>.md in the destination directory using three numeric places (e.g., S1.0.0.md).
+Use for turning multi-section
 FIASSE source docs into one file per section under data/FIASSE/.
 """
 
@@ -35,6 +36,14 @@ def extract_section_id(header: str) -> str:
 def normalize_section_id(section_id: str) -> str:
     """Normalize a section ID to the configured output depth."""
     return '.'.join(section_id.split('.')[:MAX_SECTION_PARTS])
+
+
+def format_section_id_for_filename(section_id: str) -> str:
+    """Format section IDs as exactly three numeric places for filenames."""
+    parts = section_id.split('.')[:MAX_SECTION_PARTS]
+    while len(parts) < MAX_SECTION_PARTS:
+        parts.append('0')
+    return '.'.join(parts)
 
 
 def split_into_sections(content: str) -> Dict[str, str]:
@@ -154,7 +163,8 @@ def extract_sections(input_file: Path, output_dir: Path):
     log_status("INFO", "Writing section files", section_count=len(sections))
     total_chars_written = 0
     for section_id, section_content in sorted(sections.items(), key=lambda item: section_id_sort_key(item[0])):
-        output_file = output_dir / f"S{section_id}.md"
+        output_section_id = format_section_id_for_filename(section_id)
+        output_file = output_dir / f"S{output_section_id}.md"
         try:
             with open(output_file, 'w', encoding='utf-8') as f:
                 f.write(section_content + '\n')
@@ -190,7 +200,7 @@ def section_id_sort_key(section_id: str) -> Tuple:
 
 
 def parse_section_id_from_filename(filename: str) -> str:
-    """Extract section ID from filenames like S1.md, S1.2.md, S1.2.3.md."""
+    """Extract section ID from filenames like S1.md, S1.2.md, S1.2.3.md, S1.0.0.md."""
     match = re.match(rf'^S(\d+(?:\.\d+){{0,{MAX_SECTION_PARTS - 1}}})\.md$', filename)
     return match.group(1) if match else None
 
