@@ -38,6 +38,7 @@ Within this framework, the Securable Software Engineering Model (SSEM) provides 
         - [3.2.2.1. Confidentiality](#3221-confidentiality)
         - [3.2.2.2. Accountability](#3222-accountability)
         - [3.2.2.3. Authenticity](#3223-authenticity)
+        - [3.2.2.4. Observability](#3224-observability)
       - [3.2.3. Reliability](#323-reliability)
         - [3.2.3.1. Availability](#3231-availability)
         - [3.2.3.2. Integrity](#3232-integrity)
@@ -84,8 +85,8 @@ Within this framework, the Securable Software Engineering Model (SSEM) provides 
       - [6.4.1.1. The Request Surface Minimization Principle](#6411-the-request-surface-minimization-principle)
       - [6.4.1.2. The Derived Integrity Principle](#6412-the-derived-integrity-principle)
     - [6.5. Dependency Management](#65-dependency-management)
-  - [7. Roles and Responsibilities in SSEM Adoption](#7-roles-and-responsibilities-in-ssem-adoption)
     - [7.0. Security's Role](#70-securitys-role)
+  - [7. Roles and Responsibilities in SSEM Adoption](#7-roles-and-responsibilities-in-ssem-adoption)
     - [7.1. Empowering Senior Software Engineers](#71-empowering-senior-software-engineers)
     - [7.2. Guiding Developing Software Engineers](#72-guiding-developing-software-engineers)
     - [7.3. The Role of Product Owners and Managers](#73-the-role-of-product-owners-and-managers)
@@ -95,7 +96,7 @@ Within this framework, the Securable Software Engineering Model (SSEM) provides 
       - [8.1.2. Low-Code and No-Code Platforms](#812-low-code-and-no-code-platforms)
       - [8.1.3. Cloud-Native and Serverless Architectures](#813-cloud-native-and-serverless-architectures)
       - [8.1.4. Continuous Security Engineering](#814-continuous-security-engineering)
-      - [8.1.6. AI and Security Governance](#816-ai-and-security-governance)
+      - [8.1.5. AI and Security Governance](#815-ai-and-security-governance)
     - [8.2. Organizational Adoption Strategies](#82-organizational-adoption-strategies)
   - [9. Conclusion](#9-conclusion)
   - [10. References](#10-references)
@@ -277,6 +278,19 @@ Focusing on authenticity means ensuring that the entities involved in a transact
 - Comprehensive logging and auditing to trace actions back to their origin.
 
 These strategies provide assurance that the entities involved are genuine and accountable for their actions, which is essential for maintaining trust in the system. They also provide transparency to support the maintenance and troubleshooting of the system. Further, transparency complements accountability by ensuring that the mechanisms for tracing actions are clear, and data is accessible to authorized parties.
+
+##### 3.2.2.4. Observability
+
+Observability is the degree to which the internal state of a system can be inferred from its external outputs. The concept originates in Kálmán's 1960 control theory formalization and has been adapted in software engineering to encompass the runtime signals. Observability is a critical attribute for security because it enables developers and security professionals to understand how the system behaves in real time. It also ensures that users can understand the system's state and actions.
+
+This involves implementing strategies such as:
+
+- comprehensive logging
+- monitoring
+- instrumentation
+- User Interface (UI) feedback mechanisms
+
+These strategies provide visibility into the system's operations. Observability is essential for maintaining the trustworthiness of a system. It allows for proactive identification as well as response to real security issues.
 
 #### 3.2.3. Reliability
 
