@@ -8,6 +8,7 @@ This document describes the Framework for Integrating Application Security into 
 - Perceived slow progress in enhancing software security
 - Scaling AppSec
 - The need to empower developers to build securable code without requiring them to become penetration testing experts
+- Low fidelity prompt engineering requiring repeated rework
 
 Within this framework, the Securable Software Engineering Model (SSEM) provides a specific design language based on established software engineering terms, focusing on inherent security attributes of code and software architecture. This document outlines the core principles, attributes, and actionable insights for developers. SSEM also defines a durable model as the foundation for the framework. The goal is to resiliently add computing value (see Section 2.2) while reducing the probability of material impact from cyber events (see Section 2.3) in the ever changing world of software engineering.
 
@@ -27,6 +28,7 @@ Within this framework, the Securable Software Engineering Model (SSEM) provides 
     - [2.4. Mindset Convergence: Hacker vs. Engineer](#24-mindset-convergence-hacker-vs-engineer)
     - [2.5. Aligning Security with Development](#25-aligning-security-with-development)
     - [2.6. The Transparency Principle](#26-the-transparency-principle)
+    - [2.7. The Principle of Least Astonishment](#27-the-principle-of-least-astonishment)
   - [3. The Securable Principle](#3-the-securable-principle)
     - [3.1. Securable Software Engineering Model Overview](#31-securable-software-engineering-model-overview)
     - [3.2. Core Securable Attributes](#32-core-securable-attributes)
@@ -111,7 +113,7 @@ Furthermore, many well-intentioned strategies, including the prevalent "shift le
 
 ### 1.2. A Developer-Centric Security Paradigm
 
-This document advocates for a developer-centric security paradigm. Rather than expecting software engineers to adopt an adversarial mindset (a distinction further explored in Section 2.4), this approach emphasizes empowering developers. While leveraging sound software engineering principles is foundational, it is complemented by clear security requirements and robust assurance activities. With these elements effectively integrated, engineers can build securable systems as a natural part of their discipline. A common misconception is that the gap between security and development is inherently problematic; the real issue is the lack of consideration for the business processes and skillsets involved in producing software. This document makes the case that the gap is a non-issue; rather, it is the lack of consideration for the business processes and skillsets involved in producing software.
+This document advocates for a developer-centric security paradigm. Rather than expecting software engineers to adopt an adversarial mindset (a distinction further explored in Section 2.4), this approach emphasizes empowering developers. While leveraging sound software engineering principles is foundational, it is complemented by clear security requirements and robust assurance activities. With these elements effectively integrated, engineers can build securable systems as a natural part of their discipline. A common misconception is that the gap between security and development is inherently problematic; the real issue is the lack of consideration for the business processes and skill sets involved in producing software. This document makes the case that the gap is a non-issue; rather, it is the lack of consideration for the business processes and skill sets involved in producing software.
 
 ### 1.3. Document Purpose and Scope
 
@@ -129,15 +131,13 @@ This document aims to provide a comprehensive understanding and will cover the f
 - The roles of different engineering personnel in adopting FIASSE (see [Section 7. Roles and Responsibilities in SSEM Adoption](#7-roles-and-responsibilities-in-ssem-adoption))
 - The potential evolution of FIASSE in response to emerging software engineering trends and strategies for organizational adoption (see [Section 8. Evolution and Adoption of FIASSE](#8-evolution-and-adoption-of-fiasse))
 
-This document is intended for AppSec professionals, software engineers, engineering managers, and anyone involved in the software development who seeks to improve application security outcomes.
+This document is intended for Application Security professionals, Product Security Engineers, Software Engineers, engineering managers, and anyone involved in the software development who seeks to improve application security outcomes.
 
-In the context of FIASSE, security organizations may employ both Application Security (AppSec) and Product Security roles. AppSec professionals focus on the technical aspects of security and work directly with developers to integrate SSEM attributes into code and applies FIASSE processes. They are responsible for security assurance and align with development's processes, including prioritization.
+In the context of FIASSE, security organizations may employ various roles to address things like security assurance, application level protection, engineering and aligning with development's processes, including code review and prioritization.
 
-Product Security professionals operate at a higher strategic level, translating business risk into security requirements and managing customer communications around security. They also ensure regulatory compliance and align security with broader business objectives.
+FIASSE serves as a unifying framework for security roles: SSEM provides the technical language and measurable attributes needed for secure development practices. The framework emphasizes business alignment (Section 2.3) and clear expectations (Section 6.1), enabling Product Security teams to translate strategic security objectives into actionable development requirements with clarity.
 
-FIASSE serves as a unifying framework for both roles: SSEM provides the technical language and measurable attributes needed for secure development practices. The framework emphasizes business alignment (Section 2.3) and clear expectations (Section 6.1), enabling Product Security teams to translate strategic security objectives into actionable development requirements with clarity.
-
-Rather than creating silos, FIASSE fosters collaboration by fostering a shared understanding of what constitutes securable software across technical and strategic security functions.
+Rather than creating silos, FIASSE fosters collaboration by fostering a shared understanding of what constitutes securable software across technical and strategic security functions. It also outlines strategies for getting the most out of security assurance results.
 
 ## 2. Foundational Principles
 
@@ -183,6 +183,27 @@ As mentioned above, true alignment between security and development requires a r
 Transparency is the principle of designing a system so that its internal state and behavior are observable and understandable to authorized parties. It is a foundational engineering strategy that underpins several core SSEM attributes, enabling trust and simplifying analysis. Transparency is about showing clear, contextualized visibility into how the system operates, makes decisions, and handles data.
 
 Transparency is achieved through deliberate instrumentation and clear auditing capabilities. Depending exclusively on tools for transparency can lead to a reactive posture, as it may not provide the foundational observability needed for proactive system analysis. A transparent system is designed to be observable fundamentally, making it easier to analyze, maintain, and secure.
+
+### 2.7. The Principle of Least Astonishment
+
+The Principle of Least Astonishment (POLA) emphasizes that systems should behave in ways that are intuitive and predictable to users, developers, and administrators. Software should not surprise its users or operators through unexpected behavior, hidden side effects, or unintuitive interfaces. When a system behaves in an astonishing manner—diverging from reasonable expectations—it becomes difficult to understand, reason about, and secure.
+
+POLA is particularly important in the context of securable software because:
+
+- Predictability aids analysis: When code behaves as expected, developers can quickly identify problems, making the system more Analyzable.
+- Reduced cognitive burden: Astonishing behavior introduces additional complexity that developers must track mentally. Eliminating surprise reduces this burden and supports Modifiability.
+- Intuitive security boundaries: Intuitive separation of concerns and trust boundaries makes it easier for developers to understand where security controls are needed and why.
+- Transparency complement: POLA works in concert with transparency. Transparent systems are typically astonishment-free because their operations are visible and understandable.
+
+Practically, POLA manifests as:
+
+- Consistent naming and behavior across the codebase
+- Functions and methods that do what their names suggest, without hidden side effects
+- Clear, documented exceptions to expected behavior
+- Predictable error handling and recovery mechanisms
+- Interfaces that behave as users would naturally expect
+
+By adhering to POLA during design and implementation, developers create systems that are more secure, maintainable, and trustworthy over time.
 
 ## 3. The Securable Principle
 
@@ -348,6 +369,8 @@ Engineering transparency into a system is an investment that benefits security a
 - A system that manages user roles should log the requesting administrator, the target user, the old role, the new role, and a timestamp, providing an undeniable record for accountability.
 - To enhance transparency, expose health and performance metrics through instrumentation. Expose key operational metrics through a standardized API. Metrics like memory or CPU utilization, authentication failures, or input handling error counts. This way, the system provides transparent insight into its real-time behavior.
 - Whenever data or control flows across a trust boundary, consider logging useful event information. Include the outcome of any validation, sanitization, or transformation that is outside normal expectations. Optional debug logging of all events can also be useful. Documenting a clear path of execution makes security analysis as well as debugging much easier.
+
+Transparency and the Principle of Least Astonishment work synergistically to strengthen maintainability and trustworthiness. When systems are both transparent and astonishment-free, developers can confidently navigate the codebase and security analysts can more readily verify that the system behaves as intended. This combination reduces the cognitive load on maintenance teams and increases their ability to identify and respond to security concerns quickly.
 
 #### 3.3.2. SSEM as a Design Language
 
