@@ -113,13 +113,13 @@ Furthermore, many well-intentioned strategies, including the prevalent "shift le
 
 ### 1.2. A Developer-Centric Security Paradigm
 
-This document advocates for a developer-centric security paradigm. Rather than expecting software engineers to adopt an adversarial mindset (a distinction further explored in Section 2.4), this approach emphasizes empowering developers. While leveraging sound software engineering principles is foundational, it is complemented by clear security requirements and robust assurance activities. With these elements effectively integrated, engineers can build securable systems as a natural part of their discipline. A common misconception is that the gap between security and development is inherently problematic; the real issue is the lack of consideration for the business processes and skill sets involved in producing software. This document makes the case that the gap is a non-issue; rather, it is the lack of consideration for the business processes and skill sets involved in producing software.
+This document advocates for a developer-centric security paradigm. Rather than expecting software engineers to adopt an adversarial mindset, this approach emphasizes empowering developers (further explored in Section 2.4). While leveraging sound software engineering principles is foundational, it is complemented by clear security requirements and robust assurance activities. With these elements effectively integrated, engineers can build securable systems as a natural part of their discipline. A common misconception is that the gap between security and development is inherently problematic; the real issue is the lack of consideration for the business processes and skill sets involved in producing software.
 
 ### 1.3. Document Purpose and Scope
 
 The purpose of this document is to introduce the Framework for Integrating Application Security into Software Engineering (FIASSE) and its core component, the Securable Software Engineering Model (SSEM). FIASSE (/feiz/) provides the overarching strategic approach and practices that integrate security into software engineering. SSEM (/si:m/), as a model within FIASSE, offers a common design language and a set of principles to guide the creation of secure software, aligning AppSec objectives with business goals.
 
-The term 'securable' is used throughout this document to emphasize the dynamic nature of software security. See Section 2.1 for a detailed explanation of this term. Because of this dynamic nature, Application Security must align with the business objectives for software development.
+The term 'securable' is used throughout this document to emphasize the dynamic nature of software security. The direction of application security has long been defined by a reactive, perimeter-focused approach that treats security as a binary state of an artifact at a specific point in time. Securability is not a static achievement but a first-class engineering goal. It is a durable set of structural and behavioral properties that make software inherently amenable to security analysis, verification and long-term maintenance throughout its entire existence. See Section 2.1 for a detailed explanation of this term. Because of this dynamic nature, application security must align with the business objectives for software development.
 
 This document aims to provide a comprehensive understanding and will cover the following topics:
 
@@ -145,9 +145,7 @@ Rather than creating silos, FIASSE fosters collaboration by fostering a shared u
 
 The term "securable" is used throughout this document to emphasize the fundamental principle: there is no static state of "secure". Unlike traditional security approaches that may imply a binary secure/insecure classification, the concept of "securable" acknowledges that security is an ongoing, dynamic process rather than a fixed destination.
 
-Software exists in a constantly evolving threat landscape where new vulnerabilities emerge, attack vectors evolve, business requirements change, and dependencies change. What may be considered secure today could become vulnerable tomorrow due to newly discovered exploits, changes in the threat environment, or modifications to the system itself. This reality necessitates a shift from pursuing an illusory state of perfect security to building software with inherent qualities that enable it to adapt to and withstand evolving threats.
-
-To illustrate the concept of 'securable', consider the analogy of a house: a house that is currently locked represents a static 'secure' state, whereas a house built with strong foundations, high-quality locks, a well-maintained alarm system, and clear lines of sight represents a 'securable' state. Just as a 'securable' house is designed with inherent qualities that allow it to remain secure against evolving threats over time, software should be built with similar qualities to adapt to and withstand new vulnerabilities. FIASSE focuses on embedding these inherent 'securable' qualities into software architecture and code.
+Software exists in a constantly evolving threat landscape where new vulnerabilities emerge, attack vectors evolve, business requirements change, and dependencies change. What may be considered secure today could become vulnerable tomorrow due to newly discovered exploits, changes in the threat environment, or modifications to the system itself. This reality necessitates a shift from pursuing an illusory state of perfect security to building software with inherent qualities that enable it to adapt to and withstand evolving threats. FIASSE focuses on embedding these inherent 'securable' qualities into software architecture and code.
 
 The "securable" paradigm emphasizes:
 
@@ -166,7 +164,7 @@ It should be noted that Software Engineering refers to the broader discipline of
 
 ### 2.3. Security Mission: Reducing Material Impact
 
-The core mission of cybersecurity, as articulated by Rick Howard in "Cyber Security First Principles," is to "Reduce the probability of material impact of a cyber event". Complete elimination of breaches, while an ideal, is often an impractical business goal. Security strategies MUST, therefore, align with overarching business objectives. This requires a balanced approach. While formal buy-in and metrics are necessary, AppSec's role extends to enabling Development teams to meet security expectations and pass security assessments. This effectively reduces the chance of a successful attack and minimizes potential damage.
+The core mission of cybersecurity, as articulated by Rick Howard in "Cyber Security First Principles," is to "Reduce the probability of material impact of a cyber event". Complete elimination of breaches, while an ideal, is often an impractical business goal. Security strategies must, therefore, align with overarching business objectives. This requires a balanced approach. While formal buy-in and metrics are necessary, AppSec's role extends to enabling Development teams to meet security expectations and pass security assessments. This effectively reduces the chance of a successful attack and minimizes potential damage.
 
 ### 2.4. Mindset Convergence: Hacker vs. Engineer
 
@@ -182,7 +180,7 @@ As mentioned above, true alignment between security and development requires a r
 
 Transparency is the principle of designing a system so that its internal state and behavior are observable and understandable to authorized parties. It is a foundational engineering strategy that underpins several core SSEM attributes, enabling trust and simplifying analysis. Transparency is about showing clear, contextualized visibility into how the system operates, makes decisions, and handles data.
 
-Transparency is achieved through deliberate instrumentation and clear auditing capabilities. Depending exclusively on tools for transparency can lead to a reactive posture, as it may not provide the foundational observability needed for proactive system analysis. A transparent system is designed to be observable fundamentally, making it easier to analyze, maintain, and secure.
+Depending exclusively on tools for transparency can lead to a reactive posture, as it may not provide the foundational observability needed for proactive system analysis. A transparent system is designed to be observable fundamentally, making it easier to analyze, maintain, and secure.
 
 ### 2.7. The Principle of Least Astonishment
 
@@ -605,7 +603,7 @@ The issue is not flexibility itself, but the exposure of the flexibility through
 
 To enhance security, minimize what is trusted and harden the trust boundaries. Think of trust boundaries like the hard shell of a turtle: the soft, flexible interior represents the bulk of the application's logic. While the hard shell represents the critical points where external data or untrusted operations are carefully controlled so as not to make a sticky mess. Just as the turtle's shell protects its interior from attack, well-handled trust boundaries protect the core application from potentially harmful external influences. Defining and communicating these boundaries during the design phase makes it clear which areas of code are responsible for tight control, allowing developers to focus their efforts on maintaining the integrity and trustworthiness of these critical interfaces. Data Flow Diagrams are invaluable in identifying these boundaries
 
-One way to allow flexibility while maintaining control is by implementing strict input handling at the trust boundaries. The trust boundary entry point allows the input handling to adapt to the context the value is arriving from. The advantage of this is that it allows the developer to focus on the flexibility of the code without worrying about unexpected input causing unintended behavior. This unexpected behavior could be simple bugs or serious security vulnerabilities. This is covered further in Section 6.4.1.
+One way to allow flexibility while maintaining control is by implementing strict input handling at the trust boundaries creating canonical values. The trust boundary entry point allows the input handling to adapt to the context the value is arriving from. The advantage of this is that it allows the developer to focus on the flexibility of the code without worrying about unexpected input causing unintended behavior. This unexpected behavior could be simple bugs or serious security vulnerabilities. This is covered further in Section 6.4.1.
 
 ### 6.4. Resilient Coding and System Resilience
 
