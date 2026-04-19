@@ -119,6 +119,15 @@ This document is intended for Software Engineers, Application Security professio
 
 ## 2. Foundational Principles
 
+FIASSE is oriented by four core values. Framed in the spirit of the Agile Manifesto, each expresses a relative preference: both sides have worth, but when choices must be made, FIASSE favors the left.
+
+- **Securable Attributes over Security Controls**: prefer the engineering qualities that let a system be defended and kept defensible over static checklists of controls evaluated at a point in time.
+- **Participation over Assessment**: prefer structured engagement between security and development throughout the lifecycle over evaluation performed after the work is done.
+- **First Principle Alignment**: prefer grounding in established software engineering first principles over security-specific jargon or adversarial heuristics.
+- **Business Alignment**: prefer security that sustains the organization's value creation over security pursued as an end in itself.
+
+The sections that follow develop these values as the foundational principles of FIASSE.
+
 ### 2.1. The Securable Paradigm: No Static Secure State
 
 The term "securable" reflects a fundamental reality: there is no static state of "secure." A system declared secure today may be vulnerable tomorrow because of a newly discovered exploit, a dependency update, a configuration change, or a shift in the threat environment. Security is not a property a system permanently possesses; it is a capacity the system must be designed to sustain. The securable paradigm recognizes this and redirects the engineering goal accordingly: rather than asking "is it secure?", teams ask "is it built so that security can be maintained?"
@@ -131,6 +140,8 @@ The securable paradigm emphasizes four organizing ideas:
 - **Evolutionary Security**: Security measures must evolve alongside the software and its operating environment.
 - **Continuous Improvement**: Security is an iterative process that requires ongoing attention and refinement.
 - **Business Alignment**: Security efforts must align with business objectives and risk tolerance, not pursue security as an end in itself.
+
+Of these, **Business Alignment** is the value that governs the other three: adaptive resilience, evolutionary security, and continuous improvement are all judged by how well they sustain the organization's value creation, not by how much security activity they generate.
 
 Development teams that internalize this paradigm build systems capable of maintaining their protective qualities as the system evolves, rather than becoming brittle and insecure over time.
 
@@ -154,11 +165,11 @@ AppSec's role extends beyond formal buy-in and metrics: it encompasses enabling 
 
 A common misconception frames the gap between Security and Development as inherently problematic. The two disciplines are complementary, not adversarial: development adds value, and security works to reduce the risk of losing that value. The analogy to Accounting and Operations is apt: both serve the business from distinct vantage points without one disrupting the other's core function. Security should not need to disrupt the value-adding operation.
 
-True alignment between security and development requires a return to first principles. Rather than imposing security-centric jargon and processes that may slow or interrupt development, FIASSE uses well-established software engineering terms to describe securable code attributes. The SSEM properties, including Analyzability, Modifiability, Testability, and Confidentiality, are concepts developers already work with. Using this shared vocabulary fosters understanding and empowers engineers to address security considerations with confidence, without requiring years of dedicated security experience.
+True alignment between security and development requires a return to first principles. This is the value of **First Principle Alignment**. Rather than imposing security-centric jargon and processes that may slow or interrupt development, FIASSE uses well-established software engineering terms to describe securable code attributes. The SSEM properties, including Analyzability, Modifiability, Testability, and Confidentiality, are concepts developers already work with. Using this shared vocabulary fosters understanding and empowers engineers to address security considerations with confidence, without requiring years of dedicated security experience.
 
 This also requires that the expectation of mindset is calibrated correctly. The idea that all programmers should think like attackers or act as penetration testers to eliminate security problems overlooks a critical distinction: understanding how systems can be compromised is not the same as knowing how to build them to be secured. It is not reasonable for business value creation to be secondary to security. There is a significant difference between identifying a vulnerability and implementing a robust, scalable engineering solution to address it. Relying solely on an adversarial mindset does not scale.
 
-Alignment requires specific participation from AppSec professionals early in the Software Development Lifecycle (SDLC), particularly during requirements gathering and feature planning. When security engages at those stages, developers gain the context and expectations they need to build securable software as a natural part of their workflow.
+Alignment requires specific participation from AppSec professionals early in the Software Development Lifecycle (SDLC), particularly during requirements gathering and feature planning. When security engages at those stages, developers gain the context and expectations they need to build securable software as a natural part of their workflow. This is the value of **Participation over Assessment**: shaping the system as it is being built is more effective than evaluating it after the fact, and it lets security expertise act where it produces the most leverage.
 
 ### 2.5. The Transparency Principle
 
@@ -225,6 +236,8 @@ SSEM is designed to:
 - Account for the iterative nature of software development and agile methodologies.
 - Serve as a mental model, a checklist, or a vehicle for expressing and setting clear expectations for securable design.
 - Shift conversations away from find-and-fix monotony toward cohesive, intention-driven creation of software with inherent securable qualities.
+
+This is the value of **Securable Attributes over Security Controls** made operational. Rather than enumerating controls for auditors to verify at a point in time, SSEM defines the engineering qualities that allow a system to be secured, measured, and improved as it evolves.
 
 The attributes are organized into three primary categories:
 
@@ -587,6 +600,8 @@ The primary mechanism for early integration is active security team participatio
 
 "Shoveling Left" is the practice of supplying impractical information to developers and leaving the responsibility on them to make sense of it. This anti-pattern manifests in how vulnerabilities are reported, how training is conducted, and how testing results are delivered. It undermines AppSec's credibility and leads to developer disengagement.
 
+The corrective discipline is the **Actionable Security Intelligence Principle**: security teams collaborate with development teams on systemic flaw reductions by producing findings, guidance, and training in a form developers can act on within their normal engineering workflow. Raw tool output, exploit-centric narratives, and unfiltered vulnerability lists are information, not yet intelligence. The principle holds that security output becomes valuable only once it has been translated into prioritized, engineering-grounded direction calibrated to the developer's context. Shoveling Left is the direct inversion of this principle, and the sub-sections that follow examine two of its most common forms.
+
 #### 6.1.1. Ineffective Vulnerability Reporting
 
 A prime example of "Shoveling Left" is routing raw output from security scanning tools directly into the development team's backlog without context, prioritization, or actionable guidance. While initial progress may follow, momentum typically dissipates and issues tend to recur in a "whack-a-mole" pattern. Raw tool output alone is rarely sufficient to drive sustained improvement.
@@ -611,6 +626,8 @@ This type of training is ineffective because it does not equip developers with t
 Scanning and testing tools are valuable for understanding current security posture, but their output must be used strategically. It should not be assumed that security requirements are implicit, or that developers can be held responsible for missing controls if clear expectations were never set. Productive software engineers operate within a structured workflow designed to deliver value. Disrupting that workflow degrades software quality and produces the conditions that application security seeks to prevent.
 
 Fix requests must not circumvent the processes software engineers rely on. Bypassing established workflows leads to misunderstandings and mistakes. AppSec should not expect developers to act on security findings without clear, actionable information and the opportunity to work through their standard processes.
+
+This section is the **Actionable Security Intelligence Principle** (Section 6.1) applied to tool output. Scanner results, penetration test findings, and monitoring signals are raw material, and the principle holds that they become useful only when converted into specific, engineering-grounded direction tied to requirements, acceptance criteria, and the team's existing workflow. Treating security output as finished intelligence rather than input to it produces the same breakdown the Shoveling Left discussion describes, just arriving through a different channel.
 
 ---
 
