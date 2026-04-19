@@ -1,0 +1,56 @@
+# FIASSE — Framework for Integrating Application Security into Software Engineering
+> A developer-first, creational framework that embeds application security into the software engineering discipline using the Securable Software Engineering Model (SSEM) as a shared design language.
+
+FIASSE (pronounced /feiz/) is vendor-independent and is written for Software Engineers, AppSec/Product Security professionals, engineering managers, and product owners. Unlike assurance-oriented standards such as OWASP ASVS, SAMM, or other verification frameworks, FIASSE is **creational**: it guides how software is designed and built so that security qualities are native to the code, rather than prescribing how finished software should be tested or audited. It deliberately leaves verification, testing checklists, and compliance-style controls to those complementary frameworks and avoids overlap with them. Its core model, SSEM (pronounced /si:m/), replaces security-centric jargon with established software engineering vocabulary, organizing the attributes of securable software under three categories: **Maintainability** (Analyzability, Modifiability, Testability, Observability), **Trustworthiness** (Confidentiality, Accountability, Authenticity), and **Reliability** (Availability, Integrity, Resilience). FIASSE rejects the static notion of "secure" in favor of "securable" — a system built so its protective qualities can be sustained as threats, dependencies, and requirements evolve — and operationalizes this through principles like the Boundary Control Principle, canonical input handling, Transparency, Least Astonishment, and dependency stewardship. It explicitly names and counters common AppSec anti-patterns such as "Shoveling Left," exploit-first training, and ineffective vulnerability reporting, and it defines role-specific responsibilities so security engagement moves upstream into requirements, design, and merge reviews rather than bolt-on scanning. The outcome is a common design language that aligns development and security around measurable engineering attributes instead of binary pass/fail security gates.
+
+## Docs
+- [Abstract and Table of Contents](./S0.0.0.md): Overview, scope, and full document structure.
+- [1. Introduction](./S1.0.0.md): The AppSec challenge and why current approaches fail to change outcomes.
+- [1.1 The Application Security Challenge](./S1.1.0.md): Why "shift left," training, and tooling have underdelivered, including the impact of AI-generated code.
+- [1.2 Document Purpose and Scope](./S1.2.0.md): Audience, the "securable" vs. "secure" distinction, and how FIASSE relates to SSEM.
+- [2. Foundational Principles](./S2.0.0.md): The principles that underpin the framework.
+- [2.1 The Securable Paradigm](./S2.1.0.md): Why there is no static secure state and what adaptive resilience means in practice.
+- [2.2. Resiliently Add Computing Value](./S2.2.0.md): TBD
+- [2.3. Security Mission: Reducing Material Impact](./S2.3.0.md): TBD
+- [2.4 Aligning Security with Development](./S2.4.0.md): Shared vocabulary over security jargon; why "think like an attacker" does not scale as a development mandate.
+- [2.5. The Transparency Principle](./S2.5.0.md): TBD
+- [2.6. The Principle of Least Astonishment](./S2.6.0.md): TBD
+- [3. The Securable Software Engineering Model (SSEM)](./S3.0.0.md): The model that expresses securable attributes in engineering terms.
+- [3.1 Model Overview and Design Language](./S3.1.0.md): SSEM as design language, not a compliance checklist.
+- [3.2 Core Securable Attributes](./S3.2.0.md): Maintainability, Trustworthiness, and Reliability as the three pillars of securable software.
+- [3.2.1. Maintainability](./S3.2.1.md): TBD
+- [3.2.2. Trustworthiness](./S3.2.2.md): TBD
+- [3.2.3. Reliability](./S3.2.3.md): TBD
+- [4. Practical Guidance for Securable Software Development](./S4.0.0.md): Engineering practices that produce securable code.
+- [4.1. Establishing Clear Expectations](./S4.1.0.md): TBD
+- [4.1.1. Proactive Communication](./S4.1.1.md): TBD
+- [4.1.2. Integrating Security into Requirements](./S4.1.2.md): TBD
+- [4.2. Threat Modeling](./S4.2.0.md): TBD
+- [4.2.1. Code-Level Threat Awareness](./S4.2.1.md): TBD
+- [4.2.2. Threat Modeling Solution Framework](./S4.2.2.md): TBD
+- [4.3 The Boundary Control Principle](./S4.3.0.md): Preserve interior flexibility; enforce control at trust boundaries.
+- [4.4 Resilient Coding](./S4.4.0.md): Canonical input handling, request surface minimization, and derived integrity.
+- [4.4.1. Canonical Input Handling](./S4.4.1.md): TBD
+- [4.5 Dependency Management](./S4.5.0.md): Dependency selection and maintenance as an ongoing engineering responsibility.
+- [4.6. Dependency Stewardship](./S4.6.0.md): TBD
+- [5. Integrating Security into Development Processes](./S5.0.0.md): Extending existing workflows rather than bolting on security processes.
+- [5.1. Natively Extending Development Processes](./S5.1.0.md): TBD
+- [5.2. The Role of Merge Reviews](./S5.2.0.md): TBD
+- [5.3. Early Integration: Planning and Requirements](./S5.3.0.md): TBD
+- [6. Common AppSec Anti-Patterns](./S6.0.0.md): "Shoveling Left," ineffective vulnerability reporting, and exploit-first training.
+- [6.1. The "Shoveling Left" Phenomenon](./S6.1.0.md): TBD
+- [6.1.1. Ineffective Vulnerability Reporting](./S6.1.1.md): TBD
+- [6.1.2. Pitfalls of Exploit-First Training](./S6.1.2.md): TBD
+- [6.2. Strategic Use of Security Output](./S6.2.0.md): TBD
+- [7. Roles and Responsibilities](./S7.0.0.md): How security teams, senior engineers, developing engineers, and product owners each participate.
+- [7.1. The Role of the Security Team](./S7.1.0.md): TBD
+- [7.2. Senior Software Engineers](./S7.2.0.md): TBD
+- [7.3. Developing Software Engineers](./S7.3.0.md): TBD
+- [7.4. Product Owners and Managers](./S7.4.0.md): TBD
+- [8. Organizational Adoption of FIASSE](./S8.0.0.md): A practical, non-rigid path for introducing FIASSE into an organization.
+- [9. Conclusion](./S9.0.0.md): The central shift and the starting point for adoption.
+- [10. References](./S10.0.0.md): Source material and further reading.
+
+## Optional
+- [Web Site](https://fiasse.org/): Human friendly content.
+- [OWASP Project Page](https://owasp.org/www-project-fiasse/): OWASP details for project.

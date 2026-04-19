@@ -6,16 +6,26 @@ Splits on ## x[.x[.x[.x]]]. section headers (e.g. 1., 1.1., 2.3.1.) and writes e
 to S<section_id>.md in the destination directory using three numeric places (e.g., S1.0.0.md).
 Use for turning multi-section
 FIASSE source docs into one file per section under data/FIASSE/.
+
+After extraction, if an llms.txt file is present in the output directory, the script rewrites
+its `## Docs` block so the listed entries match the S*.md files on disk. Existing titles and
+descriptions are preserved for files that were already listed; new files are added with a
+title derived from their first heading and a placeholder description, and entries whose
+files no longer exist are removed. Use `--sync-llms` to run just that sync pass without
+re-extracting.
 """
 
 import argparse
 import re
 from pathlib import Path
-from typing import Dict, Tuple
+from typing import Dict, List, Tuple
 
 
 MAX_SECTION_PARTS = 3
 INITIAL_CONTENT_SECTION_ID = "0.0.0"
+LLMS_FILENAME = "llms.txt"
+DOCS_HEADING = "## Docs"
+DEFAULT_DOCS_DESCRIPTION = "TBD"
 
 
 def log_status(level: str, message: str, **context):
@@ -127,6 +137,148 @@ def split_into_sections(content: str) -> Dict[str, str]:
     return sections
 
 
+def read_first_heading(file_path: Path) -> str:
+    """Return the text of the first markdown heading in a file, or an empty string."""
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            for line in f:
+                match = re.match(r'^#{1,6}\s+(.+?)\s*$', line.rstrip('\n'))
+                if match:
+                    return match.group(1).strip()
+    except OSError as exc:
+        log_status("WARN", "Failed to read heading from file", file=str(file_path), reason=str(exc))
+    return ""
+
+
+def parse_docs_entries(docs_lines: List[str]) -> Dict[str, Tuple[str, str]]:
+    """Parse the lines of a '## Docs' block into a dict of path -> (title, description)."""
+    entries: Dict[str, Tuple[str, str]] = {}
+    entry_pattern = re.compile(r'^\s*-\s*\[([^\]]+)\]\(([^)]+)\)\s*(?::\s*(.*))?$')
+    for line in docs_lines:
+        match = entry_pattern.match(line)
+        if not match:
+            continue
+        title = match.group(1).strip()
+        path = match.group(2).strip()
+        description = (match.group(3) or "").strip()
+        entries[path] = (title, description)
+    return entries
+
+
+def format_docs_entry(title: str, path: str, description: str) -> str:
+    """Format a single '## Docs' list item."""
+    description = description.strip() or DEFAULT_DOCS_DESCRIPTION
+    return f"- [{title}]({path}): {description}"
+
+
+def find_docs_block_bounds(lines: List[str]) -> Tuple[int, int]:
+    """Return (start, end) indices for the '## Docs' block, or (-1, -1) if not found.
+
+    `start` is the line index of the '## Docs' heading itself. `end` is the index of the
+    next H2 heading (exclusive), or len(lines) if the block runs to the end of the file.
+    """
+    start = -1
+    for i, line in enumerate(lines):
+        if line.strip() == DOCS_HEADING:
+            start = i
+            break
+    if start == -1:
+        return -1, -1
+    end = len(lines)
+    for i in range(start + 1, len(lines)):
+        if re.match(r'^##\s', lines[i]):
+            end = i
+            break
+    return start, end
+
+
+def update_llms_docs(llms_file: Path, sections_dir: Path) -> None:
+    """Rewrite the '## Docs' block of llms_file so entries match the S*.md files on disk."""
+    if not llms_file.exists():
+        log_status("INFO", "llms.txt not found; skipping Docs sync", path=str(llms_file))
+        return
+
+    section_files = sorted(
+        [p for p in sections_dir.glob('*.md') if parse_section_id_from_filename(p.name)],
+        key=lambda p: natural_sort_key(p.name),
+    )
+    if not section_files:
+        log_status("WARN", "No section files found for llms.txt Docs sync", input=str(sections_dir))
+        return
+
+    try:
+        with open(llms_file, 'r', encoding='utf-8') as f:
+            original_content = f.read()
+    except OSError as exc:
+        log_status("ERROR", "Failed to read llms.txt", path=str(llms_file), reason=str(exc))
+        return
+
+    lines = original_content.split('\n')
+    docs_start, docs_end = find_docs_block_bounds(lines)
+    if docs_start == -1:
+        log_status(
+            "WARN",
+            "'## Docs' heading not found in llms.txt; skipping Docs sync",
+            path=str(llms_file),
+        )
+        return
+
+    existing_entries = parse_docs_entries(lines[docs_start + 1:docs_end])
+
+    new_entry_lines: List[str] = []
+    current_paths = set()
+    preserved = 0
+    added = 0
+    for section_file in section_files:
+        rel_path = f"./{section_file.name}"
+        current_paths.add(rel_path)
+        if rel_path in existing_entries:
+            title, description = existing_entries[rel_path]
+            preserved += 1
+        else:
+            title = read_first_heading(section_file) or section_file.stem
+            description = ""
+            added += 1
+        new_entry_lines.append(format_docs_entry(title, rel_path, description))
+
+    removed = sum(1 for path in existing_entries if path not in current_paths)
+
+    trailing_lines = lines[docs_end:]
+    if trailing_lines and trailing_lines[0] != '':
+        trailing_lines = [''] + trailing_lines
+
+    new_lines = lines[:docs_start] + [DOCS_HEADING] + new_entry_lines + trailing_lines
+    new_content = '\n'.join(new_lines)
+    if original_content.endswith('\n') and not new_content.endswith('\n'):
+        new_content += '\n'
+
+    if new_content == original_content:
+        log_status(
+            "INFO",
+            "llms.txt Docs section already in sync",
+            path=str(llms_file),
+            entries=len(new_entry_lines),
+        )
+        return
+
+    try:
+        with open(llms_file, 'w', encoding='utf-8') as f:
+            f.write(new_content)
+    except OSError as exc:
+        log_status("ERROR", "Failed to write llms.txt", path=str(llms_file), reason=str(exc))
+        return
+
+    log_status(
+        "INFO",
+        "Synced llms.txt Docs section",
+        path=str(llms_file),
+        entries=len(new_entry_lines),
+        preserved=preserved,
+        added=added,
+        removed=removed,
+    )
+
+
 def extract_sections(input_file: Path, output_dir: Path):
     """Extract sections from a single FIASSE RFC markdown file into separate files."""
     log_status("INFO", "Starting section extraction", input=str(input_file), output=str(output_dir))
@@ -181,6 +333,9 @@ def extract_sections(input_file: Path, output_dir: Path):
         total_chars=total_chars_written,
         output=str(output_dir),
     )
+
+    # Keep the companion llms.txt in sync with the files that were just written.
+    update_llms_docs(output_dir / LLMS_FILENAME, output_dir)
 
 
 def natural_sort_key(filename: str) -> Tuple:
@@ -273,37 +428,57 @@ def main():
         epilog="""
 Examples:
   # Extract sections from FIASSE-RFC.md into data/FIASSE/ directory
+  # (also syncs data/FIASSE/llms.txt if present)
   python extract_fiasse_sections.py FIASSE-RFC.md data/FIASSE/
-  
+
   # Combine sections from data/FIASSE/ into combined.md
   python extract_fiasse_sections.py --combine data/FIASSE/ combined.md
+
+  # Re-sync the '## Docs' block of an existing llms.txt to match section files
+  python extract_fiasse_sections.py --sync-llms data/FIASSE/
         """
     )
-    
+
     parser.add_argument(
         'input',
         type=Path,
-        help='Input file (for extract mode) or directory (for combine mode)'
+        help='Input file (extract mode), input directory (combine/sync-llms modes)'
     )
-    
+
     parser.add_argument(
         'output',
         type=Path,
-        help='Output directory (for extract mode) or file (for combine mode)'
+        nargs='?',
+        help='Output directory (extract mode) or output file (combine mode); unused in --sync-llms mode'
     )
-    
-    parser.add_argument(
+
+    mode_group = parser.add_mutually_exclusive_group()
+    mode_group.add_argument(
         '--combine',
         action='store_true',
         help='Combine mode: combine section files from input directory into output file'
     )
-    
+    mode_group.add_argument(
+        '--sync-llms',
+        action='store_true',
+        help="Sync mode: update only the '## Docs' block in <input>/llms.txt to match section files on disk"
+    )
+
     args = parser.parse_args()
-    
+
     try:
-        if args.combine:
+        if args.sync_llms:
+            sections_dir = args.input
+            if not sections_dir.is_dir():
+                parser.error(f"--sync-llms requires a section directory as input (got: {sections_dir})")
+            update_llms_docs(sections_dir / LLMS_FILENAME, sections_dir)
+        elif args.combine:
+            if args.output is None:
+                parser.error("--combine requires an output file")
             combine_sections(args.input, args.output)
         else:
+            if args.output is None:
+                parser.error("extract mode requires an output directory")
             extract_sections(args.input, args.output)
     except Exception as exc:  # Last-resort guardrail for actionable troubleshooting output.
         log_status("ERROR", "Unhandled exception", error_type=type(exc).__name__, reason=str(exc))
