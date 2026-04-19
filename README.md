@@ -52,16 +52,32 @@ FIASSE differs from existing approaches by not requiring developers to become se
 
 FIASSE intends to be open, approachable, and collaborative.
 
+## Roadmap
+
+Initial milestones for the FIASSE project:
+
+- **Project Foundation**
+  - Establishment of project governance, contribution guidelines, and communication channels.
+- **Core Specifications**
+  - Formal publication of the FIASSE framework and SSEM specification, detailing core attributes and integration strategies.
+- **Adoption and Educational Resources**
+  - An SSEM Primer to introduce the model and its application.
+  - A collection of initial use cases and adoption patterns to illustrate practical benefits.
+  - Ongoing development of implementation guides, examples, and other educational materials.
+
+Further milestones will be developed with the project team. Community input is welcome via [GitHub Discussions](https://github.com/owasp/www-project-fiasse/discussions).
+
 ## Complementary Resources
 
 This repository complements the [FIASSE website](https://fiasse.org).
 
 The [OWASP FIASSE](https://owasp.org/www-project-fiasse/) project is part of the [OWASP Foundation](https://owasp.org/), a non-profit organization focused on the mission of eliminating insecure software. The OWASP Foundation provides a wealth of resources and frameworks that align with the principles of FIASSE.
 
-This framework is focused on Securable Software Engineering and is complemented by assurance frameworks like those from OWASP:
+This framework is focused on Securable Software Engineering and is complemented by other OWASP projects:
 
 - Assurance verification: [OWASP Application Security Verification Standard (ASVS)](https://owasp.org/www-project-application-security-verification-standard/)
 - Assurance maturity: [OWASP Software Assurance Maturity Model (SAMM)](https://owasp.org/www-project-software-assurance-maturity-model/)
+- Product security capabilities: [OWASP Product Security Capability Framework (PSCF)](https://owasp.org/www-project-product-security-capability-framework/)
 
 OWASP also hosts numerous projects that document security requirements and features, such as [OWASP Mobile Application Security](https://mas.owasp.org/). The [OWASP Developer Guide](https://owasp.org/www-project-developer-guide/), which is a comprehensive resource for various other OWASP resources.
 
