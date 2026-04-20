@@ -19,4 +19,4 @@ jobs:
       - name: Create release and upload framework artifact
         uses: softprops/action-gh-release@v2
         with:
-          files: docs/secureable_framework.md
+          files: docs/securable_framework.md
