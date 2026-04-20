@@ -3,3 +3,4 @@ book/
 docs/CWE/*
 /git_history_signing.py
 scripts/__pycache__/extract_fiasse_sections.cpython-312.pyc
+.claude/settings.local.json
