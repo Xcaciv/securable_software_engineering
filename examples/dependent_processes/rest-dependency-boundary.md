@@ -100,12 +100,16 @@ the customer's receipt.
 
 ```python
 import logging
+import re
 from dataclasses import dataclass
 
 _log = logging.getLogger(__name__)
 
 # The recorded reliance: what the far side sends, and in what form.
 RELIED_ON = {"tax_cents": int, "tax_jurisdiction": str, "sale_permitted": bool}
+# The shape of a destination this caller sends. Whether a sale is permitted
+# into one is the far side's answer and not this.
+DESTINATION = re.compile(r"[A-Z]{2}-[A-Z]{2}")
 
 
 class QuoteUnavailable(Exception):
@@ -167,6 +171,10 @@ class BoundedCheckout:
         # The caller's own door is a boundary too.
         if type(quantity) is not int or quantity < 1:
             raise SaleRefused(f"quantity {quantity!r} is not a whole positive number")
+        if sku not in CATALOG_CENTS:
+            raise SaleRefused(f"no catalog entry for {sku!r}")
+        if type(destination) is not str or not DESTINATION.fullmatch(destination):
+            raise SaleRefused(f"{destination!r} is not one this caller sends")
         # Ours.
         subtotal_cents = CATALOG_CENTS[sku] * quantity
         quote = self._quote(sku, quantity, destination)
@@ -253,10 +261,15 @@ record and a local recomputation would make this caller a second authority for
 someone else's fact. Taking only the first half argues for a caller enforcing
 decisions it has no standing to make.
 
-`quantity` arrives from somewhere too, and the after version parses it before
-computing with it, for the same reason it parses the response. The before
-version computes with `quantity` only in its fallback, and reads the answer
-otherwise.
+`quantity`, `sku`, and `destination` arrive from somewhere too, and the after
+version parses all three before computing with them or sending them on, for the
+same reason it parses the response. An unknown `sku` would otherwise reach the
+catalog as a dictionary lookup and leave as a `KeyError` raised from inside this
+caller's own pricing. `destination` would otherwise go out exactly as it
+arrived, into a request the far side then has to parse. Which destinations may
+be sold into is still the far side's answer; the shape this caller is willing to
+send is its own. The before version computes with `quantity` only in its
+fallback, and reads the answer otherwise.
 
 One cost is left standing. An outage and a policy refusal leave this boundary
 as the same exception type, so an upstream caller has to read the message or
